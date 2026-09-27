@@ -429,3 +429,7 @@ CHECKPOINT 16 — USER-REPORTED TS2345 FIX
 - 44 tests / 141 assertions passed; app/updater Bun builds и diff check OK.
   Bun не выполняет semantic type checking; tsc/tsconfig/dependencies не
   добавлены согласно исходному ограничению. Исправлена указанная TS2345.
+
+FREQUENCY ROLLOUT — validation
+- Recovery clones rebuilt from saved patches; checks repeated. See ledger for per-repo results.
+- Aberdeen TS2345 fix is pushed; PR #1 remains unmerged.

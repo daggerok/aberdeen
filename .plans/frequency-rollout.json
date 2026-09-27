@@ -2,7 +2,7 @@
   "Amplify": {
     "baseBranch": "main",
     "baseSha": "aa9fc38ebbce0a6960880ca74a05c30bc59c2f98",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "scripts/update-data.ts",
@@ -31,12 +31,14 @@
     "changedFiles": [
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "ae5eef230a28d63110fd44764e919ae782f7b62d",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Fidelity": {
     "baseBranch": "main",
     "baseSha": "57306733420fe90bc7254574fe17890967890833",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -68,12 +70,14 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "d9beff938bce99f4a66341162e427dc3f4090cd5",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Franklin": {
     "baseBranch": "main",
     "baseSha": "f9b0cdc4254f65f87d492615695f35b5bc2f5d3f",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -139,12 +143,14 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "73f722969064888b85b4c0a52963143db98c634e",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Global-X": {
     "baseBranch": "main",
     "baseSha": "4103346cc2b5a8761aa9a816a3390827cb7b3b2d",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -191,12 +197,14 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "d7d33f1079786dda3bf53ceb10d2e345b18512d3",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "79c63b7c4d754d54587d0573d08366e5fffb622f",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -237,12 +245,14 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "1bb92e9b92fef26c9031a2cc516cb1a65b57f096",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Invesco": {
     "baseBranch": "main",
     "baseSha": "312f8e5ede132b4c7ee50144acfd59cb39d7c420",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -278,12 +288,14 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "81f56728421c20f1d3a36d69175ecb2952e76fd5",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "iShares": {
     "baseBranch": "main",
     "baseSha": "0455b0eab8d1366c5805575dda64a868f205355b",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "index.html",
@@ -484,12 +496,14 @@
       "index.html",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "29fcb27f0ea13b7680fd079e3cc6bfd02a3a4763",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "JPMorgan": {
     "baseBranch": "main",
     "baseSha": "a0371bb2e21eff1c57508bc063323dac095cca7d",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -525,12 +539,14 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "3c430aa0f3cf4a42db2929b89d3e21c7a55041aa",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Neos": {
     "baseBranch": "main",
     "baseSha": "7f79c4e04788ccae289f8cf91fe52233b97b9615",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -570,7 +586,9 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "317024f056ec8f54ac92204f96aa86ec48e9fa79",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "ProShares": {
     "baseBranch": "main",
@@ -602,7 +620,7 @@
   "Schwab": {
     "baseBranch": "main",
     "baseSha": "d9f8167180d2af7c999c1be62c83b70a7d7cff57",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -643,12 +661,14 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "2cd4a0f659737b3039cf04c85f0c18b01b0f712a",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "SPDR": {
     "baseBranch": "main",
     "baseSha": "b8c4748620bc741e9ad8063bd60364efbf4586a6",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -680,12 +700,14 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "b415c8ae7dfbb8b91571d9be6e0c25cb983438d9",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "VanEck": {
     "baseBranch": "main",
     "baseSha": "a994096088c98706d7d98c84e54f85630c12fcef",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -729,12 +751,14 @@
       "app.tsx",
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
-    ]
+    ],
+    "recoveredHeadSha": "b57d05e94c0b67b983e7f0aa02f5241cb5a7244c",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "Vanguard": {
     "baseBranch": "main",
     "baseSha": "9bae786eda7723444c498c230c77bf8a3e587219",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "index.html",
@@ -766,12 +790,14 @@
     "changedFiles": [
       "index.html",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "b253a3282734aa8888fd607bc8f21a1bb3a942e9",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   },
   "WisdomTree": {
     "baseBranch": "main",
     "baseSha": "64bcecf44f5f6173d6b6ce159de3e9945f248cc9",
-    "status": "ready-awaiting-auth",
+    "status": "validated",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -803,6 +829,8 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "recoveredHeadSha": "9c8900763011164fd140501c40049eb458ba081f",
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
   }
 }
