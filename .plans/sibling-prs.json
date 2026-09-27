@@ -34,5 +34,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "Global-X": {
+    "url": "https://github.com/daggerok/Global-X/pull/4",
+    "number": 4,
+    "head": "36789b8ed68ed10c03780146f2fc49aecdff8a7c",
+    "mergeCommit": "4103346cc2b5a8761aa9a816a3390827cb7b3b2d",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
