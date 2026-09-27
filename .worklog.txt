@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 27d25c84c027a6fa9070011a494fd16bc87fc632.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 73bcd4bce6c26a314c1a6a95ada341259afb7585.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -73,12 +73,12 @@ TICKER QUEUE ROLLOUT STATUS
 }
 
 CURRENT FOLLOW-UP ARTIFACTS
-return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "affected", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
+return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "code-pushed", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
 aberdeen-metadata.json: "audited"
 live-smoke.json: "completed"
 
 NEXT ACTION
-Fix Goldman-Sachs numeric key annotation only, test and merge authorized PR. Then align Aberdeen README/About and strengthen original plan sections 5, 10, 11 and 12 with exact replacement instructions.
+Complete pending Goldman-Sachs publication if any; then align Aberdeen README/About and update initial plans. Aberdeen PR #1 must stay open.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -373,6 +373,18 @@ nonselected index entries/files preserved. Production api hashes unchanged.
 Logs and before/after SHA256 manifests tracked in research/2026-09-27/scoped-live-smoke;
 full command/config/result recorded in .plans/live-smoke.json. This validates the
 live selected-fund path, not forced SEC fallback or default-branch deployment.
+
+
+--- CHECKPOINT ---
+Goldman-Sachs TS2322 corrected with one type-only line:
+slot returns Exclude<keyof OfficialReturnRow, 'asOfDate'> | null.
+No as-any/ts-ignore or index-signature widening; numeric formulas/schema unchanged.
+Added 4 tests: narrowed annotation, all numeric tenors including zero/negative,
+date/unknown-header safety, missing/null/reordered cells. Baseline 48 pass;
+new annotation guard fails before fix; after 52 pass / 434 assertions.
+Entire updater transpiles to byte-identical JS before/after; Bun build passes.
+Only scripts/update-data.ts +1/-1 and scripts/update-data.test.ts +43/-0.
+Code pushed and remote SHA verified: 94bd942e0c51861e7726a6f2409e0e0de9dd58d8
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1420,6 +1432,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3793,7 +3806,7 @@ ended up using.
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
-    "status": "affected",
+    "status": "code-pushed",
     "candidates": [
       {
         "file": "scripts/update-data.ts",
@@ -3856,6 +3869,17 @@ ended up using.
       "pass": 48,
       "fail": 0,
       "assertions": 421
+    },
+    "branch": "fix/numeric-return-row-keys-20260927",
+    "headSha": "94bd942e0c51861e7726a6f2409e0e0de9dd58d8",
+    "validation": {
+      "pass": 52,
+      "fail": 0,
+      "assertions": 434,
+      "build": "passed",
+      "runtimeJavaScript": "byte-identical before/after",
+      "newTests": 4,
+      "redBaseline": "Only the annotation-regression guard fails before correction; runtime tests intentionally pass before/after."
     }
   },
   "Invesco": {
