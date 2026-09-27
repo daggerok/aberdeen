@@ -562,7 +562,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 1,
       "summary": [
@@ -597,7 +597,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/VanEck/pull/17",
-    "number": 17
+    "number": 17,
+    "merged": true,
+    "mergeCommit": "ce5e470f9f7595f0da9e563069131029029509a5"
   },
   "Vanguard": {
     "baseBranch": "main",

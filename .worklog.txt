@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 4d7f93684125d5c1a41e050032d5b922c3dbeaa7.
+Last confirmed pushed Aberdeen SHA before this checkpoint: bee49bb8ae9bc13dd429976b5c11ee4aac2b1d1a.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -57,7 +57,7 @@ TICKER QUEUE ROLLOUT STATUS
   "ProShares": "merged",
   "Schwab": "merged",
   "SPDR": "not-affected",
-  "VanEck": "pr-created",
+  "VanEck": "merged",
   "Vanguard": "not-affected",
   "WisdomTree": "affected"
 }
@@ -264,6 +264,14 @@ VanEck
 PR created: https://github.com/daggerok/VanEck/pull/17
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+VanEck
+MERGED https://github.com/daggerok/VanEck/pull/17
+Merge confirmed via GitHub API: ce5e470f9f7595f0da9e563069131029029509a5.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1311,6 +1319,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4219,7 +4228,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 1,
       "summary": [
@@ -4254,7 +4263,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/VanEck/pull/17",
-    "number": 17
+    "number": 17,
+    "merged": true,
+    "mergeCommit": "ce5e470f9f7595f0da9e563069131029029509a5"
   },
   "Vanguard": {
     "baseBranch": "main",
