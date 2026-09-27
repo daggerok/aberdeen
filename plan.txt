@@ -325,3 +325,8 @@ SIBLING README MERGED: Vanguard
 - https://github.com/daggerok/Vanguard/pull/26
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 9bae786eda7723444c498c230c77bf8a3e587219.
+
+SIBLING README MERGED: WisdomTree
+- https://github.com/daggerok/WisdomTree/pull/25
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit 64bcecf44f5f6173d6b6ce159de3e9945f248cc9.

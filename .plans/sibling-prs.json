@@ -166,5 +166,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "WisdomTree": {
+    "url": "https://github.com/daggerok/WisdomTree/pull/25",
+    "number": 25,
+    "head": "5706d9808195f3802daf3cc3dcea93a4a0b97667",
+    "mergeCommit": "64bcecf44f5f6173d6b6ce159de3e9945f248cc9",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
