@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: cfae9d0ea16fc57bbd1298294e77739041a8e82c.
+Last confirmed pushed Aberdeen SHA before this checkpoint: c4a502b6c5f0fde9529a4eab62567e0411b23ca5.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -22,10 +22,19 @@ GOALS / AUTHORIZATION / CONSTRAINTS
 - Frequency: 14 code PRs merged; ProShares already-correct. None is the requested
   placeholder for missing/undetermined cadence, NOT proof of zero dividends.
   Explicit Unknown remains Unknown; financial data and inference unchanged.
-- Latest user authorization: audit ALL other 15 ETF repos for the EXACT same
-  TS2345 withTickerChain / Map<string, Promise<void>> mismatch; where present,
-  make the same narrow fix, add tests, create and merge PRs without re-asking.
-  Do not modify unrelated types/algorithms or bypass branch protections/checks.
+- Prior TS2345 queue rollout is COMPLETE: 8 sibling PRs merged, 7 unaffected.
+- LATEST USER REQUEST / AUTHORIZATION (supersedes prior active task):
+  (1) live-test Aberdeen updater using TICKERS for several real funds;
+  (2) audit ALL other 15 ETF repos for Goldman-Sachs TS2322 numeric return-row
+      assignment through overly broad keyof; fix matching cases, test, PR+merge;
+  (3) align README and About ONLY in Aberdeen with the existing sibling pattern;
+  (4) update initial plans and provide exact find/replace/insertion instructions
+      to require these checks for future ETF implementations.
+  User selected scope 'aberdeen-about': sibling TS fixes/PR merges authorized,
+  sibling README/About edits NOT authorized. Aberdeen PR #1 still DO NOT MERGE.
+  Live smoke runs must use isolated copies; no production API refresh implied.
+  Do not change inference, numeric return formulas, map labels, or unrelated UI.
+  No bypass of branch protections/checks; no new tsc/TypeScript dependencies.
 - New workflow standard: this self-contained .worklog.txt embeds original plans,
   .plans records and historical plan.txt, with factual journal checkpoints.
   Update, commit and push after each small meaningful completed step. No secrets
@@ -63,8 +72,13 @@ TICKER QUEUE ROLLOUT STATUS
   "WisdomTree": "merged"
 }
 
+CURRENT FOLLOW-UP ARTIFACTS
+return-row-rollout.json: pending
+aberdeen-metadata.json: pending
+live-smoke.json: pending
+
 NEXT ACTION
-No requested code changes remain. Owner may review Aberdeen PR #1; do NOT merge it without new authorization. For a new task, read this entire .worklog.txt, verify Git/remote/PR states, then follow the new authorized request. Do not repeat the recorded sibling PRs.
+Run read-only audit of return-row keys and sibling README/About patterns; perform two isolated live TICKERS runs; checkpoint observed facts before edits.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -325,6 +339,20 @@ fund never distributes. All 14 sibling Frequency PRs merged, ProShares already
 correct; Aberdeen's Frequency/type changes remain in open PR #1 until owner merge.
 No essential handoff state depends on disposable clones or transient processes.
 Remove completed disposable queue clones if needed to keep snapshots small.
+
+
+--- CHECKPOINT ---
+New user request and explicit scope selection: real TICKERS smoke test for
+Aberdeen; same TS2322 indexed return-row writes audited/fixed across siblings;
+README and About consistency changes ONLY in Aberdeen. Sibling TS PR merges
+are authorized, not sibling documentation/metadata changes. PR #1 stays open.
+Recovered missing local Git configuration and executable bit after workspace
+restore; no updater source change (only mode restored to tracked 100755).
+Remote feature head equals local c4a502b; no external commits to integrate.
+Existing plans already mention a scoped live run but call it a dry run and use
+REQUEST_SLEEP=0; strengthen that requirement with reproducible evidence and
+conservative pacing, while keeping live traffic outside offline unit tests.
+Previous tests are not treated as new live-network proof.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1372,6 +1400,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
