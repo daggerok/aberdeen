@@ -260,3 +260,8 @@ SIBLING README MERGED: Amplify
 - https://github.com/daggerok/Amplify/pull/44
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit aa9fc38ebbce0a6960880ca74a05c30bc59c2f98.
+
+SIBLING README MERGED: Fidelity
+- https://github.com/daggerok/Fidelity/pull/19
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit 57306733420fe90bc7254574fe17890967890833.

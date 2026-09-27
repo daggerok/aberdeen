@@ -10,5 +10,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "Fidelity": {
+    "url": "https://github.com/daggerok/Fidelity/pull/19",
+    "number": 19,
+    "head": "838ef1a0e1c4c01e386bab58898d1dc979bac821",
+    "mergeCommit": "57306733420fe90bc7254574fe17890967890833",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
