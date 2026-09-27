@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 1c991d603f2307f31d6c66f9c3627cacec5d6f71.
+Last confirmed pushed Aberdeen SHA before this checkpoint: f5cef7bb165e1930459d79558a2a73adfe23da69.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -74,11 +74,11 @@ TICKER QUEUE ROLLOUT STATUS
 
 CURRENT FOLLOW-UP ARTIFACTS
 return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "merged", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
-aberdeen-metadata.json: "audited"
+aberdeen-metadata.json: "prepared"
 live-smoke.json: "completed"
 
 NEXT ACTION
-Complete pending Goldman-Sachs publication if any; then align Aberdeen README/About and update initial plans. Aberdeen PR #1 must stay open.
+Push this validated README/metadata-intent checkpoint; update Aberdeen About with before-state guard and verify. Then commit exact reusable plan amendments and final handoff.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -396,6 +396,22 @@ Remote head and exact two-file diff verified. Next: verify checks and merge with
 MERGED https://github.com/daggerok/Goldman-Sachs/pull/15
 GitHub merge confirmed: e99f649a199341c0a4fd23b8516328a366208be9. No protections bypassed.
 No other sibling had the same TS2322; no sibling README/About changes made.
+
+
+--- CHECKPOINT ---
+Goldman-Sachs TS2322 PR #15 merged (e99f649a199341c0a4fd23b8516328a366208be9);
+52 tests / 434 assertions passed; type-only correction emits identical JS.
+Aberdeen README aligned with pinned latest JPMorgan common title, headings,
+intro template, Bun commands and TypeScript wording; actual sources/config
+and all caveats retained. Known limitations remain within Data sources rather
+than an extra top-level section. Review/Pages-pending status remains truthful.
+Prepared About description with shared '<Brand> ETF. A single-file...' pattern
+and missing Pages homepage. Existing 18 shared + 2 abrdn brand topics already
+match the convention; leave them unchanged. Metadata mutation not yet applied.
+Added offline documentation/metadata regression tests. Initial headings guard
+incorrectly counted bash comments inside fenced code as headings; fixed to
+ignore fenced blocks. Final suite: 46 pass / 152 assertions, zero failures.
+UI, updater runtime and production api unchanged in Aberdeen.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1443,6 +1459,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -2718,7 +2735,7 @@ ended up using.
 
 --- FILE: .plans/aberdeen-metadata.json ---
 {
-  "status": "audited",
+  "status": "prepared",
   "referenceRepository": "daggerok/JPMorgan",
   "referenceCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
   "before": {
@@ -2786,7 +2803,34 @@ ended up using.
     "All 18 shared topics already present; keep brand-specific topics consistent with chosen branding.",
     "GitHub language is computed from default-branch contents; no main merge or Linguist overrides authorized.",
     "README intro and tables already follow shared pattern; align heading, shared instructions and section structure, while retaining accurate provider/configuration/caveat details."
-  ]
+  ],
+  "desired": {
+    "description": "abrdn ETF. A single-file client-side tool reading ./api/aberdeen (official Aberdeen gateway, SEC EDGAR N-PORT-P holdings fallback and Yahoo Finance history/dividends) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.",
+    "homepage": "https://daggerok.github.io/aberdeen/",
+    "topics": [
+      "abrdn",
+      "abrdn-etfs",
+      "css",
+      "csv",
+      "dark-mode",
+      "edgar",
+      "etf",
+      "finance",
+      "github-pages",
+      "holdings",
+      "html",
+      "json",
+      "nport",
+      "single-file",
+      "static-api",
+      "tailwindcss",
+      "txt",
+      "typescript",
+      "watchlist",
+      "yahoo-finance"
+    ]
+  },
+  "readmeReference": ".plans/readme-copy.json"
 }
 
 --- END FILE: .plans/aberdeen-metadata.json ---
@@ -3774,6 +3818,37 @@ ended up using.
 }
 
 --- END FILE: .plans/live-smoke.json ---
+
+--- FILE: .plans/readme-copy.json ---
+{
+  "referenceRepository": "daggerok/JPMorgan",
+  "referenceCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+  "referenceSha256": "4c13565509961c89a14b19bd05d92c65087b142a07f039d12ef0b3f9383b8e55",
+  "expectedHeadings": [
+    "# abrdn",
+    "## Using Bun",
+    "## Updating the static abrdn data",
+    "### Data sources",
+    "### Update controls",
+    "### Examples",
+    "## TypeScript",
+    "## Brands table",
+    "## Sibling applications",
+    "## License"
+  ],
+  "introPrefix": "One of the app's features lets you select abrdn ETFs in the Watchlist and aggregate their holdings to see how often each ticker appears across the selected funds. Repeated holdings make overlapping exposure visible: the more selected funds include a ticker, the greater its potential influence on the portfolio; gains in that holding may help, while declines may hurt, and actual impact also depends on each fund's position size.  Another feature makes it faster and easier to find funds with stronger growth over different periods, higher dividend yields or distributions, greater Total Return (price performance plus dividends), and other key performance metrics. A single-file client-side tool that reads the generated `./api/aberdeen` static feed (",
+  "introSuffix": ") into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export \u2014 the same look, feel, columns and business logic as the sibling applications.",
+  "commonTypeScriptSection": "The browser app is intentionally build-free: `index.html` carries the markup, styles and bootstrap, and `app.tsx` is TypeScript compiled in the browser with Babel standalone \u2014 no build step, no bundler, no `tsconfig.json` needed. Bun runs TypeScript out of the box.\n\nVerification before every publish: `bun install --frozen-lockfile`, `bun test`, and `git diff --check`.",
+  "allowedDifferences": [
+    "Brand/repository/API strings",
+    "Actual provider sources, controls and limits",
+    "Truthful deployment/review status; do not claim Pages availability prematurely",
+    "Source-specific caveats retained inside Data sources",
+    "Actual validation evidence and UI reference provenance"
+  ]
+}
+
+--- END FILE: .plans/readme-copy.json ---
 
 --- FILE: .plans/return-row-rollout.json ---
 {

@@ -1,4 +1,4 @@
-# abrdn (Aberdeen)
+# abrdn
 
 One of the app's features lets you select abrdn ETFs in the Watchlist and aggregate their holdings to see how often each ticker appears across the selected funds. Repeated holdings make overlapping exposure visible: the more selected funds include a ticker, the greater its potential influence on the portfolio; gains in that holding may help, while declines may hurt, and actual impact also depends on each fund's position size.  Another feature makes it faster and easier to find funds with stronger growth over different periods, higher dividend yields or distributions, greater Total Return (price performance plus dividends), and other key performance metrics. A single-file client-side tool that reads the generated `./api/aberdeen` static feed (official Aberdeen Investments catalog, NAV, expenses, yields, portfolio holdings and month-/quarter-end NAV performance; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-price history and dividend fallback) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export — the same look, feel, columns and business logic as the sibling applications.
 
@@ -10,24 +10,24 @@ bunx serve . -p 1234
 open http://0:1234
 ```
 
-GitHub Pages URL after merge and Pages activation: <https://daggerok.github.io/aberdeen/>.
-During review use the feature branch `feat/aberdeen-plan-recovery` instead of `main`.
+The application URL is <https://daggerok.github.io/aberdeen/>.
+
+Publication is pending merge and Pages activation. During review use the feature branch `feat/aberdeen-plan-recovery` instead of `main`; PR #1 remains open.
 
 ## Updating the static abrdn data
 
 Run the updater with Bun:
 
 ```bash
-bun install --frozen-lockfile
 bun test scripts/update-data.test.ts
-bun scripts/update-data.ts
+./scripts/update-data.ts
 ```
 
-`bun scripts/update-data.ts --help` prints the effective configuration. The updater has **no runtime dependencies**.
+Run `./scripts/update-data.ts -h` (or `--help`) to print the effective configuration and usage examples. The updater has **no runtime dependencies**.
 
 Defaults live next to the updater in [`scripts/update-data.config.json`](./scripts/update-data.config.json). With no overrides the updater refreshes the entire discovered US ETF catalog (`MAX_FETCHES=0`, `TICKERS=""`), keeps published data when a provider fails, and writes only meaningful changes. It does not skip fetching a fund merely because yesterday's data exists. Unchanged reruns do not create timestamp-only diffs.
 
-The **Update abrdn ETF data** workflow runs Sundays at **00:00 UTC** and on manual dispatch; there is no push trigger. Filters use **AND** logic. The schedule becomes active after the workflow reaches the default branch.
+The **Update abrdn ETF data** GitHub Actions workflow exposes the same settings as manual inputs. All supplied filters use **AND** logic. It runs Sundays at **00:00 UTC** and on manual dispatch, with no push trigger; the schedule becomes active after the workflow reaches the default branch.
 
 ### Data sources
 
@@ -51,6 +51,15 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; range-limited history is not called since-inception.
 - `dividendYield` — indicated latest distribution × annual payment frequency ÷ market price.
 - `secYield` — official subsidized 30-day SEC yield when available; otherwise previously published value or null.
+
+**Known limitations**
+
+- **Physical trusts:** GLTR, PALL, PPLT, SGOL and SIVR do not expose a securities-holdings tab in the verified API. They remain in the catalog with facts/performance/history, but their securities portfolio is marked `not-applicable`; no synthetic bullion rows or invented tickers are generated. Physical bar lists are not converted into securities positions.
+- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and fixture-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If all holdings sources fail, published holdings are kept.
+- **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
+- **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
+- **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing and bounded retries apply. Tests are offline; a passing test suite does not imply every live provider is reachable. GitHub-hosted Actions execution is pending publication of the workflow to the default branch.
+- **Client dependencies:** like the sibling UI, the browser loads Tailwind/Babel from CDNs and needs network access for them. No server backend or runtime package installation is required for the app.
 
 ### Update controls
 
@@ -105,7 +114,7 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 bun scripts/update-data.ts
 
 # Primary runtime controls
-TICKERS="AGEM BCD SGOL" CONCURRENCY=2 bun scripts/update-data.ts
+TICKERS="AGEM AMUN SGOL" CONCURRENCY=2 bun scripts/update-data.ts
 MAX_FETCHES=3 bun scripts/update-data.ts
 AUM="1B:" TER=":0.5" bun scripts/update-data.ts
 PERFORMANCE_1Y="15:" bun scripts/update-data.ts
@@ -118,32 +127,19 @@ Manual Actions `advanced` example (leave individual inputs blank to inherit):
 {"CONCURRENCY":2,"TICKERS":"AGEM BCD SGOL","VERBOSE":true,"STORE_RAW_DOWNLOADS":false}
 ```
 
+The scoped command `TICKERS="AGEM AMUN SGOL" VERBOSE=1 bun scripts/update-data.ts` was live-tested twice in an isolated copy: three funds processed, zero failures, byte-identical rerun, and all eight nonselected funds preserved. See [the recorded smoke-test evidence](./research/2026-09-27/scoped-live-smoke/) and [run/config summary](./.plans/live-smoke.json). This did not refresh the committed production feed.
+
 Use your real identifying contact in `SEC_UA` when running SEC automation. A User-Agent change does not guarantee that an execution environment's HTTP 403 will disappear.
 
 ## TypeScript
 
-The browser app is intentionally build-free: `index.html` carries markup, styles and bootstrap, and `app.tsx` is compiled in-browser with Babel standalone. Bun runs TypeScript directly: no `tsconfig.json`, no TypeScript dependency and no `tsc` step. Only exact-pinned `@types/bun` and `@types/node` development dependencies are used, matching the reference repository.
+The browser app is intentionally build-free: `index.html` carries the markup, styles and bootstrap, and `app.tsx` is TypeScript compiled in the browser with Babel standalone — no build step, no bundler, no `tsconfig.json` needed. Bun runs TypeScript out of the box.
 
-Verification before publication:
+Verification before every publish: `bun install --frozen-lockfile`, `bun test`, and `git diff --check`.
 
-```bash
-bun install --frozen-lockfile
-bun test
-bun build --target=bun scripts/update-data.ts --outfile=/dev/null
-bun build app.tsx --outfile=/dev/null
-git diff --check
-```
+Additional transpilation checks: `bun build --target=bun scripts/update-data.ts --outfile=/dev/null` and `bun build app.tsx --outfile=/dev/null`. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
 
-The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**. The test reverses the documented brand/source string substitutions from `.plans/ui-copy.json` and compares SHA256 with the original files. Styles, components, row selection, exports, tooltip key sets and overview-row order are not redesigned.
-
-## Known limitations
-
-- **Physical trusts:** GLTR, PALL, PPLT, SGOL and SIVR do not expose a securities-holdings tab in the verified API. They remain in the catalog with facts/performance/history, but their securities portfolio is marked `not-applicable`; no synthetic bullion rows or invented tickers are generated. Physical bar lists are not converted into securities positions.
-- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and fixture-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If all holdings sources fail, published holdings are kept.
-- **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
-- **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
-- **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing and bounded retries apply. Tests are offline; a passing test suite does not imply every live provider is reachable. GitHub-hosted Actions execution is pending publication of the workflow to the default branch.
-- **Client dependencies:** like the sibling UI, the browser loads Tailwind/Babel from CDNs and needs network access for them. No server backend or runtime package installation is required for the app.
+The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**. Tests reverse the recorded brand/source substitutions and approved Frequency/type corrections in `.plans/ui-copy.json`, then compare the original SHA256.
 
 ## Brands table
 

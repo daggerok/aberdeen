@@ -235,3 +235,26 @@ describe('per-ticker queue preserves caller results and stores completion-only p
   expect(await chains.get('SGOL')).toBeUndefined();
  });
 });
+
+
+test('README follows the pinned sibling headings and shared presentation', async () => {
+ const readme=await Bun.file(new URL('../README.md',import.meta.url)).text();
+ const rules=await Bun.file(new URL('../.plans/readme-copy.json',import.meta.url)).json();
+ expect(readme.replace(/^```[^\n]*\n[\s\S]*?^```[^\n]*$/gm,'').match(/^#{1,4} .+$/gm)).toEqual(rules.expectedHeadings);
+ const intro=readme.split('\n')[2];
+ expect(intro.startsWith(rules.introPrefix)).toBe(true);
+ expect(intro.endsWith(rules.introSuffix)).toBe(true);
+ expect(readme).toContain(rules.commonTypeScriptSection);
+ expect(readme).toContain('https://daggerok.github.io/aberdeen/');
+ expect(readme).toContain('TICKERS="AGEM AMUN SGOL"');
+});
+
+test('Aberdeen About uses the sibling description pattern and Pages URL', async () => {
+ const metadata=await Bun.file(new URL('../.plans/aberdeen-metadata.json',import.meta.url)).json();
+ expect(metadata.desired.description).toStartWith('abrdn ETF. A single-file client-side tool reading ./api/aberdeen (');
+ expect(metadata.desired.description).toEndWith('into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.');
+ expect(metadata.desired.description).not.toContain('ETF holdings to Watchlist.');
+ expect(metadata.desired.homepage).toBe('https://daggerok.github.io/aberdeen/');
+ const shared=metadata.reference.topics.filter((topic:string)=>!['jpmorgan','jpmorgan-etfs'].includes(topic));
+ expect([...metadata.desired.topics].sort()).toEqual([...shared,'abrdn','abrdn-etfs'].sort());
+});
