@@ -194,3 +194,22 @@ CHECKPOINT 8 — FULL DATA PASS / CI PLATFORM CONFLICT
   SKIP_ABERDEEN), с явным allowlist/валидацией и теми же defaults; либо
   25 отдельных inputs, остальные 3 через repository variables.
 - README/repo metadata и PR ещё не завершены. Не заявлять task complete.
+
+РЕШЕНИЕ ПОЛЬЗОВАТЕЛЯ ПО CI INPUTS
+Одобрены основные inputs (CONCURRENCY/TICKERS обязательно), файл defaults
+в repo, ручные overrides в Actions и дополнительный JSON input.
+
+CHECKPOINT 9 — CONFIG FILE / РАБОЧИЙ CI
+- update-config.json: все 28 canonical controls, defaults полный каталог,
+  MAX_FETCHES=0, TICKERS='', REQUEST_SLEEP=1, CONCURRENCY=2.
+- Actions имеет 25 inputs: 24 обычных и advanced JSON. Неуказанные inputs
+  наследуют файл. Приоритет builtins < file < JSON < nonblank inputs;
+  CLI environment/ABERDEEN_ aliases переопределяют file.
+- JSON allowlist/валидация типов, unknown keys, CR/LF/NUL, numeric/range
+  errors; inputs не интерполируются в shell, запись через GITHUB_ENV.
+- Реальный workflow установлен, невалидный draft удалён. Trigger только
+  Sunday 00:00 UTC + manual. Commit step учитывает новые JSON файлы,
+  Conventional Commit, сохраняет успешные данные даже при partial failures.
+- 37 tests / 90 assertions pass; sanity bundle passed. UI parity intact.
+- «Без параметров» означает full refresh, unchanged файлы не переписываются.
+  Возрастной skip свежих фондов не вводился (его нет в исходном плане).

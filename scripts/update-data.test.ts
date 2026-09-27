@@ -94,3 +94,33 @@ test('UI differs from pinned JPMorgan only by recorded string substitutions',asy
   expect(new Bun.CryptoHasher('sha256').update(text).digest('hex')).toBe(spec.referenceSha256);
  }
 });
+
+describe('repository configuration / Actions override precedence',()=>{
+ test('file < advanced JSON < explicit input < environment (brand alias wins)',async()=>{
+  const {resolveControls}=await import('./update-data');
+  const c=resolveControls({CONCURRENCY:2,TICKERS:'AGEM'},{CONCURRENCY:3,TICKERS:'SGOL'},{CONCURRENCY:'4',TICKERS:''},{ABERDEEN_CONCURRENCY:'5'});
+  expect(c).toEqual({CONCURRENCY:'5',TICKERS:'SGOL'});
+ });
+ test('empty dispatch inherits file, advanced empty ticker resets selection',async()=>{
+  const {resolveControls}=await import('./update-data');
+  expect(resolveControls({TICKERS:'AGEM'},{TICKERS:''},{TICKERS:''}).TICKERS).toBe('');
+  expect(resolveControls({CONCURRENCY:2},{},{CONCURRENCY:''}).CONCURRENCY).toBe('2');
+ });
+ test('unknown keys, multiline injections and invalid values rejected',async()=>{
+  const {resolveControls}=await import('./update-data');
+  for(const value of [{UNKNOWN:1},{SEC_UA:'x\nEVIL=yes'},{CONCURRENCY:0},{MAX_RETRIES:-1},{HISTORY_RANGE:'oops'},{VERBOSE:'maybe'},{TICKERS:['AGEM']},null,[]])expect(()=>resolveControls(value)).toThrow();
+ });
+ test('workflow has at most 25 inputs and exposes concurrency/tickers separately',async()=>{
+  const text=await readFile(new URL('../.github/workflows/update-data.yml',import.meta.url),'utf8');
+  const inputSection=text.split('    inputs:')[1].split('\npermissions:')[0];
+  expect([...inputSection.matchAll(/^      [a-z0-9_]+:/gm)].length).toBe(25);
+  expect(inputSection).toContain('      concurrency:');expect(inputSection).toContain('      tickers:');
+  expect(text).not.toMatch(/^  push:/m);
+ });
+ test('repository defaults cover every canonical control',async()=>{
+  const {CONTROL_NAMES,resolveControls}=await import('./update-data');
+  const file=JSON.parse(await readFile(new URL('../update-config.json',import.meta.url),'utf8'));
+  expect(Object.keys(file).sort()).toEqual([...CONTROL_NAMES].sort());
+  expect(readConfig(resolveControls(file)).tickers).toEqual([]);expect(readConfig(resolveControls(file)).maxFetches).toBe(0);
+ });
+});

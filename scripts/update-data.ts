@@ -361,7 +361,11 @@ function parseAumBound(bound: string): number | undefined {
   const cleaned = bound.trim().replace(/[$,]/g, '');
   if (cleaned === '') return undefined;
   const suffixMatch = /^([\d.]+)([KMBT])$/i.exec(cleaned);
-  if (suffixMatch) return Number(suffixMatch[1]) * (AMOUNT_SUFFIXES[suffixMatch[2].toUpperCase()] ?? 1);
+  if (suffixMatch) {
+    const value=Number(suffixMatch[1])*(AMOUNT_SUFFIXES[suffixMatch[2].toUpperCase()]??1);
+    if(!Number.isFinite(value))throw new Error(`AUM: invalid bound ${bound}`);
+    return value;
+  }
   const value = Number(cleaned);
   if (!Number.isFinite(value)) throw new Error(`AUM: invalid bound ${bound}`);
   return value;
@@ -1590,8 +1594,56 @@ export function batchSelection(funds:CatalogFund[],config:UpdaterConfig,cursor:s
   const ordered=i<0?selected:selected.slice(i+1).concat(selected.slice(0,i+1));
   return ordered.slice(0,config.maxFetches);
 }
+// File defaults and explicit overrides. Allowlisted scalar values only: the
+// same resolver is used by Actions without interpolating user input into bash.
+export const CONTROL_NAMES = [
+  'MAX_FETCHES','REQUEST_SLEEP','CONCURRENCY','AUM','TER','DIVIDEND_YIELD','SEC_YIELD','TICKERS',
+  'HOLDINGS_PAGE_SIZE','HISTORY_PAGE_SIZE','MAX_RETRIES','HISTORY_RANGE','STORE_RAW_DOWNLOADS',
+  'SEC_UA','SKIP_YAHOO','SKIP_ABERDEEN','EDGAR_FALLBACK','VERBOSE',
+  ...['PERFORMANCE','TOTAL_RETURN'].flatMap(prefix=>['YTD','1Y','3Y','5Y','10Y'].map(period=>`${prefix}_${period}`)),
+] as const;
+export function resolveControls(file:unknown={},advanced:unknown={},inputs:unknown={},env:Record<string,string|undefined>={}):Record<string,string> {
+  const result:Record<string,string>={};
+  const apply=(value:unknown,skipEmpty=false)=>{
+    if (!value || typeof value!=='object' || Array.isArray(value)) throw new Error('Configuration must be a JSON object');
+    for (const [key,raw] of Object.entries(value)) {
+      if (!CONTROL_NAMES.includes(key)) throw new Error(`Unknown updater control: ${key}`);
+      if (skipEmpty && (raw===''||raw===undefined||raw===null)) continue;
+      if (!['string','number','boolean'].includes(typeof raw)) throw new Error(`${key}: expected string, number or boolean`);
+      const text=String(raw);
+      if (/[\r\n\0]/.test(text)) throw new Error(`${key}: multiline/control characters are not allowed`);
+      result[key]=text;
+    }
+  };
+  apply(file);apply(advanced);apply(inputs,true);
+  for(const key of CONTROL_NAMES){
+    const value=env[`ABERDEEN_${key}`]??env[key];
+    if(value!==undefined)apply({[key]:value});
+  }
+  for(const key of ['MAX_FETCHES','CONCURRENCY','HOLDINGS_PAGE_SIZE','HISTORY_PAGE_SIZE','MAX_RETRIES']){
+    const v=result[key];if(v===undefined||v==='')continue;
+    const min=['MAX_FETCHES','MAX_RETRIES'].includes(key)?0:1;
+    if(!/^\d+$/.test(v)||!Number.isSafeInteger(Number(v))||Number(v)<min)throw new Error(`${key}: expected integer >= ${min}`);
+  }
+  if(result.REQUEST_SLEEP && (!Number.isFinite(Number(result.REQUEST_SLEEP))||Number(result.REQUEST_SLEEP)<0))throw new Error('REQUEST_SLEEP: expected nonnegative seconds');
+  if(result.HISTORY_RANGE && !/^(max|[1-9]\d*y)$/i.test(result.HISTORY_RANGE))throw new Error('HISTORY_RANGE: use max or Ny');
+  for(const key of ['STORE_RAW_DOWNLOADS','SKIP_YAHOO','SKIP_ABERDEEN','EDGAR_FALLBACK','VERBOSE']){
+    if(result[key] && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key]))throw new Error(`${key}: expected boolean`);
+  }
+  readConfig(result); // validate all min:max filters before a request or write
+  return result;
+}
+async function runtimeControls(env:Record<string,string|undefined>):Promise<Record<string,string>> {
+  let file:unknown={};
+  try {file=JSON.parse(await readFile(new URL('../update-config.json',import.meta.url),'utf8'));}
+  catch(e) {if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
+  return resolveControls(file,{}, {},env);
+}
+
 export async function main(env:Record<string,string|undefined>=process.env):Promise<void> {
-  const config=readConfig(env); requestSleepMs=config.requestSleep*1000;nextRequestAt=0;
+  const controls=await runtimeControls(env);
+  if(controls.VERBOSE!==undefined)process.env.VERBOSE=controls.VERBOSE;
+  const config=readConfig(controls); requestSleepMs=config.requestSleep*1000;nextRequestAt=0;
   outputPrintConfig('abrdn',config);
   const previous=await readJson(INDEX_FILE), oldFunds=new Map<string,JsonRecord>((previous?.funds??[]).map((f:JsonRecord)=>[f.ticker,f]));
   let catalog:CatalogFund[]|null=null;
@@ -1641,7 +1693,8 @@ export async function main(env:Record<string,string|undefined>=process.env):Prom
 if(import.meta.main){
   if(process.argv.some(a=>a==='--help'||a==='-h')){
     console.log('abrdn ETF updater — bun scripts/update-data.ts\nCanonical environment controls (ABERDEEN_ aliases accepted):');
-    outputPrintConfig('abrdn defaults',readConfig({}));
+    outputPrintConfig('abrdn effective configuration',readConfig(await runtimeControls(process.env)));
+    console.log('Defaults: update-config.json; explicit environment overrides the file. Actions: file < advanced JSON < individual inputs.');
     console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds per conservative request gate. CONCURRENCY: fund workers.\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.');
   }else await main().catch(e=>{console.error(`[ done     ] ${errorMessage(e)}`);process.exitCode=1;});
 }
