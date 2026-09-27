@@ -220,7 +220,7 @@
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "79c63b7c4d754d54587d0573d08366e5fffb622f",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -255,7 +255,7 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "da3b72408aa756719344697b95a92c7f9a274587",
+    "headSha": "1bb92e9b92fef26c9031a2cc516cb1a65b57f096",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
@@ -263,7 +263,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "1bb92e9b92fef26c9031a2cc516cb1a65b57f096",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/13",
+    "number": 13,
+    "merged": true,
+    "mergeCommit": "25a8bb6556a9698bb7b5c1de5223c61b7bb648ba"
   },
   "Invesco": {
     "baseBranch": "main",
