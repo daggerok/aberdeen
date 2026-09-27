@@ -213,3 +213,17 @@ CHECKPOINT 9 — CONFIG FILE / РАБОЧИЙ CI
 - 37 tests / 90 assertions pass; sanity bundle passed. UI parity intact.
 - «Без параметров» означает full refresh, unchanged файлы не переписываются.
   Возрастной skip свежих фондов не вводился (его нет в исходном плане).
+
+CHECKPOINT 10 — README / METADATA
+- README по структуре JPMorgan: sources, все controls/defaults, примеры,
+  config precedence, TypeScript, known limitations, обе таблицы 16 брендов,
+  trademark/non-affiliation, MIT. Pages/Actions deployment не обещается до
+  merge/настройки default branch.
+- GitHub metadata обновлены: description + 20 стандартных topics,
+  включая abrdn и abrdn-etfs. API PATCH/PUT HTTP 200.
+- Публичный GitHub search нашёл 15 реализованных siblings (включая
+  Global-X). Это 15 README-only изменений, а не старые 14 из плана.
+- actionlint v1.7.12 проверил workflow без ошибок (shellcheck отключён,
+  inline Bun resolver проверяется unit-тестами).
+- Следующий этап: итоговый аудит и разрешение на создание основного PR
+  и 15 небольших README-only sibling PR. Merge не разрешён/не выполнялся.
