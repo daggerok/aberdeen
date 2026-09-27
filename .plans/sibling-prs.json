@@ -106,5 +106,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "ProShares": {
+    "url": "https://github.com/daggerok/ProShares/pull/17",
+    "number": 17,
+    "head": "ef2fc19347ccae76b24ed5f02a6e9d06f2bf2e35",
+    "mergeCommit": "7650ff6c1cc466e074df38067e7a827b145e6b2f",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
