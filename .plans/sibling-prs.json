@@ -1,0 +1,14 @@
+{
+  "Amplify": {
+    "url": "https://github.com/daggerok/Amplify/pull/44",
+    "number": 44,
+    "head": "641154545e3444143a87b35a923992f0ecbc58ab",
+    "mergeCommit": "aa9fc38ebbce0a6960880ca74a05c30bc59c2f98",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
+  }
+}

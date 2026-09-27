@@ -247,3 +247,16 @@ CHECKPOINT 11 — ИТОГОВЫЙ АУДИТ ДО PR
   workflow отсутствует в main до merge. Main не изменялся.
 - PR всё ещё не создан: требуется отдельное подтверждение пользователя.
 - 15 sibling README-only PR также требуют разрешения на создание PR.
+
+РАЗРЕШЕНИЕ ПОЛЬЗОВАТЕЛЯ НА PR / MERGE
+- Aberdeen: создать PR, оставить открытым для review владельца, НЕ merge.
+- 15 sibling repos: создать и самостоятельно merge только README-only PR.
+- После публикации объяснить различие full refresh / skip fresh funds.
+
+ОСНОВНОЙ PR СОЗДАН
+https://github.com/daggerok/aberdeen/pull/1 — open, ожидает owner review.
+
+SIBLING README MERGED: Amplify
+- https://github.com/daggerok/Amplify/pull/44
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit aa9fc38ebbce0a6960880ca74a05c30bc59c2f98.
