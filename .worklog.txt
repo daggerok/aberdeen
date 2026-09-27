@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 3ede118bf2ff4ff60ba4cea7835247cda0f51fa0.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 81f09746de2684cf57481acd99a6ae3bb4454571.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -49,7 +49,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Fidelity": "not-affected",
   "Franklin": "not-affected",
   "Global-X": "merged",
-  "Goldman-Sachs": "pr-created",
+  "Goldman-Sachs": "merged",
   "Invesco": "not-affected",
   "iShares": "not-affected",
   "JPMorgan": "affected",
@@ -139,6 +139,14 @@ Goldman-Sachs
 PR created: https://github.com/daggerok/Goldman-Sachs/pull/14
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+Goldman-Sachs
+MERGED https://github.com/daggerok/Goldman-Sachs/pull/14
+Merge confirmed via GitHub API: 3c7a433650515c1d399fb0575432aad9973a6a73.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1186,6 +1194,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3670,7 +3679,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "classification": "same mismatch masked by as Promise<void>",
     "baselineTests": {
       "exitCode": 0,
@@ -3701,7 +3710,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Goldman-Sachs/pull/14",
-    "number": 14
+    "number": 14,
+    "merged": true,
+    "mergeCommit": "3c7a433650515c1d399fb0575432aad9973a6a73"
   },
   "Invesco": {
     "baseBranch": "main",
