@@ -272,7 +272,7 @@
   "Invesco": {
     "baseBranch": "main",
     "baseSha": "312f8e5ede132b4c7ee50144acfd59cb39d7c420",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -303,14 +303,18 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "752c9664a9356e2fb928cb8ea722f3516b43f8c1",
+    "headSha": "81f56728421c20f1d3a36d69175ecb2952e76fd5",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
     ],
     "recoveredHeadSha": "81f56728421c20f1d3a36d69175ecb2952e76fd5",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Invesco/pull/21",
+    "number": 21,
+    "merged": true,
+    "mergeCommit": "2451cb73a45bf1156dd92d48571396cbdb091118"
   },
   "iShares": {
     "baseBranch": "main",

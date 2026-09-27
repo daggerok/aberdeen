@@ -458,3 +458,8 @@ FREQUENCY ROLLOUT — Goldman-Sachs
 - https://github.com/daggerok/Goldman-Sachs/pull/13
 - Remote diff and head verified; merge confirmed: 25a8bb6556a9698bb7b5c1de5223c61b7bb648ba.
 - Tests: 44 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — Invesco
+- https://github.com/daggerok/Invesco/pull/21
+- Remote diff and head verified; merge confirmed: 2451cb73a45bf1156dd92d48571396cbdb091118.
+- Tests: 92 pass, 0 fail; no new failures. No unrelated changes.
