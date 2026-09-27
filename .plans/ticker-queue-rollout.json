@@ -246,7 +246,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -275,7 +275,9 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/JPMorgan/pull/18",
+    "number": 18
   },
   "Neos": {
     "baseBranch": "main",

@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: f5a87e0db5c42fb620bbcce2bddc434f9bf8999d.
+Last confirmed pushed Aberdeen SHA before this checkpoint: a443eba5f3c3db6fe7bf76020c973cde0d38889a.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -52,7 +52,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Goldman-Sachs": "merged",
   "Invesco": "not-affected",
   "iShares": "not-affected",
-  "JPMorgan": "code-pushed",
+  "JPMorgan": "pr-created",
   "Neos": "affected",
   "ProShares": "affected",
   "Schwab": "affected",
@@ -157,6 +157,13 @@ After: 112 pass, 0 fail. Baseline failures unchanged.
 Bun app build and exact production diff guard passed; no API/dependency changes.
 Feature branch pushed and remote SHA verified: 8d4f9e5cdb88f5e3f6fac08cca82de0c546fc4f2.
 Next: create/reuse PR, verify remote diff/checks/head, then authorized merge.
+
+
+--- CHECKPOINT ---
+JPMorgan
+PR created: https://github.com/daggerok/JPMorgan/pull/18
+Remote file diff and head SHA match the tested local commit.
+Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1204,6 +1211,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3783,7 +3791,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3812,7 +3820,9 @@ ended up using.
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/JPMorgan/pull/18",
+    "number": 18
   },
   "Neos": {
     "baseBranch": "main",
