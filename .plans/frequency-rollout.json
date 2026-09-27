@@ -578,7 +578,7 @@
   "Neos": {
     "baseBranch": "main",
     "baseSha": "7f79c4e04788ccae289f8cf91fe52233b97b9615",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -612,7 +612,7 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "dda4901e2b56d95d550f35fedf3f12129e5e6320",
+    "headSha": "317024f056ec8f54ac92204f96aa86ec48e9fa79",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
@@ -620,7 +620,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "317024f056ec8f54ac92204f96aa86ec48e9fa79",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Neos/pull/15",
+    "number": 15,
+    "merged": true,
+    "mergeCommit": "065887db2e84d77b895660a1eb77efb9302a4a52"
   },
   "ProShares": {
     "baseBranch": "main",
