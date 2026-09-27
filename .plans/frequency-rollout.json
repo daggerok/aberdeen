@@ -1,0 +1,510 @@
+{
+  "Amplify": {
+    "baseBranch": "main",
+    "baseSha": "aa9fc38ebbce0a6960880ca74a05c30bc59c2f98",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 2
+      }
+    ],
+    "baselineTests": {
+      "exitCode": null,
+      "failures": [],
+      "summary": [],
+      "note": "Repository has no existing test file; frequency helper will be directly tested."
+    }
+  },
+  "Fidelity": {
+    "baseBranch": "main",
+    "baseSha": "57306733420fe90bc7254574fe17890967890833",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 3
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "50 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Fidelity-baseline.log"
+    }
+  },
+  "Franklin": {
+    "baseBranch": "main",
+    "baseSha": "f9b0cdc4254f65f87d492615695f35b5bc2f5d3f",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 2
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "api/franklin/funds/EZBC/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/franklin/funds/EZET/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/franklin/funds/EZPZ/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/franklin/funds/FGDL/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/franklin/funds/XRPZ/meta.json",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "44 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Franklin-baseline.log"
+    }
+  },
+  "Global-X": {
+    "baseBranch": "main",
+    "baseSha": "4103346cc2b5a8761aa9a816a3390827cb7b3b2d",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "api/globalx/index.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/globalx/funds/ONOF/meta.json",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "7 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Global-X-baseline.log"
+    }
+  },
+  "Goldman-Sachs": {
+    "baseBranch": "main",
+    "baseSha": "79c63b7c4d754d54587d0573d08366e5fffb622f",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 2
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "43 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Goldman-Sachs-baseline.log"
+    }
+  },
+  "Invesco": {
+    "baseBranch": "main",
+    "baseSha": "312f8e5ede132b4c7ee50144acfd59cb39d7c420",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 2
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 7
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "91 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Invesco-baseline.log"
+    }
+  },
+  "iShares": {
+    "baseBranch": "main",
+    "baseSha": "0455b0eab8d1366c5805575dda64a868f205355b",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "index.html",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 4
+      },
+      {
+        "file": "api/ishares/index.json",
+        "occurrences": 31
+      },
+      {
+        "file": "api/ishares/funds/AIBF/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/BDVL/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/BDYN/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/BFLX/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/DMAX/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/ENHI/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/ETHA/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/GGOV/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/GSG/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IALT/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IAU/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IAUM/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IBIM/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IBIT/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IDEF/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IDYN/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IQQ/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/ISMF/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/ITDJ/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IVVB/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/IVVM/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/MAXJ/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/MMAX/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/SLV/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/SMAX/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/SQLT/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/STEN/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/TEND/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/TENJ/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/TENM/meta.json",
+        "occurrences": 1
+      },
+      {
+        "file": "api/ishares/funds/TWOX/meta.json",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "15 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-iShares-baseline.log"
+    }
+  },
+  "JPMorgan": {
+    "baseBranch": "main",
+    "baseSha": "a0371bb2e21eff1c57508bc063323dac095cca7d",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 6
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "107 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-JPMorgan-baseline.log"
+    }
+  },
+  "Neos": {
+    "baseBranch": "main",
+    "baseSha": "7f79c4e04788ccae289f8cf91fe52233b97b9615",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "103 pass",
+        "0 fail"
+      ]
+    }
+  },
+  "ProShares": {
+    "baseBranch": "main",
+    "baseSha": "7650ff6c1cc466e074df38067e7a827b145e6b2f",
+    "status": "already-correct",
+    "affectedFiles": [],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "62 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-ProShares-baseline.log"
+    }
+  },
+  "Schwab": {
+    "baseBranch": "main",
+    "baseSha": "d9f8167180d2af7c999c1be62c83b70a7d7cff57",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 2
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "33 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Schwab-baseline.log"
+    }
+  },
+  "SPDR": {
+    "baseBranch": "main",
+    "baseSha": "b8c4748620bc741e9ad8063bd60364efbf4586a6",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "27 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-SPDR-baseline.log"
+    }
+  },
+  "VanEck": {
+    "baseBranch": "main",
+    "baseSha": "a994096088c98706d7d98c84e54f85630c12fcef",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      },
+      {
+        "file": "scripts/update-data.test.ts",
+        "occurrences": 2
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 1,
+      "failures": [
+        "(fail) generated feed > the published Name/Ticker columns are not swapped"
+      ],
+      "summary": [
+        "76 pass",
+        "1 fail"
+      ]
+    }
+  },
+  "Vanguard": {
+    "baseBranch": "main",
+    "baseSha": "9bae786eda7723444c498c230c77bf8a3e587219",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "index.html",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "15 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-Vanguard-baseline.log"
+    }
+  },
+  "WisdomTree": {
+    "baseBranch": "main",
+    "baseSha": "64bcecf44f5f6173d6b6ce159de3e9945f248cc9",
+    "status": "pending",
+    "affectedFiles": [
+      {
+        "file": "app.tsx",
+        "occurrences": 1
+      }
+    ],
+    "baselineTests": {
+      "exitCode": 0,
+      "failures": [],
+      "summary": [
+        "21 pass",
+        "0 fail"
+      ],
+      "log": ".git/audit/frequency-WisdomTree-baseline.log"
+    }
+  }
+}

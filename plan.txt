@@ -379,3 +379,15 @@ CHECKPOINT 13 — FREQUENCY LABEL (USER REQUEST)
 - 40 tests / 122 assertions passed; bun build app.tsx и diff --check passed.
 - Commit/push в существующую feature-ветку PR #1; без merge и без изменений
   кода других sibling repositories.
+
+CHECKPOINT 14 — FREQUENCY ROLLOUT AUTHORIZED
+- Пользователь явно разрешил создать и merge code PR для замены
+  "00 - —" -> "00 - None" в остальных ETF repos. Aberdeen не merge.
+- Проверены текущие default branches всех 15 siblings. ProShares уже
+  соответствует требованию: лишний/пустой PR не создавать.
+- 14 остальных: менять строку в UI/updater/tests, а где сохранён coded
+  Frequency в api index/meta — только её значение, без live data refresh.
+- Baseline tests пройдены в 13 repos с существующим suite, кроме VanEck:
+  76 pass / 1 fail до изменений, GDX Weight expected 10.89%, actual 11.09%.
+  Amplify не имеет существующего suite; добавить отдельную pure проверку.
+- Подробный rollout ledger: .plans/frequency-rollout.json.
