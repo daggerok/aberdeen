@@ -2,7 +2,7 @@
   "Amplify": {
     "baseBranch": "main",
     "baseSha": "aa9fc38ebbce0a6960880ca74a05c30bc59c2f98",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "scripts/update-data.ts",
@@ -26,14 +26,18 @@
       "updaterBuild": 0,
       "uiBuild": null
     },
-    "headSha": "5470d8a664c5a95cae0ddc2244f543435b9ba0d5",
+    "headSha": "ae5eef230a28d63110fd44764e919ae782f7b62d",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "scripts/update-data.test.ts",
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "ae5eef230a28d63110fd44764e919ae782f7b62d",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Amplify/pull/45",
+    "number": 45,
+    "merged": true,
+    "mergeCommit": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6"
   },
   "Fidelity": {
     "baseBranch": "main",
