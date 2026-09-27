@@ -76,7 +76,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -105,7 +105,9 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Global-X/pull/6",
+    "number": 6
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
