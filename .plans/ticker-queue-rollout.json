@@ -562,7 +562,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "affected",
+    "status": "code-pushed",
     "baselineTests": {
       "exitCode": 1,
       "summary": [
@@ -574,7 +574,28 @@
       ]
     },
     "classification": "unmasked Promise<T | undefined> into Promise<void>",
-    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>.",
+    "redRegression": {
+      "newFailureCount": 3,
+      "note": "Success result, recovery queue value and serialized queue completion assertions fail against original implementation."
+    },
+    "headSha": "2af59fa2c3719db56f4fc808201c6de085ace206",
+    "branch": "fix/ticker-queue-promise-20260927",
+    "validation": {
+      "exitCode": 1,
+      "summary": [
+        "81 pass",
+        "1 fail"
+      ],
+      "failures": [
+        "(fail) generated feed > the published Name/Ticker columns are not swapped"
+      ]
+    },
+    "appBuild": "passed",
+    "changedFiles": [
+      "app.tsx",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Vanguard": {
     "baseBranch": "main",
