@@ -562,7 +562,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 1,
       "summary": [
@@ -595,7 +595,9 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/VanEck/pull/17",
+    "number": 17
   },
   "Vanguard": {
     "baseBranch": "main",
