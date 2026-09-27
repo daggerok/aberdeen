@@ -227,3 +227,23 @@ CHECKPOINT 10 — README / METADATA
   inline Bun resolver проверяется unit-тестами).
 - Следующий этап: итоговый аудит и разрешение на создание основного PR
   и 15 небольших README-only sibling PR. Merge не разрешён/не выполнялся.
+
+CHECKPOINT 11 — ИТОГОВЫЙ АУДИТ ДО PR
+- Повторная Chromium проверка уже на полном каталоге: нет pageerror,
+  checkbox-only selection, AGEM holdings/history/distributions/watchlist,
+  CSV aberdеen- prefix, dark mode и поиск прошли.
+- Проверены все API manifests: количество строк/страниц равно meta/index,
+  ключи строк совпадают с headers; 11/328/27067.
+- Отдельная копия ВСЕГО опубликованного api с fetch=>403 для КАЖДОГО
+  запроса (issuer/SEC/Yahoo): все 11 unchanged; byte diff api/ пуст.
+- После ввода update-config.json ещё два scoped live runs: byte diff
+  всего api/ пуст; все 3 unchanged. Git working tree не содержит data diff.
+- Наблюдение: между поздними независимыми Yahoo запросами volume SGOL
+  за 2026-09-25 на время менялся 3128300 -> 3128288 -> 3128300.
+  Это реальное различие payload; не скрывать его округлением/игнором
+  volume. Проверки одинакового output относятся к указанным парам runs,
+  а не обещают неизменность изменяющегося upstream навсегда.
+- CI: actionlint прошёл; реальный GitHub Actions run ещё не выполнен,
+  workflow отсутствует в main до merge. Main не изменялся.
+- PR всё ещё не создан: требуется отдельное подтверждение пользователя.
+- 15 sibling README-only PR также требуют разрешения на создание PR.
