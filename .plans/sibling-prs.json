@@ -22,5 +22,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "Franklin": {
+    "url": "https://github.com/daggerok/Franklin/pull/18",
+    "number": 18,
+    "head": "5b78c42d60c31449727237e7bbe7dc057e0d7765",
+    "mergeCommit": "f9b0cdc4254f65f87d492615695f35b5bc2f5d3f",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }

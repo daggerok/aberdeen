@@ -265,3 +265,8 @@ SIBLING README MERGED: Fidelity
 - https://github.com/daggerok/Fidelity/pull/19
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 57306733420fe90bc7254574fe17890967890833.
+
+SIBLING README MERGED: Franklin
+- https://github.com/daggerok/Franklin/pull/18
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit f9b0cdc4254f65f87d492615695f35b5bc2f5d3f.
