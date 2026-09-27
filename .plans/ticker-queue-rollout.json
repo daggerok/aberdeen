@@ -400,7 +400,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "affected",
+    "status": "code-pushed",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -410,7 +410,26 @@
       "failures": []
     },
     "classification": "unmasked Promise<T | undefined> into Promise<void>",
-    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>.",
+    "redRegression": {
+      "newFailureCount": 3,
+      "note": "Success result, recovery queue value and serialized queue completion assertions fail against original implementation."
+    },
+    "headSha": "ea4d728fa83268c6b172364293f2b2533022f940",
+    "branch": "fix/ticker-queue-promise-20260927",
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "66 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "appBuild": "passed",
+    "changedFiles": [
+      "app.tsx",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Schwab": {
     "baseBranch": "main",
