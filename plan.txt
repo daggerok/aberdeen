@@ -110,3 +110,26 @@ CHECKPOINT 3 — БЛОКИРОВКА SEC, НУЖНО РЕШЕНИЕ ПОЛЬЗ�
   понадобиться, но смена User-Agent не гарантирует снятия HTTP 403.
 - Все сохранённые findings находятся в коммитах, токен не записан.
 - main и другие репозитории не изменены; PR не создан.
+
+РЕШЕНИЕ ПОЛЬЗОВАТЕЛЯ ПО SEC
+Продолжать реализацию; 403 обрабатывать как siblings, искать рабочие
+официальные источники; при необходимости использовать публичные fallback.
+
+CHECKPOINT 4 — OFFICIAL HOLDINGS DOWNLOAD + PERFORMANCE
+- Проверена /en-us/investor/funds/etfs: официальный landing, ссылки на
+  prospectus physical trusts; основной машинный каталог — gateway.
+- POST breakdown/dailyHoldingsSheet работает: HTTP 200, Holdings.xlsx,
+  10291 байт; worksheet содержит 98 строк (включая заголовки) для AGEM.
+  JSON dailyHoldings удобнее: те же holdings, явные totalResults/skip/take.
+- Через JS официального сайта найдены performance/annualized и
+  performance/cumulative; POST с quarterly=false работает. quarterly=true
+  используется сайтом для квартальных таблиц. Это предпочтительнее Yahoo
+  для headline NAV returns; cumulativeChart — growth index, НЕ NAV history.
+- AGEM: официальные 3Y CAGR=27.89, 5Y=8.89, 10Y=10.61, SI=6.34;
+  1Y cumulative=43.17, 1 month=1.53; lastRelevantDate=2026-08-31.
+  Raw fixtures сохранены. Calendar-year return не подменяет trailing 1Y.
+- Yahoo chart AGEM: HTTP 200, 403 дневных бара и 7 выплат. Использовать
+  как market-price history/dividend fallback, не называть official NAV.
+- Daily NAV history/distribution API на официальном сайте пока не найдены;
+  это ограничение исследования, а не утверждение об их отсутствии.
+- Бренд фонда в официальном каталоге — abrdn; сохранить его для UI.
