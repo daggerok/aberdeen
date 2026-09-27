@@ -387,7 +387,24 @@ CHECKPOINT 14 — FREQUENCY ROLLOUT AUTHORIZED
   соответствует требованию: лишний/пустой PR не создавать.
 - 14 остальных: менять строку в UI/updater/tests, а где сохранён coded
   Frequency в api index/meta — только её значение, без live data refresh.
-- Baseline tests пройдены в 13 repos с существующим suite, кроме VanEck:
+- Baseline: 13 существующих suites полностью проходят; отдельно VanEck:
   76 pass / 1 fail до изменений, GDX Weight expected 10.89%, actual 11.09%.
   Amplify не имеет существующего suite; добавить отдельную pure проверку.
 - Подробный rollout ledger: .plans/frequency-rollout.json.
+
+CHECKPOINT 15 — SIBLING FREQUENCY IMPLEMENTATION READY
+- Все 14 изменений реализованы и закоммичены в отдельных feature branches.
+  Head SHAs, полный перечень файлов и результаты — frequency-rollout.json.
+- Byte-level diff guard: production/UI/API файлы отличаются исключительно
+  заменой "00 - —" -> "00 - None"; тестовые файлы — исправленные ожидания
+  и один новый regression test. В JSON меняются только Frequency поля.
+- 14 новых regression tests проходят. 13 изменённых suites полностью
+  проходят; VanEck 77 pass / 1 прежняя ошибка GDX Weight, новых ошибок нет.
+  Неизменённый ProShares: 62 pass + отдельный formatter regression pass.
+- Bun updater builds прошли во всех 15 repos; все имеющиеся app.tsx build
+  прошли. Inline UI дополнительно проверен в регрессионных тестах.
+- Публикация пока НЕ выполнена: после восстановления контекста отсутствует
+  прежний ephemeral GitHub credential; сохранённых секретов нет.
+  Не создавать новые PR повторно, если ledger уже содержит PR number/URL.
+- Offline recovery patches: /home/user/frequency-rollout/patches/*.patch.
+  Aberdeen PR #1 остаётся unmerged. Данный checkpoint пока только локально.
