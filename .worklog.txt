@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 567c8870ba4412a8f567254800efb02e64610bec.
+Last confirmed pushed Aberdeen SHA before this checkpoint: e4026a1db1180fb91f5ab8ea311c9a839d70ee1d.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -44,10 +44,26 @@ VALIDATION / KNOWN LIMITATIONS
   tracked artifacts are durable. Reconstruct missing clones from recorded SHAs.
 
 TICKER QUEUE ROLLOUT STATUS
-Audit in progress; no sibling type-fix PR created yet.
+{
+  "Amplify": "not-affected",
+  "Fidelity": "not-affected",
+  "Franklin": "not-affected",
+  "Global-X": "affected",
+  "Goldman-Sachs": "affected",
+  "Invesco": "not-affected",
+  "iShares": "not-affected",
+  "JPMorgan": "affected",
+  "Neos": "affected",
+  "ProShares": "affected",
+  "Schwab": "affected",
+  "SPDR": "not-affected",
+  "VanEck": "affected",
+  "Vanguard": "not-affected",
+  "WisdomTree": "affected"
+}
 
 NEXT ACTION
-Finish current audit, checkpoint baseline results, then fix only verified affected repos.
+For each of the eight affected entries: add queue regressions, confirm baseline failure, change exactly one line, rerun suite/build, commit/push feature branch and checkpoint. Then create/verify/merge PR and checkpoint again.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -63,6 +79,24 @@ Credentials are not copied into the handoff file.
 Audit command/process: python /home/user/queue-rollout/audit.py; process ETF audit.
 If interrupted, use .plans/ticker-queue-rollout.json if present; otherwise repeat
 read-only audit of the 15 siblings listed in the Frequency ledger.
+
+
+--- CHECKPOINT ---
+Read-only audit of all 15 sibling default branches completed (base SHAs and
+matched source lines captured in .plans/ticker-queue-rollout.json).
+Six unmasked mismatches: Global-X, JPMorgan, Neos, ProShares, VanEck, WisdomTree.
+Two identical underlying mismatches are masked by as Promise<void> assertions:
+Goldman-Sachs and Schwab. Include these same-line corrections; remove assertions.
+Fidelity uses Promise<unknown> and does not have this mismatch. Other six use
+other implementations; no change needed. Expanded grep inspected generic queue
+helpers, Promise<void> maps and catch(() => undefined) usages in tracked TS/HTML.
+Baseline tests for all 8 affected repos recorded. VanEck retains its known
+77 pass / 1 GDX Weight failure; all other affected suites pass.
+Minor tooling correction: sparse-checkout add failed in default cone mode for
+the two newly included clones; use set --no-cone with root/scripts/API patterns.
+Next fix is one production line per affected app.tsx plus four regression tests;
+no API/updater/dependency/UI-structure changes. New assertions must fail against
+the old implementation before fixing (value preserved in completion-only map).
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1110,6 +1144,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 === REFERENCE SNAPSHOTS (current text; legacy history retained) ===
 
@@ -3431,6 +3466,513 @@ ended up using.
 }
 
 --- END FILE: .plans/sibling-prs.json ---
+
+--- FILE: .plans/ticker-queue-rollout.json ---
+{
+  "Amplify": {
+    "baseBranch": "main",
+    "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "Fidelity": {
+    "baseBranch": "main",
+    "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "matches": [],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 527,
+        "text": "    function withTickerChain<T>(ticker: string, work: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 536,
+        "text": "      await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "not-affected",
+    "reason": "Generic queue uses Map<string, Promise<unknown>>; existing result is assignable, so this TS2345 does not apply."
+  },
+  "Franklin": {
+    "baseBranch": "main",
+    "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "Global-X": {
+    "baseBranch": "main",
+    "baseSha": "f5b08947155fc2d1a09c2fcbebf7cfa8c08b5b19",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 566,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 279,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 563,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 564,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 566,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 582,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 621,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "8 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "Goldman-Sachs": {
+    "baseBranch": "main",
+    "baseSha": "25a8bb6556a9698bb7b5c1de5223c61b7bb648ba",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 562,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined) as Promise<void>);"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 273,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 559,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 560,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 562,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined) as Promise<void>);"
+      },
+      {
+        "file": "app.tsx",
+        "line": 578,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 617,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "classification": "same mismatch masked by as Promise<void>",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "44 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "Invesco": {
+    "baseBranch": "main",
+    "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "iShares": {
+    "baseBranch": "main",
+    "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "JPMorgan": {
+    "baseBranch": "main",
+    "baseSha": "7f3be2b1c3469c72f7590fbb1cd21e6770bf4c2f",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 561,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 274,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 558,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 559,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 561,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 577,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 616,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "108 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "Neos": {
+    "baseBranch": "main",
+    "baseSha": "065887db2e84d77b895660a1eb77efb9302a4a52",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 566,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 279,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 563,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 564,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 566,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 582,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 621,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "104 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "ProShares": {
+    "baseBranch": "main",
+    "baseSha": "7650ff6c1cc466e074df38067e7a827b145e6b2f",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 563,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 276,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 560,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 561,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 563,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 579,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 618,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "62 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "Schwab": {
+    "baseBranch": "main",
+    "baseSha": "00acbff11bae5f278ac94df546cac454947c9333",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 562,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined) as Promise<void>);"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 273,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 559,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 560,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 562,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined) as Promise<void>);"
+      },
+      {
+        "file": "app.tsx",
+        "line": 578,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 617,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "classification": "same mismatch masked by as Promise<void>",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "34 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "SPDR": {
+    "baseBranch": "main",
+    "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "VanEck": {
+    "baseBranch": "main",
+    "baseSha": "dfeed5f86c355ef4af4964b84f7f3c70e0ce62cb",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 560,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 273,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 557,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 558,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 560,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 576,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 615,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 1,
+      "summary": [
+        "77 pass",
+        "1 fail"
+      ],
+      "failures": [
+        "(fail) generated feed > the published Name/Ticker columns are not swapped"
+      ]
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  },
+  "Vanguard": {
+    "baseBranch": "main",
+    "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "matches": [],
+    "related": [],
+    "status": "not-affected",
+    "reason": "No generic withTickerChain storing a value-preserving Promise in Map<string, Promise<void>>."
+  },
+  "WisdomTree": {
+    "baseBranch": "main",
+    "baseSha": "3c47eab5752e3a622ca3ad3f65638e37914b4e72",
+    "matches": [
+      {
+        "file": "app.tsx",
+        "line": 559,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      }
+    ],
+    "related": [
+      {
+        "file": "app.tsx",
+        "line": 272,
+        "text": "const holdingsChains: Map<string, Promise<void>> = new Map();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 556,
+        "text": "function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {"
+      },
+      {
+        "file": "app.tsx",
+        "line": 557,
+        "text": "  const previous = holdingsChains.get(ticker) ?? Promise.resolve();"
+      },
+      {
+        "file": "app.tsx",
+        "line": 559,
+        "text": "  holdingsChains.set(ticker, work.catch(() => undefined));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 575,
+        "text": "  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));"
+      },
+      {
+        "file": "app.tsx",
+        "line": 614,
+        "text": "  await withTickerChain(ticker, async () => {"
+      }
+    ],
+    "status": "affected",
+    "baselineTests": {
+      "exitCode": 0,
+      "summary": [
+        "22 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "classification": "unmasked Promise<T | undefined> into Promise<void>",
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+  }
+}
+
+--- END FILE: .plans/ticker-queue-rollout.json ---
 
 --- FILE: .plans/ui-copy.json ---
 {
