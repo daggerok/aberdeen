@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 0f95448344d2f3ec5c2622792a3fc5c5289c7a6d.
+Last confirmed pushed Aberdeen SHA before this checkpoint: c57b5df73a138402a06da195f1b5db108312e4fe.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -53,7 +53,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Invesco": "not-affected",
   "iShares": "not-affected",
   "JPMorgan": "merged",
-  "Neos": "code-pushed",
+  "Neos": "pr-created",
   "ProShares": "affected",
   "Schwab": "affected",
   "SPDR": "not-affected",
@@ -182,6 +182,13 @@ After: 108 pass, 0 fail. Baseline failures unchanged.
 Bun app build and exact production diff guard passed; no API/dependency changes.
 Feature branch pushed and remote SHA verified: 33f18c762ff0147ef11799be47b6d735d381efd6.
 Next: create/reuse PR, verify remote diff/checks/head, then authorized merge.
+
+
+--- CHECKPOINT ---
+Neos
+PR created: https://github.com/daggerok/Neos/pull/16
+Remote file diff and head SHA match the tested local commit.
+Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1229,6 +1236,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3888,7 +3896,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3917,7 +3925,9 @@ ended up using.
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Neos/pull/16",
+    "number": 16
   },
   "ProShares": {
     "baseBranch": "main",
