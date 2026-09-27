@@ -192,6 +192,10 @@
         [
           "  if (!normalized || normalized === '-') return '00 - \u2014';",
           "  if (!normalized || normalized === '-') return '00 - None';"
+        ],
+        [
+          "  holdingsChains.set(ticker, work.catch(() => undefined));",
+          "  holdingsChains.set(ticker, work.then(() => undefined, () => undefined));"
         ]
       ]
     },
@@ -251,5 +255,8 @@
   },
   "approvedPresentationCorrections": [
     "User-requested Frequency placeholder label: 00 - \u2014 becomes 00 - None. Only the existing fallback return string changes; explicit Unknown and all other frequency mappings remain unchanged."
+  ],
+  "approvedTypeCorrections": [
+    "User-requested TS2345 correction: normalize both outcomes of the internal per-ticker queue to undefined (assignable to Promise<void>), while returning the original Promise<T> to callers. No type suppression or weakened map type."
   ]
 }

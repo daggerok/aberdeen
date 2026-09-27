@@ -5,7 +5,7 @@
   Полный машинно-читаемый отчёт: .plans/sibling-prs.json.
   Каждый PR: только README.md, +2/-0, head SHA и merge проверены.
 - Реализация/данные/UI/CI/config/README/metadata завершены и запушены.
-- Последняя проверка: 40 tests, 122 assertions, 0 failures.
+- Последняя проверка Aberdeen: 44 tests, 141 assertions, 0 failures.
 - Осталось owner review/merge Aberdeen; затем GitHub-hosted Actions/Pages
   публикация. Live SEC доступ здесь ограничен HTTP 403; это не скрывается.
 - Ничего в Aberdeen main не менять и не сливать без нового разрешения.
@@ -21,7 +21,8 @@ Aberdeen — журнал восстановления и продолжения
    На создание PR и merge получить отдельное подтверждение.
 5. Каждый законченный небольшой этап и результаты исследования сохранять
    здесь и коммитить/пушить. Не записывать токены и другие секреты.
-6. Не менять другие репозитории, кроме разрешённых README-only изменений.
+6. Siblings: разрешены прежние README changes и текущие Frequency-only code
+   PR + merge (явное разрешение пользователя); Aberdeen PR #1 не merge.
 7. При блокировке/непредусмотренной неопределённости остановиться и сообщить.
 
 ПРОВЕРЕНО В ЭТОМ ЗАПУСКЕ
@@ -408,3 +409,23 @@ CHECKPOINT 15 — SIBLING FREQUENCY IMPLEMENTATION READY
   Не создавать новые PR повторно, если ledger уже содержит PR number/URL.
 - Offline recovery patches: /home/user/frequency-rollout/patches/*.patch.
   Aberdeen PR #1 остаётся unmerged. Данный checkpoint пока только локально.
+
+CHECKPOINT 16 — USER-REPORTED TS2345 FIX
+- Пользователь предоставил временный доступ для продолжения публикации;
+  credential используется только в окружении процесса, не в файлах/Git.
+- Восстановление workspace потеряло локальные git commits/clones после
+  caea79a, но recovery patches сохранились. Получен remote db88726 и
+  восстановлен локальный rollout checkpoint; sibling fixes восстанавливать
+  из сохранённых patches, повторно проверяя тесты и точный diff.
+- app.tsx: withTickerChain теперь сохраняет
+  work.then(() => undefined, () => undefined) вместо work.catch(...).
+  Обе ветки внутренней очереди completion-only; вызывающий код получает
+  исходный Promise<T>, его значение/ошибку. Без any/assertion/@ts-ignore.
+- Ровно одна production-строка; точное исключение добавлено в parity
+  manifest и оба плана. Исходный pinned JPMorgan hash по-прежнему совпадает
+  после обратных подстановок. Других UI/данных/API изменений в Aberdeen нет.
+- 4 regression tests: value vs internal undefined; rejected task recovery;
+  synchronous throw recovery; serialization and independence by ticker.
+- 44 tests / 141 assertions passed; app/updater Bun builds и diff check OK.
+  Bun не выполняет semantic type checking; tsc/tsconfig/dependencies не
+  добавлены согласно исходному ограничению. Исправлена указанная TS2345.

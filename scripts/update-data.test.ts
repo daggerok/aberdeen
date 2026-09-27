@@ -86,7 +86,7 @@ await main({...env,MAX_FETCHES:'1'});const state=await Bun.file('api/aberdeen/up
  }finally{await rm(dir,{recursive:true,force:true});}
 },30000);
 
-test('UI differs from pinned JPMorgan only by recorded substitutions and approved label correction',async()=>{
+test('UI differs from pinned JPMorgan only by recorded substitutions and approved corrections',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../.plans/ui-copy.json',import.meta.url),'utf8'));
  for(const [name,spec] of Object.entries(manifest.files) as [string,any][]){
   let text=await readFile(new URL('../'+name,import.meta.url),'utf8');
@@ -178,4 +178,60 @@ test('Frequency fallback is 00 - None; explicit Unknown and other labels are unc
   ['Annually','12 - Annually'],['Irregular','99 - Irregular'],
  ])expect(format(input)).toBe(output);
  expect(app).not.toContain("return '00 - —'");
+});
+
+
+async function tickerChainHarness() {
+ const app=await readFile(new URL('../app.tsx',import.meta.url),'utf8');
+ const source=app.match(/^function withTickerChain<T>\([\s\S]*?^\}/m)?.[0];
+ expect(source).toBeDefined();
+ const javascript=new Bun.Transpiler({loader:'ts'}).transformSync(source!);
+ const chains=new Map<string,Promise<void>>();
+ const enqueue=new Function('holdingsChains',`${javascript}; return withTickerChain;`)(chains) as
+  <T>(ticker:string,fn:()=>Promise<T>)=>Promise<T>;
+ return {chains,enqueue};
+}
+
+describe('per-ticker queue preserves caller results and stores completion-only promises',()=>{
+ test('successful generic result reaches caller, not the internal queue',async()=>{
+  const {chains,enqueue}=await tickerChainHarness();
+  const value={rows:[['AGEM']]};
+  expect(await enqueue('AGEM',async()=>value)).toBe(value);
+  expect(await chains.get('AGEM')).toBeUndefined();
+ });
+ test('rejection reaches caller without poisoning the next queued task',async()=>{
+  const {chains,enqueue}=await tickerChainHarness();
+  const error=new Error('page failed');
+  const work=enqueue('AGEM',async()=>{throw error;});
+  const observed=work.catch(reason=>reason);
+  const settled=chains.get('AGEM');
+  const next=enqueue('AGEM',async()=>42);
+  expect(await observed).toBe(error);
+  expect(await settled).toBeUndefined();
+  expect(await next).toBe(42);
+  expect(await chains.get('AGEM')).toBeUndefined();
+ });
+ test('synchronous callback throws also leave the queue usable',async()=>{
+  const {chains,enqueue}=await tickerChainHarness();
+  const error=new Error('synchronous failure');
+  expect(await enqueue('AGEM',()=>{throw error;}).catch(reason=>reason)).toBe(error);
+  expect(await chains.get('AGEM')).toBeUndefined();
+  expect(await enqueue('AGEM',async()=>'recovered')).toBe('recovered');
+ });
+ test('same-ticker work stays serial while other tickers run independently',async()=>{
+  const {chains,enqueue}=await tickerChainHarness();
+  let release!:()=>void;
+  const gate=new Promise<void>(resolve=>{release=resolve;});
+  const events:string[]=[];
+  const first=enqueue('AGEM',async()=>{events.push('first');await gate;events.push('done');return 1;});
+  const second=enqueue('AGEM',async()=>{events.push('second');return 2;});
+  try {
+   expect(await enqueue('SGOL',async()=>3)).toBe(3);
+   expect(events).toEqual(['first']);
+  } finally { release(); }
+  expect(await Promise.all([first,second])).toEqual([1,2]);
+  expect(events).toEqual(['first','done','second']);
+  expect(await chains.get('AGEM')).toBeUndefined();
+  expect(await chains.get('SGOL')).toBeUndefined();
+ });
 });

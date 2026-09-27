@@ -79,7 +79,15 @@ shows they differ in EXACTLY these things and nothing else:
   8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
      copy (point 5's "<Trust name>, CIK <number>").
 
-THAT IS THE COMPLETE LIST. If a change you're about to make to app.tsx or
+Explicit user-approved type-safety exception (TS2345): if withTickerChain<T>
+stores work.catch(() => undefined) in Map<string, Promise<void>>, replace that
+expression with work.then(() => undefined, () => undefined). Keep returning
+work to preserve the caller's Promise<T> value/rejection. Do not weaken the
+map type or suppress diagnostics. Record the exact line in the UI parity
+substitutions and test queue serialization and recovery after rejection.
+
+Apart from the explicit corrective exceptions above, THAT IS THE COMPLETE
+LIST. If a change you're about to make to app.tsx or
 index.html isn't one of these 8 substitution categories, don't make it —
 copy the sibling's code for that part verbatim instead, byte for byte,
 including comments. This specifically means: do NOT rewrite tooltip
