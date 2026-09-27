@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: f5cef7bb165e1930459d79558a2a73adfe23da69.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 11dead3435707e663c07214f2de9489ba53d2387.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -74,11 +74,11 @@ TICKER QUEUE ROLLOUT STATUS
 
 CURRENT FOLLOW-UP ARTIFACTS
 return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "merged", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
-aberdeen-metadata.json: "prepared"
+aberdeen-metadata.json: "verified"
 live-smoke.json: "completed"
 
 NEXT ACTION
-Push this validated README/metadata-intent checkpoint; update Aberdeen About with before-state guard and verify. Then commit exact reusable plan amendments and final handoff.
+Apply the documented plan replacements for mandatory scoped live runs, numeric-key type safety, pinned README parity and current About template; then run final tests and push handoff.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -412,6 +412,17 @@ Added offline documentation/metadata regression tests. Initial headings guard
 incorrectly counted bash comments inside fenced code as headings; fixed to
 ignore fenced blocks. Final suite: 46 pass / 152 assertions, zero failures.
 UI, updater runtime and production api unchanged in Aberdeen.
+
+
+--- CHECKPOINT ---
+Aberdeen About updated via GitHub API and read back successfully:
+shared description prefix 'abrdn ETF. A single-file client-side tool reading
+./api/aberdeen ...', homepage https://daggerok.github.io/aberdeen/.
+Existing topic set verified unchanged: 18 shared + abrdn and abrdn-etfs.
+Before-state guard prevented overwriting unrelated concurrent metadata changes.
+Only Aberdeen metadata changed. Language remains GitHub-computed from main;
+no Linguist workaround or unauthorized Aberdeen merge. README changes are in
+open PR #1 and are not claimed to be published on main/Pages yet.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1459,6 +1470,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -2735,7 +2747,7 @@ ended up using.
 
 --- FILE: .plans/aberdeen-metadata.json ---
 {
-  "status": "prepared",
+  "status": "verified",
   "referenceRepository": "daggerok/JPMorgan",
   "referenceCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
   "before": {
@@ -2830,7 +2842,35 @@ ended up using.
       "yahoo-finance"
     ]
   },
-  "readmeReference": ".plans/readme-copy.json"
+  "readmeReference": ".plans/readme-copy.json",
+  "after": {
+    "description": "abrdn ETF. A single-file client-side tool reading ./api/aberdeen (official Aberdeen gateway, SEC EDGAR N-PORT-P holdings fallback and Yahoo Finance history/dividends) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.",
+    "homepage": "https://daggerok.github.io/aberdeen/",
+    "topics": [
+      "abrdn",
+      "abrdn-etfs",
+      "css",
+      "csv",
+      "dark-mode",
+      "edgar",
+      "etf",
+      "finance",
+      "github-pages",
+      "holdings",
+      "html",
+      "json",
+      "nport",
+      "single-file",
+      "static-api",
+      "tailwindcss",
+      "txt",
+      "typescript",
+      "watchlist",
+      "yahoo-finance"
+    ],
+    "default_branch": "main",
+    "language": null
+  }
 }
 
 --- END FILE: .plans/aberdeen-metadata.json ---

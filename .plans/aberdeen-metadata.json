@@ -1,5 +1,5 @@
 {
-  "status": "prepared",
+  "status": "verified",
   "referenceRepository": "daggerok/JPMorgan",
   "referenceCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
   "before": {
@@ -94,5 +94,33 @@
       "yahoo-finance"
     ]
   },
-  "readmeReference": ".plans/readme-copy.json"
+  "readmeReference": ".plans/readme-copy.json",
+  "after": {
+    "description": "abrdn ETF. A single-file client-side tool reading ./api/aberdeen (official Aberdeen gateway, SEC EDGAR N-PORT-P holdings fallback and Yahoo Finance history/dividends) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.",
+    "homepage": "https://daggerok.github.io/aberdeen/",
+    "topics": [
+      "abrdn",
+      "abrdn-etfs",
+      "css",
+      "csv",
+      "dark-mode",
+      "edgar",
+      "etf",
+      "finance",
+      "github-pages",
+      "holdings",
+      "html",
+      "json",
+      "nport",
+      "single-file",
+      "static-api",
+      "tailwindcss",
+      "txt",
+      "typescript",
+      "watchlist",
+      "yahoo-finance"
+    ],
+    "default_branch": "main",
+    "language": null
+  }
 }
