@@ -280,3 +280,8 @@ SIBLING README MERGED: Goldman-Sachs
 - https://github.com/daggerok/Goldman-Sachs/pull/12
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 79c63b7c4d754d54587d0573d08366e5fffb622f.
+
+SIBLING README MERGED: Invesco
+- https://github.com/daggerok/Invesco/pull/20
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit 312f8e5ede132b4c7ee50144acfd59cb39d7c420.
