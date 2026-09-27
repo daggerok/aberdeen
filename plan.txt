@@ -133,3 +133,17 @@ CHECKPOINT 4 — OFFICIAL HOLDINGS DOWNLOAD + PERFORMANCE
 - Daily NAV history/distribution API на официальном сайте пока не найдены;
   это ограничение исследования, а не утверждение об их отсутствии.
 - Бренд фонда в официальном каталоге — abrdn; сохранить его для UI.
+
+CHECKPOINT 5 — UPDATER + ТЕСТЫ
+- Реализован scripts/update-data.ts: official JSON/Next data, полная
+  пагинация, официальный NAV, ME/QE NAV returns, Yahoo daily history,
+  SEC fallback с обязательной проверкой series identity, previous fallback.
+- Shared output/SEC/Yahoo/helpers взяты из JPMorgan; brand adapter иной.
+- Добавлены 31 тест / 69 assertions: pure parsers + isolated offline main.
+  Offline проверены byte-identical повтор, outage retention, fresh AUM
+  filter, cursor/reset. Все 31 прошли. bun build прошёл.
+- Bun 1.4.2 доступен через npx bun. package devDeps совпадают с эталоном,
+  dependencies={}, lockfile создан. Новых runtime-зависимостей нет.
+- Pacing пока conservative single gate (brand plan default), reservation
+  before await. SEC 403 не abort всего run; stale data сохраняется.
+- UI ещё не копировался. Далее реальные scoped runs и сравнение файлов.
