@@ -1,0 +1,554 @@
+PLAN — abrdn (Aberdeen) ETFs (PRIORITY 2)
+=============================================================================
+SELF-CONTAINED PLAN — this single file has everything needed: the full
+generic build instructions (identical in every 0X-<brand>.txt file in this
+folder) followed by everything specific to THIS brand. You do not need to
+open 00-generic.txt or any other file separately — send this one file to
+the implementing agent and nothing else.
+
+=============================================================================
+PART 1 OF 2 — GENERIC RULES (same in every brand's plan file)
+=============================================================================
+
+Read this whole file before touching any code. This is the only document
+you should need to start — do not go survey all 14 sibling repos yourself.
+Wherever a concrete pattern is needed, this file names ONE specific sibling
+repo + file/line to copy from. If the brand-specific plan (0X-<brand>.txt)
+names a different "closest example" for a particular concern, prefer that
+one over the default named here — it was chosen because that sibling's
+data source works the same way as this brand's.
+
+=============================================================================
+THE #1 RULE, READ THIS BEFORE ANYTHING ELSE:
+THE WEB APP (index.html + app.tsx) IS THE SAME APP EVERYWHERE.
+IT IS NOT "INSPIRED BY" A SIBLING. IT IS A COPY OF ONE, WITH A SMALL,
+FIXED, ENUMERATED SET OF STRINGS SUBSTITUTED. NOTHING ELSE CHANGES.
+=============================================================================
+This was violated the first time this plan was used (Global X,
+init-global-x branch) — the resulting app.tsx invented new tooltip wording
+per column, added whole new fund-detail rows/sections (a "Documents" block
+with Prospectus/SAI/Annual Report links, "Management Fee", "NAV Daily
+Change", extra Distribution fields, etc.) that don't exist in the sibling
+it was supposedly based on. That is exactly the failure mode this section
+exists to prevent. Diffing two siblings' app.tsx against each other (e.g.
+daggerok/JPMorgan vs daggerok/Schwab — check this yourself, it's cheap)
+shows they differ in EXACTLY these things and nothing else:
+  1. The file-header comment (`@file <Brand> Watchlist Application`)
+  2. The localStorage key prefixes (THEME_KEY, SELECTED_KEY,
+     BLACKLIST_KEY, ACTIVE_FUND_KEY, FILTERS_KEY, LEGACY_FILTERS_KEY,
+     SORTS_KEY, SITE_STATE_KEY — each is `'<brand-lowercase>-<suffix>'`)
+  3. INDEX_URL (`./api/<brand>/index.json`) and every other literal
+     `api/<brand>/...` path string
+  4. The export filename prefix (`<brand>-${scope}-${stamp}.${ext}`)
+  5. Human-facing status/subtitle strings that name the brand or the
+     source site by name, e.g. "Search <Brand> ETFs, select ETFs via the
+     'Use' checkbox…", "Loading <Brand> ETF data from…", "Data:
+     api/<brand>/index.json generated from <a href=official-site-url>the
+     official <source description>…</a> + SEC EDGAR N-PORT-P (<Trust
+     name>, CIK <number> — holdings fallback only) + Yahoo Finance…"
+  6. The column-help tooltip TEXT STRINGS (the `columnHelp`/help-text
+     object) — ONLY to the extent the underlying field's PROVENANCE
+     sentence names a different source site/company (e.g. "as published
+     by am.jpmorgan.com" -> "as published on the official <Brand> fund
+     page"). The KEY SET of that object (which columns have a tooltip at
+     all), the STRUCTURE of each sentence, and the ORDER never change.
+     Do not add adjectives, extra caveats, or extra detail sentences that
+     a sibling's version doesn't have for the equivalent field, even if
+     the brand's real site happens to publish something extra — see the
+     next point.
+  7. The fund-detail-view ROWS list (whatever variable builds the
+     "Fund"/"Cost"/"Price"/"Assets"/"Returns"/"Distributions"/"Holdings"
+     sections in the per-fund overview tab): the EXACT SAME set of
+     `{ section, metric, value }` rows in the EXACT SAME order as the
+     sibling you copied from, with `value` computed from THIS brand's own
+     `meta`/`fund` fields — but if a row's value simply isn't available
+     for this brand, show it as null/blank (which the existing rendering
+     already collapses/hides), do NOT delete the row, rename the metric,
+     or add a brand-specific new row for data the sibling's version
+     doesn't surface, even if the official site happens to publish more.
+     If a brand's site truly publishes something no sibling captures at
+     all (e.g. a document library), that is a candidate for extending
+     update-data.ts's meta.json schema project-wide (all 15+ brands get
+     the new field's plumbing, even if most show it blank) — it is NOT
+     grounds for a one-off app.tsx addition. Flag it in your report
+     instead of adding it unilaterally.
+  8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
+     copy (point 5's "<Trust name>, CIK <number>").
+
+THAT IS THE COMPLETE LIST. If a change you're about to make to app.tsx or
+index.html isn't one of these 8 substitution categories, don't make it —
+copy the sibling's code for that part verbatim instead, byte for byte,
+including comments. This specifically means: do NOT rewrite tooltip
+prose "to be more accurate/detailed for this brand", do NOT add rows,
+sections, columns, icons, colors, or layout tweaks, do NOT reorder
+anything, do NOT change how row selection, search, filters, sort,
+watchlist, blacklist, CSV/TXT export, or dark mode work. The user's own
+words: "our whole web app should be exactly similar to other apps, only
+the way we get data is different, so different will be only data it
+renders."
+
+Practical workflow: `cp` (or `git show <sibling>:app.tsx >`) the sibling's
+app.tsx and index.html into the new repo first, THEN make ONLY the 8
+substitutions above with find/replace, THEN diff your result against the
+sibling one more time before considering the UI done — the diff should be
+short and every hunk should map to one of the 8 categories. If your diff
+is long or touches component logic/JSX structure, you did it wrong; revert
+and start over from the copy.
+
+-----------------------------------------------------------------------------
+0. INPUTS YOU ARE GIVEN
+-----------------------------------------------------------------------------
+- Target GitHub repo (already exists under github.com/daggerok/<Repo>, empty
+  except LICENSE + a placeholder README.md — check with `gh repo view` /
+  `gh api repos/daggerok/<Repo>/contents` before assuming, it may have been
+  created since this plan was written)
+- Brand name
+- Official ETF issuer site to start from (if a brand-specific plan doesn't
+  give you one, or the one given goes stale, web-search
+  "<brand> ETF list site:<issuer domain>" to find the current fund-finder
+  page)
+
+-----------------------------------------------------------------------------
+1. FIRST THING TO DO: LIVE-VERIFY THE SITE, DON'T TRUST OLD NOTES
+-----------------------------------------------------------------------------
+Any "closest example" recommendation in a brand-specific plan was written
+from a single WebFetch snapshot, not from actually building the scraper.
+Before writing any code:
+  - Open the fund list/finder page and figure out: is fund data already in
+    the server-rendered HTML (view-source, no JS needed), does it come from
+    a JSON API you can call directly (check the Network tab equivalent —
+    look for XHR/fetch calls returning JSON), or does it require a headless
+    browser / return 403s (WAF)?
+  - Same question for a single fund's detail page: where do holdings come
+    from (CSV download? XLSX? JSON? HTML table?), where does NAV/price
+    history come from, where do distributions/dividends come from.
+  - Note the exact URL patterns per ticker (most issuers use a query param
+    or path segment with the ticker).
+  - Find the SEC EDGAR CIK for the ETF Trust this brand issues under — you
+    will need it for the N-PORT-P holdings fallback. Search
+    "<Trust legal name> ETF Trust CIK site:sec.gov" or look it up at
+    https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany
+  - If the brand's site is behind a WAF (403s on a plain fetch with a
+    normal User-Agent, or Cloudflare challenge pages), read section 6
+    (WAF handling) below before writing the fetch logic.
+
+-----------------------------------------------------------------------------
+2. REPO LAYOUT (every sibling has exactly this)
+-----------------------------------------------------------------------------
+  index.html                    — static shell, loads app.tsx via Babel
+                                   standalone (no build step). EXCEPTION:
+                                   Amplify and iShares inline everything
+                                   directly into index.html instead of a
+                                   separate app.tsx — do NOT copy that
+                                   pattern, it's the older, worse one. Use
+                                   the app.tsx-based pattern from any other
+                                   sibling, e.g. daggerok/JPMorgan.
+  app.tsx                        — the whole UI in one file, TSX compiled
+                                   in-browser by Babel standalone (see
+                                   index.html's <script type="text/babel">
+                                   tag and the unpkg.com/@babel/standalone
+                                   CDN include).
+  scripts/update-data.ts         — the whole updater in one file, zero deps,
+                                   run directly by `bun`.
+  scripts/update-data.test.ts    — unit tests for the pure parsing/derived-
+                                   metric functions in update-data.ts.
+  api/<brand-lowercase>/index.json
+  api/<brand-lowercase>/funds/<TICKER>/meta.json
+  api/<brand-lowercase>/funds/<TICKER>/holdings/001.json (paginated)
+  api/<brand-lowercase>/funds/<TICKER>/history/001.json (paginated)
+  api/<brand-lowercase>/update-state.json  — MAX_FETCHES cursor (only
+                                   present after a bounded run)
+  .github/workflows/update-data.yml
+  .github/dependabot.yml
+  package.json, bun.lock, LICENSE, README.md, favicon.ico
+
+-----------------------------------------------------------------------------
+3. TOOLCHAIN RULES — NON-NEGOTIABLE (see ../.plans convention +
+   ../.claude/rules/bun-only-tooling.md and ../.claude/rules/reference-types.md
+   if present at the workspace root)
+-----------------------------------------------------------------------------
+  - Bun only. No tsconfig.json. No `typescript` as a dependency anywhere,
+    ever. No `bunx tsc` anywhere, including CI. Bun runs .ts directly.
+  - package.json: "dependencies": {} always. devDependencies only
+    "@types/bun" and "@types/node", EXACT versions (no ^ or ~ prefix) —
+    check what the other 14 currently pin (they get bumped monthly by
+    Dependabot) and match that exact version, don't guess.
+  - Every .ts file that uses Bun-style functionality (top-level
+    `import ... from 'node:*'`, Bun APIs, bun:test) needs
+    `/// <reference types="bun" />` (or `"node"` if it only uses node:*
+    APIs) as literally the first or second line of the file — right after
+    the shebang, BEFORE any imports. If it ends up after some imports,
+    IntelliJ's TS language service will report false TS2591 errors for
+    those imports. See daggerok/JPMorgan scripts/update-data.ts lines 1-3
+    for the correct position.
+  - Use `bun i -E` (or edit package.json directly + `bun install`) when you
+    need to add/bump a dependency, so it lands pinned exactly, not ranged.
+  - Never fabricate or "clean up" business logic while doing something else
+    — if you're fixing formatting, don't touch fetch/parse logic in the
+    same diff, and vice versa.
+
+-----------------------------------------------------------------------------
+4. scripts/update-data.ts — STRUCTURE (copy this shape from
+   daggerok/JPMorgan as the primary reference; it currently has every fix
+   from this project's history applied correctly)
+-----------------------------------------------------------------------------
+A. Shared "output helpers" prelude (copy near-verbatim from JPMorgan
+   scripts/update-data.ts lines 1-~130; every sibling has an identical or
+   near-identical copy of this block — it's the same in Vanguard, Schwab,
+   WisdomTree, etc. too if you want a second reference point):
+     - outputClean(value) — stringify, strip control chars
+     - outputVerbose() / outputNote(message) — VERBOSE env gate; anything
+       printed via outputNote is a per-fund/per-request retry or fallback
+       notice, hidden unless VERBOSE=1
+     - outputConfigEntries(config) — turns the config object into
+       [ENV_NAME, value] pairs for the header (MAX_FETCHES/REQUEST_SLEEP/
+       CONCURRENCY sort first, everything else alphabetical)
+     - outputPrintConfig(brand, config) — prints:
+         [ config   ] <Brand> updater:
+                       MAX_FETCHES=...
+                       ...
+                       VERBOSE=false
+       Label is padded to 9 chars inside the brackets: `[ ${label.padEnd(9)}] `.
+       ALL bracket-style status lines in the file use this exact 9-wide
+       padding — config, filter, catalog, cursor, done, edgar, product,
+       holdings, history, chart, retry, etc. Keep them consistent.
+     - outputPrintFilter(selected, total, deferred?) — prints
+       `[ filter   ] N of M funds pass filters` (or "selected for
+       evaluation (data-dependent filters applied per fund)" if some
+       filters can only be checked after fetching a fund's own page)
+     - outputStable(value) / outputContentKey(value) — deep-sorts an
+       object's keys and strips `generatedAt`/`catalogReadAt` recursively,
+       so the console's before/after digest comparison ignores run
+       timestamps. (Note: this only affects the CONSOLE status label. The
+       actual file WRITE needs its own protection — see section 5.)
+     - outputInspectFund / outputCreateReporter — hashes a fund's on-disk
+       files before and after processing to decide "updated" vs
+       "unchanged" for the console line, independent of whatever status
+       string the business logic passes in.
+     - outputCount(value), outputScalar(value), outputMoney(value) —
+       formatting helpers for the per-fund line.
+     - outputFundLine(index, total, ticker, status, data, reason) —
+       builds ONE line per fund:
+         [  8/81  ] TICK  updated   history=1234 holdings=56 divs=7
+                    netAssets=$1.2B div=4.5 sec=4.9 reason=...
+       Fields that are null/undefined/'null' are OMITTED entirely (not
+       printed as `field=null`) — real 0 and false values ARE printed.
+       This is the single most important formatting rule the whole
+       project converged on this year: never print `port=null` or
+       `(official=null yahoo=null)`.
+
+B. UpdaterConfig + env parsing (copy shape from JPMorgan or Invesco):
+     - envValue(env, name, aliases[]) reading process.env
+     - parsePositiveInt / parseDecimal / parseAumBound / parseRanges for
+       MIN:MAX-style filters (AUM, TER, DIVIDEND_YIELD, SEC_YIELD,
+       PERFORMANCE_{YTD,1Y,3Y,5Y,10Y}, TOTAL_RETURN_{YTD,1Y,3Y,5Y,10Y})
+     - AUM presets: nano <$10M, micro $10M-$300M, small $300M-$2B,
+       mid $2B-$10B, large >=$10B
+     - MAX_FETCHES / CONCURRENCY / REQUEST_SLEEP / MAX_RETRIES / TICKERS
+     - printHelp()/-h/--help support mirroring every env var
+
+C. Request pacing — CONCURRENCY workers, each with its OWN paced lane.
+   Do NOT use a single shared gate (`let nextRequestAt = 0` compared/
+   updated by every caller) — that was a real bug fixed across 10 of the
+   14 repos this year: it caps total throughput at one request per
+   REQUEST_SLEEP no matter how high CONCURRENCY is set, because all
+   workers share the same timer. Copy the FIXED pattern from
+   daggerok/WisdomTree or daggerok/iShares scripts/update-data.ts
+   (`paceRequests`/`createRequestGate`): an array of N independent lane
+   timestamps sized from config.concurrency, each call picks the
+   least-recently-used lane, computes wait FROM that lane, sleeps, then
+   writes the new timestamp to THAT SAME lane (not a freshly re-scanned
+   one — that was a subtle bug caught in code review, see the exact
+   working implementation, don't re-derive it from scratch).
+   EXCEPTION: if this brand's site turns out to be WAF-protected (see
+   section 6), keep it as a SINGLE shared, conservative gate instead —
+   speeding up direct requests to a site that's actively fingerprinting/
+   blocking you is the wrong tradeoff. Franklin and Goldman-Sachs were
+   deliberately left on the single-gate pattern for exactly this reason.
+
+D. Fallback chain (standard across all 14):
+     official site (whatever this brand's plan says) for catalog + the
+       fund's own headline fields
+     -> SEC EDGAR N-PORT-P for holdings, if the official site doesn't
+        publish full holdings or a per-fund page fetch fails. Reuse the
+        N-PORT parsing helpers verbatim from JPMorgan (loadFundTickerTable,
+        loadCompanyTickerTable, resolveNportFiling, parseNport,
+        parseCompanyTickerMap, secHeaders) — this code is duplicated
+        near-identically across ~8 sibling repos, it's safe to copy as-is.
+     -> Yahoo Finance chart API (query1.finance.yahoo.com/v8/finance/chart)
+        for price/NAV history and dividends when the official site doesn't
+        provide enough history, or as the sole history source if the
+        brand's own site has none.
+     -> previous published data (read the existing committed meta.json/
+        holdings/history) as the last resort, so a run that can't reach a
+        source never deletes/blanks data that was already published.
+
+   Yahoo's adjusted-close is recomputed on every request and jitters in
+   the last digit or two between otherwise-identical requests. Round it
+   to 2 decimals wherever it's parsed or written (real fix applied broadly
+   this year) — otherwise every fund looks "updated" on every run forever.
+   See JPMorgan's chart-parsing function for the exact `round(adjClose, 2)`
+   placement.
+   Also: never store the LIVE fetch URL (with period1/period2 query
+   params reflecting "now") as a persisted "source" field — build a
+   separate, stable, query-string-free URL for that. Same reasoning:
+   otherwise that field alone makes the file diff every run.
+
+E. Output-changed detection ("idempotency"): after building the final
+   value to write, do NOT just byte-compare it against the on-disk file
+   if it embeds anything timestamp-like (generatedAt, catalogReadAt, or
+   similar). Two equally-valid patterns exist in the sibling repos, pick
+   either:
+     (a) writeJsonIfChanged() that strips generatedAt/catalogReadAt
+         RECURSIVELY (they can be nested, e.g. under a `source` object —
+         a shallow top-level-only strip was a real bug found and fixed in
+         ProShares) before comparing, and only writes with the fresh
+         object (fresh timestamp included) if something else differs. See
+         daggerok/JPMorgan's samePublishedContent + the write call site,
+         or daggerok/ProShares's writeJsonIfChanged (the recursive one).
+     (b) build the candidate object with the PREVIOUS run's timestamp,
+         write-if-changed, and only if that resulted in an actual write,
+         re-write once more with a fresh timestamp. See daggerok/VanEck or
+         daggerok/Neos's index-writing code for this variant.
+   Whichever you pick, apply it to every file that embeds a run timestamp
+   — typically both the top-level index.json AND each fund's own
+   meta.json if it also carries one.
+
+F. Per-fund processing: continue-on-error, not fail-fast. One fund's
+   fetch failing must not abort the whole run — catch it, report
+   'failed' on that fund's line via output.result(...), keep its
+   previously-published data, move on to the next fund. See any sibling's
+   worker loop (e.g. JPMorgan's `worker()` function or iShares'
+   mapWithConcurrency usage) — none of the current 14 rethrow out of a
+   per-fund catch block, and that's intentional.
+
+G. Console output contract (do not deviate):
+     [ config   ] <Brand> updater:
+                   <ENV_NAME>=<value>
+                   ...
+                   VERBOSE=false
+     [ catalog  ] <N> <Brand> ETFs (<source description>)      (optional,
+                                    only if there's a discovery/catalog step)
+     [ filter   ] <N> of <M> funds pass filters
+     [  1/N   ] TICK  updated   history=123 holdings=45 divs=6 netAssets=$1.2B ...
+     ...
+     [ done     ] <N> funds updated, <M> failures
+     [ done     ] counts: ...
+   Every fund line comes from outputFundLine via outputCreateReporter, in
+   the same call shape as every sibling. Do not hand-roll a different
+   per-fund line format.
+
+-----------------------------------------------------------------------------
+5. scripts/update-data.test.ts
+-----------------------------------------------------------------------------
+Test the PURE functions (parsers, metric derivation, frequency/yield
+calculations, page/manifest builders) with literal fixture input — do not
+make real network calls in tests. Include at least one "matches figures
+verified on the live site as of <date>" style assertion against a real,
+manually-checked fund if you can, matching the pattern in
+daggerok/Neos scripts/update-data.test.ts or daggerok/VanEck's (both of
+these currently have one pre-existing, known, unrelated failing assertion
+of exactly this kind — that's fine, it's a live-data-drifted assertion,
+not a sign the pattern is wrong).
+
+-----------------------------------------------------------------------------
+6. WAF / anti-bot handling (only if section 1's live check found this)
+-----------------------------------------------------------------------------
+Copy the proxy-fallback approach from daggerok/Franklin or daggerok/Schwab
+scripts/update-data.ts: try a direct fetch with a normal browser User-Agent
+first; after a small number of consecutive denials
+(ISSUER_DIRECT_DENIAL_LIMIT-style counter), switch to routing the same URL
+through a read-only rendering proxy (r.jina.ai) for the rest of the run,
+and print one `[ issuer  ]`-style notice (always visible, not behind
+VERBOSE) when that switch happens. Keep REQUEST_SLEEP conservative and do
+NOT apply the per-worker-lane speedup from section 4C to the direct-fetch
+path in this case.
+
+-----------------------------------------------------------------------------
+7. .github/workflows/update-data.yml
+-----------------------------------------------------------------------------
+Copy from daggerok/JPMorgan (or any sibling — this file was standardized
+across all 14 this year):
+  on:
+    schedule:
+      - cron: '0 0 * * 0'   # every Sunday 00:00 UTC — confirmed against
+                              # GitHub's own docs, day-of-week 0 = Sunday
+    workflow_dispatch:
+      inputs: <one input per ENV var the updater reads, mirrored 1:1,
+               same names/defaults as the config header prints>
+  jobs:
+    update-data:
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v7      # check current major, Dependabot
+                                          # keeps this current — don't pin
+                                          # an old major on purpose
+        - name: Setup bun
+          uses: oven-sh/setup-bun@v2
+          with: {bun-version: latest}
+        - name: Install dependencies
+          run: bun install --frozen-lockfile
+        - name: Run updater unit tests
+          run: bun test scripts/update-data.test.ts
+        - name: Generate api/<brand> static data
+          run: bun ./scripts/update-data.ts
+          env: <map every workflow_dispatch input to the matching ENV var>
+        - name: Commit updated data
+          run: |
+            <git config, git add api/<brand>, commit if diff, push>
+Do NOT add a `bunx tsc` type-check step — see section 3. Do NOT add a
+`push:` trigger that re-runs on every commit to update-data.ts — schedule
++ manual dispatch only (a push-triggered auto-refresh on every merge was a
+real bug found and fixed in Franklin this year).
+
+-----------------------------------------------------------------------------
+8. .github/dependabot.yml
+-----------------------------------------------------------------------------
+Copy verbatim from any sibling (identical everywhere):
+  version: 2
+  updates:
+    - package-ecosystem: "bun"
+      directory: "/"
+      schedule: {interval: "monthly"}
+      open-pull-requests-limit: 10
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule: {interval: "monthly"}
+      open-pull-requests-limit: 10
+
+-----------------------------------------------------------------------------
+9. app.tsx / index.html UI conventions
+-----------------------------------------------------------------------------
+See "THE #1 RULE" at the top of this file — that section is the actual
+spec for this, read it if you haven't. Summary: copy a sibling's app.tsx
+and index.html verbatim, substitute only the 8 enumerated things, change
+nothing else. Non-negotiable UI rule fixed across all 14 this year: a
+table row must be selectable ONLY by clicking its "Use" checkbox —
+clicking anywhere else on the row (or selecting/copying text) must NOT
+toggle it. If you copy an app.tsx from before this fix, re-check for a
+stray `tr` click handler.
+  - <title> and the header <h1>: "<Brand> ETFs" (not "... ETF Holdings to
+    Watchlist" — that was the old naming, renamed everywhere this year).
+  - TailwindCSS via CDN, dark mode support (dark: classes), no build step.
+
+-----------------------------------------------------------------------------
+10. README.md
+-----------------------------------------------------------------------------
+Copy the structure verbatim from any sibling (it's the literal same
+template in all 14, only the brand-specific paragraphs differ): Using
+Bun, Data sources (list every source you actually use + every fallback,
+be exact, this is the one section that must be brand-true), Update
+controls (one line per env var, matching the workflow_dispatch inputs and
+the config header), Examples, TypeScript, Known limitations (if any),
+Brands table (all 14 + this new one, alphabetical, same row format),
+Sibling applications (same list, repo-name links only), trademark/
+non-affiliation notice, License.
+When you add a brand, you must also add its row to the Brands table AND
+Sibling applications section in ALL OTHER 14 (+ any other brands already
+added under .plans) sibling READMEs — that's the one piece of this task
+that touches other repos, do it as one small doc-only PR per repo.
+
+-----------------------------------------------------------------------------
+11. GitHub repo metadata (topics + About description)
+-----------------------------------------------------------------------------
+Set via `gh repo edit daggerok/<Repo> --description "..." --add-topic ...`.
+Standard topic set every sibling carries (add these, plus the brand name
+lowercase and "<brand>-etfs"):
+  css csv dark-mode edgar etf finance github-pages holdings html json
+  nport single-file static-api tailwindcss txt typescript watchlist
+  yahoo-finance
+Description pattern (see daggerok/JPMorgan or daggerok/ProShares for the
+exact wording style): "<Brand> ETF holdings to Watchlist. A single-file
+client-side tool reading the generated ./api/<brand> static feed (<list
+of real sources>) into a searchable ETF/asset-class catalog with per-fund
+tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater"
+
+-----------------------------------------------------------------------------
+12. ORDER OF WORK
+-----------------------------------------------------------------------------
+ 1. Live-verify the site (section 1). Confirm/replace the brand-specific
+    plan's "closest example" if the live site doesn't match what was
+    assumed.
+ 2. Write scripts/update-data.ts against a small TICKERS= subset first
+    (do NOT run a full unbounded pass while developing).
+ 3. Write scripts/update-data.test.ts alongside it.
+ 4. `bun test`, `bun build --target=bun scripts/update-data.ts
+    --outfile=/dev/null` (sanity bundling check), then a real scoped dry
+    run (`TICKERS="..." REQUEST_SLEEP=0 bun scripts/update-data.ts`).
+ 5. Run it TWICE in a row on the same tickers and diff the output —
+    confirm byte-identical files (proves section 4E/D idempotency is
+    correct) before moving on.
+ 6. Copy app.tsx/index.html from the sibling per "THE #1 RULE" (8
+    substitutions, nothing else) and check it against the real generated
+    api/<brand> data — you are verifying the copy loads/renders this
+    brand's data correctly, not designing anything new.
+ 7. Add the CI workflow + dependabot.yml, commit everything, push.
+ 8. README + repo topics/description.
+ 9. Open the small doc-only PRs adding this brand's row to the other
+    sibling READMEs.
+10. Report back: what "closest example" you actually ended up using per
+    concern, and any site behavior that didn't match this plan's
+    assumptions (so the plan can be corrected for the next brand).
+
+=============================================================================
+PART 2 OF 2 — WHAT'S SPECIFIC TO THIS BRAND
+=============================================================================
+
+REPO: github.com/daggerok/aberdeen (already created, empty except
+LICENSE+README placeholder — verify before assuming)
+BRAND NAME FOR UI/README/topics: "abrdn" (the company rebranded from
+"Aberdeen Standard Investments" to "abrdn"; confirm current preferred
+brand name on the site before finalizing UI copy — user's own note called
+it "Aberdeen", the site itself may say "abrdn"). api/<brand> slug:
+"aberdeen" (matches the existing repo name).
+
+OFFICIAL SITE TO START FROM
+  https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund
+
+WHAT A QUICK LOOK FOUND — INCONCLUSIVE, TREAT AS UNKNOWN
+  The one fetch attempted only returned the outer page shell/navigation,
+  not the actual fund table — meaning this page likely loads its table via
+  client-side JS (possibly a JSON API call, possibly a heavier widget).
+  There were hints of Next.js (via image-optimization URL patterns), which
+  usually means either full SSR (good, view-source has the data) or a
+  client-hydrated SPA (bad, you need to find the underlying API). NO
+  conclusion could be drawn — this needs real investigation with the
+  site open in an actual browser (or curl + look for a `/api/` or
+  `/_next/data/` JSON response) before writing any code.
+
+CLOSEST EXISTING SIBLING — PICK AFTER LIVE VERIFICATION, DEFAULT GUESS BELOW
+  If it turns out to be a JSON API behind the table (common for Next.js
+  sites — check for `/_next/data/<buildId>/....json` or an obvious
+  `/api/funds` call): closest is daggerok/JPMorgan (clean JSON-API
+  pattern).
+  If it's WAF-protected or blocks a plain fetch: closest is
+  daggerok/Franklin or daggerok/Schwab (proxy-fallback pattern, see
+  00-generic.txt section 6).
+  If it's plain server-rendered HTML after all: closest is daggerok/Neos.
+  Do not guess — spend 10 minutes actually checking before picking.
+
+DATA TO GET AND WHERE (unconfirmed, fill in after live verification)
+  - Catalog: the "view-all-funds" table filtered to fund_product_type=
+    Exchange Traded Fund (this filter is already in the given URL — good
+    sign there IS a query-param-driven data endpoint worth finding)
+  - Holdings, NAV history, distributions: locate from an individual fund's
+    own page once you've found one; abrdn/Aberdeen historically publishes
+    daily holdings as CSV or XLSX downloads on fund pages for many of
+    their fund families — check for that before falling back to N-PORT/
+    Yahoo only.
+
+SEC EDGAR REGISTRANT
+  Not confirmed. abrdn's US ETF lineup may be issued under more than one
+  trust (they've had multiple ETF Trust entities historically, e.g. after
+  acquiring other ETF businesses) — check whether ALL tickers on the site
+  share one CIK/trust or whether you need to resolve the trust per-ticker
+  via EDGAR full-text search per fund name.
+
+REQUEST PACING
+  Unknown risk — default to the WAF-safe single-gate pattern (00-generic
+  section 4C exception) until live testing proves the site tolerates
+  concurrent requests without blocking.
+
+REPORT BACK WHEN DONE what the actual data-loading mechanism turned out to
+be (this plan could not determine it) and which "closest example" you
+ended up using.
