@@ -310,3 +310,8 @@ SIBLING README MERGED: Schwab
 - https://github.com/daggerok/Schwab/pull/12
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit d9f8167180d2af7c999c1be62c83b70a7d7cff57.
+
+SIBLING README MERGED: SPDR
+- https://github.com/daggerok/SPDR/pull/30
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit b8c4748620bc741e9ad8063bd60364efbf4586a6.

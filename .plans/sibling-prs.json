@@ -130,5 +130,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "SPDR": {
+    "url": "https://github.com/daggerok/SPDR/pull/30",
+    "number": 30,
+    "head": "a1812bff6ac77ce6195207384cb9c3bfdd019ef6",
+    "mergeCommit": "b8c4748620bc741e9ad8063bd60364efbf4586a6",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
