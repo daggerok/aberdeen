@@ -849,7 +849,7 @@
   "WisdomTree": {
     "baseBranch": "main",
     "baseSha": "64bcecf44f5f6173d6b6ce159de3e9945f248cc9",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -876,13 +876,17 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "84d78ada49ee059d388c80cb0ec497b08cc522ab",
+    "headSha": "9c8900763011164fd140501c40049eb458ba081f",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
     ],
     "recoveredHeadSha": "9c8900763011164fd140501c40049eb458ba081f",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/WisdomTree/pull/26",
+    "number": 26,
+    "merged": true,
+    "mergeCommit": "3c47eab5752e3a622ca3ad3f65638e37914b4e72"
   }
 }

@@ -498,3 +498,8 @@ FREQUENCY ROLLOUT — Vanguard
 - https://github.com/daggerok/Vanguard/pull/27
 - Remote diff and head verified; merge confirmed: 0846e819d7ec153027175a6d29f1d1489566f17e.
 - Tests: 16 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — WisdomTree
+- https://github.com/daggerok/WisdomTree/pull/26
+- Remote diff and head verified; merge confirmed: 3c47eab5752e3a622ca3ad3f65638e37914b4e72.
+- Tests: 22 pass, 0 fail; no new failures. No unrelated changes.
