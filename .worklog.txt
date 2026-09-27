@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 2712dbe96110eab2e3b2960eb08b8eee3716c991.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 6473ec667c6f5b9bf2274157770351443c6406ac.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -48,7 +48,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Amplify": "not-affected",
   "Fidelity": "not-affected",
   "Franklin": "not-affected",
-  "Global-X": "pr-created",
+  "Global-X": "merged",
   "Goldman-Sachs": "affected",
   "Invesco": "not-affected",
   "iShares": "not-affected",
@@ -114,6 +114,14 @@ Global-X
 PR created: https://github.com/daggerok/Global-X/pull/6
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+Global-X
+MERGED https://github.com/daggerok/Global-X/pull/6
+Merge confirmed via GitHub API: 4c917b109f40d73b0772ba7732c18303dd00e55d.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1161,6 +1169,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3565,7 +3574,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3596,7 +3605,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Global-X/pull/6",
-    "number": 6
+    "number": 6,
+    "merged": true,
+    "mergeCommit": "4c917b109f40d73b0772ba7732c18303dd00e55d"
   },
   "Goldman-Sachs": {
     "baseBranch": "main",

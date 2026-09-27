@@ -76,7 +76,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -107,7 +107,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Global-X/pull/6",
-    "number": 6
+    "number": 6,
+    "merged": true,
+    "mergeCommit": "4c917b109f40d73b0772ba7732c18303dd00e55d"
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
