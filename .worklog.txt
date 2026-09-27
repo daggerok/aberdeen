@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 81f09746de2684cf57481acd99a6ae3bb4454571.
+Last confirmed pushed Aberdeen SHA before this checkpoint: f5a87e0db5c42fb620bbcce2bddc434f9bf8999d.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -52,7 +52,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Goldman-Sachs": "merged",
   "Invesco": "not-affected",
   "iShares": "not-affected",
-  "JPMorgan": "affected",
+  "JPMorgan": "code-pushed",
   "Neos": "affected",
   "ProShares": "affected",
   "Schwab": "affected",
@@ -147,6 +147,16 @@ MERGED https://github.com/daggerok/Goldman-Sachs/pull/14
 Merge confirmed via GitHub API: 3c7a433650515c1d399fb0575432aad9973a6a73.
 Exact scope: app.tsx +1/-1 production line and four appended regression tests.
 No force push, check bypass, API changes or Aberdeen merge.
+
+
+--- CHECKPOINT ---
+JPMorgan
+One production-line fix plus four tests; three new assertions reproduced
+the original completion-only queue mismatch before the fix.
+After: 112 pass, 0 fail. Baseline failures unchanged.
+Bun app build and exact production diff guard passed; no API/dependency changes.
+Feature branch pushed and remote SHA verified: 8d4f9e5cdb88f5e3f6fac08cca82de0c546fc4f2.
+Next: create/reuse PR, verify remote diff/checks/head, then authorized merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1194,6 +1204,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3772,7 +3783,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "affected",
+    "status": "code-pushed",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3782,7 +3793,26 @@ ended up using.
       "failures": []
     },
     "classification": "unmasked Promise<T | undefined> into Promise<void>",
-    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>.",
+    "redRegression": {
+      "newFailureCount": 3,
+      "note": "Success result, recovery queue value and serialized queue completion assertions fail against original implementation."
+    },
+    "headSha": "8d4f9e5cdb88f5e3f6fac08cca82de0c546fc4f2",
+    "branch": "fix/ticker-queue-promise-20260927",
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "112 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "appBuild": "passed",
+    "changedFiles": [
+      "app.tsx",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Neos": {
     "baseBranch": "main",
