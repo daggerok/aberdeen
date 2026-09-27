@@ -400,7 +400,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -431,7 +431,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/ProShares/pull/18",
-    "number": 18
+    "number": 18,
+    "merged": true,
+    "mergeCommit": "f88a13605014f2a190a97c572e53120d8799876b"
   },
   "Schwab": {
     "baseBranch": "main",
