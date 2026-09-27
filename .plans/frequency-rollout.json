@@ -656,7 +656,7 @@
   "Schwab": {
     "baseBranch": "main",
     "baseSha": "d9f8167180d2af7c999c1be62c83b70a7d7cff57",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -691,7 +691,7 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "937a5360d9bbc2b9abc25733dcd33341e13f2563",
+    "headSha": "2cd4a0f659737b3039cf04c85f0c18b01b0f712a",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
@@ -699,7 +699,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "2cd4a0f659737b3039cf04c85f0c18b01b0f712a",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Schwab/pull/13",
+    "number": 13,
+    "merged": true,
+    "mergeCommit": "00acbff11bae5f278ac94df546cac454947c9333"
   },
   "SPDR": {
     "baseBranch": "main",

@@ -478,3 +478,8 @@ FREQUENCY ROLLOUT — Neos
 - https://github.com/daggerok/Neos/pull/15
 - Remote diff and head verified; merge confirmed: 065887db2e84d77b895660a1eb77efb9302a4a52.
 - Tests: 104 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — Schwab
+- https://github.com/daggerok/Schwab/pull/13
+- Remote diff and head verified; merge confirmed: 00acbff11bae5f278ac94df546cac454947c9333.
+- Tests: 34 pass, 0 fail; no new failures. No unrelated changes.
