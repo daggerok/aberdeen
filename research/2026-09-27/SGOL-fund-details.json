@@ -1,0 +1,157 @@
+{
+  "availableFundDetailsTabs": {
+    "fundFactsTab": {
+      "tab": true,
+      "keyInformationTab": true,
+      "tradingInformationTab": false,
+      "codesTab": true,
+      "portfolioSecuritiesTab": false,
+      "derivativeUsageTab": false,
+      "authorizedCountriesTab": false,
+      "riskTab": {
+        "tab": false,
+        "breakdownRisk": false,
+        "fundRiskStatistics": false,
+        "keyRisk": false
+      },
+      "correlationMatrixTab": false
+    },
+    "performanceTab": {
+      "tab": true,
+      "graphSection": true,
+      "cumulativeTab": true,
+      "cumulativeQuarterlyTab": true,
+      "annualizedTab": true,
+      "annualizedQuarterlyTab": true,
+      "discreteTab": false,
+      "calendarTab": true,
+      "thaiCumulativeTable": false,
+      "thaiCumulativeDailyTable": false,
+      "thaiAnnualizedTable": false,
+      "thaiAnnualizedDailyTable": false
+    },
+    "premiumDiscountTab": {
+      "tab": true,
+      "lineGraphSection": false,
+      "chartSection": true
+    },
+    "podcastTab": false,
+    "literatureTab": true,
+    "holdingsTab": {
+      "tab": false,
+      "dailyHoldings": false,
+      "monthlyHoldings": false,
+      "quarterlyHoldings": false,
+      "topHoldings": false
+    },
+    "breakdownTab": {
+      "tab": false,
+      "creditBreakdown": false,
+      "maturityBreakdown": false,
+      "sectorBreakdown": false,
+      "countryBreakdown": false
+    },
+    "managementTab": false
+  },
+  "fundHeroType": 4,
+  "isPageAvailable": true,
+  "isImportantInfoAvailable": false,
+  "isInvestmentTrustDisclaimerAvailable": false,
+  "assetClassId": "Alternatives",
+  "subAssetClassId": "Alternative Investment Solutions",
+  "fundNameId": "abrdn Physical Gold Shares ETF",
+  "shareClassNameId": "Share",
+  "sfdrArticleClassificationId": "N/A",
+  "sdrLabel": 0,
+  "id": "abf8af1c-8cbe-6b36-964d-f0d52e6e6251",
+  "name": "abrdn Physical Gold Shares ETF",
+  "fundSizeValue": "7312655149.37",
+  "fundSizeValueDate": "2026-09-25T00:00:00Z",
+  "fundSizeCurrency": "USD",
+  "fundRangeName": "Exchange Traded Fund",
+  "correlationFundRangeID": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "accountTypeName": "Exchange Traded Fund",
+  "assetClassName": "Alternatives",
+  "subAssetClassName": "Alternative Investment Solutions",
+  "exposure": "Precious Metals",
+  "fundManagementApproach": "US ETFs \u2013 Physical",
+  "sdrProductType": "Not in scope of SDR",
+  "sustainabilityLabel": "NA",
+  "shareclasses": [
+    {
+      "prices": [
+        {
+          "id": "3a5538f9-56ea-1bb6-887a-ed3c69e34551",
+          "currentAsAt": "2026-09-25T00:00:00Z",
+          "pricePerUnit": "40.55826",
+          "changeValue": "-0.05112",
+          "changePercentage": "-0.126",
+          "priceCurrencyCode": "USD"
+        }
+      ],
+      "investmentTrustPrices": [
+        {
+          "id": "9642e713-feaa-b204-9377-dd1bc539dee8",
+          "exchangePrice": "40.67",
+          "exchangeDate": "2026-09-24T00:00:00Z"
+        }
+      ],
+      "netExpenseRatios": null,
+      "iopVs": null,
+      "medianBidAskSpreads": null,
+      "tickerSymbol": "SGOL",
+      "bloomberg": "SGOL",
+      "citicode": null,
+      "lipper": null,
+      "ric": null,
+      "sedol": "BFZ02K3",
+      "authorizations": [
+        "BRA4Historic",
+        "USA4Live"
+      ],
+      "id": "ce25910e-7ce9-417a-579d-53bdd18ddc7b",
+      "name": "",
+      "isin": "US00326A1043"
+    }
+  ],
+  "isinCode": "us00326a1043",
+  "fundObjectives": [
+    "abrdn Physical Gold Shares ETF (SGOL) seeks to reflect the performance of the price of gold bullion, less the Trust's expenses.",
+    "Responsibly Sourced: SGOL seeks to hold only London Good Delivery gold bullion bars that were refined on or after January 1, 2012 (also referred to as \"post-2012 gold\"). All post-2012 gold has been refined in accordance with the London Bullion Market Association's (\"LBMA\") Responsible Gold Guidance (the \"Gold Guidance\"), which requires refiners to demonstrate their efforts to respect the environment and combat money laundering, terrorist financing and human rights abuses."
+  ],
+  "selectedShareclass": {
+    "prices": [
+      {
+        "id": "3a5538f9-56ea-1bb6-887a-ed3c69e34551",
+        "currentAsAt": "2026-09-25T00:00:00Z",
+        "pricePerUnit": "40.55826",
+        "changeValue": "-0.05112",
+        "changePercentage": "-0.126",
+        "priceCurrencyCode": "USD"
+      }
+    ],
+    "investmentTrustPrices": [
+      {
+        "id": "9642e713-feaa-b204-9377-dd1bc539dee8",
+        "exchangePrice": "40.67",
+        "exchangeDate": "2026-09-24T00:00:00Z"
+      }
+    ],
+    "netExpenseRatios": null,
+    "iopVs": null,
+    "medianBidAskSpreads": null,
+    "tickerSymbol": "SGOL",
+    "bloomberg": "SGOL",
+    "citicode": null,
+    "lipper": null,
+    "ric": null,
+    "sedol": "BFZ02K3",
+    "authorizations": [
+      "BRA4Historic",
+      "USA4Live"
+    ],
+    "id": "ce25910e-7ce9-417a-579d-53bdd18ddc7b",
+    "name": "",
+    "isin": "US00326A1043"
+  }
+}

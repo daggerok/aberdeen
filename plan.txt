@@ -66,3 +66,30 @@ Aberdeen — журнал восстановления и продолжения
 Первый локальный checkpoint подготовлен. Проверка разрешения push —
 следующее действие. Успех публикации подтверждается только результатом
 push и проверкой remote SHA, а не записью о намерении в этом файле.
+
+CHECKPOINT 2 — LIVE JSON API ПОДТВЕРЖДЁН
+- Коммит f17bbf4 успешно запушен; remote SHA проверен git ls-remote.
+- POST /api/gateway/funds/overview и /prices возвращают HTTP 200 JSON.
+  Проверенный payload описан выше; ВАЖНО: параметр date опущен.
+  Без date prices возвращает официальный NAV и его дату; не нужно
+  вычислять NAV обратным расчётом из premium/discount.
+- resultCount=11; lastPageNumber=0 при take=20. Тикеры:
+  AFSC AGEM AMUN ASCI BCD BCI GLTR PALL PPLT SGOL SIVR.
+- Каталог HTML HTTP 200. Данные отдельных фондов обнаружены в
+  __NEXT_DATA__.props.pageProps.pageData.fundDetailsData.
+- AGEM: NAV 49.7222 на 2026-09-25; market price 49.568 на ту же дату;
+  keyInformation: gross TER 1.18%, net TER 0.70%, AUM 375893057.43.
+- AGEM: holdingsTab.quarterlyHoldings=true; dailyHoldings holdingType=2,
+  take=2 возвращает 2 строки и totalResults=95. Пагинация обязательна.
+- SGOL: holdingsTab.tab=false; dailyHoldings вернул HTTP 200 с пустым телом.
+  Это не JSON и не подтверждение нулевого портфеля! Правовая структура
+  в keyInformation: 1933 Act. Нельзя выдумывать securities holdings.
+- UI/JSON pattern эталон: JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e.
+  Reference-файлы пока только в .git/audit/JPMorgan (не deliverables).
+  Подтверждены devDependencies: @types/bun 1.4.2, @types/node 26.6.2.
+- Node/npm доступны; bun отсутствует в PATH.
+- Сохранены реальные ответы в research/2026-09-27, без секретов.
+  *-fund-details.json — извлечённый объект из __NEXT_DATA__, не весь HTML.
+  AGEM holdings fixture — ТОЛЬКО первая страница, не полный портфель.
+- Live verification ещё НЕ завершена: история/выплаты и SEC registrants
+  требуют проверки. Приложение/updater ещё не реализованы.
