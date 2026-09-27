@@ -295,3 +295,8 @@ SIBLING README MERGED: JPMorgan
 - https://github.com/daggerok/JPMorgan/pull/16
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit a0371bb2e21eff1c57508bc063323dac095cca7d.
+
+SIBLING README MERGED: Neos
+- https://github.com/daggerok/Neos/pull/14
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit 7f79c4e04788ccae289f8cf91fe52233b97b9615.
