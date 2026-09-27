@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: e4026a1db1180fb91f5ab8ea311c9a839d70ee1d.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 7a9f48c85ba72b1998050521409119d17d482f86.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -48,7 +48,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Amplify": "not-affected",
   "Fidelity": "not-affected",
   "Franklin": "not-affected",
-  "Global-X": "affected",
+  "Global-X": "code-pushed",
   "Goldman-Sachs": "affected",
   "Invesco": "not-affected",
   "iShares": "not-affected",
@@ -63,7 +63,7 @@ TICKER QUEUE ROLLOUT STATUS
 }
 
 NEXT ACTION
-For each of the eight affected entries: add queue regressions, confirm baseline failure, change exactly one line, rerun suite/build, commit/push feature branch and checkpoint. Then create/verify/merge PR and checkpoint again.
+Continue pending ticker-queue rollout entries; verify existing PRs before retrying. Never duplicate merged PRs.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -97,6 +97,16 @@ the two newly included clones; use set --no-cone with root/scripts/API patterns.
 Next fix is one production line per affected app.tsx plus four regression tests;
 no API/updater/dependency/UI-structure changes. New assertions must fail against
 the old implementation before fixing (value preserved in completion-only map).
+
+
+--- CHECKPOINT ---
+Global-X
+One production-line fix plus four tests; three new assertions reproduced
+the original completion-only queue mismatch before the fix.
+After: 12 pass, 0 fail. Baseline failures unchanged.
+Bun app build and exact production diff guard passed; no API/dependency changes.
+Feature branch pushed and remote SHA verified: 057d472afcdd5d3612305e0f514aec602590bb12.
+Next: create/reuse PR, verify remote diff/checks/head, then authorized merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1144,6 +1154,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 === REFERENCE SNAPSHOTS (current text; legacy history retained) ===
@@ -3546,7 +3557,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "affected",
+    "status": "code-pushed",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3556,7 +3567,26 @@ ended up using.
       "failures": []
     },
     "classification": "unmasked Promise<T | undefined> into Promise<void>",
-    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>."
+    "plannedChange": "Replace work.catch(() => undefined), including any as Promise<void> assertion, with work.then(() => undefined, () => undefined); keep return work and Map<string, Promise<void>>.",
+    "redRegression": {
+      "newFailureCount": 3,
+      "note": "Success result, recovery queue value and serialized queue completion assertions fail against original implementation."
+    },
+    "headSha": "057d472afcdd5d3612305e0f514aec602590bb12",
+    "branch": "fix/ticker-queue-promise-20260927",
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "12 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "appBuild": "passed",
+    "changedFiles": [
+      "app.tsx",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
