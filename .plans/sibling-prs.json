@@ -82,5 +82,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "JPMorgan": {
+    "url": "https://github.com/daggerok/JPMorgan/pull/16",
+    "number": 16,
+    "head": "76609f29a41cdfd03f67d0bb24573180a00076e9",
+    "mergeCommit": "a0371bb2e21eff1c57508bc063323dac095cca7d",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }

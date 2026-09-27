@@ -290,3 +290,8 @@ SIBLING README MERGED: iShares
 - https://github.com/daggerok/iShares/pull/45
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 0455b0eab8d1366c5805575dda64a868f205355b.
+
+SIBLING README MERGED: JPMorgan
+- https://github.com/daggerok/JPMorgan/pull/16
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit a0371bb2e21eff1c57508bc063323dac095cca7d.
