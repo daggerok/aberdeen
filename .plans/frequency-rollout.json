@@ -708,7 +708,7 @@
   "SPDR": {
     "baseBranch": "main",
     "baseSha": "b8c4748620bc741e9ad8063bd60364efbf4586a6",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -735,14 +735,18 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "0e0d5861bf66518e58715df9c4a5d253f09758b2",
+    "headSha": "b415c8ae7dfbb8b91571d9be6e0c25cb983438d9",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
     ],
     "recoveredHeadSha": "b415c8ae7dfbb8b91571d9be6e0c25cb983438d9",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/SPDR/pull/31",
+    "number": 31,
+    "merged": true,
+    "mergeCommit": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57"
   },
   "VanEck": {
     "baseBranch": "main",

@@ -483,3 +483,8 @@ FREQUENCY ROLLOUT — Schwab
 - https://github.com/daggerok/Schwab/pull/13
 - Remote diff and head verified; merge confirmed: 00acbff11bae5f278ac94df546cac454947c9333.
 - Tests: 34 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — SPDR
+- https://github.com/daggerok/SPDR/pull/31
+- Remote diff and head verified; merge confirmed: f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57.
+- Tests: 28 pass, 0 fail; no new failures. No unrelated changes.
