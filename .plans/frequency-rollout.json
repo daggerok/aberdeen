@@ -85,7 +85,7 @@
   "Franklin": {
     "baseBranch": "main",
     "baseSha": "f9b0cdc4254f65f87d492615695f35b5bc2f5d3f",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -140,7 +140,7 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "b9887f31781a866889eea8082828799b3572d035",
+    "headSha": "73f722969064888b85b4c0a52963143db98c634e",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "api/franklin/funds/EZBC/meta.json",
@@ -153,7 +153,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "73f722969064888b85b4c0a52963143db98c634e",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/Franklin/pull/19",
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821"
   },
   "Global-X": {
     "baseBranch": "main",

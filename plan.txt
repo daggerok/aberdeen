@@ -443,3 +443,8 @@ FREQUENCY ROLLOUT — Fidelity
 - https://github.com/daggerok/Fidelity/pull/20
 - Remote diff and head verified; merge confirmed: 69e97b99cb0bcc16471f285f02cf2e2790da05b0.
 - Tests: 51 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — Franklin
+- https://github.com/daggerok/Franklin/pull/19
+- Remote diff and head verified; merge confirmed: 9c00bdfe3099098b78ef33a8eb24cd45dd0c7821.
+- Tests: 45 pass, 0 fail; no new failures. No unrelated changes.
