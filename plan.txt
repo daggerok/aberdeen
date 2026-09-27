@@ -315,3 +315,8 @@ SIBLING README MERGED: SPDR
 - https://github.com/daggerok/SPDR/pull/30
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit b8c4748620bc741e9ad8063bd60364efbf4586a6.
+
+SIBLING README MERGED: VanEck
+- https://github.com/daggerok/VanEck/pull/15
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit a994096088c98706d7d98c84e54f85630c12fcef.

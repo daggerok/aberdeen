@@ -142,5 +142,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "VanEck": {
+    "url": "https://github.com/daggerok/VanEck/pull/15",
+    "number": 15,
+    "head": "3d1fa640a53cda2a4f4cca249624e8e79ef3d60f",
+    "mergeCommit": "a994096088c98706d7d98c84e54f85630c12fcef",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
