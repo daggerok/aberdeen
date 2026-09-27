@@ -147,3 +147,15 @@ CHECKPOINT 5 — UPDATER + ТЕСТЫ
 - Pacing пока conservative single gate (brand plan default), reservation
   before await. SEC 403 не abort всего run; stale data сохраняется.
 - UI ещё не копировался. Далее реальные scoped runs и сравнение файлов.
+
+CHECKPOINT 6 — SCOPED LIVE PASS / BYTE IDENTICAL
+- Реальный TICKERS='AGEM BCD SGOL' REQUEST_SLEEP=0: 3 успешных фонда,
+  129 holdings, 7076 history rows, 0 failures.
+- После исправления заполнения YTD/1M/QTD для UI на ту же дату отчёта:
+  повторные два прогона, diff -qr всего api/ пуст (включая index.json).
+- 31 тест и sanity bun build повторно прошли; git diff --check чистый.
+- SGOL securities holdings отмечены status=not-applicable, а не выдуманы.
+- AGEM NAV=49.7222, market price=49.568 на 2026-09-25.
+- У SGOL official NAV и market price имеют разные даты; premium не
+  вычисляется из несопоставимых дат. ME/QE даты берутся из API, не now.
+- Далее UI-copy (только 8 категорий) и проверка рендера.

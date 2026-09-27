@@ -1530,13 +1530,16 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
   const aum=key?.aum??old.aum?.value??previousIndex.aumValue??null, ter=key?.ter??old.expenseRatio?.value??previousIndex.terValue??null;
   const secYield=key?.secYield??old.yields?.secYield??null;
   const divYield=indicatedYield(latest?.amount??null,frequency.paymentsPerYear,price)??old.yields?.dividendYield??null;
+  const freshOfficialReturns=Boolean(month);
   month??=old.returns?.monthEnd??null; quarter??=old.returns?.quarterEnd??null;
   const anchor=month?.asOfDate?new Date(Date.parse(month.asOfDate)):days.length?new Date(`${days.at(-1)!.date}T00:00:00Z`):null;
   const usable=anchor?days.filter(d=>Date.parse(d.date)<=anchor.getTime()):[];
   const derived=usable.length?priceReturns(usable,anchor!):{...EMPTY_PRICE_RETURNS};
   // A range-limited Yahoo download is not a since-inception return.
   if (!chart?.firstTradeDate || !days.length || Date.parse(days[0].date)/1000-chart.firstTradeDate>7*86400) derived.siAnn=null;
+  const hasOfficialReturns=freshOfficialReturns || Boolean(month && !old.returns?.derivedFrom?.startsWith('Yahoo adjusted'));
   const metrics=buildMetrics(month,derived,secYield,divYield);
+  if(month) month={...month,ytd:month.ytd??derived.ytd,mo1:month.mo1??derived.mo1,qtd:month.qtd??derived.qtd};
   if (!month && usable.length) {
     month={asOfDate:formatEdgarDate(derived.asOfDate!),mo1:derived.mo1,qtd:derived.qtd,ytd:derived.ytd,yr1:derived.yr1,yr3:derived.cagr3y,yr5:derived.cagr5y,yr10:derived.cagr10y,sinceInception:derived.siAnn};
   }
@@ -1553,7 +1556,7 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
   const oldHistoryHeaders=await readPreviousSheetHeaders(ticker,'history');
   const historyManifest=await writePages(dir,ticker,'history',chart?.days.length?['Date','Close','Adj Close','Volume']:oldHistoryHeaders.length?oldHistoryHeaders:['Date','Close','Adj Close','Volume'],history,config.historyPageSize);
   const historySource=chart?.days.length?'Yahoo Finance daily market-price closes / adjusted closes (not official NAV)':old.history?.source??'unavailable';
-  const returnsBasis=month?'official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date':'Yahoo adjusted market-price returns, not official NAV';
+  const returnsBasis=hasOfficialReturns?'official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date':'Yahoo adjusted market-price returns, not official NAV';
   const meta={
     ticker,name:fund.name,category,categoryPath:key?.exposure?`${category} / ${key.exposure}`:old.categoryPath??category,
     source:{fundPage:fund.fundPage,catalog:CATALOG_PAGE,keyInformation:`${GATEWAY}/fundDetailsKeyInformation`,holdingsDownload:`${GATEWAY}/breakdown/dailyHoldingsSheet`,
