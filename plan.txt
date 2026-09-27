@@ -159,3 +159,18 @@ CHECKPOINT 6 — SCOPED LIVE PASS / BYTE IDENTICAL
 - У SGOL official NAV и market price имеют разные даты; premium не
   вычисляется из несопоставимых дат. ME/QE даты берутся из API, не now.
 - Далее UI-copy (только 8 категорий) и проверка рендера.
+
+CHECKPOINT 7 — UI PARITY И РЕАЛЬНЫЙ БРАУЗЕР
+- app.tsx/index.html скопированы из pinned JPMorgan, изменения — только
+  разрешённые brand/path/storage/export/provenance строки; CSS, DOM/JSX,
+  набор tooltip keys, порядок overview rows и логика не менялись.
+- .plans/ui-copy.json хранит точные замены и SHA256 originals; тест
+  обращает замены и получает исходные JPMorgan файлы байт-в-байт.
+- 32 теста / 71 assertions passed; bun build app.tsx passed.
+- Chromium smoke с реальными scoped JSON: каталог 3 фонда, выбор только
+  checkbox (клик по текстовой ячейке не выбирает), holdings=95,
+  distributions=7, history=403, watchlist=95; CSV filename aberdeen-...,
+  dark mode и поиск работают; browser pageerror отсутствует.
+- Browser tooling установлен только в .git/browser-tools; это audit tool,
+  не dependency приложения. Никаких runtime packages не добавлено.
+- Далее CI/Dependabot, затем README/полный каталог и итоговая проверка.

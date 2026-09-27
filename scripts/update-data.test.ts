@@ -85,3 +85,12 @@ await main({...env,MAX_FETCHES:'1'});const state=await Bun.file('api/aberdeen/up
   expect({code:await child.exited,stderr:stderr.includes('Error:')?stderr:'',stdout:stdout.includes('NaN')?'NaN':''}).toEqual({code:0,stderr:'',stdout:''});
  }finally{await rm(dir,{recursive:true,force:true});}
 },30000);
+
+test('UI differs from pinned JPMorgan only by recorded string substitutions',async()=>{
+ const manifest=JSON.parse(await readFile(new URL('../.plans/ui-copy.json',import.meta.url),'utf8'));
+ for(const [name,spec] of Object.entries(manifest.files) as [string,any][]){
+  let text=await readFile(new URL('../'+name,import.meta.url),'utf8');
+  for(const [before,after] of spec.substitutions.toReversed())text=text.replaceAll(after,before);
+  expect(new Bun.CryptoHasher('sha256').update(text).digest('hex')).toBe(spec.referenceSha256);
+ }
+});
