@@ -1635,7 +1635,7 @@ export function resolveControls(file:unknown={},advanced:unknown={},inputs:unkno
 }
 async function runtimeControls(env:Record<string,string|undefined>):Promise<Record<string,string>> {
   let file:unknown={};
-  try {file=JSON.parse(await readFile(new URL('../update-config.json',import.meta.url),'utf8'));}
+  try {file=JSON.parse(await readFile(new URL('./update-data.config.json',import.meta.url),'utf8'));}
   catch(e) {if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
   return resolveControls(file,{}, {},env);
 }
@@ -1694,7 +1694,7 @@ if(import.meta.main){
   if(process.argv.some(a=>a==='--help'||a==='-h')){
     console.log('abrdn ETF updater — bun scripts/update-data.ts\nCanonical environment controls (ABERDEEN_ aliases accepted):');
     outputPrintConfig('abrdn effective configuration',readConfig(await runtimeControls(process.env)));
-    console.log('Defaults: update-config.json; explicit environment overrides the file. Actions: file < advanced JSON < individual inputs.');
+    console.log('Defaults: scripts/update-data.config.json; explicit environment overrides the file. Actions: file < advanced JSON < individual inputs.');
     console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds per conservative request gate. CONCURRENCY: fund workers.\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.');
   }else await main().catch(e=>{console.error(`[ done     ] ${errorMessage(e)}`);process.exitCode=1;});
 }

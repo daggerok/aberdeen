@@ -5,7 +5,7 @@
   Полный машинно-читаемый отчёт: .plans/sibling-prs.json.
   Каждый PR: только README.md, +2/-0, head SHA и merge проверены.
 - Реализация/данные/UI/CI/config/README/metadata завершены и запушены.
-- Последняя проверка: 37 tests, 90 assertions, 0 failures.
+- Последняя проверка: 39 tests, 102 assertions, 0 failures.
 - Осталось owner review/merge Aberdeen; затем GitHub-hosted Actions/Pages
   публикация. Live SEC доступ здесь ограничен HTTP 403; это не скрывается.
 - Ничего в Aberdeen main не менять и не сливать без нового разрешения.
@@ -212,7 +212,7 @@ CHECKPOINT 8 — FULL DATA PASS / CI PLATFORM CONFLICT
 в repo, ручные overrides в Actions и дополнительный JSON input.
 
 CHECKPOINT 9 — CONFIG FILE / РАБОЧИЙ CI
-- update-config.json: все 28 canonical controls, defaults полный каталог,
+- scripts/update-data.config.json: все 28 canonical controls, defaults полный каталог,
   MAX_FETCHES=0, TICKERS='', REQUEST_SLEEP=1, CONCURRENCY=2.
 - Actions имеет 25 inputs: 24 обычных и advanced JSON. Неуказанные inputs
   наследуют файл. Приоритет builtins < file < JSON < nonblank inputs;
@@ -248,7 +248,7 @@ CHECKPOINT 11 — ИТОГОВЫЙ АУДИТ ДО PR
   ключи строк совпадают с headers; 11/328/27067.
 - Отдельная копия ВСЕГО опубликованного api с fetch=>403 для КАЖДОГО
   запроса (issuer/SEC/Yahoo): все 11 unchanged; byte diff api/ пуст.
-- После ввода update-config.json ещё два scoped live runs: byte diff
+- После ввода scripts/update-data.config.json ещё два scoped live runs: byte diff
   всего api/ пуст; все 3 unchanged. Git working tree не содержит data diff.
 - Наблюдение: между поздними независимыми Yahoo запросами volume SGOL
   за 2026-09-25 на время менялся 3128300 -> 3128288 -> 3128300.
@@ -349,5 +349,18 @@ SIBLING README MERGED: WisdomTree
   неизменившиеся JSON не переписывает, при ошибках сохраняет старые данные.
 - Это полноценное обновление всех фондов, а не ограничение обновлений.
   Отличаются network fetch (делается) и file write/commit (только при diff).
-- TICKERS/CONCURRENCY и прочие параметры наследуются из update-config.json,
+- TICKERS/CONCURRENCY и прочие параметры наследуются из scripts/update-data.config.json,
   а явно указанные env/Actions inputs могут их переопределить.
+
+CHECKPOINT 12 — CONFIG COLOCATED WITH UPDATER (USER REQUEST)
+- Конфигурация перенесена из корня в scripts/update-data.config.json.
+  Содержимое JSON не изменено (git rename 100%).
+- Runtime разрешает ./update-data.config.json относительно import.meta.url;
+  путь не зависит от текущей рабочей директории.
+- Обновлены Actions resolver/input descriptions, --help, README и тесты.
+  Пути в предыдущих записях этого журнала актуализированы после переноса.
+- Новые regression tests: cwd-independent загрузка с файлами-приманками,
+  env override и исполнение реального Actions resolver с новым путём.
+- 39 tests / 102 assertions passed; Bun build и actionlint passed;
+  git diff --check чистый. UI, api/ и значения конфигурации не менялись.
+- Изменение публикуется в существующую ветку PR #1, без merge.

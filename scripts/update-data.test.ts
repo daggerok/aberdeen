@@ -119,8 +119,47 @@ describe('repository configuration / Actions override precedence',()=>{
  });
  test('repository defaults cover every canonical control',async()=>{
   const {CONTROL_NAMES,resolveControls}=await import('./update-data');
-  const file=JSON.parse(await readFile(new URL('../update-config.json',import.meta.url),'utf8'));
+  const file=JSON.parse(await readFile(new URL('./update-data.config.json',import.meta.url),'utf8'));
   expect(Object.keys(file).sort()).toEqual([...CONTROL_NAMES].sort());
   expect(readConfig(resolveControls(file)).tickers).toEqual([]);expect(readConfig(resolveControls(file)).maxFetches).toBe(0);
+ });
+});
+
+describe('config colocated with the updater',()=>{
+ test('runtime reads scripts/update-data.config.json independently of cwd; env still wins',async()=>{
+  const {CONTROL_NAMES}=await import('./update-data');
+  const dir=await mkdtemp(join(tmpdir(),'aberdeen-config-location-'));
+  try{
+   await mkdir(join(dir,'scripts'));await mkdir(join(dir,'other-cwd'));
+   await cp(new URL('update-data.ts',import.meta.url),join(dir,'scripts/update-data.ts'));
+   await Bun.write(join(dir,'scripts/update-data.config.json'),JSON.stringify({CONCURRENCY:7,TICKERS:'AGEM'}));
+   // Decoys ensure neither the repository root nor the current directory wins.
+   await Bun.write(join(dir,'update-data.config.json'),JSON.stringify({CONCURRENCY:9}));
+   await Bun.write(join(dir,'other-cwd/update-data.config.json'),JSON.stringify({CONCURRENCY:11}));
+   const env=Object.fromEntries(Object.entries(process.env).filter(([key])=>!CONTROL_NAMES.includes(key)&&!key.startsWith('ABERDEEN_')));
+   for(const [override,expected] of [[{},7],[{CONCURRENCY:'3'},3]] as const){
+    const child=Bun.spawn([process.execPath,join(dir,'scripts/update-data.ts'),'--help'],{cwd:join(dir,'other-cwd'),env:{...env,...override},stdout:'pipe',stderr:'pipe'});
+    const [stdout,stderr,code]=await Promise.all([new Response(child.stdout).text(),new Response(child.stderr).text(),child.exited]);
+    expect({code,stderr}).toEqual({code:0,stderr:''});
+    expect(stdout).toContain(`CONCURRENCY=${expected}\n`);expect(stdout).toContain('TICKERS=AGEM\n');
+   }
+  }finally{await rm(dir,{recursive:true,force:true});}
+ });
+ test('actual Actions resolver loads the relocated config and applies manual overrides',async()=>{
+  const workflow=Bun.YAML.parse(await readFile(new URL('../.github/workflows/update-data.yml',import.meta.url),'utf8')) as any;
+  const step=workflow.jobs['update-data'].steps.find((s:any)=>s.name==='Resolve file defaults and manual overrides');
+  const dir=await mkdtemp(join(tmpdir(),'aberdeen-actions-config-'));
+  try{
+   const githubEnv=join(dir,'github-env');
+   const child=Bun.spawn(['bash','-c',step.run],{cwd:new URL('../',import.meta.url).pathname,env:{...process.env,
+    PATH:`${process.execPath.slice(0,process.execPath.lastIndexOf('/'))}:${process.env.PATH??''}`,
+    GITHUB_ENV:githubEnv,DISPATCH_INPUTS:JSON.stringify({concurrency:'3',tickers:'AGEM',advanced:JSON.stringify({MAX_FETCHES:2})}),
+   },stdout:'pipe',stderr:'pipe'});
+   const [stdout,stderr,code]=await Promise.all([new Response(child.stdout).text(),new Response(child.stderr).text(),child.exited]);
+   expect({code,stderr,stdout}).toEqual({code:0,stderr:'',stdout:''});
+   const values=Object.fromEntries((await readFile(githubEnv,'utf8')).trim().split('\n').map(line=>{const i=line.indexOf('=');return [line.slice(0,i),line.slice(i+1)];}));
+   expect(values.CONCURRENCY).toBe('3');expect(values.TICKERS).toBe('AGEM');expect(values.MAX_FETCHES).toBe('2');
+   expect(values.REQUEST_SLEEP).toBe('1');expect(Object.keys(values)).toHaveLength(28);
+  }finally{await rm(dir,{recursive:true,force:true});}
  });
 });

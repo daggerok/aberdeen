@@ -25,7 +25,7 @@ bun scripts/update-data.ts
 
 `bun scripts/update-data.ts --help` prints the effective configuration. The updater has **no runtime dependencies**.
 
-Defaults live in [`update-config.json`](./update-config.json). With no overrides the updater refreshes the entire discovered US ETF catalog (`MAX_FETCHES=0`, `TICKERS=""`), keeps published data when a provider fails, and writes only meaningful changes. It does not skip fetching a fund merely because yesterday's data exists. Unchanged reruns do not create timestamp-only diffs.
+Defaults live next to the updater in [`scripts/update-data.config.json`](./scripts/update-data.config.json). With no overrides the updater refreshes the entire discovered US ETF catalog (`MAX_FETCHES=0`, `TICKERS=""`), keeps published data when a provider fails, and writes only meaningful changes. It does not skip fetching a fund merely because yesterday's data exists. Unchanged reruns do not create timestamp-only diffs.
 
 The **Update abrdn ETF data** workflow runs Sundays at **00:00 UTC** and on manual dispatch; there is no push trigger. Filters use **AND** logic. The schedule becomes active after the workflow reaches the default branch.
 
@@ -57,7 +57,7 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 Precedence:
 
 1. Built-in safe defaults.
-2. `update-config.json` (committed, non-secret defaults).
+2. `scripts/update-data.config.json` (committed, non-secret defaults).
 3. Actions `advanced` JSON overrides.
 4. Explicit nonblank individual Actions inputs. **`CONCURRENCY` and `TICKERS` are separate primary inputs.**
 
