@@ -6,9 +6,10 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: a91c03cdd44c48e4f54cc35becccf10f62271072.
-The new commit containing this checkpoint must still be pushed and verified;
-its SHA is available from git log -- .worklog.txt (not a self-referential field).
+Last confirmed pushed Aberdeen SHA before this checkpoint: cfae9d0ea16fc57bbd1298294e77739041a8e82c.
+Publication of the commit containing this checkpoint must be verified against
+the remote, not inferred from this file. Its SHA is available from
+git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
 
 GOALS / AUTHORIZATION / CONSTRAINTS
 - Communicate in Russian. Bun only; no tsc, tsconfig or new runtime dependencies.
@@ -63,7 +64,7 @@ TICKER QUEUE ROLLOUT STATUS
 }
 
 NEXT ACTION
-Continue pending ticker-queue rollout entries; verify existing PRs before retrying. Never duplicate merged PRs.
+No requested code changes remain. Owner may review Aberdeen PR #1; do NOT merge it without new authorization. For a new task, read this entire .worklog.txt, verify Git/remote/PR states, then follow the new authorized request. Do not repeat the recorded sibling PRs.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -297,6 +298,33 @@ MERGED https://github.com/daggerok/WisdomTree/pull/27
 Merge confirmed via GitHub API: 30414b1f8984a7a36bec12741e77a35ded2795eb.
 Exact scope: app.tsx +1/-1 production line and four appended regression tests.
 No force push, check bypass, API changes or Aberdeen merge.
+
+
+--- CHECKPOINT ---
+FINAL: both current implementation/documentation requests completed.
+All 15 other ETF repos audited. Eight narrow queue fixes MERGED:
+Global-X #6; Goldman-Sachs #14; JPMorgan #18; Neos #16; ProShares #18;
+Schwab #14; VanEck #17; WisdomTree #27. Six unmasked mismatches, two masked
+by as Promise<void>. Seven remaining repos did not have this problem.
+Each PR: exactly one app.tsx line plus four tests of the actual helper.
+Across eight changed repos: 491 passing tests; one unchanged pre-existing
+VanEck GDX Weight failure. 32 new tests pass; 24 assertions/tests (three per
+repo) failed on original code and pass after the fix. All eight app builds pass.
+Remote PR head/diff/checks verified before SHA-guarded merges; merge states
+confirmed via GitHub API. No force pushes or bypasses; Aberdeen PR #1 not merged.
+Aberdeen final suite re-run: 44 pass / 141 assertions, zero failures.
+Canonical handoff: .worklog.txt; full prompt: .plans/worklog-protocol.txt.
+Protocol inserted at line 5 of 00-generic.txt and line 13 of 02-aberdeen.txt,
+before the first Read this whole file before touching any code paragraph.
+plan.txt retained as historical archive with a pointer to .worklog.txt.
+Original supplied plans, current .plans files, ledgers and legacy plan.txt
+are embedded in full. Long-log readers must read in chunks without truncation.
+Frequency clarification: only the existing missing/undetermined label became
+None; inference and explicit Unknown did not change. This is not evidence a
+fund never distributes. All 14 sibling Frequency PRs merged, ProShares already
+correct; Aberdeen's Frequency/type changes remain in open PR #1 until owner merge.
+No essential handoff state depends on disposable clones or transient processes.
+Remove completed disposable queue clones if needed to keep snapshots small.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1370,6 +1398,7 @@ ended up using.
 
 
 
+
 === REFERENCE SNAPSHOTS (current text; legacy history retained) ===
 
 --- FILE: .plans/00-generic.txt ---
@@ -1385,7 +1414,8 @@ file. This is a workflow requirement, not permission to change product scope.
 1. BEFORE WORK
    If .worklog.txt exists, read it completely before changing code. Check the
    actual working tree, branch, local/remote commits and PR states; the file
-   may be stale after a crash or external changes. Resume the first unfinished
+   may be stale after a crash or external changes. Read long files in chunks;
+   do not treat truncated tool output as a complete read. Resume the first unfinished
    step, not the whole implementation. Preserve existing user changes.
    If the file does not exist, create it before implementation. Include the
    full original text of all supplied plans/specifications, sanitized of
@@ -1976,7 +2006,8 @@ file. This is a workflow requirement, not permission to change product scope.
 1. BEFORE WORK
    If .worklog.txt exists, read it completely before changing code. Check the
    actual working tree, branch, local/remote commits and PR states; the file
-   may be stale after a crash or external changes. Resume the first unfinished
+   may be stale after a crash or external changes. Read long files in chunks;
+   do not treat truncated tool output as a complete read. Resume the first unfinished
    step, not the whole implementation. Preserve existing user changes.
    If the file does not exist, create it before implementation. Include the
    full original text of all supplied plans/specifications, sanitized of
@@ -4659,7 +4690,8 @@ file. This is a workflow requirement, not permission to change product scope.
 1. BEFORE WORK
    If .worklog.txt exists, read it completely before changing code. Check the
    actual working tree, branch, local/remote commits and PR states; the file
-   may be stale after a crash or external changes. Resume the first unfinished
+   may be stale after a crash or external changes. Read long files in chunks;
+   do not treat truncated tool output as a complete read. Resume the first unfinished
    step, not the whole implementation. Preserve existing user changes.
    If the file does not exist, create it before implementation. Include the
    full original text of all supplied plans/specifications, sanitized of

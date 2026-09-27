@@ -10,7 +10,8 @@ file. This is a workflow requirement, not permission to change product scope.
 1. BEFORE WORK
    If .worklog.txt exists, read it completely before changing code. Check the
    actual working tree, branch, local/remote commits and PR states; the file
-   may be stale after a crash or external changes. Resume the first unfinished
+   may be stale after a crash or external changes. Read long files in chunks;
+   do not treat truncated tool output as a complete read. Resume the first unfinished
    step, not the whole implementation. Preserve existing user changes.
    If the file does not exist, create it before implementation. Include the
    full original text of all supplied plans/specifications, sanitized of
