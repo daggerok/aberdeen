@@ -1,0 +1,220 @@
+{
+ "generatedAt": "2026-09-27T20:37:27.316Z",
+ "catalogReadAt": "2026-09-27T20:37:27.316Z",
+ "source": {
+  "provider": "abrdn ETFs",
+  "site": "https://www.aberdeeninvestments.com",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund"
+ },
+ "counts": {
+  "funds": 3,
+  "holdings": 129,
+  "history": 7076
+ },
+ "funds": [
+  {
+   "ticker": "AGEM",
+   "name": "abrdn Emerging Markets Dividend Active ETF",
+   "category": "Active Equities",
+   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-emerging-markets-dividend-active-etf-us00384x3017",
+   "dataFile": "./funds/AGEM/meta.json",
+   "cusip": "00384X301",
+   "isin": "US00384X3017",
+   "ter": "1.18%",
+   "terValue": 1.18,
+   "nav": "$49.72",
+   "navValue": 49.7222,
+   "aum": "$375.89 M",
+   "aumValue": 375893057.43,
+   "asOfDate": "Sep 25 2026",
+   "inceptionDate": "Oct 04 1993",
+   "exchange": "NasdaqGM",
+   "closePrice": "$49.57",
+   "closePriceValue": 49.568,
+   "premiumDiscount": "-0.31%",
+   "premiumDiscountValue": -0.31,
+   "distributions": {
+    "frequency": "Quarterly",
+    "exDate": "09/22/2026",
+    "dividend": "0.556"
+   },
+   "returns": {
+    "monthEnd": {
+     "asOfDate": "Aug 31 2026",
+     "ytd": 28.85,
+     "yr1": 43.17,
+     "yr3": 27.89,
+     "yr5": 8.89,
+     "yr10": 10.61,
+     "sinceInception": 6.34,
+     "mo1": 1.53,
+     "qtd": 1.68
+    },
+    "quarterEnd": {
+     "asOfDate": "Jun 30 2026",
+     "ytd": null,
+     "yr1": 50.91,
+     "yr3": 25.27,
+     "yr5": 10.25,
+     "yr10": 10.79,
+     "sinceInception": 6.34,
+     "mo1": -0.48
+    },
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+   },
+   "metrics": {
+    "ytd": 28.85,
+    "tr1y": 43.17,
+    "cagr3y": 27.89,
+    "cagr5y": 8.89,
+    "cagr10y": 10.61,
+    "tr3y": 109.17,
+    "tr5y": 53.09,
+    "tr10y": 174.12,
+    "siAnn": 6.34,
+    "secYield": 1.48,
+    "secYieldText": "1.48%",
+    "dividendYield": 4.49,
+    "dividendYieldText": "4.49%"
+   },
+   "holdings": 95,
+   "history": 403
+  },
+  {
+   "ticker": "BCD",
+   "name": "abrdn Bloomberg All Commodity Longer Dated Strategy K-1 Free ETF",
+   "category": "Alternatives",
+   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-longer-dated-strategy-k-1-free-etf-us0032612030",
+   "dataFile": "./funds/BCD/meta.json",
+   "cusip": "003261203",
+   "isin": "US0032612030",
+   "ter": "0.30%",
+   "terValue": 0.3,
+   "nav": "$38.94",
+   "navValue": 38.9448,
+   "aum": "$445.92 M",
+   "aumValue": 445918204.64,
+   "asOfDate": "Sep 25 2026",
+   "inceptionDate": "Mar 30 2017",
+   "exchange": "NYSEArca",
+   "closePrice": "$38.96",
+   "closePriceValue": 38.96,
+   "premiumDiscount": "0.04%",
+   "premiumDiscountValue": 0.04,
+   "distributions": {
+    "frequency": "Annually",
+    "exDate": "12/30/2025",
+    "dividend": "5.329"
+   },
+   "returns": {
+    "monthEnd": {
+     "asOfDate": "Aug 31 2026",
+     "ytd": 24.68,
+     "yr1": 33.99,
+     "yr3": 13.32,
+     "yr5": 12.16,
+     "yr10": null,
+     "sinceInception": 9.4,
+     "mo1": 7.14,
+     "qtd": 13.03
+    },
+    "quarterEnd": {
+     "asOfDate": "Mar 31 2026",
+     "ytd": null,
+     "yr1": 22.72,
+     "yr3": 10.98,
+     "yr5": 13.99,
+     "yr10": null,
+     "sinceInception": 8.95,
+     "mo1": 4.82
+    },
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+   },
+   "metrics": {
+    "ytd": 24.68,
+    "tr1y": 33.99,
+    "cagr3y": 13.32,
+    "cagr5y": 12.16,
+    "cagr10y": null,
+    "tr3y": 45.52,
+    "tr5y": 77.5,
+    "tr10y": null,
+    "siAnn": 9.4,
+    "secYield": null,
+    "secYieldText": "—",
+    "dividendYield": 13.68,
+    "dividendYieldText": "13.68%"
+   },
+   "holdings": 34,
+   "history": 2385
+  },
+  {
+   "ticker": "SGOL",
+   "name": "abrdn Physical Gold Shares ETF",
+   "category": "Alternatives",
+   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
+   "dataFile": "./funds/SGOL/meta.json",
+   "cusip": "00326A104",
+   "isin": "US00326A1043",
+   "ter": "0.17%",
+   "terValue": 0.17,
+   "nav": "$40.56",
+   "navValue": 40.55826,
+   "aum": "$7,312.66 M",
+   "aumValue": 7312655149.37,
+   "asOfDate": "Sep 25 2026",
+   "inceptionDate": "Sep 09 2009",
+   "exchange": "NYSEArca",
+   "closePrice": "$40.67",
+   "closePriceValue": 40.67,
+   "premiumDiscount": "—",
+   "premiumDiscountValue": null,
+   "distributions": {
+    "frequency": "—",
+    "exDate": "—",
+    "dividend": "—"
+   },
+   "returns": {
+    "monthEnd": {
+     "asOfDate": "Aug 31 2026",
+     "ytd": 3.21,
+     "yr1": 32.83,
+     "yr3": 32.71,
+     "yr5": 20.04,
+     "yr10": 13.05,
+     "sinceInception": 9.02,
+     "mo1": 13.3,
+     "qtd": 10.27
+    },
+    "quarterEnd": {
+     "asOfDate": "Mar 31 2026",
+     "ytd": null,
+     "yr1": 47.68,
+     "yr3": 32.31,
+     "yr5": 21.99,
+     "yr10": 13.8,
+     "sinceInception": 9.33,
+     "mo1": -11.77
+    },
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+   },
+   "metrics": {
+    "ytd": 3.21,
+    "tr1y": 32.83,
+    "cagr3y": 32.71,
+    "cagr5y": 20.04,
+    "cagr10y": 13.05,
+    "tr3y": 133.73,
+    "tr5y": 149.25,
+    "tr10y": 240.96,
+    "siAnn": 9.02,
+    "secYield": null,
+    "secYieldText": "—",
+    "dividendYield": null,
+    "dividendYieldText": "—"
+   },
+   "holdings": 0,
+   "history": 4288
+  }
+ ]
+}

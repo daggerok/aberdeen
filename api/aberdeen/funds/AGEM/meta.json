@@ -1,0 +1,156 @@
+{
+ "ticker": "AGEM",
+ "name": "abrdn Emerging Markets Dividend Active ETF",
+ "category": "Active Equities",
+ "categoryPath": "Active Equities / Emerging Market Equities",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-emerging-markets-dividend-active-etf-us00384x3017",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/AGEM",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "AGEM",
+  "name": "abrdn Emerging Markets Dividend Active ETF",
+  "id": "5479d397-d289-81f2-8ee2-ddaa923783cf",
+  "shareclassId": "90f98a5f-4cd5-f9de-cac4-38875f0edf4f",
+  "isin": "US00384X3017",
+  "assetClass": "Active Equities",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-emerging-markets-dividend-active-etf-us00384x3017",
+  "nav": 49.7222,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1940 Act",
+ "identifiers": {
+  "cusip": "00384X301",
+  "isin": "US00384X3017",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "1993-10-04",
+  "shareClassInceptionDate": null,
+  "exchange": "NasdaqGM"
+ },
+ "expenseRatio": {
+  "display": "1.18%",
+  "value": 1.18,
+  "gross": 1.18,
+  "net": 0.7
+ },
+ "nav": {
+  "display": "$49.72",
+  "value": 49.7222,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$49.57",
+  "value": 49.568,
+  "asOfDate": "Sep 25 2026"
+ },
+ "premiumDiscount": {
+  "display": "-0.31%",
+  "value": -0.31
+ },
+ "aum": {
+  "display": "$375.89 M",
+  "value": 375893057.43,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": 4.49,
+  "dividendYieldText": "4.49%",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": 1.48,
+  "secYieldText": "1.48%",
+  "secYieldKind": "30-day SEC yield subsidized, as of 2026-07-31",
+  "unsubsidizedSecYield": 1.26
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": 28.85,
+   "yr1": 43.17,
+   "yr3": 27.89,
+   "yr5": 8.89,
+   "yr10": 10.61,
+   "sinceInception": 6.34,
+   "mo1": 1.53,
+   "qtd": 1.68
+  },
+  "quarterEnd": {
+   "asOfDate": "Jun 30 2026",
+   "ytd": null,
+   "yr1": 50.91,
+   "yr3": 25.27,
+   "yr5": 10.25,
+   "yr10": 10.79,
+   "sinceInception": 6.34,
+   "mo1": -0.48
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "Quarterly",
+  "paymentsPerYear": 4,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": [
+   [
+    "03/25/2025",
+    "0.14"
+   ],
+   [
+    "06/24/2025",
+    "0.21"
+   ],
+   [
+    "09/23/2025",
+    "0.31"
+   ],
+   [
+    "12/19/2025",
+    "0.171"
+   ],
+   [
+    "03/24/2026",
+    "0.17"
+   ],
+   [
+    "06/23/2026",
+    "0.272"
+   ],
+   [
+    "09/22/2026",
+    "0.556"
+   ]
+  ]
+ },
+ "holdings": {
+  "pages": [
+   "holdings/001.json"
+  ],
+  "pageSize": 250,
+  "totalRows": 95,
+  "asOfDate": "2026-09-25",
+  "asOf": "Sep 25 2026",
+  "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "status": "available"
+ },
+ "history": {
+  "pages": [
+   "history/001.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 403,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}
