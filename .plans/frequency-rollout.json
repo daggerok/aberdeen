@@ -319,7 +319,7 @@
   "iShares": {
     "baseBranch": "main",
     "baseSha": "0455b0eab8d1366c5805575dda64a868f205355b",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "index.html",
@@ -482,7 +482,7 @@
       "updaterBuild": 0,
       "uiBuild": null
     },
-    "headSha": "89fbd79f630b2a84db8d7fd7ec8c5e72613388f1",
+    "headSha": "29fcb27f0ea13b7680fd079e3cc6bfd02a3a4763",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "api/ishares/funds/AIBF/meta.json",
@@ -522,7 +522,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "29fcb27f0ea13b7680fd079e3cc6bfd02a3a4763",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/iShares/pull/46",
+    "number": 46,
+    "merged": true,
+    "mergeCommit": "dcead391d513400b90a5b22f389ef6c67f38015f"
   },
   "JPMorgan": {
     "baseBranch": "main",
