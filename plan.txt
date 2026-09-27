@@ -448,3 +448,8 @@ FREQUENCY ROLLOUT — Franklin
 - https://github.com/daggerok/Franklin/pull/19
 - Remote diff and head verified; merge confirmed: 9c00bdfe3099098b78ef33a8eb24cd45dd0c7821.
 - Tests: 45 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — Global-X
+- https://github.com/daggerok/Global-X/pull/5
+- Remote diff and head verified; merge confirmed: f5b08947155fc2d1a09c2fcbebf7cfa8c08b5b19.
+- Tests: 8 pass, 0 fail; no new failures. No unrelated changes.
