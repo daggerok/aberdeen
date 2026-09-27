@@ -323,7 +323,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -354,7 +354,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Neos/pull/16",
-    "number": 16
+    "number": 16,
+    "merged": true,
+    "mergeCommit": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925"
   },
   "ProShares": {
     "baseBranch": "main",
