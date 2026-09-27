@@ -468,3 +468,8 @@ FREQUENCY ROLLOUT — iShares
 - https://github.com/daggerok/iShares/pull/46
 - Remote diff and head verified; merge confirmed: dcead391d513400b90a5b22f389ef6c67f38015f.
 - Tests: 16 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — JPMorgan
+- https://github.com/daggerok/JPMorgan/pull/17
+- Remote diff and head verified; merge confirmed: 7f3be2b1c3469c72f7590fbb1cd21e6770bf4c2f.
+- Tests: 108 pass, 0 fail; no new failures. No unrelated changes.

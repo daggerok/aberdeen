@@ -531,7 +531,7 @@
   "JPMorgan": {
     "baseBranch": "main",
     "baseSha": "a0371bb2e21eff1c57508bc063323dac095cca7d",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -562,14 +562,18 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "89a2f38bdc24e8f06060123fa3c43a30ff9be423",
+    "headSha": "3c430aa0f3cf4a42db2929b89d3e21c7a55041aa",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
     ],
     "recoveredHeadSha": "3c430aa0f3cf4a42db2929b89d3e21c7a55041aa",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/JPMorgan/pull/17",
+    "number": 17,
+    "merged": true,
+    "mergeCommit": "7f3be2b1c3469c72f7590fbb1cd21e6770bf4c2f"
   },
   "Neos": {
     "baseBranch": "main",
