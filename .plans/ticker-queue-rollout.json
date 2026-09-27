@@ -651,7 +651,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -680,6 +680,8 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/WisdomTree/pull/27",
+    "number": 27
   }
 }
