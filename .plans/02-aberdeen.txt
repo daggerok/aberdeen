@@ -46,6 +46,18 @@ shows they differ in EXACTLY these things and nothing else:
      api/<brand>/index.json generated from <a href=official-site-url>the
      official <source description>…</a> + SEC EDGAR N-PORT-P (<Trust
      name>, CIK <number> — holdings fallback only) + Yahoo Finance…"
+     Mandatory shared Frequency display rule (also applies when the source
+     sibling still uses the old label): in formatDividendFrequency(),
+     replace the fallback display string "00 - —" with "00 - None".
+     Null, undefined, empty/whitespace-only values and the existing dash
+     placeholders must display "00 - None". Keep explicit "Unknown" as
+     "00 - Unknown" and all other frequency labels/mappings unchanged.
+     This is presentation only: "None" here is the requested placeholder,
+     not evidence that a fund never pays distributions. Do not change
+     provider data, API values/schema, dividend inference, sorting logic,
+     UI structure or exports; existing consumers of the formatted value
+     must receive the corrected label. Record this exact string-only
+     correction in the UI parity substitutions and add regression tests.
   6. The column-help tooltip TEXT STRINGS (the `columnHelp`/help-text
      object) — ONLY to the extent the underlying field's PROVENANCE
      sentence names a different source site/company (e.g. "as published

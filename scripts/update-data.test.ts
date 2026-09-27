@@ -86,7 +86,7 @@ await main({...env,MAX_FETCHES:'1'});const state=await Bun.file('api/aberdeen/up
  }finally{await rm(dir,{recursive:true,force:true});}
 },30000);
 
-test('UI differs from pinned JPMorgan only by recorded string substitutions',async()=>{
+test('UI differs from pinned JPMorgan only by recorded substitutions and approved label correction',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../.plans/ui-copy.json',import.meta.url),'utf8'));
  for(const [name,spec] of Object.entries(manifest.files) as [string,any][]){
   let text=await readFile(new URL('../'+name,import.meta.url),'utf8');
@@ -162,4 +162,20 @@ describe('config colocated with the updater',()=>{
    expect(values.REQUEST_SLEEP).toBe('1');expect(Object.keys(values)).toHaveLength(28);
   }finally{await rm(dir,{recursive:true,force:true});}
  });
+});
+
+test('Frequency fallback is 00 - None; explicit Unknown and other labels are unchanged',async()=>{
+ // Exercise the actual pure UI formatter without bootstrapping the browser DOM.
+ const app=await readFile(new URL('../app.tsx',import.meta.url),'utf8');
+ const source=app.match(/^function formatDividendFrequency\(value: unknown\): string \{[\s\S]*?^\}/m)?.[0];
+ expect(source).toBeDefined();
+ const javascript=new Bun.Transpiler({loader:'ts'}).transformSync(source!);
+ const format=new Function(`${javascript}; return formatDividendFrequency;`)() as (value:unknown)=>string;
+ for(const value of [null,undefined,'','   ','-','‐','‑','‒','–','—',' — '])expect(format(value)).toBe('00 - None');
+ for(const [input,output] of [
+  ['None','00 - None'],['Unknown','00 - Unknown'],['Monthly','01 - Monthly'],
+  ['Quarterly','04 - Quarterly'],['Semi-annually','06 - Semi-annually'],
+  ['Annually','12 - Annually'],['Irregular','99 - Irregular'],
+ ])expect(format(input)).toBe(output);
+ expect(app).not.toContain("return '00 - —'");
 });

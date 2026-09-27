@@ -5,7 +5,7 @@
   Полный машинно-читаемый отчёт: .plans/sibling-prs.json.
   Каждый PR: только README.md, +2/-0, head SHA и merge проверены.
 - Реализация/данные/UI/CI/config/README/metadata завершены и запушены.
-- Последняя проверка: 39 tests, 102 assertions, 0 failures.
+- Последняя проверка: 40 tests, 122 assertions, 0 failures.
 - Осталось owner review/merge Aberdeen; затем GitHub-hosted Actions/Pages
   публикация. Live SEC доступ здесь ограничен HTTP 403; это не скрывается.
 - Ничего в Aberdeen main не менять и не сливать без нового разрешения.
@@ -364,3 +364,18 @@ CHECKPOINT 12 — CONFIG COLOCATED WITH UPDATER (USER REQUEST)
 - 39 tests / 102 assertions passed; Bun build и actionlint passed;
   git diff --check чистый. UI, api/ и значения конфигурации не менялись.
 - Изменение публикуется в существующую ветку PR #1, без merge.
+
+CHECKPOINT 13 — FREQUENCY LABEL (USER REQUEST)
+- Единственная UI-правка: fallback formatDividendFrequency теперь возвращает
+  "00 - None" вместо "00 - —" для пустых значений и существующих прочерков.
+- Explicit Unknown по-прежнему "00 - Unknown"; остальные mappings неизменны.
+  API/источники/инференс выплат не менялись: это только подпись.
+- Правило явно добавлено к пункту 5 THE #1 RULE в .plans/00-generic.txt
+  и .plans/02-aberdeen.txt, чтобы оно действовало даже при копировании
+  sibling с прежней подписью и не противоречило списку 8 категорий замен.
+- UI parity manifest фиксирует точную однострочную замену; reverse hash
+  по-прежнему совпадает с pinned JPMorgan. Добавлен тест реального
+  formatDividendFrequency: null/undefined/empty/dashes и другие частоты.
+- 40 tests / 122 assertions passed; bun build app.tsx и diff --check passed.
+- Commit/push в существующую feature-ветку PR #1; без merge и без изменений
+  кода других sibling repositories.

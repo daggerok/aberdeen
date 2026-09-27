@@ -188,6 +188,10 @@
         [
           " + SEC EDGAR N-PORT-P + Yahoo Finance (fallbacks)",
           " + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)"
+        ],
+        [
+          "  if (!normalized || normalized === '-') return '00 - \u2014';",
+          "  if (!normalized || normalized === '-') return '00 - None';"
         ]
       ]
     },
@@ -244,5 +248,8 @@
         ]
       ]
     }
-  }
+  },
+  "approvedPresentationCorrections": [
+    "User-requested Frequency placeholder label: 00 - \u2014 becomes 00 - None. Only the existing fallback return string changes; explicit Unknown and all other frequency mappings remain unchanged."
+  ]
 }
