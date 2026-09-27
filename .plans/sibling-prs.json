@@ -118,5 +118,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "Schwab": {
+    "url": "https://github.com/daggerok/Schwab/pull/12",
+    "number": 12,
+    "head": "b4646a890687e60ee9abd07b05537de04fba0d07",
+    "mergeCommit": "d9f8167180d2af7c999c1be62c83b70a7d7cff57",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }

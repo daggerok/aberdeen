@@ -305,3 +305,8 @@ SIBLING README MERGED: ProShares
 - https://github.com/daggerok/ProShares/pull/17
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 7650ff6c1cc466e074df38067e7a827b145e6b2f.
+
+SIBLING README MERGED: Schwab
+- https://github.com/daggerok/Schwab/pull/12
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit d9f8167180d2af7c999c1be62c83b70a7d7cff57.
