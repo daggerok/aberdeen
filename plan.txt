@@ -438,3 +438,8 @@ FREQUENCY ROLLOUT — Amplify
 - https://github.com/daggerok/Amplify/pull/45
 - Remote diff and head verified; merge confirmed: 57309bf6924c4c2e2a8b6c2dd6146767b31794c6.
 - Tests: 1 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — Fidelity
+- https://github.com/daggerok/Fidelity/pull/20
+- Remote diff and head verified; merge confirmed: 69e97b99cb0bcc16471f285f02cf2e2790da05b0.
+- Tests: 51 pass, 0 fail; no new failures. No unrelated changes.
