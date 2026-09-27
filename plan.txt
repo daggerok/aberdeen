@@ -320,3 +320,8 @@ SIBLING README MERGED: VanEck
 - https://github.com/daggerok/VanEck/pull/15
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit a994096088c98706d7d98c84e54f85630c12fcef.
+
+SIBLING README MERGED: Vanguard
+- https://github.com/daggerok/Vanguard/pull/26
+- Only README.md, +2/-0 lines; remote file diff and head SHA verified.
+- Merge confirmed via GitHub API; commit 9bae786eda7723444c498c230c77bf8a3e587219.

@@ -154,5 +154,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "Vanguard": {
+    "url": "https://github.com/daggerok/Vanguard/pull/26",
+    "number": 26,
+    "head": "01d9b85dc4f397799f1a059c1ebb50b138fcb799",
+    "mergeCommit": "9bae786eda7723444c498c230c77bf8a3e587219",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
