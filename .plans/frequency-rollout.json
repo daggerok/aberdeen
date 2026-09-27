@@ -751,7 +751,7 @@
   "VanEck": {
     "baseBranch": "main",
     "baseSha": "a994096088c98706d7d98c84e54f85630c12fcef",
-    "status": "validated",
+    "status": "merged",
     "affectedFiles": [
       {
         "file": "app.tsx",
@@ -789,7 +789,7 @@
       "updaterBuild": 0,
       "uiBuild": 0
     },
-    "headSha": "438d1fd79abbf4b698cc995459449d6a138dc1d1",
+    "headSha": "b57d05e94c0b67b983e7f0aa02f5241cb5a7244c",
     "branch": "fix/frequency-none-label-20260927",
     "changedFiles": [
       "app.tsx",
@@ -797,7 +797,11 @@
       "scripts/update-data.ts"
     ],
     "recoveredHeadSha": "b57d05e94c0b67b983e7f0aa02f5241cb5a7244c",
-    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed."
+    "recoveryValidation": "Tests and Bun builds repeated; exact production replacements and JSON Frequency-only guard passed.",
+    "url": "https://github.com/daggerok/VanEck/pull/16",
+    "number": 16,
+    "merged": true,
+    "mergeCommit": "dfeed5f86c355ef4af4964b84f7f3c70e0ce62cb"
   },
   "Vanguard": {
     "baseBranch": "main",

@@ -488,3 +488,8 @@ FREQUENCY ROLLOUT — SPDR
 - https://github.com/daggerok/SPDR/pull/31
 - Remote diff and head verified; merge confirmed: f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57.
 - Tests: 28 pass, 0 fail; no new failures. No unrelated changes.
+
+FREQUENCY ROLLOUT — VanEck
+- https://github.com/daggerok/VanEck/pull/16
+- Remote diff and head verified; merge confirmed: dfeed5f86c355ef4af4964b84f7f3c70e0ce62cb.
+- Tests: 77 pass, 1 fail; no new failures. No unrelated changes.
