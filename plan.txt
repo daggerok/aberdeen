@@ -174,3 +174,23 @@ CHECKPOINT 7 — UI PARITY И РЕАЛЬНЫЙ БРАУЗЕР
 - Browser tooling установлен только в .git/browser-tools; это audit tool,
   не dependency приложения. Никаких runtime packages не добавлено.
 - Далее CI/Dependabot, затем README/полный каталог и итоговая проверка.
+
+CHECKPOINT 8 — FULL DATA PASS / CI PLATFORM CONFLICT
+- Полный live run: 11 фондов, 328 holdings, 27067 daily history rows,
+  0 failed funds. Повторный полный run: все 11 unchanged; diff -qr всего
+  api/ пуст. Cursor отсутствует после полного прохода.
+- 6 securities ETF имеют official holdings; 5 physical trusts явно
+  отмечены not-applicable в securities holdings (SGOL/SIVR/PPLT/PALL/GLTR).
+- Dependabot скопирован verbatim из JPMorgan.
+- ОБНАРУЖЕНО ПРОТИВОРЕЧИЕ СПЕЦИФИКАЦИИ С GITHUB:
+  .plans/02-aberdeen.txt требует отдельный workflow_dispatch input для
+  каждого env control. Канонических controls=28 (с VERBOSE и SEC_UA).
+  GitHub официально допускает максимум 25 top-level inputs:
+  https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onworkflow_dispatchinputs
+- Невалидный 28-input workflow НЕ устанавливать как активный.
+  Черновик сохранён в .plans/update-data-workflow.draft.txt для продолжения.
+- Запросить небольшое согласованное исключение: 24 обычных input + один
+  advanced JSON для 4 редких controls (SEC_UA, VERBOSE, STORE_RAW_DOWNLOADS,
+  SKIP_ABERDEEN), с явным allowlist/валидацией и теми же defaults; либо
+  25 отдельных inputs, остальные 3 через repository variables.
+- README/repo metadata и PR ещё не завершены. Не заявлять task complete.

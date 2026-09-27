@@ -1,0 +1,172 @@
+{
+ "ticker": "AMUN",
+ "name": "abrdn Ultra Short Municipal Income Active ETF",
+ "category": "Fixed Income",
+ "categoryPath": "Fixed Income / DM Credit",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-ultra-short-municipal-income-active-etf-us0030222741",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/AMUN",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "AMUN",
+  "name": "abrdn Ultra Short Municipal Income Active ETF",
+  "id": "62b4c604-7162-87af-ceea-6953fe3e6b81",
+  "shareclassId": "7abd0e26-d3d9-7c8f-ecfa-ac3e52ea29df",
+  "isin": "US0030222741",
+  "assetClass": "Fixed Income",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-ultra-short-municipal-income-active-etf-us0030222741",
+  "nav": 25.9586,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1940 Act",
+ "identifiers": {
+  "cusip": "003022274",
+  "isin": "US0030222741",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "1986-03-17",
+  "shareClassInceptionDate": null,
+  "exchange": "NasdaqGM"
+ },
+ "expenseRatio": {
+  "display": "0.74%",
+  "value": 0.74,
+  "gross": 0.74,
+  "net": 0.25
+ },
+ "nav": {
+  "display": "$25.96",
+  "value": 25.9586,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$26.00",
+  "value": 26.005,
+  "asOfDate": "Sep 25 2026"
+ },
+ "premiumDiscount": {
+  "display": "0.18%",
+  "value": 0.18
+ },
+ "aum": {
+  "display": "$54.93 M",
+  "value": 54928766.45,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": 2.86,
+  "dividendYieldText": "2.86%",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": null,
+  "secYieldText": "—",
+  "secYieldKind": "not published",
+  "unsubsidizedSecYield": null
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": 1.92,
+   "yr1": 4.94,
+   "yr3": 3.79,
+   "yr5": 0.61,
+   "yr10": 1.6,
+   "sinceInception": 4.32,
+   "mo1": 0.28,
+   "qtd": 0.62
+  },
+  "quarterEnd": {
+   "asOfDate": "Jun 30 2026",
+   "ytd": null,
+   "yr1": 4.02,
+   "yr3": 3.29,
+   "yr5": 0.65,
+   "yr10": 1.57,
+   "sinceInception": 4.33,
+   "mo1": 0.28
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "Monthly",
+  "paymentsPerYear": 12,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": [
+   [
+    "11/03/2025",
+    "0.037"
+   ],
+   [
+    "12/01/2025",
+    "0.067"
+   ],
+   [
+    "12/24/2025",
+    "0.067"
+   ],
+   [
+    "02/02/2026",
+    "0.055"
+   ],
+   [
+    "03/02/2026",
+    "0.069"
+   ],
+   [
+    "04/01/2026",
+    "0.067"
+   ],
+   [
+    "05/01/2026",
+    "0.065"
+   ],
+   [
+    "06/01/2026",
+    "0.064"
+   ],
+   [
+    "07/01/2026",
+    "0.064"
+   ],
+   [
+    "08/03/2026",
+    "0.064"
+   ],
+   [
+    "09/01/2026",
+    "0.062"
+   ]
+  ]
+ },
+ "holdings": {
+  "pages": [
+   "holdings/001.json"
+  ],
+  "pageSize": 250,
+  "totalRows": 68,
+  "asOfDate": "2026-09-25",
+  "asOf": "Sep 25 2026",
+  "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "status": "available"
+ },
+ "history": {
+  "pages": [
+   "history/001.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 234,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}

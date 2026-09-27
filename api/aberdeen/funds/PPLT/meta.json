@@ -1,0 +1,129 @@
+{
+ "ticker": "PPLT",
+ "name": "abrdn Physical Platinum Shares ETF",
+ "category": "Alternatives",
+ "categoryPath": "Alternatives / Precious Metals",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-platinum-shares-etf-us0032601066",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "not published as a securities portfolio (physical precious metals trust)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/PPLT",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "PPLT",
+  "name": "abrdn Physical Platinum Shares ETF",
+  "id": "777cfbac-4a9a-be05-0f14-00cb935e1fa5",
+  "shareclassId": "8474fed3-0313-8d09-83a0-3f452ba4a985",
+  "isin": "US0032601066",
+  "assetClass": "Alternatives",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-platinum-shares-etf-us0032601066",
+  "nav": 15.99528,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1933 Act",
+ "identifiers": {
+  "cusip": "003260106",
+  "isin": "US0032601066",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "2010-01-08",
+  "shareClassInceptionDate": null,
+  "exchange": "NYSEArca"
+ },
+ "expenseRatio": {
+  "display": "0.60%",
+  "value": 0.6,
+  "gross": 0.6,
+  "net": 0.6
+ },
+ "nav": {
+  "display": "$16.00",
+  "value": 15.99528,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$15.90",
+  "value": 15.9,
+  "asOfDate": "Sep 24 2026"
+ },
+ "premiumDiscount": {
+  "display": "—",
+  "value": null
+ },
+ "aum": {
+  "display": "$2,144.17 M",
+  "value": 2144167496.27,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": null,
+  "dividendYieldText": "—",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": null,
+  "secYieldText": "—",
+  "secYieldKind": "not published",
+  "unsubsidizedSecYield": null
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": -12.82,
+   "yr1": 39.02,
+   "yr3": 23.59,
+   "yr5": 12.8,
+   "yr10": 4.84,
+   "sinceInception": 0.58,
+   "mo1": 15.8,
+   "qtd": 13.72
+  },
+  "quarterEnd": {
+   "asOfDate": "Mar 31 2026",
+   "ytd": null,
+   "yr1": 90.99,
+   "yr3": 24.08,
+   "yr5": 9.39,
+   "yr10": 6.29,
+   "sinceInception": 0.69,
+   "mo1": -19.4
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "—",
+  "paymentsPerYear": null,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": []
+ },
+ "holdings": {
+  "pages": [],
+  "pageSize": 250,
+  "totalRows": 0,
+  "asOfDate": null,
+  "asOf": "—",
+  "source": "not published as a securities portfolio (physical precious metals trust)",
+  "status": "not-applicable"
+ },
+ "history": {
+  "pages": [
+   "history/001.json",
+   "history/002.json",
+   "history/003.json",
+   "history/004.json",
+   "history/005.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 4204,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}

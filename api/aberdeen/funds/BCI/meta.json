@@ -1,0 +1,166 @@
+{
+ "ticker": "BCI",
+ "name": "abrdn Bloomberg All Commodity Strategy K-1 Free ETF",
+ "category": "Alternatives",
+ "categoryPath": "Alternatives / Broad Commodity",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-strategy-k-1-free-etf-us0032611040",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/BCI",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "BCI",
+  "name": "abrdn Bloomberg All Commodity Strategy K-1 Free ETF",
+  "id": "961e0819-a312-e161-0d08-57697a422ac7",
+  "shareclassId": "0f96869e-5221-82fe-86bb-c4790368a45b",
+  "isin": "US0032611040",
+  "assetClass": "Alternatives",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-strategy-k-1-free-etf-us0032611040",
+  "nav": 26.3059,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1940 Act",
+ "identifiers": {
+  "cusip": "003261104",
+  "isin": "US0032611040",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "2017-03-30",
+  "shareClassInceptionDate": null,
+  "exchange": "NYSEArca"
+ },
+ "expenseRatio": {
+  "display": "0.26%",
+  "value": 0.26,
+  "gross": 0.26,
+  "net": 0.26
+ },
+ "nav": {
+  "display": "$26.31",
+  "value": 26.3059,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$26.32",
+  "value": 26.32,
+  "asOfDate": "Sep 25 2026"
+ },
+ "premiumDiscount": {
+  "display": "0.05%",
+  "value": 0.05
+ },
+ "aum": {
+  "display": "$3,460.54 M",
+  "value": 3460541662.93,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": 12.23,
+  "dividendYieldText": "12.23%",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": null,
+  "secYieldText": "—",
+  "secYieldKind": "not published",
+  "unsubsidizedSecYield": null
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": 31.64,
+   "yr1": 41.9,
+   "yr3": 14.66,
+   "yr5": 11.57,
+   "yr10": null,
+   "sinceInception": 7.69,
+   "mo1": 7.32,
+   "qtd": 15.55
+  },
+  "quarterEnd": {
+   "asOfDate": "Mar 31 2026",
+   "ytd": null,
+   "yr1": 31.53,
+   "yr3": 13.38,
+   "yr5": 13.38,
+   "yr10": null,
+   "sinceInception": 7.36,
+   "mo1": 11.42
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "Annually",
+  "paymentsPerYear": 1,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": [
+   [
+    "12/18/2017",
+    "1.228"
+   ],
+   [
+    "12/20/2018",
+    "0.243"
+   ],
+   [
+    "12/19/2019",
+    "0.334"
+   ],
+   [
+    "12/21/2020",
+    "0.15"
+   ],
+   [
+    "12/21/2021",
+    "4.468"
+   ],
+   [
+    "12/16/2022",
+    "4.408"
+   ],
+   [
+    "12/15/2023",
+    "0.761"
+   ],
+   [
+    "12/19/2024",
+    "0.651"
+   ],
+   [
+    "12/30/2025",
+    "3.22"
+   ]
+  ]
+ },
+ "holdings": {
+  "pages": [
+   "holdings/001.json"
+  ],
+  "pageSize": 250,
+  "totalRows": 34,
+  "asOfDate": "2026-09-25",
+  "asOf": "Sep 25 2026",
+  "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "status": "available"
+ },
+ "history": {
+  "pages": [
+   "history/001.json",
+   "history/002.json",
+   "history/003.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 2385,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}
