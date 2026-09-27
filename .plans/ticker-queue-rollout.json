@@ -153,7 +153,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "code-pushed",
+    "status": "pr-created",
     "classification": "same mismatch masked by as Promise<void>",
     "baselineTests": {
       "exitCode": 0,
@@ -182,7 +182,9 @@
     "changedFiles": [
       "app.tsx",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/14",
+    "number": 14
   },
   "Invesco": {
     "baseBranch": "main",
