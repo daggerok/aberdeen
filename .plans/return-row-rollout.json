@@ -1,0 +1,192 @@
+{
+  "Amplify": {
+    "baseBranch": "main",
+    "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Fidelity": {
+    "baseBranch": "main",
+    "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Franklin": {
+    "baseBranch": "main",
+    "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "status": "not-affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1711,
+        "text": "  const yearPatterns: { key: keyof CatalogReturns; regex: RegExp }[] = ["
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 2916,
+        "text": "          for (const k of ['ytd', 'yr1', 'yr3', 'yr5', 'yr10', 'sinceInception'] as (keyof CatalogReturns)[]) {"
+      }
+    ],
+    "reason": "CatalogReturns keys all number | null; existing as-any write is unrelated to this mixed-key TS2322 and left unchanged."
+  },
+  "Global-X": {
+    "baseBranch": "main",
+    "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Goldman-Sachs": {
+    "baseBranch": "main",
+    "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
+    "status": "affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1072,
+        "text": "function returnRowFromLabeledCells(headers: string[], values: Array<number | null>, asOfDate: string): OfficialReturnRow {"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1074,
+        "text": "  const slot = (header: string): keyof OfficialReturnRow | null => {"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1088,
+        "text": "    if (field) row[field] = values[index] ?? null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1145,
+        "text": "    const nav = table.nav ? returnRowFromLabeledCells(table.headers, table.nav, cumulativeAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1146,
+        "text": "    const mp = table.marketPrice ? returnRowFromLabeledCells(table.headers, table.marketPrice, cumulativeAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1156,
+        "text": "    const nav = annualizedTable.nav ? returnRowFromLabeledCells(annualizedTable.headers, annualizedTable.nav, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1157,
+        "text": "    const mp = annualizedTable.marketPrice ? returnRowFromLabeledCells(annualizedTable.headers, annualizedTable.marketPrice, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1166,
+        "text": "    const nav = avgAnnualizedTable.nav ? returnRowFromLabeledCells(avgAnnualizedTable.headers, avgAnnualizedTable.nav, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1167,
+        "text": "    const mp = avgAnnualizedTable.marketPrice ? returnRowFromLabeledCells(avgAnnualizedTable.headers, avgAnnualizedTable.marketPrice, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1172,
+        "text": "    if (quarterlyTable.nav) result.quarterEnd.nav = returnRowFromLabeledCells(quarterlyTable.headers, quarterlyTable.nav, quarterlyAsOf);"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1173,
+        "text": "    if (quarterlyTable.marketPrice) result.quarterEnd.marketPrice = returnRowFromLabeledCells(quarterlyTable.headers, quarterlyTable.marketPrice, quarterlyAsOf);"
+      }
+    ],
+    "reason": "Over-broad keyof OfficialReturnRow includes string asOfDate in numeric indexed write.",
+    "baselineTests": {
+      "pass": 48,
+      "fail": 0,
+      "assertions": 421
+    }
+  },
+  "Invesco": {
+    "baseBranch": "main",
+    "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "iShares": {
+    "baseBranch": "main",
+    "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "JPMorgan": {
+    "baseBranch": "main",
+    "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "status": "not-affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 2316,
+        "text": "  const pick = (key: keyof CatalogReturns): number | null => primary?.[key] ?? secondary?.[key] ?? null;"
+      }
+    ],
+    "reason": "CatalogReturns keys all numeric; helper only reads them. No mixed-key indexed numeric write."
+  },
+  "Neos": {
+    "baseBranch": "main",
+    "baseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "ProShares": {
+    "baseBranch": "main",
+    "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Schwab": {
+    "baseBranch": "main",
+    "baseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "SPDR": {
+    "baseBranch": "main",
+    "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "VanEck": {
+    "baseBranch": "main",
+    "baseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Vanguard": {
+    "baseBranch": "main",
+    "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "WisdomTree": {
+    "baseBranch": "main",
+    "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "aberdeen": {
+    "baseBranch": "feat/aberdeen-plan-recovery",
+    "baseSha": "27d25c84c027a6fa9070011a494fd16bc87fc632",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  }
+}

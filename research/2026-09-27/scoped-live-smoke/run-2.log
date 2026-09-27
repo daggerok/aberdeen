@@ -1,0 +1,36 @@
+[ config   ] abrdn updater:
+              MAX_FETCHES=0
+              REQUEST_SLEEP=1
+              CONCURRENCY=2
+              AUM=:
+              DIVIDEND_YIELD=:
+              EDGAR_FALLBACK=true
+              HISTORY_PAGE_SIZE=1000
+              HISTORY_RANGE=max
+              HOLDINGS_PAGE_SIZE=250
+              MAX_RETRIES=2
+              PERFORMANCE_10Y=:
+              PERFORMANCE_1Y=:
+              PERFORMANCE_3Y=:
+              PERFORMANCE_5Y=:
+              PERFORMANCE_YTD=:
+              SEC_UA=daggerok Aberdeen ETF feed (https://github.com/daggerok/aberdeen)
+              SEC_YIELD=:
+              SKIP_ABERDEEN=false
+              SKIP_YAHOO=false
+              STORE_RAW_DOWNLOADS=false
+              TER=:
+              TICKERS=AGEM,AMUN,SGOL
+              TOTAL_RETURN_10Y=:
+              TOTAL_RETURN_1Y=:
+              TOTAL_RETURN_3Y=:
+              TOTAL_RETURN_5Y=:
+              TOTAL_RETURN_YTD=:
+              VERBOSE=true
+[ catalog  ] 11 abrdn ETFs (official gateway / published fallback)
+[ filter   ] 3 of 11 funds selected for evaluation (data-dependent filters applied per fund)
+[  1/3   ] AMUN  unchanged history=234 holdings=68 divs=11 netAssets=$54.9M div=2.86
+[  2/3   ] AGEM  unchanged history=403 holdings=95 divs=7 netAssets=$375.9M div=4.49 sec=1.48
+[  3/3   ] SGOL  unchanged history=4288 holdings=0 divs=0 netAssets=$7.3B
+[ done     ] 3 funds processed, 0 skipped, 0 failures
+[ done     ] counts: 11 funds / 328 holdings rows / 27067 history rows

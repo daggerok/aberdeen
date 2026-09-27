@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: c4a502b6c5f0fde9529a4eab62567e0411b23ca5.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 27d25c84c027a6fa9070011a494fd16bc87fc632.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -73,12 +73,12 @@ TICKER QUEUE ROLLOUT STATUS
 }
 
 CURRENT FOLLOW-UP ARTIFACTS
-return-row-rollout.json: pending
-aberdeen-metadata.json: pending
-live-smoke.json: pending
+return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "affected", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
+aberdeen-metadata.json: "audited"
+live-smoke.json: "completed"
 
 NEXT ACTION
-Run read-only audit of return-row keys and sibling README/About patterns; perform two isolated live TICKERS runs; checkpoint observed facts before edits.
+Fix Goldman-Sachs numeric key annotation only, test and merge authorized PR. Then align Aberdeen README/About and strengthen original plan sections 5, 10, 11 and 12 with exact replacement instructions.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -353,6 +353,26 @@ Existing plans already mention a scoped live run but call it a dry run and use
 REQUEST_SLEEP=0; strengthen that requirement with reproducible evidence and
 conservative pacing, while keeping live traffic outside offline unit tests.
 Previous tests are not treated as new live-network proof.
+
+
+--- CHECKPOINT ---
+Read-only audit completed at recorded SHAs for all 15 siblings plus Aberdeen.
+Only Goldman-Sachs has this exact TS2322: slot returns keyof OfficialReturnRow,
+including string asOfDate, while row[field] receives number | null. Baseline
+48 tests / 421 assertions pass. Other keyof candidates inspected and excluded;
+Franklin/JPMorgan CatalogReturns contains only numeric fields, not the same bug.
+README/About reference: latest audited JPMorgan, corroborated by all 15 siblings.
+Aberdeen description uses obsolete holdings-to-Watchlist prefix; homepage null.
+No sibling documentation/metadata edits authorized or planned.
+Real isolated smoke: TICKERS="AGEM AMUN SGOL" VERBOSE=1 bun scripts/update-data.ts,
+twice, with defaults REQUEST_SLEEP=1, CONCURRENCY=2, MAX_FETCHES=0, no SKIP flags.
+Both runs: 3 processed / 0 skipped / 0 failures, 11 funds retained in index.
+AGEM 95 holdings/403 history rows; AMUN 68/234; SGOL 0/4288 (physical trust).
+No source failure warnings; byte hashes unchanged after both runs. All eight
+nonselected index entries/files preserved. Production api hashes unchanged.
+Logs and before/after SHA256 manifests tracked in research/2026-09-27/scoped-live-smoke;
+full command/config/result recorded in .plans/live-smoke.json. This validates the
+live selected-fund path, not forced SEC fallback or default-branch deployment.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1400,6 +1420,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -2669,6 +2690,81 @@ ended up using.
 
 --- END FILE: .plans/02-aberdeen.txt ---
 
+--- FILE: .plans/aberdeen-metadata.json ---
+{
+  "status": "audited",
+  "referenceRepository": "daggerok/JPMorgan",
+  "referenceCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+  "before": {
+    "description": "abrdn ETF holdings to Watchlist. A single-file client-side tool reading ./api/aberdeen (official Aberdeen gateway, SEC N-PORT holdings fallback, Yahoo history/dividends) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.",
+    "homepage": null,
+    "topics": [
+      "abrdn",
+      "abrdn-etfs",
+      "css",
+      "csv",
+      "dark-mode",
+      "edgar",
+      "etf",
+      "finance",
+      "github-pages",
+      "holdings",
+      "html",
+      "json",
+      "nport",
+      "single-file",
+      "static-api",
+      "tailwindcss",
+      "txt",
+      "typescript",
+      "watchlist",
+      "yahoo-finance"
+    ],
+    "default_branch": "main",
+    "language": null,
+    "html_url": "https://github.com/daggerok/aberdeen"
+  },
+  "reference": {
+    "description": "JPMorgan ETF. A single-file client-side tool reading ./api/jpmorgan (JPMorgan ETF explorer, product-data and historical-data JSON, SEC EDGAR and Yahoo Finance fallbacks) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist, CSV/TXT export. TailwindCSS, dark mode, Bun updater.",
+    "homepage": "https://daggerok.github.io/JPMorgan/",
+    "topics": [
+      "css",
+      "csv",
+      "dark-mode",
+      "edgar",
+      "etf",
+      "finance",
+      "github-pages",
+      "holdings",
+      "html",
+      "jpmorgan",
+      "jpmorgan-etfs",
+      "json",
+      "nport",
+      "single-file",
+      "static-api",
+      "tailwindcss",
+      "txt",
+      "typescript",
+      "watchlist",
+      "yahoo-finance"
+    ],
+    "default_branch": "main",
+    "language": "TypeScript",
+    "html_url": "https://github.com/daggerok/JPMorgan"
+  },
+  "allowedScope": "Aberdeen only; no sibling README or About modifications",
+  "notes": [
+    "All 15 sibling descriptions use <Brand> ETF. A single-file client-side tool reading ./api/<slug> ...",
+    "Aberdeen still has obsolete holdings to Watchlist description prefix and null homepage.",
+    "All 18 shared topics already present; keep brand-specific topics consistent with chosen branding.",
+    "GitHub language is computed from default-branch contents; no main merge or Linguist overrides authorized.",
+    "README intro and tables already follow shared pattern; align heading, shared instructions and section structure, while retaining accurate provider/configuration/caveat details."
+  ]
+}
+
+--- END FILE: .plans/aberdeen-metadata.json ---
+
 --- FILE: .plans/frequency-rollout.json ---
 {
   "Amplify": {
@@ -3564,6 +3660,290 @@ ended up using.
 }
 
 --- END FILE: .plans/frequency-rollout.json ---
+
+--- FILE: .plans/live-smoke.json ---
+{
+  "status": "completed",
+  "tickers": [
+    "AGEM",
+    "AMUN",
+    "SGOL"
+  ],
+  "command": "TICKERS=\"AGEM AMUN SGOL\" VERBOSE=1 bun scripts/update-data.ts",
+  "isolation": "Disposable copy of scripts and complete published api tree; production api is not modified.",
+  "productionSourceCommit": "27d25c84c027a6fa9070011a494fd16bc87fc632",
+  "defaultControls": {
+    "MAX_FETCHES": "0",
+    "REQUEST_SLEEP": "1",
+    "CONCURRENCY": "2",
+    "AUM": ":",
+    "TER": ":",
+    "DIVIDEND_YIELD": ":",
+    "SEC_YIELD": ":",
+    "TICKERS": "",
+    "HOLDINGS_PAGE_SIZE": "250",
+    "HISTORY_PAGE_SIZE": "1000",
+    "MAX_RETRIES": "2",
+    "HISTORY_RANGE": "max",
+    "STORE_RAW_DOWNLOADS": "false",
+    "SEC_UA": "daggerok Aberdeen ETF feed (https://github.com/daggerok/aberdeen)",
+    "SKIP_YAHOO": "false",
+    "SKIP_ABERDEEN": "false",
+    "EDGAR_FALLBACK": "true",
+    "VERBOSE": "false",
+    "PERFORMANCE_YTD": ":",
+    "PERFORMANCE_1Y": ":",
+    "PERFORMANCE_3Y": ":",
+    "PERFORMANCE_5Y": ":",
+    "PERFORMANCE_10Y": ":",
+    "TOTAL_RETURN_YTD": ":",
+    "TOTAL_RETURN_1Y": ":",
+    "TOTAL_RETURN_3Y": ":",
+    "TOTAL_RETURN_5Y": ":",
+    "TOTAL_RETURN_10Y": ":"
+  },
+  "runs": [
+    {
+      "startedAtUTC": "2026-09-27T23:51:05.889196+00:00",
+      "exitCode": 0,
+      "summary": [
+        "[ done     ] 3 funds processed, 0 skipped, 0 failures",
+        "[ done     ] counts: 11 funds / 328 holdings rows / 27067 history rows"
+      ],
+      "fundReports": [
+        "[  1/3   ] AMUN  unchanged history=234 holdings=68 divs=11 netAssets=$54.9M div=2.86",
+        "[  2/3   ] AGEM  unchanged history=403 holdings=95 divs=7 netAssets=$375.9M div=4.49 sec=1.48",
+        "[  3/3   ] SGOL  unchanged history=4288 holdings=0 divs=0 netAssets=$7.3B"
+      ],
+      "changedFiles": [],
+      "outOfScopeChanges": [],
+      "unchangedNonselectedIndexRows": true,
+      "catalogSize": 11,
+      "log": "run-1.log"
+    },
+    {
+      "startedAtUTC": "2026-09-27T23:51:36.590921+00:00",
+      "exitCode": 0,
+      "summary": [
+        "[ done     ] 3 funds processed, 0 skipped, 0 failures",
+        "[ done     ] counts: 11 funds / 328 holdings rows / 27067 history rows"
+      ],
+      "fundReports": [
+        "[  1/3   ] AMUN  unchanged history=234 holdings=68 divs=11 netAssets=$54.9M div=2.86",
+        "[  2/3   ] AGEM  unchanged history=403 holdings=95 divs=7 netAssets=$375.9M div=4.49 sec=1.48",
+        "[  3/3   ] SGOL  unchanged history=4288 holdings=0 divs=0 netAssets=$7.3B"
+      ],
+      "changedFiles": [],
+      "outOfScopeChanges": [],
+      "unchangedNonselectedIndexRows": true,
+      "catalogSize": 11,
+      "log": "run-2.log"
+    }
+  ],
+  "productionApiUnchanged": true,
+  "rerunByteIdentical": true,
+  "evidenceDirectory": "research/2026-09-27/scoped-live-smoke",
+  "sourceWarningsObserved": [],
+  "note": "Real CLI runs without mocks or SKIP providers; VERBOSE logs show no provider failures. Unchanged Sunday snapshots do not mean requests were skipped. SEC fallback not forced because official holdings succeeded."
+}
+
+--- END FILE: .plans/live-smoke.json ---
+
+--- FILE: .plans/return-row-rollout.json ---
+{
+  "Amplify": {
+    "baseBranch": "main",
+    "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Fidelity": {
+    "baseBranch": "main",
+    "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Franklin": {
+    "baseBranch": "main",
+    "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "status": "not-affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1711,
+        "text": "  const yearPatterns: { key: keyof CatalogReturns; regex: RegExp }[] = ["
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 2916,
+        "text": "          for (const k of ['ytd', 'yr1', 'yr3', 'yr5', 'yr10', 'sinceInception'] as (keyof CatalogReturns)[]) {"
+      }
+    ],
+    "reason": "CatalogReturns keys all number | null; existing as-any write is unrelated to this mixed-key TS2322 and left unchanged."
+  },
+  "Global-X": {
+    "baseBranch": "main",
+    "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Goldman-Sachs": {
+    "baseBranch": "main",
+    "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
+    "status": "affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1072,
+        "text": "function returnRowFromLabeledCells(headers: string[], values: Array<number | null>, asOfDate: string): OfficialReturnRow {"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1074,
+        "text": "  const slot = (header: string): keyof OfficialReturnRow | null => {"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1088,
+        "text": "    if (field) row[field] = values[index] ?? null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1145,
+        "text": "    const nav = table.nav ? returnRowFromLabeledCells(table.headers, table.nav, cumulativeAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1146,
+        "text": "    const mp = table.marketPrice ? returnRowFromLabeledCells(table.headers, table.marketPrice, cumulativeAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1156,
+        "text": "    const nav = annualizedTable.nav ? returnRowFromLabeledCells(annualizedTable.headers, annualizedTable.nav, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1157,
+        "text": "    const mp = annualizedTable.marketPrice ? returnRowFromLabeledCells(annualizedTable.headers, annualizedTable.marketPrice, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1166,
+        "text": "    const nav = avgAnnualizedTable.nav ? returnRowFromLabeledCells(avgAnnualizedTable.headers, avgAnnualizedTable.nav, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1167,
+        "text": "    const mp = avgAnnualizedTable.marketPrice ? returnRowFromLabeledCells(avgAnnualizedTable.headers, avgAnnualizedTable.marketPrice, annualizedAsOf) : null;"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1172,
+        "text": "    if (quarterlyTable.nav) result.quarterEnd.nav = returnRowFromLabeledCells(quarterlyTable.headers, quarterlyTable.nav, quarterlyAsOf);"
+      },
+      {
+        "file": "scripts/update-data.ts",
+        "line": 1173,
+        "text": "    if (quarterlyTable.marketPrice) result.quarterEnd.marketPrice = returnRowFromLabeledCells(quarterlyTable.headers, quarterlyTable.marketPrice, quarterlyAsOf);"
+      }
+    ],
+    "reason": "Over-broad keyof OfficialReturnRow includes string asOfDate in numeric indexed write.",
+    "baselineTests": {
+      "pass": 48,
+      "fail": 0,
+      "assertions": 421
+    }
+  },
+  "Invesco": {
+    "baseBranch": "main",
+    "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "iShares": {
+    "baseBranch": "main",
+    "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "JPMorgan": {
+    "baseBranch": "main",
+    "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "status": "not-affected",
+    "candidates": [
+      {
+        "file": "scripts/update-data.ts",
+        "line": 2316,
+        "text": "  const pick = (key: keyof CatalogReturns): number | null => primary?.[key] ?? secondary?.[key] ?? null;"
+      }
+    ],
+    "reason": "CatalogReturns keys all numeric; helper only reads them. No mixed-key indexed numeric write."
+  },
+  "Neos": {
+    "baseBranch": "main",
+    "baseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "ProShares": {
+    "baseBranch": "main",
+    "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Schwab": {
+    "baseBranch": "main",
+    "baseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "SPDR": {
+    "baseBranch": "main",
+    "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "VanEck": {
+    "baseBranch": "main",
+    "baseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "Vanguard": {
+    "baseBranch": "main",
+    "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "WisdomTree": {
+    "baseBranch": "main",
+    "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  },
+  "aberdeen": {
+    "baseBranch": "feat/aberdeen-plan-recovery",
+    "baseSha": "27d25c84c027a6fa9070011a494fd16bc87fc632",
+    "status": "not-affected",
+    "candidates": [],
+    "reason": "No same mixed string/numeric return-row key assignment found; inspected keyof candidates and return-row helpers."
+  }
+}
+
+--- END FILE: .plans/return-row-rollout.json ---
 
 --- FILE: .plans/sibling-prs.json ---
 {
