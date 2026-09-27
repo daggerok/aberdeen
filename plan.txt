@@ -1,3 +1,15 @@
+ТЕКУЩИЙ СТАТУС — 2026-09-27, ПОСЛЕ ПУБЛИКАЦИИ PR
+- Aberdeen implementation PR: https://github.com/daggerok/aberdeen/pull/1
+  ОТКРЫТ для проверки владельца, НЕ слит. Main по-прежнему Initial commit.
+- Все 15 sibling README-only PR созданы и слиты по явному разрешению.
+  Полный машинно-читаемый отчёт: .plans/sibling-prs.json.
+  Каждый PR: только README.md, +2/-0, head SHA и merge проверены.
+- Реализация/данные/UI/CI/config/README/metadata завершены и запушены.
+- Последняя проверка: 37 tests, 90 assertions, 0 failures.
+- Осталось owner review/merge Aberdeen; затем GitHub-hosted Actions/Pages
+  публикация. Live SEC доступ здесь ограничен HTTP 403; это не скрывается.
+- Ничего в Aberdeen main не менять и не сливать без нового разрешения.
+
 Aberdeen — журнал восстановления и продолжения
 Дата: 2026-09-27
 
@@ -330,3 +342,12 @@ SIBLING README MERGED: WisdomTree
 - https://github.com/daggerok/WisdomTree/pull/25
 - Only README.md, +2/-0 lines; remote file diff and head SHA verified.
 - Merge confirmed via GitHub API; commit 64bcecf44f5f6173d6b6ce159de3e9945f248cc9.
+
+ОБЪЯСНЕНИЕ FULL REFRESH И «НЕ ЗАПРАШИВАТЬ СВЕЖИЕ ФОНДЫ»
+- Не вводилось правило «данные моложе N часов — пропустить HTTP-запрос».
+- Без overrides updater запрашивает весь каталог; новые значения сохраняет,
+  неизменившиеся JSON не переписывает, при ошибках сохраняет старые данные.
+- Это полноценное обновление всех фондов, а не ограничение обновлений.
+  Отличаются network fetch (делается) и file write/commit (только при diff).
+- TICKERS/CONCURRENCY и прочие параметры наследуются из update-config.json,
+  а явно указанные env/Actions inputs могут их переопределить.
