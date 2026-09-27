@@ -80,5 +80,56 @@
   "rerunByteIdentical": true,
   "evidenceDirectory": "research/2026-09-27/scoped-live-smoke",
   "sourceWarningsObserved": [],
-  "note": "Real CLI runs without mocks or SKIP providers; VERBOSE logs show no provider failures. Unchanged Sunday snapshots do not mean requests were skipped. SEC fallback not forced because official holdings succeeded."
+  "note": "Real CLI runs without mocks or SKIP providers; VERBOSE logs show no provider failures. Unchanged Sunday snapshots do not mean requests were skipped. SEC fallback not forced because official holdings succeeded.",
+  "manifestChecks": {
+    "AGEM": {
+      "holdings": {
+        "manifestRows": 95,
+        "pages": 1,
+        "asOf": "2026-09-25",
+        "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+        "status": "available"
+      },
+      "history": {
+        "manifestRows": 403,
+        "pages": 1,
+        "asOf": "Sep 25 2026",
+        "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+        "status": "available"
+      }
+    },
+    "AMUN": {
+      "holdings": {
+        "manifestRows": 68,
+        "pages": 1,
+        "asOf": "2026-09-25",
+        "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+        "status": "available"
+      },
+      "history": {
+        "manifestRows": 234,
+        "pages": 1,
+        "asOf": "Sep 25 2026",
+        "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+        "status": "available"
+      }
+    },
+    "SGOL": {
+      "holdings": {
+        "manifestRows": 0,
+        "pages": 0,
+        "asOf": "\u2014",
+        "source": "not published as a securities portfolio (physical precious metals trust)",
+        "status": "not-applicable"
+      },
+      "history": {
+        "manifestRows": 4288,
+        "pages": 5,
+        "asOf": "Sep 25 2026",
+        "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+        "status": "available"
+      }
+    }
+  },
+  "financialSnapshotPublication": "No API files changed in the working repository."
 }
