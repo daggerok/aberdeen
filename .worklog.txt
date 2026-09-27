@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: a6c441577e156bef2495f7fb9c70322b870991ad.
+Last confirmed pushed Aberdeen SHA before this checkpoint: a91c03cdd44c48e4f54cc35becccf10f62271072.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -59,7 +59,7 @@ TICKER QUEUE ROLLOUT STATUS
   "SPDR": "not-affected",
   "VanEck": "merged",
   "Vanguard": "not-affected",
-  "WisdomTree": "pr-created"
+  "WisdomTree": "merged"
 }
 
 NEXT ACTION
@@ -289,6 +289,14 @@ WisdomTree
 PR created: https://github.com/daggerok/WisdomTree/pull/27
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+WisdomTree
+MERGED https://github.com/daggerok/WisdomTree/pull/27
+Merge confirmed via GitHub API: 30414b1f8984a7a36bec12741e77a35ded2795eb.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1336,6 +1344,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4336,7 +4345,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -4367,7 +4376,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/WisdomTree/pull/27",
-    "number": 27
+    "number": 27,
+    "merged": true,
+    "mergeCommit": "30414b1f8984a7a36bec12741e77a35ded2795eb"
   }
 }
 

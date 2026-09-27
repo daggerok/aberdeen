@@ -651,7 +651,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -682,6 +682,8 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/WisdomTree/pull/27",
-    "number": 27
+    "number": 27,
+    "merged": true,
+    "mergeCommit": "30414b1f8984a7a36bec12741e77a35ded2795eb"
   }
 }
