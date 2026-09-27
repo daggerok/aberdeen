@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 50585c857c443566b7cfa265e658daaae1f78185.
+Last confirmed pushed Aberdeen SHA before this checkpoint: aa73cbe86b176a5098c2c44a06a5c586ca999b81.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -55,7 +55,7 @@ TICKER QUEUE ROLLOUT STATUS
   "JPMorgan": "merged",
   "Neos": "merged",
   "ProShares": "merged",
-  "Schwab": "pr-created",
+  "Schwab": "merged",
   "SPDR": "not-affected",
   "VanEck": "affected",
   "Vanguard": "not-affected",
@@ -239,6 +239,14 @@ Schwab
 PR created: https://github.com/daggerok/Schwab/pull/14
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+Schwab
+MERGED https://github.com/daggerok/Schwab/pull/14
+Merge confirmed via GitHub API: 166ac408c4723ac618ea59b1ebc7f101b81f4f77.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1286,6 +1294,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4106,7 +4115,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "classification": "same mismatch masked by as Promise<void>",
     "baselineTests": {
       "exitCode": 0,
@@ -4137,7 +4146,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Schwab/pull/14",
-    "number": 14
+    "number": 14,
+    "merged": true,
+    "mergeCommit": "166ac408c4723ac618ea59b1ebc7f101b81f4f77"
   },
   "SPDR": {
     "baseBranch": "main",
