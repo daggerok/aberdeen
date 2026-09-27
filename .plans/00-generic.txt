@@ -2,6 +2,82 @@ GENERIC PLAN — how to build a new brand's ETF-holdings-to-watchlist app
 so it looks, behaves, and is built exactly like the other 14 sibling repos.
 =============================================================================
 
+MANDATORY WORKLOG AND RECOVERY PROTOCOL
+=======================================
+Use the repository-root .worklog.txt as the canonical, self-contained handoff
+file. This is a workflow requirement, not permission to change product scope.
+
+1. BEFORE WORK
+   If .worklog.txt exists, read it completely before changing code. Check the
+   actual working tree, branch, local/remote commits and PR states; the file
+   may be stale after a crash or external changes. Resume the first unfinished
+   step, not the whole implementation. Preserve existing user changes.
+   If the file does not exist, create it before implementation. Include the
+   full original text of all supplied plans/specifications, sanitized of
+   secrets, plus relevant user amendments and their precedence. A link to a
+   plan or a statement that it was read is not a substitute for its text.
+   Preserve existing plan.txt and .plans history during migration. Embed their
+   full relevant text/JSON content so recovery does not depend on old chat,
+   temporary files, .git scratch directories or an agent's memory.
+
+2. REQUIRED CONTENT
+   Keep a concise CURRENT STATE at the top: goals/acceptance criteria; hard
+   constraints; exact authorization scope for edits, pushes, PRs and merges;
+   repository/branch/PR identifiers; completed, active and remaining work;
+   last confirmed pushed SHA; blockers; and the exact next command or action.
+   Below it keep an append-only factual journal of decisions, brief reasons,
+   actions, changed paths, commands, test/build results, failures and fixes,
+   useful source URLs with findings, unresolved assumptions and recovery
+   instructions. Record expected versus actual results, including known
+   baseline failures. Distinguish planned, attempted, completed and verified.
+   Include full original inputs and up-to-date text snapshots of relevant
+   .plans files, manifests and rollout ledgers, with clear section boundaries.
+   For large/binary evidence, keep a tracked artifact and its path/hash plus
+   enough facts in the log to resume; do not pretend it is embedded text.
+   Record factual conclusions and short decision rationales, not private
+   chain-of-thought or a transcript of every internal consideration.
+
+3. CHECKPOINT CADENCE
+   After every small, meaningful completed step (a research finding, decision,
+   bounded code change, validation or publication), update .worklog.txt and
+   make a scoped Conventional Commit on the feature branch; push it before
+   starting the next step. For research-only progress, commit the log alone.
+   Do not accumulate an entire session before the first checkpoint. Do not
+   create empty commits or commit secrets, caches, dependencies or build output.
+   Test coherent code changes before publishing; if work must stop while
+   incomplete, label the checkpoint WIP and state exactly what fails/remains.
+   Verify pushes against the remote. Record the last confirmed pushed SHA in
+   the next checkpoint; do not claim the current commit was pushed before it
+   succeeds. The commit containing the log is also identifiable via git log.
+   If push/auth/network fails, keep a local checkpoint and record the exact
+   unpushed state and safe recovery steps; never invent successful publication.
+
+4. INTERRUPTION SAFETY
+   Checkpoint continuously: a final message or graceful shutdown is not
+   guaranteed before context/rate/time limits. Before a foreseeable stop,
+   refresh CURRENT STATE with the next action, ongoing processes, checkpoints,
+   blockers and validation still needed. No essential recovery information
+   should exist only in chat, process memory or disposable workspace files.
+   Report unexpected scope uncertainty instead of inventing requirements.
+
+5. SAFETY AND AUTHORIZATION
+   Never store credentials, PATs, auth headers, cookies or sensitive environment
+   values in logs, source files, URLs, commits or copied original inputs.
+   Use runtime-only authentication and note only whether access is available.
+   Work on feature branches; never force-push, overwrite concurrent changes,
+   bypass checks/protections, or merge without explicit authorization for that
+   repository and change. Existing scoped authorization need not be asked for
+   again. An old README-only permission is not general code-merge permission.
+
+RESTART PROMPT
+Read .worklog.txt completely first. Verify its CURRENT STATE against the actual
+working tree, branch, remote commits and PRs. Tell me briefly what is complete,
+what remains and any mismatch. Continue from the first unfinished step within
+the recorded authorization, without repeating completed work. After each small
+meaningful step, update .worklog.txt, commit and push as specified above.
+
+=============================================================================
+
 Read this whole file before touching any code. This is the only document
 you should need to start — do not go survey all 14 sibling repos yourself.
 Wherever a concrete pattern is needed, this file names ONE specific sibling

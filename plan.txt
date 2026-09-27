@@ -1,3 +1,6 @@
+ACTIVE WORKLOG MOVED: read .worklog.txt first.
+This file is a preserved historical journal; all new checkpoints go there.
+
 ТЕКУЩИЙ СТАТУС — 2026-09-27, ПОСЛЕ ПУБЛИКАЦИИ PR
 - Aberdeen implementation PR: https://github.com/daggerok/aberdeen/pull/1
   ОТКРЫТ для проверки владельца, НЕ слит. Main по-прежнему Initial commit.
