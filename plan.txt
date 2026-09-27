@@ -4,6 +4,11 @@
 - Все 15 sibling README-only PR созданы и слиты по явному разрешению.
   Полный машинно-читаемый отчёт: .plans/sibling-prs.json.
   Каждый PR: только README.md, +2/-0, head SHA и merge проверены.
+- Все 14 sibling Frequency code PR созданы и слиты; ProShares уже был
+  корректен и оставлен без изменений. .plans/frequency-rollout.json содержит
+  ссылки, head/merge SHA, результаты повторных проверок и точный scope.
+- TS2345 в Aberdeen withTickerChain исправлен и запушен (a7809c5),
+  внутренний queue promise completion-only, caller Promise<T> сохранён.
 - Реализация/данные/UI/CI/config/README/metadata завершены и запушены.
 - Последняя проверка Aberdeen: 44 tests, 141 assertions, 0 failures.
 - Осталось owner review/merge Aberdeen; затем GitHub-hosted Actions/Pages
@@ -503,3 +508,17 @@ FREQUENCY ROLLOUT — WisdomTree
 - https://github.com/daggerok/WisdomTree/pull/26
 - Remote diff and head verified; merge confirmed: 3c47eab5752e3a622ca3ad3f65638e37914b4e72.
 - Tests: 22 pass, 0 fail; no new failures. No unrelated changes.
+
+CHECKPOINT 17 — BOTH USER REQUESTS COMPLETED
+- Frequency: 14/14 требуемых PR merged; ProShares already-correct (без PR).
+- После восстановления patches повторно пройдены guards, тесты и builds:
+  646 pass / 1 pre-existing VanEck failure в 14 изменённых repos.
+  Изменений к финансовым данным, схемам или inference нет; в persisted API
+  обновлены исключительно существующие derived Frequency display labels.
+- Все remote PR diffs и heads совпали с локально проверенными; merge
+  подтверждён GitHub API. Branch protections/remote checks не обходились.
+- Aberdeen: TS2345 fix + 44 pass / 141 assertions; исходный pinned UI hash
+  воспроизводится после обратных разрешённых substitutions. PR #1 OPEN.
+- Отчёт и journal запушены; временный PAT не сохранён в workspace/repo.
+- Завершённые disposable Frequency clones можно удалить для ограничения
+  snapshot size; patches, validation logs и опубликованные commits сохранены.
