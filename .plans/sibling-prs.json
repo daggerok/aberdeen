@@ -70,5 +70,17 @@
     ],
     "additions": 2,
     "deletions": 0
+  },
+  "iShares": {
+    "url": "https://github.com/daggerok/iShares/pull/45",
+    "number": 45,
+    "head": "99b76d6bc011138de06547868d6556af01fd6fe4",
+    "mergeCommit": "0455b0eab8d1366c5805575dda64a868f205355b",
+    "merged": true,
+    "files": [
+      "README.md"
+    ],
+    "additions": 2,
+    "deletions": 0
   }
 }
