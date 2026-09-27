@@ -41,7 +41,7 @@
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
-    "status": "code-pushed",
+    "status": "pr-created",
     "candidates": [
       {
         "file": "scripts/update-data.ts",
@@ -115,7 +115,9 @@
       "runtimeJavaScript": "byte-identical before/after",
       "newTests": 4,
       "redBaseline": "Only the annotation-regression guard fails before correction; runtime tests intentionally pass before/after."
-    }
+    },
+    "number": 15,
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/15"
   },
   "Invesco": {
     "baseBranch": "main",

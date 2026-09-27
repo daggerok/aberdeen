@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: 73bcd4bce6c26a314c1a6a95ada341259afb7585.
+Last confirmed pushed Aberdeen SHA before this checkpoint: 51e1192e60bca8a5f9c53571dc6ea2e0e2961adc.
 Publication of the commit containing this checkpoint must be verified against
 the remote, not inferred from this file. Its SHA is available from
 git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
@@ -73,7 +73,7 @@ TICKER QUEUE ROLLOUT STATUS
 }
 
 CURRENT FOLLOW-UP ARTIFACTS
-return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "code-pushed", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
+return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "pr-created", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
 aberdeen-metadata.json: "audited"
 live-smoke.json: "completed"
 
@@ -385,6 +385,11 @@ new annotation guard fails before fix; after 52 pass / 434 assertions.
 Entire updater transpiles to byte-identical JS before/after; Bun build passes.
 Only scripts/update-data.ts +1/-1 and scripts/update-data.test.ts +43/-0.
 Code pushed and remote SHA verified: 94bd942e0c51861e7726a6f2409e0e0de9dd58d8
+
+
+--- CHECKPOINT ---
+Goldman-Sachs PR created: https://github.com/daggerok/Goldman-Sachs/pull/15
+Remote head and exact two-file diff verified. Next: verify checks and merge with SHA guard.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1432,6 +1437,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3806,7 +3812,7 @@ ended up using.
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
-    "status": "code-pushed",
+    "status": "pr-created",
     "candidates": [
       {
         "file": "scripts/update-data.ts",
@@ -3880,7 +3886,9 @@ ended up using.
       "runtimeJavaScript": "byte-identical before/after",
       "newTests": 4,
       "redBaseline": "Only the annotation-regression guard fails before correction; runtime tests intentionally pass before/after."
-    }
+    },
+    "number": 15,
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/15"
   },
   "Invesco": {
     "baseBranch": "main",
