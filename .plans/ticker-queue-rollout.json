@@ -246,7 +246,7 @@
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -277,7 +277,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/JPMorgan/pull/18",
-    "number": 18
+    "number": 18,
+    "merged": true,
+    "mergeCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd"
   },
   "Neos": {
     "baseBranch": "main",

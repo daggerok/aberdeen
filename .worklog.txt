@@ -6,7 +6,7 @@ This file supersedes plan.txt as the active log; plan.txt is retained as history
 Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
 Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
 Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: a443eba5f3c3db6fe7bf76020c973cde0d38889a.
+Last confirmed pushed Aberdeen SHA before this checkpoint: e513bc1425510934150c4e300c337254b29f03fb.
 The new commit containing this checkpoint must still be pushed and verified;
 its SHA is available from git log -- .worklog.txt (not a self-referential field).
 
@@ -52,7 +52,7 @@ TICKER QUEUE ROLLOUT STATUS
   "Goldman-Sachs": "merged",
   "Invesco": "not-affected",
   "iShares": "not-affected",
-  "JPMorgan": "pr-created",
+  "JPMorgan": "merged",
   "Neos": "affected",
   "ProShares": "affected",
   "Schwab": "affected",
@@ -164,6 +164,14 @@ JPMorgan
 PR created: https://github.com/daggerok/JPMorgan/pull/18
 Remote file diff and head SHA match the tested local commit.
 Next: check remote checks/statuses and merge with SHA guard; do not bypass protections.
+
+
+--- CHECKPOINT ---
+JPMorgan
+MERGED https://github.com/daggerok/JPMorgan/pull/18
+Merge confirmed via GitHub API: 8956b4f6e4301101cb8cace22b68e1d55e070cfd.
+Exact scope: app.tsx +1/-1 production line and four appended regression tests.
+No force push, check bypass, API changes or Aberdeen merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1211,6 +1219,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -3791,7 +3800,7 @@ ended up using.
         "text": "  await withTickerChain(ticker, async () => {"
       }
     ],
-    "status": "pr-created",
+    "status": "merged",
     "baselineTests": {
       "exitCode": 0,
       "summary": [
@@ -3822,7 +3831,9 @@ ended up using.
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/JPMorgan/pull/18",
-    "number": 18
+    "number": 18,
+    "merged": true,
+    "mergeCommit": "8956b4f6e4301101cb8cace22b68e1d55e070cfd"
   },
   "Neos": {
     "baseBranch": "main",
