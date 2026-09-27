@@ -41,7 +41,7 @@
   "Goldman-Sachs": {
     "baseBranch": "main",
     "baseSha": "3c7a433650515c1d399fb0575432aad9973a6a73",
-    "status": "pr-created",
+    "status": "merged",
     "candidates": [
       {
         "file": "scripts/update-data.ts",
@@ -117,7 +117,8 @@
       "redBaseline": "Only the annotation-regression guard fails before correction; runtime tests intentionally pass before/after."
     },
     "number": 15,
-    "url": "https://github.com/daggerok/Goldman-Sachs/pull/15"
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/15",
+    "mergeCommit": "e99f649a199341c0a4fd23b8516328a366208be9"
   },
   "Invesco": {
     "baseBranch": "main",
