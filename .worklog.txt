@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 6a2b9bece980b2d9f65118030b410916d702309e.
+Last confirmed pushed SHA before this checkpoint: 73e97ac04809daec1f1a152d3aa2ea53bd43bab7.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -85,7 +85,7 @@ HEADER ROLLOUT
   "Amplify": "merged",
   "Fidelity": "merged",
   "Franklin": "merged",
-  "Global-X": "code-pushed",
+  "Global-X": "pr-created",
   "Goldman-Sachs": "validated",
   "Invesco": "validated",
   "iShares": "validated",
@@ -613,6 +613,13 @@ Global-X
 Header UI and four regression tests committed/pushed: dcd75ba91fab4ab32624c0ca5e8fb34cef73c48e.
 Bun tests: 16 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+Global-X
+PR created: https://github.com/daggerok/Global-X/pull/7
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1660,6 +1667,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4594,7 +4602,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4641,7 +4649,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Global-X/pull/7",
+    "number": 7
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
