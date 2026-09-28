@@ -745,7 +745,7 @@
     "baseBranch": "main",
     "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
     "source": "index.html",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -791,7 +791,9 @@
     "changedFiles": [
       "index.html",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Vanguard/pull/28",
+    "number": 28
   },
   "WisdomTree": {
     "baseBranch": "main",
