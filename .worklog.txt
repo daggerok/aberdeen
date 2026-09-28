@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: a219de5dba961cabfee1dc6c8a7fc5115ea50110.
+Last confirmed pushed SHA before this checkpoint: 68ce24a5cd078520b7f66421db6dcdb1f718e028.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -96,7 +96,7 @@ HEADER ROLLOUT
   "SPDR": "merged",
   "VanEck": "merged",
   "Vanguard": "merged",
-  "WisdomTree": "validated",
+  "WisdomTree": "code-pushed",
   "aberdeen": "validated"
 }
 
@@ -848,6 +848,13 @@ MERGED https://github.com/daggerok/Vanguard/pull/28
 GitHub-confirmed merge commit 9e4d857d57f4650e72d2b297f7e003fc326d7537.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+WisdomTree
+Header UI and four regression tests committed/pushed: 9cb076282177bc4d35f248c119bf4848d385c127.
+Bun tests: 30 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1895,6 +1902,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5490,7 +5498,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5529,7 +5537,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: AGGY, AGZD",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
+    "headSha": "9cb076282177bc4d35f248c119bf4848d385c127",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",
