@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: fc97d91f2b32832c8bae16a02c24e1fe387c0cd9.
+Last confirmed pushed SHA before this checkpoint: 47dcab646f10e14550f3d3abe7a95f89e641cc70.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -84,7 +84,7 @@ HEADER ROLLOUT
 {
   "Amplify": "merged",
   "Fidelity": "merged",
-  "Franklin": "validated",
+  "Franklin": "code-pushed",
   "Global-X": "validated",
   "Goldman-Sachs": "validated",
   "Invesco": "validated",
@@ -584,6 +584,13 @@ MERGED https://github.com/daggerok/Fidelity/pull/21
 GitHub-confirmed merge commit a0d2b297bea6ecab02a011ccf0c5798ec4b7facb.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+Franklin
+Header UI and four regression tests committed/pushed: aad2f4a78b2cd0a6db8682b573bb8936dd591eca.
+Bun tests: 49 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1631,6 +1638,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4504,7 +4512,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4543,7 +4551,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: BUYZ, DIEM",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "headSha": "aad2f4a78b2cd0a6db8682b573bb8936dd591eca",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Global-X": {
     "baseBranch": "main",

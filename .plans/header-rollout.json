@@ -115,7 +115,7 @@
     "baseBranch": "main",
     "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -154,7 +154,15 @@
       "status": "passed",
       "selected": "2 selected: BUYZ, DIEM",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "headSha": "aad2f4a78b2cd0a6db8682b573bb8936dd591eca",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Global-X": {
     "baseBranch": "main",
