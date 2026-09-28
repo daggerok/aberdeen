@@ -801,7 +801,7 @@
     "baseBranch": "main",
     "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -850,7 +850,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/WisdomTree/pull/28",
-    "number": 28
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "a2be20eee7bb2eb7e7f20325831cbbffd2ebb3c0"
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",

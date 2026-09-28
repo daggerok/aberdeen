@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: dadaca9dde83458704869f024cbe1c7e82230d72.
+Last confirmed pushed SHA before this checkpoint: be08f789163013afb37c779d20c72f1bedd60d26.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -96,7 +96,7 @@ HEADER ROLLOUT
   "SPDR": "merged",
   "VanEck": "merged",
   "Vanguard": "merged",
-  "WisdomTree": "pr-created",
+  "WisdomTree": "merged",
   "aberdeen": "validated"
 }
 
@@ -862,6 +862,14 @@ WisdomTree
 PR created: https://github.com/daggerok/WisdomTree/pull/28
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+WisdomTree
+MERGED https://github.com/daggerok/WisdomTree/pull/28
+GitHub-confirmed merge commit a2be20eee7bb2eb7e7f20325831cbbffd2ebb3c0.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1909,6 +1917,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5506,7 +5515,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5555,7 +5564,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/WisdomTree/pull/28",
-    "number": 28
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "a2be20eee7bb2eb7e7f20325831cbbffd2ebb3c0"
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",
