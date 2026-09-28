@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: c1554a703d7cb3dc401c774f34af6e3f8c6c56ca.
+Last confirmed pushed SHA before this checkpoint: b787a3c7f5c5cf534144863f072be8237f5718d1.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -87,7 +87,7 @@ HEADER ROLLOUT
   "Franklin": "merged",
   "Global-X": "merged",
   "Goldman-Sachs": "merged",
-  "Invesco": "validated",
+  "Invesco": "code-pushed",
   "iShares": "validated",
   "JPMorgan": "validated",
   "Neos": "validated",
@@ -650,6 +650,13 @@ MERGED https://github.com/daggerok/Goldman-Sachs/pull/16
 GitHub-confirmed merge commit a593830b74ff25bf9c75ba87d7e670c6eed3905d.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+Invesco
+Header UI and four regression tests committed/pushed: afb932991c594875172022bef96308a61c1ead75.
+Bun tests: 96 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1697,6 +1704,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4750,7 +4758,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4789,7 +4797,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: BAB, BKLN",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "headSha": "afb932991c594875172022bef96308a61c1ead75",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "iShares": {
     "baseBranch": "main",
