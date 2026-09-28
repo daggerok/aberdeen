@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: ad5f83e161b00975942832d1d79f78a1de8e0008.
+Last confirmed pushed SHA before this checkpoint: 798a67c00f2092fd3d9d9f57ce24295838250ede.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -87,7 +87,7 @@ HEADER ROLLOUT
   "Franklin": "merged",
   "Global-X": "merged",
   "Goldman-Sachs": "merged",
-  "Invesco": "pr-created",
+  "Invesco": "merged",
   "iShares": "validated",
   "JPMorgan": "validated",
   "Neos": "validated",
@@ -664,6 +664,14 @@ Invesco
 PR created: https://github.com/daggerok/Invesco/pull/22
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+Invesco
+MERGED https://github.com/daggerok/Invesco/pull/22
+GitHub-confirmed merge commit 45a18fb0b70828ccbf7683d17503bbff85ae2026.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1711,6 +1719,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4766,7 +4775,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4815,7 +4824,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Invesco/pull/22",
-    "number": 22
+    "number": 22,
+    "merged": true,
+    "mergeCommit": "45a18fb0b70828ccbf7683d17503bbff85ae2026"
   },
   "iShares": {
     "baseBranch": "main",

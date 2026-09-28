@@ -286,7 +286,7 @@
     "baseBranch": "main",
     "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -335,7 +335,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Invesco/pull/22",
-    "number": 22
+    "number": 22,
+    "merged": true,
+    "mergeCommit": "45a18fb0b70828ccbf7683d17503bbff85ae2026"
   },
   "iShares": {
     "baseBranch": "main",
