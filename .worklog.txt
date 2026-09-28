@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: bf62e4c2b6909649e6fa0ec8f6011c25419f8e95.
+Last confirmed pushed SHA before this checkpoint: 8b00c5de51fe738843ef214b78bb35a7721f6b64.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -84,7 +84,7 @@ HEADER ROLLOUT
 {
   "Amplify": "merged",
   "Fidelity": "merged",
-  "Franklin": "pr-created",
+  "Franklin": "merged",
   "Global-X": "validated",
   "Goldman-Sachs": "validated",
   "Invesco": "validated",
@@ -598,6 +598,14 @@ Franklin
 PR created: https://github.com/daggerok/Franklin/pull/20
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+Franklin
+MERGED https://github.com/daggerok/Franklin/pull/20
+GitHub-confirmed merge commit 0dc612277c111d017e74bd68d3b8dae8a7c441cf.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1645,6 +1653,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4520,7 +4529,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4569,7 +4578,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Franklin/pull/20",
-    "number": 20
+    "number": 20,
+    "merged": true,
+    "mergeCommit": "0dc612277c111d017e74bd68d3b8dae8a7c441cf"
   },
   "Global-X": {
     "baseBranch": "main",

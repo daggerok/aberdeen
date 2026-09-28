@@ -115,7 +115,7 @@
     "baseBranch": "main",
     "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -164,7 +164,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Franklin/pull/20",
-    "number": 20
+    "number": 20,
+    "merged": true,
+    "mergeCommit": "0dc612277c111d017e74bd68d3b8dae8a7c441cf"
   },
   "Global-X": {
     "baseBranch": "main",
