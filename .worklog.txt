@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 67a6b83dabfe1a365684a7d8510e42a6caebcbee.
+Last confirmed pushed SHA before this checkpoint: 1342d7b21b79ffff5c498c8be997659a468969a9.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -97,7 +97,7 @@ HEADER ROLLOUT
   "VanEck": "merged",
   "Vanguard": "merged",
   "WisdomTree": "merged",
-  "aberdeen": "code-pushed"
+  "aberdeen": "pr-created"
 }
 
 NEXT ACTION
@@ -877,6 +877,13 @@ aberdeen
 Header UI and four regression tests committed/pushed: bfcd9c4cc88c503498793b8642230366cf7565bc.
 Bun tests: 50 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+aberdeen
+PR created: https://github.com/daggerok/aberdeen/pull/2
+Verified exact remote file diff and head SHA; base feat/aberdeen-plan-recovery.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1924,6 +1931,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5580,7 +5588,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "feat/aberdeen-plan-recovery",
     "baseSha": "52a3eb3f481df33ace515c674561b1d3ff3c4a88",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -5633,7 +5641,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/aberdeen/pull/2",
+    "number": 2
   }
 }
 

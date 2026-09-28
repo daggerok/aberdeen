@@ -858,7 +858,7 @@
     "baseBranch": "feat/aberdeen-plan-recovery",
     "baseSha": "52a3eb3f481df33ace515c674561b1d3ff3c4a88",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -911,6 +911,8 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/aberdeen/pull/2",
+    "number": 2
   }
 }
