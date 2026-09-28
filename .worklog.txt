@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: fc03c17bc763efc027da421ab8013176b5c35e65.
+Last confirmed pushed SHA before this checkpoint: 4d0f10660503c70d76b7b5cda95ba44e70cfa094.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -94,7 +94,7 @@ HEADER ROLLOUT
   "ProShares": "merged",
   "Schwab": "merged",
   "SPDR": "merged",
-  "VanEck": "validated",
+  "VanEck": "code-pushed",
   "Vanguard": "validated",
   "WisdomTree": "validated",
   "aberdeen": "validated"
@@ -804,6 +804,13 @@ MERGED https://github.com/daggerok/SPDR/pull/32
 GitHub-confirmed merge commit e57fc132267f37414b9d70ac2d7f0a7890b0b17f.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+VanEck
+Header UI and four regression tests committed/pushed: cbea210209b94ce2ab72728ab8da007892ef510a.
+Bun tests: 85 pass, 1 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1851,6 +1858,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5323,7 +5331,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -5366,7 +5374,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: AFK, ANGL",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
+    "headSha": "cbea210209b94ce2ab72728ab8da007892ef510a",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Vanguard": {
     "baseBranch": "main",
