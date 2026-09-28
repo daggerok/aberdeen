@@ -343,7 +343,7 @@
     "baseBranch": "main",
     "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
     "source": "index.html",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -391,7 +391,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/iShares/pull/47",
-    "number": 47
+    "number": 47,
+    "merged": true,
+    "mergeCommit": "1922c93b065461b8f7886e5d470366fe0aede845"
   },
   "JPMorgan": {
     "baseBranch": "main",
