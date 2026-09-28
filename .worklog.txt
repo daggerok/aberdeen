@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 68ce24a5cd078520b7f66421db6dcdb1f718e028.
+Last confirmed pushed SHA before this checkpoint: dadaca9dde83458704869f024cbe1c7e82230d72.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -96,7 +96,7 @@ HEADER ROLLOUT
   "SPDR": "merged",
   "VanEck": "merged",
   "Vanguard": "merged",
-  "WisdomTree": "code-pushed",
+  "WisdomTree": "pr-created",
   "aberdeen": "validated"
 }
 
@@ -855,6 +855,13 @@ WisdomTree
 Header UI and four regression tests committed/pushed: 9cb076282177bc4d35f248c119bf4848d385c127.
 Bun tests: 30 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+WisdomTree
+PR created: https://github.com/daggerok/WisdomTree/pull/28
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1902,6 +1909,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5498,7 +5506,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5545,7 +5553,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/WisdomTree/pull/28",
+    "number": 28
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",
