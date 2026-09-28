@@ -513,7 +513,7 @@
     "baseBranch": "main",
     "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -552,7 +552,15 @@
       "status": "passed",
       "selected": "2 selected: ACQQ, ACRT",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "headSha": "512b1fed45d9c0ed8166e837da805bfce60ff216",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Schwab": {
     "baseBranch": "main",

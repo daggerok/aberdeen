@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: d496cbcf296beb6ea0c4f3c42ac9d49a92bd0ede.
+Last confirmed pushed SHA before this checkpoint: 35cc85b59019f69f19b73e385ed3c303cc234639.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -91,7 +91,7 @@ HEADER ROLLOUT
   "iShares": "merged",
   "JPMorgan": "merged",
   "Neos": "merged",
-  "ProShares": "validated",
+  "ProShares": "code-pushed",
   "Schwab": "validated",
   "SPDR": "validated",
   "VanEck": "validated",
@@ -738,6 +738,13 @@ MERGED https://github.com/daggerok/Neos/pull/17
 GitHub-confirmed merge commit 35bd223da3871f8bf1fdcc55f926c934e94d2edc.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+ProShares
+Header UI and four regression tests committed/pushed: 512b1fed45d9c0ed8166e837da805bfce60ff216.
+Bun tests: 70 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1785,6 +1792,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5077,7 +5085,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5116,7 +5124,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: ACQQ, ACRT",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "headSha": "512b1fed45d9c0ed8166e837da805bfce60ff216",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Schwab": {
     "baseBranch": "main",
