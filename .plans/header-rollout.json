@@ -684,7 +684,7 @@
     "baseBranch": "main",
     "baseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -737,7 +737,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/VanEck/pull/18",
-    "number": 18
+    "number": 18,
+    "merged": true,
+    "mergeCommit": "f102ceff3a5fdb8831538434aef152efbff4ec66"
   },
   "Vanguard": {
     "baseBranch": "main",
