@@ -1,0 +1,920 @@
+{
+  "Amplify": {
+    "baseBranch": "main",
+    "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "source": "index.html",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "1 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "5 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: DIVO, SILJ",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "headSha": "85b33c5c5aef9a91e539ee9d2005f24531dfb492",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ],
+    "url": "https://github.com/daggerok/Amplify/pull/46",
+    "number": 46,
+    "merged": true,
+    "mergeCommit": "b7e6cada8214bdd8e86aefe9cbb76cfd03ca0971"
+  },
+  "Fidelity": {
+    "baseBranch": "main",
+    "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "51 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "55 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: FAAA, FBCG",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "headSha": "d34793a73d25c79b3d376dedbf3c49dd93d67c8b",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Fidelity/pull/21",
+    "number": 21,
+    "merged": true,
+    "mergeCommit": "a0d2b297bea6ecab02a011ccf0c5798ec4b7facb"
+  },
+  "Franklin": {
+    "baseBranch": "main",
+    "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "45 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "49 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: BUYZ, DIEM",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
+    "headSha": "aad2f4a78b2cd0a6db8682b573bb8936dd591eca",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Franklin/pull/20",
+    "number": 20,
+    "merged": true,
+    "mergeCommit": "0dc612277c111d017e74bd68d3b8dae8a7c441cf"
+  },
+  "Global-X": {
+    "baseBranch": "main",
+    "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "12 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "16 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AGNG, AIQ",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
+    "headSha": "dcd75ba91fab4ab32624c0ca5e8fb34cef73c48e",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Global-X/pull/7",
+    "number": 7,
+    "merged": true,
+    "mergeCommit": "6a0966ca5b03bb47e42196126c8d85c2d7cc9177"
+  },
+  "Goldman-Sachs": {
+    "baseBranch": "main",
+    "baseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "52 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "56 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AAAU, GBIL",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
+    "headSha": "3c6641e03f6f3b2deb071cd99e5bb7594aaa9630",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/16",
+    "number": 16,
+    "merged": true,
+    "mergeCommit": "a593830b74ff25bf9c75ba87d7e670c6eed3905d"
+  },
+  "Invesco": {
+    "baseBranch": "main",
+    "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "92 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "96 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: BAB, BKLN",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
+    "headSha": "afb932991c594875172022bef96308a61c1ead75",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Invesco/pull/22",
+    "number": 22,
+    "merged": true,
+    "mergeCommit": "45a18fb0b70828ccbf7683d17503bbff85ae2026"
+  },
+  "iShares": {
+    "baseBranch": "main",
+    "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "source": "index.html",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "16 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "20 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss",
+        "uploaded-file"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AAXJ, ACWI",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "headSha": "28517af580eaaafca530999a07179e6e2b00e3fe",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ],
+    "url": "https://github.com/daggerok/iShares/pull/47",
+    "number": 47,
+    "merged": true,
+    "mergeCommit": "1922c93b065461b8f7886e5d470366fe0aede845"
+  },
+  "JPMorgan": {
+    "baseBranch": "main",
+    "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "112 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "116 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: BBAG, BBAX",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "headSha": "c82d35e47c8fd3576ba51b27a4dc3b7b8b090e7a",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/JPMorgan/pull/19",
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "54338eaf4ccbaacfe9f730c47d039488ce3c112b"
+  },
+  "Neos": {
+    "baseBranch": "main",
+    "baseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "108 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "112 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: BNDI, BTCI",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
+    "headSha": "266fa65c73455dd70f64f6a490862fafdc44d495",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Neos/pull/17",
+    "number": 17,
+    "merged": true,
+    "mergeCommit": "35bd223da3871f8bf1fdcc55f926c934e94d2edc"
+  },
+  "ProShares": {
+    "baseBranch": "main",
+    "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "66 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "70 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: ACQQ, ACRT",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "f88a13605014f2a190a97c572e53120d8799876b",
+    "headSha": "512b1fed45d9c0ed8166e837da805bfce60ff216",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/ProShares/pull/19",
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "e20f7162ba90d4c7202a5f4e25cd527af3069f33"
+  },
+  "Schwab": {
+    "baseBranch": "main",
+    "baseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "38 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "42 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: FNDA, FNDB",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
+    "headSha": "c88388cdebfc45d41d2d36cb54b9f7809960f33b",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/Schwab/pull/15",
+    "number": 15,
+    "merged": true,
+    "mergeCommit": "869a0705d6e5ffc97dbff14fba45412fc84ba9e5"
+  },
+  "SPDR": {
+    "baseBranch": "main",
+    "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "28 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "32 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: ALLW, BIL",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "headSha": "1440de211a6f54b18c72f1505452bcc6b7a6a3ff",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/SPDR/pull/32",
+    "number": 32,
+    "merged": true,
+    "mergeCommit": "e57fc132267f37414b9d70ac2d7f0a7890b0b17f"
+  },
+  "VanEck": {
+    "baseBranch": "main",
+    "baseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 1,
+      "summary": [
+        "81 pass",
+        "1 fail"
+      ],
+      "failures": [
+        "(fail) generated feed > the published Name/Ticker columns are not swapped"
+      ]
+    },
+    "validation": {
+      "exitCode": 1,
+      "summary": [
+        "85 pass",
+        "1 fail"
+      ],
+      "failures": [
+        "(fail) generated feed > the published Name/Ticker columns are not swapped"
+      ],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AFK, ANGL",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "ce5e470f9f7595f0da9e563069131029029509a5",
+    "headSha": "cbea210209b94ce2ab72728ab8da007892ef510a",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/VanEck/pull/18",
+    "number": 18,
+    "merged": true,
+    "mergeCommit": "f102ceff3a5fdb8831538434aef152efbff4ec66"
+  },
+  "Vanguard": {
+    "baseBranch": "main",
+    "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "source": "index.html",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "16 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "20 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss",
+        "uploaded-file"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: BIV, BLV",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "headSha": "bda2a96edcfddab3cf0fb7723cd4776060897c16",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ],
+    "url": "https://github.com/daggerok/Vanguard/pull/28",
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "9e4d857d57f4650e72d2b297f7e003fc326d7537"
+  },
+  "WisdomTree": {
+    "baseBranch": "main",
+    "baseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 0,
+      "summary": [
+        "26 pass",
+        "0 fail"
+      ],
+      "failures": []
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "30 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AGGY, AGZD",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "30414b1f8984a7a36bec12741e77a35ded2795eb",
+    "headSha": "9cb076282177bc4d35f248c119bf4848d385c127",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/WisdomTree/pull/28",
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "a2be20eee7bb2eb7e7f20325831cbbffd2ebb3c0"
+  },
+  "aberdeen": {
+    "baseBranch": "feat/aberdeen-plan-recovery",
+    "baseSha": "52a3eb3f481df33ace515c674561b1d3ff3c4a88",
+    "source": "app.tsx",
+    "status": "merged",
+    "baseline": {
+      "exitCode": 1,
+      "summary": [
+        "45 pass",
+        "1 fail"
+      ],
+      "failures": [
+        "(fail) UI differs from pinned JPMorgan only by recorded substitutions and approved corrections"
+      ]
+    },
+    "pagesSource": {
+      "branch": "feat/aberdeen-plan-recovery",
+      "path": "/"
+    },
+    "validation": {
+      "exitCode": 0,
+      "summary": [
+        "50 pass",
+        "0 fail"
+      ],
+      "failures": [],
+      "buildExitCode": 0
+    },
+    "browser": {
+      "status": "passed",
+      "cases": [
+        "empty",
+        "hover",
+        "pointer-to-panel",
+        "focus",
+        "Escape",
+        "two-selected",
+        "ticker-activation",
+        "detail-context",
+        "all-selected",
+        "deselect/clear",
+        "narrow/dark",
+        "touch/outside-dismiss"
+      ]
+    },
+    "fullAppBrowser": {
+      "status": "passed",
+      "selected": "2 selected: AGEM, SIVR",
+      "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
+    },
+    "auditedBaseSha": "283109c3a8a2108a9271f50f4e0af50e6b2284a1",
+    "headSha": "bfcd9c4cc88c503498793b8642230366cf7565bc",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ],
+    "url": "https://github.com/daggerok/aberdeen/pull/2",
+    "number": 2,
+    "merged": true,
+    "mergeCommit": "9853f03e2c5a537777df105df3da3764f9011ce8"
+  }
+}

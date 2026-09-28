@@ -1,0 +1,145 @@
+{
+  "Amplify": {
+    "exitCode": 0,
+    "summary": [
+      "5 pass",
+      "0 fail"
+    ],
+    "failures": []
+  },
+  "Fidelity": {
+    "exitCode": 0,
+    "summary": [
+      "55 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Franklin": {
+    "exitCode": 0,
+    "summary": [
+      "49 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Global-X": {
+    "exitCode": 0,
+    "summary": [
+      "16 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Goldman-Sachs": {
+    "exitCode": 0,
+    "summary": [
+      "56 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Invesco": {
+    "exitCode": 0,
+    "summary": [
+      "96 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "iShares": {
+    "exitCode": 0,
+    "summary": [
+      "20 pass",
+      "0 fail"
+    ],
+    "failures": []
+  },
+  "JPMorgan": {
+    "exitCode": 0,
+    "summary": [
+      "116 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Neos": {
+    "exitCode": 0,
+    "summary": [
+      "112 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "ProShares": {
+    "exitCode": 0,
+    "summary": [
+      "70 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "Schwab": {
+    "exitCode": 0,
+    "summary": [
+      "42 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "SPDR": {
+    "exitCode": 0,
+    "summary": [
+      "32 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "VanEck": {
+    "exitCode": 1,
+    "summary": [
+      "85 pass",
+      "1 fail"
+    ],
+    "failures": [
+      "(fail) generated feed > the published Name/Ticker columns are not swapped"
+    ],
+    "buildExitCode": 0
+  },
+  "Vanguard": {
+    "exitCode": 0,
+    "summary": [
+      "20 pass",
+      "0 fail"
+    ],
+    "failures": []
+  },
+  "WisdomTree": {
+    "exitCode": 0,
+    "summary": [
+      "30 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  },
+  "aberdeen": {
+    "exitCode": 0,
+    "summary": [
+      "50 pass",
+      "0 fail"
+    ],
+    "failures": [],
+    "buildExitCode": 0
+  }
+}

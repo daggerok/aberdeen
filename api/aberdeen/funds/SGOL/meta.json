@@ -1,0 +1,129 @@
+{
+ "ticker": "SGOL",
+ "name": "abrdn Physical Gold Shares ETF",
+ "category": "Alternatives",
+ "categoryPath": "Alternatives / Precious Metals",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "not published as a securities portfolio (physical precious metals trust)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/SGOL",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "SGOL",
+  "name": "abrdn Physical Gold Shares ETF",
+  "id": "abf8af1c-8cbe-6b36-964d-f0d52e6e6251",
+  "shareclassId": "ce25910e-7ce9-417a-579d-53bdd18ddc7b",
+  "isin": "US00326A1043",
+  "assetClass": "Alternatives",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
+  "nav": 40.55826,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1933 Act",
+ "identifiers": {
+  "cusip": "00326A104",
+  "isin": "US00326A1043",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "2009-09-09",
+  "shareClassInceptionDate": null,
+  "exchange": "NYSEArca"
+ },
+ "expenseRatio": {
+  "display": "0.17%",
+  "value": 0.17,
+  "gross": 0.17,
+  "net": 0.17
+ },
+ "nav": {
+  "display": "$40.56",
+  "value": 40.55826,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$40.67",
+  "value": 40.67,
+  "asOfDate": "Sep 24 2026"
+ },
+ "premiumDiscount": {
+  "display": "—",
+  "value": null
+ },
+ "aum": {
+  "display": "$7,312.66 M",
+  "value": 7312655149.37,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": null,
+  "dividendYieldText": "—",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": null,
+  "secYieldText": "—",
+  "secYieldKind": "not published",
+  "unsubsidizedSecYield": null
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": 3.21,
+   "yr1": 32.83,
+   "yr3": 32.71,
+   "yr5": 20.04,
+   "yr10": 13.05,
+   "sinceInception": 9.02,
+   "mo1": 13.3,
+   "qtd": 10.27
+  },
+  "quarterEnd": {
+   "asOfDate": "Mar 31 2026",
+   "ytd": null,
+   "yr1": 47.68,
+   "yr3": 32.31,
+   "yr5": 21.99,
+   "yr10": 13.8,
+   "sinceInception": 9.33,
+   "mo1": -11.77
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "—",
+  "paymentsPerYear": null,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": []
+ },
+ "holdings": {
+  "pages": [],
+  "pageSize": 250,
+  "totalRows": 0,
+  "asOfDate": null,
+  "asOf": "—",
+  "source": "not published as a securities portfolio (physical precious metals trust)",
+  "status": "not-applicable"
+ },
+ "history": {
+  "pages": [
+   "history/001.json",
+   "history/002.json",
+   "history/003.json",
+   "history/004.json",
+   "history/005.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 4288,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}

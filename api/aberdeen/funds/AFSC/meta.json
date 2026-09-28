@@ -1,0 +1,132 @@
+{
+ "ticker": "AFSC",
+ "name": "abrdn Focused U.S. Small Cap Active ETF",
+ "category": "Active Equities",
+ "categoryPath": "Active Equities / U.S. Small Cap Equities",
+ "source": {
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-focused-us-small-cap-active-etf-us00384x2027",
+  "catalog": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund",
+  "keyInformation": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+  "holdingsDownload": "https://www.aberdeeninvestments.com/api/gateway/funds/breakdown/dailyHoldingsSheet",
+  "holdingsSource": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "historySource": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)",
+  "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/AFSC",
+  "provider": "abrdn official gateway; SEC EDGAR N-PORT-P holdings fallback; Yahoo Finance market-history/dividend fallback"
+ },
+ "providerIds": {
+  "ticker": "AFSC",
+  "name": "abrdn Focused U.S. Small Cap Active ETF",
+  "id": "0718c92e-caff-4a8a-bf77-7e32aa87ce4b",
+  "shareclassId": "bd116fd2-6d21-8f3e-9a85-2d79b8407785",
+  "isin": "US00384X2027",
+  "assetClass": "Active Equities",
+  "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
+  "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-focused-us-small-cap-active-etf-us00384x2027",
+  "nav": 36.9693,
+  "navDate": "2026-09-25"
+ },
+ "legalStructure": "1940 Act",
+ "identifiers": {
+  "cusip": "00384X202",
+  "isin": "US00384X2027",
+  "indexTicker": null
+ },
+ "inception": {
+  "fundInceptionDate": "1997-12-31",
+  "shareClassInceptionDate": null,
+  "exchange": "NasdaqGM"
+ },
+ "expenseRatio": {
+  "display": "1.09%",
+  "value": 1.09,
+  "gross": 1.09,
+  "net": 0.65
+ },
+ "nav": {
+  "display": "$36.97",
+  "value": 36.9693,
+  "asOfDate": "Sep 25 2026"
+ },
+ "marketPrice": {
+  "display": "$37.00",
+  "value": 36.999,
+  "asOfDate": "Sep 25 2026"
+ },
+ "premiumDiscount": {
+  "display": "0.08%",
+  "value": 0.08
+ },
+ "aum": {
+  "display": "$9.74 M",
+  "value": 9740325.56,
+  "asOfDate": "Sep 25 2026",
+  "source": "aberdeeninvestments.com fundDetailsKeyInformation"
+ },
+ "yields": {
+  "dividendYield": 0.06,
+  "dividendYieldText": "0.06%",
+  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "secYield": -0.05,
+  "secYieldText": "-0.05%",
+  "secYieldKind": "30-day SEC yield subsidized, as of 2026-08-31",
+  "unsubsidizedSecYield": -1.93
+ },
+ "returns": {
+  "monthEnd": {
+   "asOfDate": "Aug 31 2026",
+   "ytd": 24.15,
+   "yr1": 25.79,
+   "yr3": 19.66,
+   "yr5": 7.23,
+   "yr10": 12.72,
+   "sinceInception": 8.81,
+   "mo1": -0.66,
+   "qtd": -2.98
+  },
+  "quarterEnd": {
+   "asOfDate": "Jun 30 2026",
+   "ytd": null,
+   "yr1": 38.08,
+   "yr3": 20.95,
+   "yr5": 9.98,
+   "yr10": 13.25,
+   "sinceInception": 9.02,
+   "mo1": 10.6
+  },
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+ },
+ "distributions": {
+  "frequency": "Annually",
+  "paymentsPerYear": 1,
+  "headers": [
+   "Ex-Date",
+   "Amount"
+  ],
+  "rows": [
+   [
+    "12/19/2025",
+    "0.024"
+   ]
+  ]
+ },
+ "holdings": {
+  "pages": [
+   "holdings/001.json"
+  ],
+  "pageSize": 250,
+  "totalRows": 42,
+  "asOfDate": "2026-09-25",
+  "asOf": "Sep 25 2026",
+  "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
+  "status": "available"
+ },
+ "history": {
+  "pages": [
+   "history/001.json"
+  ],
+  "pageSize": 1000,
+  "totalRows": 404,
+  "asOf": "Sep 25 2026",
+  "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
+ }
+}
