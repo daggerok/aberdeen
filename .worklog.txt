@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: cb1c33185d74793d197d1f2440000ecab4234c0e.
+Last confirmed pushed SHA before this checkpoint: 7a82e02166c75b7ee4f118dbc106caf40e50ab45.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -88,7 +88,7 @@ HEADER ROLLOUT
   "Global-X": "merged",
   "Goldman-Sachs": "merged",
   "Invesco": "merged",
-  "iShares": "code-pushed",
+  "iShares": "pr-created",
   "JPMorgan": "validated",
   "Neos": "validated",
   "ProShares": "validated",
@@ -679,6 +679,13 @@ iShares
 Header UI and four regression tests committed/pushed: 28517af580eaaafca530999a07179e6e2b00e3fe.
 Bun tests: 20 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+iShares
+PR created: https://github.com/daggerok/iShares/pull/47
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1726,6 +1733,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4840,7 +4848,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
     "source": "index.html",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4886,7 +4894,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "changedFiles": [
       "index.html",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/iShares/pull/47",
+    "number": 47
   },
   "JPMorgan": {
     "baseBranch": "main",

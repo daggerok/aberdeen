@@ -343,7 +343,7 @@
     "baseBranch": "main",
     "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
     "source": "index.html",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -389,7 +389,9 @@
     "changedFiles": [
       "index.html",
       "scripts/update-data.test.ts"
-    ]
+    ],
+    "url": "https://github.com/daggerok/iShares/pull/47",
+    "number": 47
   },
   "JPMorgan": {
     "baseBranch": "main",
