@@ -58,7 +58,7 @@
     "baseBranch": "main",
     "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -97,7 +97,15 @@
       "status": "passed",
       "selected": "2 selected: FAAA, FBCG",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "headSha": "d34793a73d25c79b3d376dedbf3c49dd93d67c8b",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Franklin": {
     "baseBranch": "main",

@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 80d1ce679ea30fbc43913e7bdde73425982fe742.
+Last confirmed pushed SHA before this checkpoint: 44276b433cc8a79d4abcc1141b0d405105218230.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -83,7 +83,7 @@ PRIOR COMPLETED WORK (do not repeat)
 HEADER ROLLOUT
 {
   "Amplify": "merged",
-  "Fidelity": "validated",
+  "Fidelity": "code-pushed",
   "Franklin": "validated",
   "Global-X": "validated",
   "Goldman-Sachs": "validated",
@@ -562,6 +562,13 @@ MERGED https://github.com/daggerok/Amplify/pull/46
 GitHub-confirmed merge commit b7e6cada8214bdd8e86aefe9cbb76cfd03ca0971.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+Fidelity
+Header UI and four regression tests committed/pushed: d34793a73d25c79b3d376dedbf3c49dd93d67c8b.
+Bun tests: 55 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1609,6 +1616,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4422,7 +4430,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4461,7 +4469,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: FAAA, FBCG",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
+    "headSha": "d34793a73d25c79b3d376dedbf3c49dd93d67c8b",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Franklin": {
     "baseBranch": "main",
