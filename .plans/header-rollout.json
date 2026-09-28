@@ -627,7 +627,7 @@
     "baseBranch": "main",
     "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -666,7 +666,15 @@
       "status": "passed",
       "selected": "2 selected: ALLW, BIL",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
+    "headSha": "1440de211a6f54b18c72f1505452bcc6b7a6a3ff",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "VanEck": {
     "baseBranch": "main",
