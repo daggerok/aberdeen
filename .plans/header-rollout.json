@@ -58,7 +58,7 @@
     "baseBranch": "main",
     "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -105,7 +105,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Fidelity/pull/21",
+    "number": 21
   },
   "Franklin": {
     "baseBranch": "main",
