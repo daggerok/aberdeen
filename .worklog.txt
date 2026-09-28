@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 405e7da493ad846a6bba8282ca621e816fec3315.
+Last confirmed pushed SHA before this checkpoint: a219de5dba961cabfee1dc6c8a7fc5115ea50110.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -95,7 +95,7 @@ HEADER ROLLOUT
   "Schwab": "merged",
   "SPDR": "merged",
   "VanEck": "merged",
-  "Vanguard": "pr-created",
+  "Vanguard": "merged",
   "WisdomTree": "validated",
   "aberdeen": "validated"
 }
@@ -840,6 +840,14 @@ Vanguard
 PR created: https://github.com/daggerok/Vanguard/pull/28
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+Vanguard
+MERGED https://github.com/daggerok/Vanguard/pull/28
+GitHub-confirmed merge commit 9e4d857d57f4650e72d2b297f7e003fc326d7537.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1887,6 +1895,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5425,7 +5434,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
     "source": "index.html",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5473,7 +5482,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Vanguard/pull/28",
-    "number": 28
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "9e4d857d57f4650e72d2b297f7e003fc326d7537"
   },
   "WisdomTree": {
     "baseBranch": "main",

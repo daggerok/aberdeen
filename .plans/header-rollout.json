@@ -745,7 +745,7 @@
     "baseBranch": "main",
     "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
     "source": "index.html",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -793,7 +793,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Vanguard/pull/28",
-    "number": 28
+    "number": 28,
+    "merged": true,
+    "mergeCommit": "9e4d857d57f4650e72d2b297f7e003fc326d7537"
   },
   "WisdomTree": {
     "baseBranch": "main",
