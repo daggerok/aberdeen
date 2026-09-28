@@ -3,7 +3,7 @@
     "baseBranch": "main",
     "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
     "source": "index.html",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -50,7 +50,9 @@
       "scripts/update-data.test.ts"
     ],
     "url": "https://github.com/daggerok/Amplify/pull/46",
-    "number": 46
+    "number": 46,
+    "merged": true,
+    "mergeCommit": "b7e6cada8214bdd8e86aefe9cbb76cfd03ca0971"
   },
   "Fidelity": {
     "baseBranch": "main",
