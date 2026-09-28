@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: d7eea90b47691879ab487067c515ae9574f5447e.
+Last confirmed pushed SHA before this checkpoint: fc03c17bc763efc027da421ab8013176b5c35e65.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -93,7 +93,7 @@ HEADER ROLLOUT
   "Neos": "merged",
   "ProShares": "merged",
   "Schwab": "merged",
-  "SPDR": "pr-created",
+  "SPDR": "merged",
   "VanEck": "validated",
   "Vanguard": "validated",
   "WisdomTree": "validated",
@@ -796,6 +796,14 @@ SPDR
 PR created: https://github.com/daggerok/SPDR/pull/32
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+SPDR
+MERGED https://github.com/daggerok/SPDR/pull/32
+GitHub-confirmed merge commit e57fc132267f37414b9d70ac2d7f0a7890b0b17f.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1843,6 +1851,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5257,7 +5266,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5306,7 +5315,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/SPDR/pull/32",
-    "number": 32
+    "number": 32,
+    "merged": true,
+    "mergeCommit": "e57fc132267f37414b9d70ac2d7f0a7890b0b17f"
   },
   "VanEck": {
     "baseBranch": "main",
