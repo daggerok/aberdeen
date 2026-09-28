@@ -1,84 +1,48 @@
 .worklog.txt — CANONICAL RECOVERY FILE
-Read this whole file first; verify against Git/remote before resuming.
-This file supersedes plan.txt as the active log; plan.txt is retained as history.
+Read the whole file (in chunks if needed), then verify Git/remote/PR reality.
+plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
-Date: 2026-09-27 (session date; see Git timestamps for checkpoint order).
-Repository: daggerok/aberdeen; branch: feat/aberdeen-plan-recovery.
-Aberdeen PR: https://github.com/daggerok/aberdeen/pull/1 — DO NOT MERGE.
-Last confirmed pushed Aberdeen SHA before this checkpoint: f5f756b1510057939e78fb6b5eede4d19b91e580.
-Publication of the commit containing this checkpoint must be verified against
-the remote, not inferred from this file. Its SHA is available from
-git log -- .worklog.txt; compare git rev-parse HEAD with git ls-remote origin.
+Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
+Last confirmed pushed SHA before this checkpoint: 3dac6045f207e1d73291d319f09225c37f4a8d11.
+Do not infer publication from this text: compare HEAD with git ls-remote.
 
-GOALS / AUTHORIZATION / CONSTRAINTS
-- Communicate in Russian. Bun only; no tsc, tsconfig or new runtime dependencies.
-- Follow original plans below except later explicit user amendments. UI is an
-  exact sibling copy plus recorded brand/provenance substitutions and the
-  explicit Frequency and ticker-queue corrections; no redesign or data refresh.
-- Aberdeen implementation/config relocation/Frequency/TS2345 fix completed.
-  Its main PR #1 is for owner review, not authorized for merge by this agent.
-- Earlier sibling README changes: all 15 PRs merged (historical ledger below).
-- Frequency: 14 code PRs merged; ProShares already-correct. None is the requested
-  placeholder for missing/undetermined cadence, NOT proof of zero dividends.
-  Explicit Unknown remains Unknown; financial data and inference unchanged.
-- Prior TS2345 queue rollout is COMPLETE: 8 sibling PRs merged, 7 unaffected.
-- LATEST USER REQUEST / AUTHORIZATION (supersedes prior active task):
-  (1) live-test Aberdeen updater using TICKERS for several real funds;
-  (2) audit ALL other 15 ETF repos for Goldman-Sachs TS2322 numeric return-row
-      assignment through overly broad keyof; fix matching cases, test, PR+merge;
-  (3) align README and About ONLY in Aberdeen with the existing sibling pattern;
-  (4) update initial plans and provide exact find/replace/insertion instructions
-      to require these checks for future ETF implementations.
-  User selected scope 'aberdeen-about': sibling TS fixes/PR merges authorized,
-  sibling README/About edits NOT authorized. Aberdeen PR #1 still DO NOT MERGE.
-  Live smoke runs must use isolated copies; no production API refresh implied.
-  Do not change inference, numeric return formulas, map labels, or unrelated UI.
-  No bypass of branch protections/checks; no new tsc/TypeScript dependencies.
-- New workflow standard: this self-contained .worklog.txt embeds original plans,
-  .plans records and historical plan.txt, with factual journal checkpoints.
-  Update, commit and push after each small meaningful completed step. No secrets
-  or private chain-of-thought; record decisions and brief reasons instead.
-- Credentials must be runtime-only; request renewed access only if unavailable.
+LATEST REQUEST / AUTHORIZATION
+- User explicitly authorizes separate header UI PR creation + merge in ALL
+  16 ETF repositories, without further approval. No unrelated data/updater work.
+- Move the full contextual help/update/counts/source-link summary into a popover
+  attached to the ETF-count badge next to the theme button. Show it on hover;
+  support keyboard focus and touch without making links inaccessible.
+- The visible subtitle must be empty with no selection, otherwise only
+  N selected: clickable, sorted ticker badges. Keep active highlighting and
+  fund activation. Do not leak detail/history progress text into visible header.
+- Preserve full source provenance, update timestamp and existing context messages
+  in the popover; do not drop hyperlinks or truncate details to a native title.
+- Exact exception to original strict-copy UI rule is authorized by this request.
+  Update both initial plans and provide exact find/replace/insert instructions.
+- Aberdeen original implementation PR #1 is still open; do not merge unrelated
+  implementation merely to land this UI fix. Use a separate header PR targeting
+  its current feature/Pages branch when verified. Other repos target main.
+- Russian communication. Bun only; no tsc/tsconfig/runtime dependencies.
+- No secrets in files/Git. No force push, bypass or unrelated sibling metadata.
+- Checkpoint factual decisions/actions/results after each coherent small step;
+  scoped commits and verified pushes. Preserve originals/history below.
 
-VALIDATION / KNOWN LIMITATIONS
-- Aberdeen: 46 tests / 152 assertions passed; app/updater Bun builds passed.
-  Bun transpiles but does not perform full semantic TypeScript checking.
-- Frequency rollout: 646 passing tests across 14 changed repos; VanEck has one
-  PRE-EXISTING GDX first holding Weight mismatch (expected 10.89%, actual 11.09%).
-  Never hide it or change financial values to make this unrelated test pass.
-- ProShares Frequency suite previously 62 pass, plus disposable formatter test.
-- SEC live HTTP 403 is known; original implementation used official sources and
-  documented alternatives. Hosted Actions/Pages publication not asserted here.
-- Temporary clones/processes are disposable; only Git-pushed checkpoints and
-  tracked artifacts are durable. Reconstruct missing clones from recorded SHAs.
+PRIOR COMPLETED WORK (do not repeat)
+- 15 sibling README directory PRs, 14 Frequency PRs (ProShares already correct),
+  8 ticker queue PRs and Goldman-Sachs TS2322 PR #15 all merged; ledgers below.
+- Aberdeen About/README alignment done; real isolated TICKERS smoke twice for
+  AGEM AMUN SGOL passed, all manifests/counts valid, production API unchanged.
+- Last Aberdeen suite 46 pass / 152 assertions; Goldman-Sachs 52 / 434.
+- VanEck baseline has one known GDX Weight assertion mismatch (10.89% vs 11.09%).
+  Record separately from new regressions; do not change unrelated data/tests.
+- Bun transpilation is not semantic TypeScript checking.
 
-TICKER QUEUE ROLLOUT STATUS
-{
-  "Amplify": "not-affected",
-  "Fidelity": "not-affected",
-  "Franklin": "not-affected",
-  "Global-X": "merged",
-  "Goldman-Sachs": "merged",
-  "Invesco": "not-affected",
-  "iShares": "not-affected",
-  "JPMorgan": "merged",
-  "Neos": "merged",
-  "ProShares": "merged",
-  "Schwab": "merged",
-  "SPDR": "not-affected",
-  "VanEck": "merged",
-  "Vanguard": "not-affected",
-  "WisdomTree": "merged"
-}
-
-CURRENT FOLLOW-UP ARTIFACTS
-return-row-rollout.json: {"Amplify": "not-affected", "Fidelity": "not-affected", "Franklin": "not-affected", "Global-X": "not-affected", "Goldman-Sachs": "merged", "Invesco": "not-affected", "iShares": "not-affected", "JPMorgan": "not-affected", "Neos": "not-affected", "ProShares": "not-affected", "Schwab": "not-affected", "SPDR": "not-affected", "VanEck": "not-affected", "Vanguard": "not-affected", "WisdomTree": "not-affected", "aberdeen": "not-affected"}
-aberdeen-metadata.json: "verified"
-live-smoke.json: "completed"
+HEADER ROLLOUT
+{}
 
 NEXT ACTION
-Owner may review Aberdeen PR #1; do not merge without new authorization. For future ETF implementations, apply the four exact replacements in .plans/follow-up-plan-amendments.md before coding. Do not repeat merged sibling fixes.
+Finish header variants/Pages audit; establish baseline tests and shared accessible hover panel design before production edits.
 
 === FACTUAL JOURNAL (append only) ===
 
@@ -451,6 +415,20 @@ builds and git diff --check passed. No runtime/API/UI change in Aberdeen this tu
 Sibling READMEs/About untouched per selected scope. Aberdeen PR #1 remains open.
 No requested task remains pending; only owner review/merge/deployment is outside
 this authorization. No tsc/tsconfig/dependencies or secrets added.
+
+
+--- CHECKPOINT ---
+New user request explicitly authorizes header UI PRs and merges in all ETF
+repos. Requested full provenance/context only on ETF-count hover; subtitle
+only selected-count + clickable tickers, empty when nothing selected.
+Read and verified current canonical worklog, local/remote HEAD and PR state.
+Workspace restore lost only executable mode/config; restored tracked executable
+bit and Git remote/identity without changing source. Original Aberdeen PR #1
+is still OPEN and main still Initial commit despite a working Pages screenshot.
+Do not merge the whole implementation implicitly: audit Pages source and land
+Aberdeen header as a separate PR to its actual feature/deployment branch.
+Started fresh clones and header audit across all 16 repositories. Preserve
+source links/context and selection interactions; no data refresh.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1498,6 +1476,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
