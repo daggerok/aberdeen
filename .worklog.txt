@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: bed89e531a532b1436599c2f76e45a820aaec59f.
+Last confirmed pushed SHA before this checkpoint: 74493d295be1f5cc350c403e4e06df7a6334eb68.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -89,7 +89,7 @@ HEADER ROLLOUT
   "Goldman-Sachs": "merged",
   "Invesco": "merged",
   "iShares": "merged",
-  "JPMorgan": "pr-created",
+  "JPMorgan": "merged",
   "Neos": "validated",
   "ProShares": "validated",
   "Schwab": "validated",
@@ -708,6 +708,14 @@ JPMorgan
 PR created: https://github.com/daggerok/JPMorgan/pull/19
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+JPMorgan
+MERGED https://github.com/daggerok/JPMorgan/pull/19
+GitHub-confirmed merge commit 54338eaf4ccbaacfe9f730c47d039488ce3c112b.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1755,6 +1763,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4929,7 +4938,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4978,7 +4987,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/JPMorgan/pull/19",
-    "number": 19
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "54338eaf4ccbaacfe9f730c47d039488ce3c112b"
   },
   "Neos": {
     "baseBranch": "main",

@@ -399,7 +399,7 @@
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -448,7 +448,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/JPMorgan/pull/19",
-    "number": 19
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "54338eaf4ccbaacfe9f730c47d039488ce3c112b"
   },
   "Neos": {
     "baseBranch": "main",
