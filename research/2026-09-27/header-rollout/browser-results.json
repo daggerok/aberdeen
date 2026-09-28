@@ -1,0 +1,276 @@
+{
+  "Amplify": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Fidelity": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Franklin": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Global-X": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Goldman-Sachs": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Invesco": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "iShares": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss",
+      "uploaded-file"
+    ]
+  },
+  "JPMorgan": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Neos": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "ProShares": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Schwab": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "SPDR": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "VanEck": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "Vanguard": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss",
+      "uploaded-file"
+    ]
+  },
+  "WisdomTree": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  },
+  "aberdeen": {
+    "status": "passed",
+    "cases": [
+      "empty",
+      "hover",
+      "pointer-to-panel",
+      "focus",
+      "Escape",
+      "two-selected",
+      "ticker-activation",
+      "detail-context",
+      "all-selected",
+      "deselect/clear",
+      "narrow/dark",
+      "touch/outside-dismiss"
+    ]
+  }
+}
