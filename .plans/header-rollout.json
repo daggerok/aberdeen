@@ -513,7 +513,7 @@
     "baseBranch": "main",
     "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -560,7 +560,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/ProShares/pull/19",
+    "number": 19
   },
   "Schwab": {
     "baseBranch": "main",

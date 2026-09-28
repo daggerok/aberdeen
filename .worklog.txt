@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 35cc85b59019f69f19b73e385ed3c303cc234639.
+Last confirmed pushed SHA before this checkpoint: 98c46498d02f3710ccc7d8ec4ef1abeaec529e13.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -91,7 +91,7 @@ HEADER ROLLOUT
   "iShares": "merged",
   "JPMorgan": "merged",
   "Neos": "merged",
-  "ProShares": "code-pushed",
+  "ProShares": "pr-created",
   "Schwab": "validated",
   "SPDR": "validated",
   "VanEck": "validated",
@@ -745,6 +745,13 @@ ProShares
 Header UI and four regression tests committed/pushed: 512b1fed45d9c0ed8166e837da805bfce60ff216.
 Bun tests: 70 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+ProShares
+PR created: https://github.com/daggerok/ProShares/pull/19
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1792,6 +1799,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5085,7 +5093,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5132,7 +5140,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/ProShares/pull/19",
+    "number": 19
   },
   "Schwab": {
     "baseBranch": "main",
