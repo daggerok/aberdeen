@@ -115,7 +115,7 @@
     "baseBranch": "main",
     "baseSha": "9c00bdfe3099098b78ef33a8eb24cd45dd0c7821",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -162,7 +162,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Franklin/pull/20",
+    "number": 20
   },
   "Global-X": {
     "baseBranch": "main",
