@@ -456,7 +456,7 @@
     "baseBranch": "main",
     "baseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -495,7 +495,15 @@
       "status": "passed",
       "selected": "2 selected: BNDI, BTCI",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "1d8c89199449eb6c27d2cb86dd75f200fb1c7925",
+    "headSha": "266fa65c73455dd70f64f6a490862fafdc44d495",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "ProShares": {
     "baseBranch": "main",
