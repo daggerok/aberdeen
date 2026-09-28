@@ -286,7 +286,7 @@
     "baseBranch": "main",
     "baseSha": "2451cb73a45bf1156dd92d48571396cbdb091118",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -333,7 +333,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Invesco/pull/22",
+    "number": 22
   },
   "iShares": {
     "baseBranch": "main",
