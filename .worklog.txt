@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 94f9558e51b77ebff8bf7ea98596596f2c1d5b3f.
+Last confirmed pushed SHA before this checkpoint: bed89e531a532b1436599c2f76e45a820aaec59f.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -89,7 +89,7 @@ HEADER ROLLOUT
   "Goldman-Sachs": "merged",
   "Invesco": "merged",
   "iShares": "merged",
-  "JPMorgan": "code-pushed",
+  "JPMorgan": "pr-created",
   "Neos": "validated",
   "ProShares": "validated",
   "Schwab": "validated",
@@ -701,6 +701,13 @@ JPMorgan
 Header UI and four regression tests committed/pushed: c82d35e47c8fd3576ba51b27a4dc3b7b8b090e7a.
 Bun tests: 116 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+JPMorgan
+PR created: https://github.com/daggerok/JPMorgan/pull/19
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1748,6 +1755,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4921,7 +4929,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4968,7 +4976,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/JPMorgan/pull/19",
+    "number": 19
   },
   "Neos": {
     "baseBranch": "main",

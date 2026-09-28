@@ -399,7 +399,7 @@
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -446,7 +446,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/JPMorgan/pull/19",
+    "number": 19
   },
   "Neos": {
     "baseBranch": "main",
