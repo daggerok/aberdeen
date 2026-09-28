@@ -229,7 +229,7 @@
     "baseBranch": "main",
     "baseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -276,7 +276,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Goldman-Sachs/pull/16",
+    "number": 16
   },
   "Invesco": {
     "baseBranch": "main",
