@@ -856,9 +856,9 @@
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",
-    "baseSha": "283109c3a8a2108a9271f50f4e0af50e6b2284a1",
+    "baseSha": "52a3eb3f481df33ace515c674561b1d3ff3c4a88",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -903,6 +903,14 @@
       "status": "passed",
       "selected": "2 selected: AGEM, SIVR",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "283109c3a8a2108a9271f50f4e0af50e6b2284a1",
+    "headSha": "bfcd9c4cc88c503498793b8642230366cf7565bc",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   }
 }

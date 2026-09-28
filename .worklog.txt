@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: be08f789163013afb37c779d20c72f1bedd60d26.
+Last confirmed pushed SHA before this checkpoint: 67a6b83dabfe1a365684a7d8510e42a6caebcbee.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -97,7 +97,7 @@ HEADER ROLLOUT
   "VanEck": "merged",
   "Vanguard": "merged",
   "WisdomTree": "merged",
-  "aberdeen": "validated"
+  "aberdeen": "code-pushed"
 }
 
 NEXT ACTION
@@ -870,6 +870,13 @@ MERGED https://github.com/daggerok/WisdomTree/pull/28
 GitHub-confirmed merge commit a2be20eee7bb2eb7e7f20325831cbbffd2ebb3c0.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+aberdeen
+Header UI and four regression tests committed/pushed: bfcd9c4cc88c503498793b8642230366cf7565bc.
+Bun tests: 50 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1917,6 +1924,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5570,9 +5578,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
   },
   "aberdeen": {
     "baseBranch": "feat/aberdeen-plan-recovery",
-    "baseSha": "283109c3a8a2108a9271f50f4e0af50e6b2284a1",
+    "baseSha": "52a3eb3f481df33ace515c674561b1d3ff3c4a88",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 1,
       "summary": [
@@ -5617,7 +5625,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: AGEM, SIVR",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "283109c3a8a2108a9271f50f4e0af50e6b2284a1",
+    "headSha": "bfcd9c4cc88c503498793b8642230366cf7565bc",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   }
 }
 
