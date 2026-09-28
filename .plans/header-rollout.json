@@ -229,7 +229,7 @@
     "baseBranch": "main",
     "baseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -278,7 +278,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Goldman-Sachs/pull/16",
-    "number": 16
+    "number": 16,
+    "merged": true,
+    "mergeCommit": "a593830b74ff25bf9c75ba87d7e670c6eed3905d"
   },
   "Invesco": {
     "baseBranch": "main",
