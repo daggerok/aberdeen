@@ -3,7 +3,7 @@
     "baseBranch": "main",
     "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
     "source": "index.html",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -41,7 +41,14 @@
       "status": "passed",
       "selected": "2 selected: DIVO, SILJ",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "headSha": "85b33c5c5aef9a91e539ee9d2005f24531dfb492",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Fidelity": {
     "baseBranch": "main",

@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: b1e59ad27b7446ec1a9f1bece80d0aa4b85309ec.
+Last confirmed pushed SHA before this checkpoint: 52a3eb3f481df33ace515c674561b1d3ff3c4a88.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -82,7 +82,7 @@ PRIOR COMPLETED WORK (do not repeat)
 
 HEADER ROLLOUT
 {
-  "Amplify": "validated",
+  "Amplify": "code-pushed",
   "Fidelity": "validated",
   "Franklin": "validated",
   "Global-X": "validated",
@@ -540,6 +540,13 @@ for those harness issues. Chromium OS dependencies installed only in sandbox.
 Evidence and screenshots tracked in research/2026-09-27/header-rollout.
 No API/updater/dependency changes. Ready for scoped header PRs and SHA-guarded
 merges; Aberdeen base is verified Pages feature branch, not main/PR #1.
+
+
+--- CHECKPOINT ---
+Amplify
+Header UI and four regression tests committed/pushed: 85b33c5c5aef9a91e539ee9d2005f24531dfb492.
+Bun tests: 5 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1587,6 +1594,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4342,7 +4350,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
     "source": "index.html",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4380,7 +4388,14 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: DIVO, SILJ",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "57309bf6924c4c2e2a8b6c2dd6146767b31794c6",
+    "headSha": "85b33c5c5aef9a91e539ee9d2005f24531dfb492",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ]
   },
   "Fidelity": {
     "baseBranch": "main",
