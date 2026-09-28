@@ -627,7 +627,7 @@
     "baseBranch": "main",
     "baseSha": "f6e5926d8e6eb3eb1b37feb477a7d9ed8067fe57",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -674,7 +674,9 @@
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/SPDR/pull/32",
+    "number": 32
   },
   "VanEck": {
     "baseBranch": "main",
