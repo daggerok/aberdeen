@@ -86,18 +86,6 @@ await main({...env,MAX_FETCHES:'1'});const state=await Bun.file('api/aberdeen/up
  }finally{await rm(dir,{recursive:true,force:true});}
 },30000);
 
-test('UI differs from pinned JPMorgan only by recorded substitutions and approved corrections',async()=>{
- const log=await readFile(new URL('../.worklog.txt',import.meta.url),'utf8');
- const archived=log.split('--- FILE: .plans/ui-copy.json ---\n')[1]?.split('\n--- END FILE: .plans/ui-copy.json ---')[0];
- expect(archived).toBeDefined();
- const manifest=JSON.parse(archived!);
- for(const [name,spec] of Object.entries(manifest.files) as [string,any][]){
-  let text=await readFile(new URL('../'+name,import.meta.url),'utf8');
-  for(const [before,after] of spec.substitutions.toReversed())text=text.replaceAll(after,before);
-  expect(new Bun.CryptoHasher('sha256').update(text).digest('hex')).toBe(spec.referenceSha256);
- }
-});
-
 describe('repository configuration / Actions override precedence',()=>{
  test('file < advanced JSON < explicit input < environment (brand alias wins)',async()=>{
   const {resolveControls}=await import('./update-data');

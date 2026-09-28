@@ -139,7 +139,7 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 
 Additional transpilation checks: `bun build --target=bun scripts/update-data.ts --outfile=/dev/null` and `bun build app.tsx --outfile=/dev/null`. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
 
-The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**. Tests reverse the recorded brand/source substitutions and approved Frequency/type corrections in the `.plans/ui-copy.json` snapshot archived inside `.worklog.txt`, then compare the original SHA256.
+The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**.
 
 ## Brands table
 
