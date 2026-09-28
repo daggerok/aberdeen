@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 73e97ac04809daec1f1a152d3aa2ea53bd43bab7.
+Last confirmed pushed SHA before this checkpoint: 1e7bcec9c0b010a30701ec892571a7006d3af016.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -85,7 +85,7 @@ HEADER ROLLOUT
   "Amplify": "merged",
   "Fidelity": "merged",
   "Franklin": "merged",
-  "Global-X": "pr-created",
+  "Global-X": "merged",
   "Goldman-Sachs": "validated",
   "Invesco": "validated",
   "iShares": "validated",
@@ -620,6 +620,14 @@ Global-X
 PR created: https://github.com/daggerok/Global-X/pull/7
 Verified exact remote file diff and head SHA; base main.
 Next: check remote checks/statuses then authorized SHA-guarded merge.
+
+
+--- CHECKPOINT ---
+Global-X
+MERGED https://github.com/daggerok/Global-X/pull/7
+GitHub-confirmed merge commit 6a0966ca5b03bb47e42196126c8d85c2d7cc9177.
+Only reviewed header/test files; no branch-protection bypass.
+Default branch updated; journal pushed separately.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1667,6 +1675,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4602,7 +4611,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4651,7 +4660,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Global-X/pull/7",
-    "number": 7
+    "number": 7,
+    "merged": true,
+    "mergeCommit": "6a0966ca5b03bb47e42196126c8d85c2d7cc9177"
   },
   "Goldman-Sachs": {
     "baseBranch": "main",

@@ -172,7 +172,7 @@
     "baseBranch": "main",
     "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -221,7 +221,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Global-X/pull/7",
-    "number": 7
+    "number": 7,
+    "merged": true,
+    "mergeCommit": "6a0966ca5b03bb47e42196126c8d85c2d7cc9177"
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
