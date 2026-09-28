@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 283109c3a8a2108a9271f50f4e0af50e6b2284a1.
+Last confirmed pushed SHA before this checkpoint: 954ba0390770afd9bb036cd6b0861aa522e879fd.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -504,6 +504,20 @@ Other suites pass except known VanEck GDX weight failure. No fake baseline fixes
 Existing detailed renderers will be retained; their DOM nodes moved intact to
 a hidden panel. Compact selected links reuse activation functions; hover/focus,
 click/touch, Escape and viewport positioning are shared across all 16.
+
+
+--- CHECKPOINT ---
+Shared header implementation prepared in all 16 disposable branches. Existing
+renderers retained under *Details names; wrappers move original nodes/listeners
+into a hidden rich panel and show only sorted selected links. Four actual-helper
+Bun tests added per repo. Keyboard/pointer/click panel logic shared verbatim.
+Exact planned Aberdeen app/index substitutions added to canonical embedded
+ui-copy.json archive; standalone manifest remains deleted per owner cleanup.
+Parity guard updated in header PR to read that archive. Current owner baseline
+has missing-file failure until that guard lands; do not restore deleted files.
+Both plans now contain mandatory shared header exception after item 8. Exact
+find/replace text: .plans/header-plan-amendments.md. No runtime data changes.
+Next verify all suites plus real browser DOM interactions before publication.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1588,6 +1602,7 @@ ended up using.
 
 
 
+
 === REFERENCE SNAPSHOTS (current text; legacy history retained) ===
 
 --- FILE: .plans/00-generic.txt ---
@@ -1748,6 +1763,29 @@ shows they differ in EXACTLY these things and nothing else:
      instead of adding it unilaterally.
   8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
      copy (point 5's "<Trust name>, CIK <number>").
+
+MANDATORY SHARED HEADER RULE — explicit user-approved exception to the
+copy-verbatim restrictions below; apply this identically to every ETF brand:
+- Keep the brand title and the existing count badge next to the theme button.
+- Move the entire former detailed subtitle (instructions/context, update time,
+  ETF/holdings/history counts, Data/API link, provider links and fallback/source
+  attribution) into a hidden rich panel attached to that count badge. Preserve
+  the real links and all per-view messages; do not flatten them into title text.
+- Show the panel on mouse hover and keyboard focus. Allow pointer movement into
+  it and link interaction; provide touch/click access, Escape dismissal and
+  viewport-safe positioning in light/dark themes. No always-visible detail line.
+- With no selection, the visible subtitle is empty (no "0 selected" or help).
+  Otherwise show ONLY "N selected: TICKER1, TICKER2", sorted alphabetically,
+  with clickable bold ticker links and the active ticker highlighted. Apply
+  this even when all ETFs are selected. Clicks must not deselect the fund.
+- Preserve existing renderer/context and selection/tab/search/export/blacklist
+  behavior. Handle every path: zero/some/all, clear/deselect/blacklist, restored
+  selection, per-fund progress and uploaded-file mode where supported.
+- Record exact UI parity substitutions in the active manifest or its canonical
+  .worklog.txt archive. Add regression tests and browser checks for selection,
+  retained source links, hover-to-panel, keyboard/Escape, touch and narrow screens.
+- This is a header-presentation exception only: do not alter financial data,
+  updater behavior, table layout or unrelated interactions.
 
 Explicit user-approved type-safety exception (TS2345): if withTickerChain<T>
 stores work.catch(() => undefined) in Map<string, Promise<void>>, replace that
@@ -2407,6 +2445,29 @@ shows they differ in EXACTLY these things and nothing else:
      instead of adding it unilaterally.
   8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
      copy (point 5's "<Trust name>, CIK <number>").
+
+MANDATORY SHARED HEADER RULE — explicit user-approved exception to the
+copy-verbatim restrictions below; apply this identically to every ETF brand:
+- Keep the brand title and the existing count badge next to the theme button.
+- Move the entire former detailed subtitle (instructions/context, update time,
+  ETF/holdings/history counts, Data/API link, provider links and fallback/source
+  attribution) into a hidden rich panel attached to that count badge. Preserve
+  the real links and all per-view messages; do not flatten them into title text.
+- Show the panel on mouse hover and keyboard focus. Allow pointer movement into
+  it and link interaction; provide touch/click access, Escape dismissal and
+  viewport-safe positioning in light/dark themes. No always-visible detail line.
+- With no selection, the visible subtitle is empty (no "0 selected" or help).
+  Otherwise show ONLY "N selected: TICKER1, TICKER2", sorted alphabetically,
+  with clickable bold ticker links and the active ticker highlighted. Apply
+  this even when all ETFs are selected. Clicks must not deselect the fund.
+- Preserve existing renderer/context and selection/tab/search/export/blacklist
+  behavior. Handle every path: zero/some/all, clear/deselect/blacklist, restored
+  selection, per-fund progress and uploaded-file mode where supported.
+- Record exact UI parity substitutions in the active manifest or its canonical
+  .worklog.txt archive. Add regression tests and browser checks for selection,
+  retained source links, hover-to-panel, keyboard/Escape, touch and narrow screens.
+- This is a header-presentation exception only: do not alter financial data,
+  updater behavior, table layout or unrelated interactions.
 
 Explicit user-approved type-safety exception (TS2345): if withTickerChain<T>
 stores work.catch(() => undefined) in Map<string, Promise<void>>, replace that
@@ -4206,6 +4267,52 @@ or merge an otherwise unapproved PR just to make the badge appear.
 
 --- END FILE: .plans/frequency-rollout.json ---
 
+--- FILE: .plans/header-plan-amendments.md ---
+# Заголовок и подсказка счётчика: точная поправка к планам
+
+Уже применено в `.plans/00-generic.txt` и `.plans/02-aberdeen.txt`.
+Для остальных планов найдите пункт 8 в **THE #1 RULE**, затем выполните замену ниже.
+Явное исключение имеет приоритет над старым запретом любых иных UI-изменений.
+
+## Найти
+
+```text
+  8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
+     copy (point 5's "<Trust name>, CIK <number>").
+```
+
+## Заменить на
+
+```text
+  8. The SEC EDGAR Trust name / CIK / provider name baked into user-facing
+     copy (point 5's "<Trust name>, CIK <number>").
+
+MANDATORY SHARED HEADER RULE — explicit user-approved exception to the
+copy-verbatim restrictions below; apply this identically to every ETF brand:
+- Keep the brand title and the existing count badge next to the theme button.
+- Move the entire former detailed subtitle (instructions/context, update time,
+  ETF/holdings/history counts, Data/API link, provider links and fallback/source
+  attribution) into a hidden rich panel attached to that count badge. Preserve
+  the real links and all per-view messages; do not flatten them into title text.
+- Show the panel on mouse hover and keyboard focus. Allow pointer movement into
+  it and link interaction; provide touch/click access, Escape dismissal and
+  viewport-safe positioning in light/dark themes. No always-visible detail line.
+- With no selection, the visible subtitle is empty (no "0 selected" or help).
+  Otherwise show ONLY "N selected: TICKER1, TICKER2", sorted alphabetically,
+  with clickable bold ticker links and the active ticker highlighted. Apply
+  this even when all ETFs are selected. Clicks must not deselect the fund.
+- Preserve existing renderer/context and selection/tab/search/export/blacklist
+  behavior. Handle every path: zero/some/all, clear/deselect/blacklist, restored
+  selection, per-fund progress and uploaded-file mode where supported.
+- Record exact UI parity substitutions in the active manifest or its canonical
+  .worklog.txt archive. Add regression tests and browser checks for selection,
+  retained source links, hover-to-panel, keyboard/Escape, touch and narrow screens.
+- This is a header-presentation exception only: do not alter financial data,
+  updater behavior, table layout or unrelated interactions.
+```
+
+--- END FILE: .plans/header-plan-amendments.md ---
+
 --- FILE: .plans/header-rollout.json ---
 {
   "Amplify": {
@@ -5902,6 +6009,10 @@ or merge an otherwise unapproved PR just to make the badge appear.
         [
           "  holdingsChains.set(ticker, work.catch(() => undefined));",
           "  holdingsChains.set(ticker, work.then(() => undefined, () => undefined));"
+        ],
+        [
+          "function renderSubtitle(text?: string): void {\n  const generated = state.generatedAt ? new Date(state.generatedAt).toLocaleString() : '';\n  const countsText = state.counts\n    ? `${state.counts.funds} ETFs \u00b7 ${(state.counts.holdings || 0).toLocaleString('en-US')} holdings rows \u00b7 ${(state.counts.history || 0).toLocaleString('en-US')} history rows`\n    : '';\n  const base = text ? String(text) : 'Search abrdn ETFs, select ETFs via the \u201cUse\u201d checkbox, then use the Watchlist tab.';\n  // Selected ETF count and clickable ticker badges (active fund highlighted);\n  // re-rendered by every selection writer so the count never lags.\n  const selectedCount = state.selected.size;\n  let selectionItem = '';\n  if (selectedCount > 0) {\n    const catalogFunds = state.funds.filter(fund => !state.blacklist.has(fund.ticker));\n    if (catalogFunds.length > 0 && catalogFunds.length === selectedCount && catalogFunds.every(fund => state.selected.has(fund.ticker))) {\n      selectionItem = ` \u00b7 All ${catalogFunds.length} ETFs selected`;\n    } else {\n      const badges = [...state.selected].sort().map(ticker => {\n        const isActive = ticker === state.activeFundTicker;\n        return `<a href=\"javascript:void(0)\" data-activate-fund=\"${escapeHtml(ticker)}\" title=\"View ${escapeHtml(ticker)} details\" class=\"font-semibold ${isActive ? 'text-blue-700 dark:text-blue-300 underline' : 'text-blue-600 dark:text-blue-400 hover:underline'}\">${escapeHtml(ticker)}</a>`;\n      }).join(', ');\n      selectionItem = ` \u00b7 ${selectedCount} selected: ${badges}`;\n    }\n  }\n  el.subtitle.innerHTML = `\n    <span class=\"block sm:inline\">${escapeHtml(base)}${selectionItem}</span>\n    <span class=\"block sm:inline\">\u00b7${generated ? ` updated ${escapeHtml(generated)}` : ''}${countsText ? ` \u00b7 ${escapeHtml(countsText)}.` : '.'} Data: <a href=\"./api/aberdeen/index.json\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">api/aberdeen/index.json</a> generated from <a href=\"https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">aberdeeninvestments.com ETF fund data</a> + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)</span>\n  `;\n  el.subtitle.querySelectorAll('a[data-activate-fund]').forEach((link: any) => {\n    link.addEventListener('click', () => activateFund(link.dataset.activateFund || ''));\n  });\n}",
+          "function renderHeaderSummary(subtitle: HTMLElement, tickers: Iterable<string>, activeTicker: string | null, activate: (ticker: string) => void): void {\n  const panel = document.getElementById('app-summary');\n  if (!panel) return;\n  // Move existing nodes: provenance links and their handlers remain intact.\n  panel.replaceChildren(...Array.from(subtitle.childNodes));\n  subtitle.replaceChildren();\n  const selected = [...tickers].sort();\n  if (!selected.length) return;\n  subtitle.append(document.createTextNode(`${selected.length} selected: `));\n  selected.forEach((ticker, index) => {\n    if (index) subtitle.append(document.createTextNode(', '));\n    const link = document.createElement('a');\n    link.href = '#';\n    link.dataset.headerFund = ticker;\n    link.title = `View ${ticker} details`;\n    link.className = `font-semibold ${ticker === activeTicker ? 'text-blue-700 dark:text-blue-300 underline' : 'text-blue-600 dark:text-blue-400 hover:underline'}`;\n    link.textContent = ticker;\n    link.addEventListener('click', event => { event.preventDefault(); activate(ticker); });\n    subtitle.append(link);\n  });\n}\n\nfunction renderSubtitleDetails(text?: string): void {\n  const generated = state.generatedAt ? new Date(state.generatedAt).toLocaleString() : '';\n  const countsText = state.counts\n    ? `${state.counts.funds} ETFs \u00b7 ${(state.counts.holdings || 0).toLocaleString('en-US')} holdings rows \u00b7 ${(state.counts.history || 0).toLocaleString('en-US')} history rows`\n    : '';\n  const base = text ? String(text) : 'Search abrdn ETFs, select ETFs via the \u201cUse\u201d checkbox, then use the Watchlist tab.';\n  // Selected ETF count and clickable ticker badges (active fund highlighted);\n  // re-rendered by every selection writer so the count never lags.\n  const selectedCount = state.selected.size;\n  let selectionItem = '';\n  if (selectedCount > 0) {\n    const catalogFunds = state.funds.filter(fund => !state.blacklist.has(fund.ticker));\n    if (catalogFunds.length > 0 && catalogFunds.length === selectedCount && catalogFunds.every(fund => state.selected.has(fund.ticker))) {\n      selectionItem = ` \u00b7 All ${catalogFunds.length} ETFs selected`;\n    } else {\n      const badges = [...state.selected].sort().map(ticker => {\n        const isActive = ticker === state.activeFundTicker;\n        return `<a href=\"javascript:void(0)\" data-activate-fund=\"${escapeHtml(ticker)}\" title=\"View ${escapeHtml(ticker)} details\" class=\"font-semibold ${isActive ? 'text-blue-700 dark:text-blue-300 underline' : 'text-blue-600 dark:text-blue-400 hover:underline'}\">${escapeHtml(ticker)}</a>`;\n      }).join(', ');\n      selectionItem = ` \u00b7 ${selectedCount} selected: ${badges}`;\n    }\n  }\n  el.subtitle.innerHTML = `\n    <span class=\"block sm:inline\">${escapeHtml(base)}${selectionItem}</span>\n    <span class=\"block sm:inline\">\u00b7${generated ? ` updated ${escapeHtml(generated)}` : ''}${countsText ? ` \u00b7 ${escapeHtml(countsText)}.` : '.'} Data: <a href=\"./api/aberdeen/index.json\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">api/aberdeen/index.json</a> generated from <a href=\"https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">aberdeeninvestments.com ETF fund data</a> + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)</span>\n  `;\n  el.subtitle.querySelectorAll('a[data-activate-fund]').forEach((link: any) => {\n    link.addEventListener('click', () => activateFund(link.dataset.activateFund || ''));\n  });\n}\n\nfunction renderSubtitle(text?: string): void {\n  renderSubtitleDetails(text);\n  renderHeaderSummary(el.subtitle, state.selected, state.activeFundTicker, activateFund);\n}"
         ]
       ]
     },
@@ -5955,6 +6066,22 @@ or merge an otherwise unapproved PR just to make the badge appear.
         [
           " + SEC EDGAR N-PORT-P + Yahoo Finance (fallbacks)",
           " + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)"
+        ],
+        [
+          "<span id=\"app-subtitle\" class=\"basis-full sm:basis-auto text-sm text-slate-500 dark:text-slate-400\">\n          Search abrdn ETFs, select ETFs via the \u201cUse\u201d checkbox, then use the Watchlist tab. Data comes from\n          <a href=\"./api/aberdeen/index.json\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">api/aberdeen/index.json</a> generated from\n          <a href=\"https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">aberdeeninvestments.com ETF fund data</a> + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)\n        </span>",
+          "<span id=\"app-subtitle\" class=\"basis-full sm:basis-auto text-sm text-slate-500 dark:text-slate-400\"></span>"
+        ],
+        [
+          "<span id=\"ticker-count\" class=\"bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-sm font-semibold px-3.5 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/30\">\n          Loading\u2026\n        </span>",
+          "<button type=\"button\" aria-controls=\"app-summary\" aria-expanded=\"false\" aria-label=\"ETF catalog information\" id=\"ticker-count\" class=\"bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-sm font-semibold px-3.5 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/30\">\n          Loading\u2026\n        </button>\n        <span id=\"app-summary\" role=\"region\" aria-label=\"ETF catalog information\" hidden>\n          Search abrdn ETFs, select ETFs via the \u201cUse\u201d checkbox, then use the Watchlist tab. Data comes from\n          <a href=\"./api/aberdeen/index.json\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">api/aberdeen/index.json</a> generated from\n          <a href=\"https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold text-blue-600 dark:text-blue-400 hover:underline\">aberdeeninvestments.com ETF fund data</a> + SEC EDGAR N-PORT-P (per-fund registrant \u2014 holdings fallback only) + Yahoo Finance (history/dividend fallback)\n        </span>"
+        ],
+        [
+          "</head>",
+          "<style id=\"catalog-summary-styles\">\n    #app-subtitle:empty { display: none; }\n    #ticker-count { cursor: help; font-family: inherit; }\n    #ticker-count:focus-visible { outline: 2px solid #3b82f6; outline-offset: 3px; }\n    #app-summary[hidden] { display: none; }\n    #app-summary {\n      position: fixed; z-index: 100; display: block;\n      width: min(42rem, calc(100vw - 2rem)); max-height: min(70vh, 32rem);\n      overflow: auto; overflow-wrap: anywhere; padding: 1rem;\n      border: 1px solid #cbd5e1; border-radius: .75rem;\n      background: #fff; color: #334155; font-size: .875rem; line-height: 1.5;\n      box-shadow: 0 12px 30px rgb(15 23 42 / .2);\n    }\n    .dark #app-summary { background: #0f172a; color: #cbd5e1; border-color: #475569; }\n  </style>\n</head>"
+        ],
+        [
+          "</body>",
+          "<script id=\"catalog-summary-behavior\">\n    (() => {\n      const trigger = document.getElementById('ticker-count');\n      const panel = document.getElementById('app-summary');\n      if (!trigger || !panel) return;\n      let pinned = false;\n      let closeTimer;\n      const position = () => {\n        const rect = trigger.getBoundingClientRect();\n        panel.style.left = `${Math.max(16, Math.min(rect.right - panel.offsetWidth, innerWidth - panel.offsetWidth - 16))}px`;\n        panel.style.top = `${Math.max(16, Math.min(rect.bottom + 8, innerHeight - panel.offsetHeight - 16))}px`;\n      };\n      const show = () => {\n        clearTimeout(closeTimer);\n        panel.hidden = false;\n        trigger.setAttribute('aria-expanded', 'true');\n        position();\n      };\n      const hide = () => {\n        clearTimeout(closeTimer);\n        panel.hidden = true;\n        trigger.setAttribute('aria-expanded', 'false');\n      };\n      const scheduleHide = () => {\n        clearTimeout(closeTimer);\n        closeTimer = setTimeout(() => {\n          const focused = document.activeElement;\n          if (!pinned && !trigger.matches(':hover') && !panel.matches(':hover') &&\n              focused !== trigger && !panel.contains(focused)) hide();\n        }, 150);\n      };\n      trigger.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(); });\n      panel.addEventListener('pointerenter', () => clearTimeout(closeTimer));\n      trigger.addEventListener('pointerleave', scheduleHide);\n      panel.addEventListener('pointerleave', scheduleHide);\n      trigger.addEventListener('focus', show);\n      panel.addEventListener('focusin', show);\n      trigger.addEventListener('blur', scheduleHide);\n      panel.addEventListener('focusout', scheduleHide);\n      trigger.addEventListener('click', () => { pinned = !pinned; if (pinned) show(); else hide(); });\n      document.addEventListener('keydown', event => {\n        if (event.key !== 'Escape') return;\n        pinned = false;\n        if (panel.contains(document.activeElement)) trigger.focus();\n        hide();\n      });\n      document.addEventListener('pointerdown', event => {\n        if (!trigger.contains(event.target) && !panel.contains(event.target)) { pinned = false; hide(); }\n      });\n      addEventListener('resize', () => { if (!panel.hidden) position(); });\n      addEventListener('scroll', () => { if (!panel.hidden) position(); }, { passive: true });\n      if (typeof ResizeObserver === 'function') new ResizeObserver(() => { if (!panel.hidden) position(); }).observe(panel);\n    })();\n  </script>\n</body>"
         ]
       ]
     }
@@ -5964,6 +6091,9 @@ or merge an otherwise unapproved PR just to make the badge appear.
   ],
   "approvedTypeCorrections": [
     "User-requested TS2345 correction: normalize both outcomes of the internal per-ticker queue to undefined (assignable to Promise<void>), while returning the original Promise<T> to callers. No type suppression or weakened map type."
+  ],
+  "approvedHeaderCorrections": [
+    "User authorized shared header change: existing detailed renderer/context/source links move into count hover/focus panel; visible subtitle only sorted selected ticker links or empty. Exact replacements below preserve all other UI."
   ]
 }
 
