@@ -513,7 +513,7 @@
     "baseBranch": "main",
     "baseSha": "f88a13605014f2a190a97c572e53120d8799876b",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -562,7 +562,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/ProShares/pull/19",
-    "number": 19
+    "number": 19,
+    "merged": true,
+    "mergeCommit": "e20f7162ba90d4c7202a5f4e25cd527af3069f33"
   },
   "Schwab": {
     "baseBranch": "main",
