@@ -229,7 +229,7 @@
     "baseBranch": "main",
     "baseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -268,7 +268,15 @@
       "status": "passed",
       "selected": "2 selected: AAAU, GBIL",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "e99f649a199341c0a4fd23b8516328a366208be9",
+    "headSha": "3c6641e03f6f3b2deb071cd99e5bb7594aaa9630",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Invesco": {
     "baseBranch": "main",
