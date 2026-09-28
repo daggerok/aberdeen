@@ -58,7 +58,7 @@
     "baseBranch": "main",
     "baseSha": "69e97b99cb0bcc16471f285f02cf2e2790da05b0",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -107,7 +107,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Fidelity/pull/21",
-    "number": 21
+    "number": 21,
+    "merged": true,
+    "mergeCommit": "a0d2b297bea6ecab02a011ccf0c5798ec4b7facb"
   },
   "Franklin": {
     "baseBranch": "main",
