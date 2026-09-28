@@ -172,7 +172,7 @@
     "baseBranch": "main",
     "baseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -211,7 +211,15 @@
       "status": "passed",
       "selected": "2 selected: AGNG, AIQ",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "4c917b109f40d73b0772ba7732c18303dd00e55d",
+    "headSha": "dcd75ba91fab4ab32624c0ca5e8fb34cef73c48e",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Goldman-Sachs": {
     "baseBranch": "main",
