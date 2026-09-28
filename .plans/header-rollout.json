@@ -745,7 +745,7 @@
     "baseBranch": "main",
     "baseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
     "source": "index.html",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -784,7 +784,14 @@
       "status": "passed",
       "selected": "2 selected: BIV, BLV",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "0846e819d7ec153027175a6d29f1d1489566f17e",
+    "headSha": "bda2a96edcfddab3cf0fb7723cd4776060897c16",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ]
   },
   "WisdomTree": {
     "baseBranch": "main",
