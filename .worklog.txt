@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: c70aa339bb0d2a767d999e717074c91a7aa9ad29.
+Last confirmed pushed SHA before this checkpoint: 94f9558e51b77ebff8bf7ea98596596f2c1d5b3f.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -89,7 +89,7 @@ HEADER ROLLOUT
   "Goldman-Sachs": "merged",
   "Invesco": "merged",
   "iShares": "merged",
-  "JPMorgan": "validated",
+  "JPMorgan": "code-pushed",
   "Neos": "validated",
   "ProShares": "validated",
   "Schwab": "validated",
@@ -694,6 +694,13 @@ MERGED https://github.com/daggerok/iShares/pull/47
 GitHub-confirmed merge commit 1922c93b065461b8f7886e5d470366fe0aede845.
 Only reviewed header/test files; no branch-protection bypass.
 Default branch updated; journal pushed separately.
+
+
+--- CHECKPOINT ---
+JPMorgan
+Header UI and four regression tests committed/pushed: c82d35e47c8fd3576ba51b27a4dc3b7b8b090e7a.
+Bun tests: 116 pass, 0 fail. Browser harness AND real app checks passed.
+No data/updater/dependency files changed. Next create and verify scoped PR.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1741,6 +1748,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -4913,7 +4921,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -4952,7 +4960,15 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "status": "passed",
       "selected": "2 selected: BBAG, BBAX",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "headSha": "c82d35e47c8fd3576ba51b27a4dc3b7b8b090e7a",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Neos": {
     "baseBranch": "main",

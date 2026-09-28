@@ -399,7 +399,7 @@
     "baseBranch": "main",
     "baseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
     "source": "app.tsx",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -438,7 +438,15 @@
       "status": "passed",
       "selected": "2 selected: BBAG, BBAX",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "8956b4f6e4301101cb8cace22b68e1d55e070cfd",
+    "headSha": "c82d35e47c8fd3576ba51b27a4dc3b7b8b090e7a",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts",
+      "app.tsx"
+    ]
   },
   "Neos": {
     "baseBranch": "main",
