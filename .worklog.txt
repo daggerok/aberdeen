@@ -46,7 +46,7 @@ plan.txt is historical only. Original plans and current .plans snapshots follow.
 
 === CURRENT STATE ===
 Repository: daggerok/aberdeen. Journal branch: feat/aberdeen-plan-recovery.
-Last confirmed pushed SHA before this checkpoint: 0e5e45fb71f44347244dd302dcbb521f116bc295.
+Last confirmed pushed SHA before this checkpoint: f5e5bf1f5217e65774b53a63c26ee6efedcd2074.
 Do not infer publication from this text: compare HEAD with git ls-remote.
 
 LATEST REQUEST / AUTHORIZATION
@@ -92,7 +92,7 @@ HEADER ROLLOUT
   "JPMorgan": "merged",
   "Neos": "merged",
   "ProShares": "merged",
-  "Schwab": "code-pushed",
+  "Schwab": "pr-created",
   "SPDR": "validated",
   "VanEck": "validated",
   "Vanguard": "validated",
@@ -767,6 +767,13 @@ Schwab
 Header UI and four regression tests committed/pushed: c88388cdebfc45d41d2d36cb54b9f7809960f33b.
 Bun tests: 42 pass, 0 fail. Browser harness AND real app checks passed.
 No data/updater/dependency files changed. Next create and verify scoped PR.
+
+
+--- CHECKPOINT ---
+Schwab
+PR created: https://github.com/daggerok/Schwab/pull/15
+Verified exact remote file diff and head SHA; base main.
+Next: check remote checks/statuses then authorized SHA-guarded merge.
 
 === ORIGINAL INPUTS (immutable, sanitized) ===
 
@@ -1814,6 +1821,7 @@ be (this plan could not determine it) and which "closest example" you
 ended up using.
 
 --- END ORIGINAL INPUT ---
+
 
 
 
@@ -5167,7 +5175,7 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
     "baseBranch": "main",
     "baseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
     "source": "app.tsx",
-    "status": "code-pushed",
+    "status": "pr-created",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -5214,7 +5222,9 @@ copy-verbatim restrictions below; apply this identically to every ETF brand:
       "index.html",
       "scripts/update-data.test.ts",
       "app.tsx"
-    ]
+    ],
+    "url": "https://github.com/daggerok/Schwab/pull/15",
+    "number": 15
   },
   "SPDR": {
     "baseBranch": "main",
