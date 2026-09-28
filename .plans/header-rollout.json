@@ -570,7 +570,7 @@
     "baseBranch": "main",
     "baseSha": "166ac408c4723ac618ea59b1ebc7f101b81f4f77",
     "source": "app.tsx",
-    "status": "pr-created",
+    "status": "merged",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -619,7 +619,9 @@
       "app.tsx"
     ],
     "url": "https://github.com/daggerok/Schwab/pull/15",
-    "number": 15
+    "number": 15,
+    "merged": true,
+    "mergeCommit": "869a0705d6e5ffc97dbff14fba45412fc84ba9e5"
   },
   "SPDR": {
     "baseBranch": "main",
