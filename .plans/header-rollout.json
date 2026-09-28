@@ -343,7 +343,7 @@
     "baseBranch": "main",
     "baseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
     "source": "index.html",
-    "status": "validated",
+    "status": "code-pushed",
     "baseline": {
       "exitCode": 0,
       "summary": [
@@ -382,7 +382,14 @@
       "status": "passed",
       "selected": "2 selected: AAXJ, ACWI",
       "checks": "real app bootstrap; no selection; hover/Escape; two real fund checkboxes; ticker click/highlight; dark/mobile panel; Clear; no page errors"
-    }
+    },
+    "auditedBaseSha": "dcead391d513400b90a5b22f389ef6c67f38015f",
+    "headSha": "28517af580eaaafca530999a07179e6e2b00e3fe",
+    "branch": "feat/compact-header-summary-20260927",
+    "changedFiles": [
+      "index.html",
+      "scripts/update-data.test.ts"
+    ]
   },
   "JPMorgan": {
     "baseBranch": "main",
