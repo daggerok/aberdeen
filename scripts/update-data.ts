@@ -1633,7 +1633,7 @@ export function resolveControls(file:unknown={},advanced:unknown={},inputs:unkno
   readConfig(result); // validate all min:max filters before a request or write
   return result;
 }
-async function runtimeControls(env:Record<string,string|undefined>):Promise<Record<string,string>> {
+export async function runtimeControls(env:Record<string,string|undefined>):Promise<Record<string,string>> {
   let file:unknown={};
   try {file=JSON.parse(await readFile(new URL('./update-data.config.json',import.meta.url),'utf8'));}
   catch(e) {if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
