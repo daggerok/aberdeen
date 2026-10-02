@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-09-27T20:41:31.881Z",
- "catalogReadAt": "2026-09-27T20:41:31.881Z",
+ "generatedAt": "2026-10-02T03:23:55.151Z",
+ "catalogReadAt": "2026-10-02T03:23:55.151Z",
  "source": {
   "provider": "abrdn ETFs",
   "site": "https://www.aberdeeninvestments.com",
@@ -9,7 +9,7 @@
  "counts": {
   "funds": 11,
   "holdings": 328,
-  "history": 27067
+  "history": 27071
  },
  "funds": [
   {
@@ -634,15 +634,15 @@
    "isin": "US00326A1043",
    "ter": "0.17%",
    "terValue": 0.17,
-   "nav": "$40.56",
-   "navValue": 40.55826,
-   "aum": "$7,312.66 M",
-   "aumValue": 7312655149.37,
-   "asOfDate": "Sep 25 2026",
+   "nav": "$39.52",
+   "navValue": 39.51585,
+   "aum": "$7,124.71 M",
+   "aumValue": 7124707674.4,
+   "asOfDate": "Oct 01 2026",
    "inceptionDate": "Sep 09 2009",
    "exchange": "NYSEArca",
-   "closePrice": "$40.67",
-   "closePriceValue": 40.67,
+   "closePrice": "$39.56",
+   "closePriceValue": 39.56,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -690,7 +690,7 @@
     "dividendYieldText": "—"
    },
    "holdings": 0,
-   "history": 4288
+   "history": 4292
   },
   {
    "ticker": "SIVR",
