@@ -76,8 +76,8 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | Environment variable | Default | Meaning |
 | --- | --: | --- |
 | `MAX_FETCHES` | `0` | Batch size; positive resumes cursor, 0 refreshes the selected universe and resets cursor. |
-| `REQUEST_SLEEP` | `1` | Seconds between request starts including retries; conservative shared gate. |
-| `CONCURRENCY` | `2` | Parallel fund workers; request starts remain conservatively paced. |
+| `REQUEST_SLEEP` | `1` | Seconds between request starts including retries, paced per worker lane (no shared gate). |
+| `CONCURRENCY` | `2` | Parallel fund workers, each with its own request lane; throughput scales about N times. |
 | `AUM` | `:` | Net assets min:max in USD; K/M/B/T or nano/micro/small/mid/large preset. |
 | `TER` | `:` | Gross expense ratio percent min:max. |
 | `DIVIDEND_YIELD` | `:` | Indicated dividend yield percent min:max. |

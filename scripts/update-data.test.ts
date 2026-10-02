@@ -8,7 +8,7 @@ import {
   parseCatalog, catalogPayload, parseHoldings, parseKeyInformation, parsePerformance, parseDetail, readConfig, parseRange,
   parseAumRange, numberOrNull, normalizeNumberText, isoDate, decodeDividendFrequency, samePublishedContent, collectPages,
   parseNport, parseFundTickerMap, nportMatches, parseChart, priceReturns, annualizedToTotal, mergeHistory,
-  batchSelection, fundFilterReasons,
+  batchSelection, fundFilterReasons, fetchWithRetry, runWorkers, setRequestSleep,
 } from './update-data';
 
 const root = (path: string) => new URL(`../${path}`, import.meta.url);
@@ -403,5 +403,41 @@ describe('workflow', () => {
       expect(values.REQUEST_SLEEP).toBe('1');
       expect(Object.keys(values)).toHaveLength(CONTROL_NAMES.length);
     } finally { await rm(dir, { recursive: true, force: true }); }
+  });
+});
+
+describe('real concurrency', () => {
+  async function peakInFlight(concurrency: number, sleepSeconds: number, funds = 6): Promise<{ peak: number; ms: number }> {
+    const realFetch = globalThis.fetch;
+    let inFlight = 0, peak = 0, next = 0;
+    globalThis.fetch = (async () => {
+      inFlight++; peak = Math.max(peak, inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 60));
+      inFlight--;
+      return new Response('{}');
+    }) as unknown as typeof fetch;
+    setRequestSleep(sleepSeconds);
+    const started = Date.now();
+    try {
+      await runWorkers(concurrency, async () => {
+        for (;;) {
+          const i = next++; if (i >= funds) return;
+          await fetchWithRetry(`https://example.test/${i}`, `[ test ] ${i}`, {}, 0);
+        }
+      });
+    } finally { globalThis.fetch = realFetch; setRequestSleep(0); }
+    return { peak, ms: Date.now() - started };
+  }
+  test('CONCURRENCY=1 peaks at 1 in-flight request', async () => {
+    expect((await peakInFlight(1, 0.02)).peak).toBe(1);
+  });
+  test('CONCURRENCY=3 peaks at 3 with REQUEST_SLEEP>0 (lanes, not one global gate)', async () => {
+    const { peak } = await peakInFlight(3, 0.05);
+    expect(peak).toBe(3);
+  });
+  test('workers scale throughput under REQUEST_SLEEP', async () => {
+    const one = await peakInFlight(1, 0.1, 6);
+    const three = await peakInFlight(3, 0.1, 6);
+    expect(three.ms).toBeLessThan(one.ms * 0.7);
   });
 });
