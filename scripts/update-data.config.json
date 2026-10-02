@@ -12,7 +12,7 @@
   "MAX_RETRIES": "2",
   "HISTORY_RANGE": "max",
   "STORE_RAW_DOWNLOADS": "false",
-  "SEC_UA": "daggerok Aberdeen ETF feed (https://github.com/daggerok/aberdeen)",
+  "SEC_UA": "daggerok ETF feed daggerok@gmail.com",
   "SKIP_YAHOO": "false",
   "SKIP_ABERDEEN": "false",
   "EDGAR_FALLBACK": "true",
