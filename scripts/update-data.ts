@@ -131,6 +131,7 @@ function outputCreateReporter(root: URL | string, total: number) {
 // abrdn official gateway + SEC N-PORT holdings fallback + Yahoo market history.
 // Shared helpers copied from daggerok/JPMorgan @ c1ef7858; provider adapter below.
 import { mkdir, readFile, writeFile, readdir, rm, appendFile, rename } from 'node:fs/promises';
+import { AsyncLocalStorage } from 'node:async_hooks';
 type JsonRecord = Record<string, any>;
 const ABERDEEN_SITE = 'https://www.aberdeeninvestments.com';
 const CATALOG_PAGE = `${ABERDEEN_SITE}/en-us/investor/funds/view-all-funds?table=prices&fund_product_type=Exchange%20Traded%20Fund`;
@@ -1174,14 +1175,24 @@ function distributionRows(dividends: Array<{ epoch: number; amount: number }>): 
 }
 
 
-// Conservative single gate: the brand plan requires this until concurrent
-// gateway traffic has been verified. Reserve BEFORE awaiting (no races).
+// Per-worker request lanes: every fund worker paces its own request starts by
+// REQUEST_SLEEP (reserved BEFORE awaiting, no races), so N workers give about N
+// times the throughput. Requests made outside a worker (catalog) use the root
+// lane. There is no r.jina.ai proxy here, so no global gate is needed.
+interface RequestLane { nextAt: number }
+const laneStorage = new AsyncLocalStorage<RequestLane>();
+const rootLane: RequestLane = { nextAt: 0 };
 let requestSleepMs = REQUEST_SLEEP_FALLBACK * 1000;
-let nextRequestAt = 0;
 async function paceRequests(): Promise<void> {
-  const start = Math.max(Date.now(), nextRequestAt);
-  nextRequestAt = start + requestSleepMs;
+  const lane = laneStorage.getStore() ?? rootLane;
+  const start = Math.max(Date.now(), lane.nextAt);
+  lane.nextAt = start + requestSleepMs;
   if (start > Date.now()) await sleep(start - Date.now());
+}
+export function setRequestSleep(seconds: number): void { requestSleepMs = seconds * 1000; rootLane.nextAt = 0; }
+/** Run `count` workers, each with its own request lane. */
+export async function runWorkers(count: number, worker: () => Promise<void>): Promise<void> {
+  await Promise.all(Array.from({ length: count }, () => laneStorage.run({ nextAt: 0 }, worker)));
 }
 
 export function samePublishedContent(previous: string, value: unknown): boolean {
@@ -1643,7 +1654,7 @@ export async function runtimeControls(env:Record<string,string|undefined>):Promi
 export async function main(env:Record<string,string|undefined>=process.env):Promise<void> {
   const controls=await runtimeControls(env);
   if(controls.VERBOSE!==undefined)process.env.VERBOSE=controls.VERBOSE;
-  const config=readConfig(controls); requestSleepMs=config.requestSleep*1000;nextRequestAt=0;
+  const config=readConfig(controls); setRequestSleep(config.requestSleep);
   outputPrintConfig('abrdn',config);
   const previous=await readJson(INDEX_FILE), oldFunds=new Map<string,JsonRecord>((previous?.funds??[]).map((f:JsonRecord)=>[f.ticker,f]));
   let catalog:CatalogFund[]|null=null;
@@ -1676,7 +1687,7 @@ export async function main(env:Record<string,string|undefined>=process.env):Prom
       } catch(e) {failures++;await reporter.result(fund.ticker,before,'failed',errorMessage(e));}
     }
   }
-  await Promise.all(Array.from({length:config.concurrency},worker));
+  await runWorkers(config.concurrency,worker);
   if (!result.size) throw new Error('No publishable funds; not replacing the index');
   const funds=[...result.values()].sort((a,b)=>a.ticker.localeCompare(b.ticker));
   const counts={funds:funds.length,holdings:funds.reduce((s,f)=>s+f.holdings,0),history:funds.reduce((s,f)=>s+f.history,0)};
@@ -1695,6 +1706,6 @@ if(import.meta.main){
     console.log('abrdn ETF updater — bun scripts/update-data.ts\nCanonical environment controls (ABERDEEN_ aliases accepted):');
     outputPrintConfig('abrdn effective configuration',readConfig(await runtimeControls(process.env)));
     console.log('Defaults: scripts/update-data.config.json; explicit environment overrides the file. Actions: file < advanced JSON < individual inputs.');
-    console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds per conservative request gate. CONCURRENCY: fund workers.\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.');
+    console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds between request starts, paced per worker lane. CONCURRENCY: parallel fund workers (about N times the request rate).\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.');
   }else await main().catch(e=>{console.error(`[ done     ] ${errorMessage(e)}`);process.exitCode=1;});
 }
