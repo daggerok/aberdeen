@@ -1605,12 +1605,48 @@ export function batchSelection(funds:CatalogFund[],config:UpdaterConfig,cursor:s
   const ordered=i<0?selected:selected.slice(i+1).concat(selected.slice(0,i+1));
   return ordered.slice(0,config.maxFetches);
 }
+// --- TLS trust store (identical in every ETF repo) ---
+const SYSTEM_CA_MARKER = 'ETF_UPDATER_SYSTEM_CA';
+const CERT_ERROR = /UNABLE_TO_GET_ISSUER_CERT|UNABLE_TO_VERIFY_LEAF_SIGNATURE|SELF_SIGNED_CERT|CERT_HAS_EXPIRED|unable to get (?:local )?issuer certificate|self[- ]signed certificate|certificate has expired/i;
+
+export function isCertError(error: unknown): boolean {
+  const e = error as { code?: unknown; message?: unknown; cause?: unknown } | null;
+  return CERT_ERROR.test(`${String(e?.code ?? '')} ${String(e?.message ?? '')}`) || (e?.cause ? isCertError(e.cause) : false);
+}
+
+export function systemCaActive(env: Record<string, string | undefined> = process.env, execArgv: string[] = process.execArgv): boolean {
+  return execArgv.includes('--use-system-ca') || env.NODE_USE_SYSTEM_CA === '1' || env[SYSTEM_CA_MARKER] === '1';
+}
+
+export function reexecWithSystemCa(): never {
+  const child = Bun.spawnSync([process.execPath, '--use-system-ca', ...process.argv.slice(1)], {
+    env: { ...process.env, [SYSTEM_CA_MARKER]: '1' },
+    stdio: ['inherit', 'inherit', 'inherit'],
+  });
+  process.exit(child.exitCode ?? 1);
+}
+
+/** mode: auto (restart once on an untrusted-certificate error), true (restart now), false (never). */
+export function installSystemCa(mode: string, reexec: () => never = reexecWithSystemCa, active: boolean = systemCaActive()): void {
+  if (mode === 'false' || active) return;
+  if (mode === 'true') reexec();
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (async (...args: Parameters<typeof fetch>) => {
+    try { return await realFetch(...args); }
+    catch (error) {
+      if (!isCertError(error)) throw error;
+      console.error('[ notice   ] TLS certificate not trusted; restarting once with --use-system-ca');
+      return reexec();
+    }
+  }) as typeof fetch;
+}
+
 // File defaults and explicit overrides. Allowlisted scalar values only: the
 // same resolver is used by Actions without interpolating user input into bash.
 export const CONTROL_NAMES = [
   'MAX_FETCHES','REQUEST_SLEEP','CONCURRENCY','AUM','TER','DIVIDEND_YIELD','SEC_YIELD','TICKERS',
   'HOLDINGS_PAGE_SIZE','HISTORY_PAGE_SIZE','MAX_RETRIES','HISTORY_RANGE','STORE_RAW_DOWNLOADS',
-  'SEC_UA','SKIP_YAHOO','SKIP_ABERDEEN','EDGAR_FALLBACK','VERBOSE',
+  'SEC_UA','SKIP_YAHOO','SKIP_ABERDEEN','EDGAR_FALLBACK','VERBOSE','USE_SYSTEM_CA',
   ...['PERFORMANCE','TOTAL_RETURN'].flatMap(prefix=>['YTD','1Y','3Y','5Y','10Y'].map(period=>`${prefix}_${period}`)),
 ] as const;
 export function resolveControls(file:unknown={},advanced:unknown={},inputs:unknown={},env:Record<string,string|undefined>={}):Record<string,string> {
@@ -1641,6 +1677,10 @@ export function resolveControls(file:unknown={},advanced:unknown={},inputs:unkno
   for(const key of ['STORE_RAW_DOWNLOADS','SKIP_YAHOO','SKIP_ABERDEEN','EDGAR_FALLBACK','VERBOSE']){
     if(result[key] && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key]))throw new Error(`${key}: expected boolean`);
   }
+  if(result.USE_SYSTEM_CA!==undefined && result.USE_SYSTEM_CA!==''){
+    if(!/^(auto|true|false)$/i.test(result.USE_SYSTEM_CA))throw new Error('USE_SYSTEM_CA: expected auto, true or false');
+    result.USE_SYSTEM_CA=result.USE_SYSTEM_CA.toLowerCase();
+  }
   readConfig(result); // validate all min:max filters before a request or write
   return result;
 }
@@ -1654,6 +1694,7 @@ export async function runtimeControls(env:Record<string,string|undefined>):Promi
 export async function main(env:Record<string,string|undefined>=process.env):Promise<void> {
   const controls=await runtimeControls(env);
   if(controls.VERBOSE!==undefined)process.env.VERBOSE=controls.VERBOSE;
+  installSystemCa(controls.USE_SYSTEM_CA??'auto');
   const config=readConfig(controls); setRequestSleep(config.requestSleep);
   outputPrintConfig('abrdn',config);
   const previous=await readJson(INDEX_FILE), oldFunds=new Map<string,JsonRecord>((previous?.funds??[]).map((f:JsonRecord)=>[f.ticker,f]));
@@ -1706,6 +1747,6 @@ if(import.meta.main){
     console.log('abrdn ETF updater — bun scripts/update-data.ts\nCanonical environment controls (ABERDEEN_ aliases accepted):');
     outputPrintConfig('abrdn effective configuration',readConfig(await runtimeControls(process.env)));
     console.log('Defaults: scripts/update-data.config.json; explicit environment overrides the file. Actions: file < advanced JSON < individual inputs.');
-    console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds between request starts, paced per worker lane. CONCURRENCY: parallel fund workers (about N times the request rate).\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.');
+    console.log('Ranges: min:max (inclusive, AND). AUM: amounts with K/M/B/T or nano/micro/small/mid/large.\nMAX_FETCHES=0: full pass/reset cursor; positive: resumable batch.\nTICKERS: comma/space/semicolon-separated allowlist; others keep published data.\nREQUEST_SLEEP: seconds between request starts, paced per worker lane. CONCURRENCY: parallel fund workers (about N times the request rate).\nHISTORY_RANGE: max or Ny; merges with prior history. SKIP_*: skip provider.\nSTORE_RAW_DOWNLOADS: source JSON snapshots. SEC_UA: real identifying contact.\nVERBOSE=1: per-request fallback diagnostics.\nUSE_SYSTEM_CA: auto (restart once with Bun --use-system-ca on an untrusted-certificate error), true or false.');
   }else await main().catch(e=>{console.error(`[ done     ] ${errorMessage(e)}`);process.exitCode=1;});
 }
