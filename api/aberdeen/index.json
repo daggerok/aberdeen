@@ -60,7 +60,8 @@
      "sinceInception": 9.02,
      "mo1": 10.6
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 24.15,
@@ -75,7 +76,9 @@
     "secYield": -0.05,
     "secYieldText": "-0.05%",
     "dividendYield": 0.06,
-    "dividendYieldText": "0.06%"
+    "dividendYieldText": "0.06%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 42,
    "history": 404
@@ -128,7 +131,8 @@
      "sinceInception": 6.34,
      "mo1": -0.48
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 28.85,
@@ -143,7 +147,9 @@
     "secYield": 1.48,
     "secYieldText": "1.48%",
     "dividendYield": 4.49,
-    "dividendYieldText": "4.49%"
+    "dividendYieldText": "4.49%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 95,
    "history": 403
@@ -196,7 +202,8 @@
      "sinceInception": 4.33,
      "mo1": 0.28
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 1.92,
@@ -211,7 +218,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": 2.86,
-    "dividendYieldText": "2.86%"
+    "dividendYieldText": "2.86%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 68,
    "history": 234
@@ -264,7 +273,8 @@
      "sinceInception": 7.35,
      "mo1": -3.32
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 6.84,
@@ -279,7 +289,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": 0.75,
-    "dividendYieldText": "0.75%"
+    "dividendYieldText": "0.75%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 55,
    "history": 235
@@ -332,7 +344,8 @@
      "sinceInception": 8.95,
      "mo1": 4.82
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 24.68,
@@ -347,7 +360,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": 13.68,
-    "dividendYieldText": "13.68%"
+    "dividendYieldText": "13.68%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 34,
    "history": 2385
@@ -400,7 +415,8 @@
      "sinceInception": 7.36,
      "mo1": 11.42
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 31.64,
@@ -415,7 +431,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": 12.23,
-    "dividendYieldText": "12.23%"
+    "dividendYieldText": "12.23%",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 34,
    "history": 2385
@@ -468,7 +486,8 @@
      "sinceInception": 6.84,
      "mo1": -15.03
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": -1.79,
@@ -483,7 +502,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": null,
-    "dividendYieldText": "—"
+    "dividendYieldText": "—",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 0,
    "history": 4005
@@ -536,7 +557,8 @@
      "sinceInception": 7.18,
      "mo1": -19.28
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": -14.79,
@@ -551,7 +573,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": null,
-    "dividendYieldText": "—"
+    "dividendYieldText": "—",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 0,
    "history": 4204
@@ -604,7 +628,8 @@
      "sinceInception": 0.69,
      "mo1": -19.4
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": -12.82,
@@ -619,7 +644,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": null,
-    "dividendYieldText": "—"
+    "dividendYieldText": "—",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 0,
    "history": 4204
@@ -672,7 +699,8 @@
      "sinceInception": 9.33,
      "mo1": -11.77
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": 3.21,
@@ -687,7 +715,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": null,
-    "dividendYieldText": "—"
+    "dividendYieldText": "—",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 0,
    "history": 4292
@@ -740,7 +770,8 @@
      "sinceInception": 10.15,
      "mo1": -19.24
     },
-    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+    "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "metrics": {
     "ytd": -6.49,
@@ -755,7 +786,9 @@
     "secYield": null,
     "secYieldText": "—",
     "dividendYield": null,
-    "dividendYieldText": "—"
+    "dividendYieldText": "—",
+    "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+    "performanceAsOf": "2026-08-31"
    },
    "holdings": 0,
    "history": 4320
