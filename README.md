@@ -51,6 +51,8 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; range-limited history is not called since-inception.
 - `dividendYield` — indicated latest distribution × annual payment frequency ÷ market price (an estimate from the market price, not an official figure).
 - `secYield` — official subsidized 30-day SEC yield when available; otherwise previously published value or null.
+- `returnsBasis` - mandatory non-empty label of how the returns were computed: official abrdn NAV performance (gaps derived from Yahoo adjusted closes at the same reporting date), or Yahoo adjusted market-price returns that are not official NAV; never empty or `-`
+- `performanceAsOf` - mandatory ISO date (`YYYY-MM-DD`) the returns are as of: the date of the abrdn performance table (month-end), or the last Yahoo close date when derived; it is not the NAV date, and `null` only when truly unknown
 
 Unavailable values stay null and are never shown as zero; only a published zero is zero.
 

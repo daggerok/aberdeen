@@ -8,7 +8,7 @@ import {
   parseCatalog, catalogPayload, parseHoldings, parseKeyInformation, parsePerformance, parseDetail, readConfig, parseRange,
   parseAumRange, numberOrNull, normalizeNumberText, isoDate, decodeDividendFrequency, samePublishedContent, collectPages,
   parseNport, parseFundTickerMap, nportMatches, parseChart, priceReturns, annualizedToTotal, mergeHistory,
-  batchSelection, fundFilterReasons, fetchWithRetry, runWorkers, setRequestSleep,
+  batchSelection, fundFilterReasons, buildMetrics, displayDateToIso, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, fetchWithRetry, runWorkers, setRequestSleep,
   isCertError, installSystemCa,
 } from './update-data';
 
@@ -190,6 +190,34 @@ describe('Yahoo history, financial math and deterministic writers', () => {
   });
 });
 
+describe('metrics contract: returnsBasis and performanceAsOf', () => {
+  const none = { ...priceReturns([]) };
+  test('display, ISO and US dates become YYYY-MM-DD; garbage is null', () => {
+    expect(displayDateToIso('Aug 31 2026')).toBe('2026-08-31');
+    expect(displayDateToIso('2026-09-25T00:00:00Z')).toBe('2026-09-25');
+    expect(displayDateToIso('9/5/2026')).toBe('2026-09-05');
+    expect(displayDateToIso('—')).toBeNull();
+    expect(displayDateToIso('Foo 31 2026')).toBeNull();
+    expect(displayDateToIso(undefined)).toBeNull();
+  });
+  test('official table: as-of is the table date, basis is the official label, both keys come last', () => {
+    const m = buildMetrics({ asOfDate: 'Aug 31 2026', ytd: 1, yr1: 2 }, { ...none, asOfDate: '2026-08-28' }, 0.5, 1.2, true);
+    expect(m.performanceAsOf).toBe('2026-08-31');
+    expect(m.returnsBasis).toBe(OFFICIAL_RETURNS_BASIS);
+    expect(Object.keys(m).slice(-2)).toEqual(['returnsBasis', 'performanceAsOf']);
+  });
+  test('Yahoo-derived: as-of is the last close, basis says not official NAV; unknown is null, basis never empty', () => {
+    const derived = { ...none, asOfDate: '2026-09-25' };
+    const y = buildMetrics(null, derived, null, null, false);
+    expect(y.performanceAsOf).toBe('2026-09-25');
+    expect(y.returnsBasis).toBe(YAHOO_RETURNS_BASIS);
+    const u = buildMetrics(null, none, null, null, false);
+    expect(u.performanceAsOf).toBeNull();
+    expect(String(u.returnsBasis).trim()).not.toBe('');
+    expect(u.returnsBasis).not.toBe('-');
+  });
+});
+
 describe('SEC sibling parser and series isolation', () => {
   const xml = '<edgarSubmission><genInfo><regName>abrdn Funds</regName><regCik>1413594</regCik><seriesName>abrdn Emerging Markets Dividend Active ETF</seriesName><seriesId>S000001</seriesId><repPdDate>2026-06-30</repPdDate></genInfo><fundInfo><netAssets>1000</netAssets></fundInfo><invstOrSec><name>Example</name><cusip>123456789</cusip><pctVal>5</pctVal><valUSD>50</valUSD><balance>2</balance><assetCat>EC</assetCat></invstOrSec></edgarSubmission>';
   test('ticker map is field order independent', () => {
@@ -228,7 +256,8 @@ let v;if(u.includes('/view-all-funds/'))return new Response('<script id="__NEXT_
 if(u.endsWith('/overview'))v=p.overview;else if(u.endsWith('/prices'))v=p.prices;else if(u.endsWith('fundDetailsKeyInformation'))v=p.key;else if(u.endsWith('fundDetailsCodes'))v={content:{isin:'US00384X3017'}};else if(u.endsWith('/annualized'))v=p.annual;else if(u.endsWith('/cumulative'))v=p.cumulative;else if(u.endsWith('/dailyHoldings'))v=p.holdings;else return new Response('',{status:404});return Response.json(v);};
 const env={REQUEST_SLEEP:'0',MAX_RETRIES:'1',EDGAR_FALLBACK:'0',SKIP_YAHOO:'1'};
 const hash=async()=>{const g=new Bun.Glob('api/**/*.json');const r={};for await(const f of g.scan('.'))r[f]=await Bun.file(f).text();return JSON.stringify(Object.entries(r).sort());};
-await main(env);const first=await hash();await main(env);if(first!==await hash())throw Error('Not idempotent');
+await main(env);const first=await hash();
+{const idx=await Bun.file('api/aberdeen/index.json').json();for(const f of idx.funds){const k=Object.keys(f.metrics);if(k.slice(-2).join()!=='returnsBasis,performanceAsOf')throw Error('metrics key order');if(!String(f.metrics.returnsBasis).trim()||f.metrics.returnsBasis==='-')throw Error('empty returnsBasis');if(f.metrics.performanceAsOf!==null&&!/^\\d{4}-\\d{2}-\\d{2}$/.test(f.metrics.performanceAsOf))throw Error('performanceAsOf format');}}await main(env);if(first!==await hash())throw Error('Not idempotent');
 fail=true;await main(env);if(first!==await hash())throw Error('Outage changed published files');
 fail=false;p.key.content.fund.fundSizeWithDate.value='500';await main({...env,AUM:'1000:'});if(first!==await hash())throw Error('Fresh filter did not preserve excluded fund');
 await main({...env,MAX_FETCHES:'1'});const state=await Bun.file('api/aberdeen/update-state.json').json();if(state.cursor!=='AGEM')throw Error('Cursor incorrect');await main(env);if(await Bun.file('api/aberdeen/update-state.json').exists())throw Error('Full run did not reset cursor');`);

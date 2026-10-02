@@ -1471,11 +1471,27 @@ function mergeDividends(old:JsonRecord,chart:ParsedChart|null):Array<{epoch:numb
   for (const d of chart?.dividends??[]) byDate.set(epochToIsoDate(d.epoch),d);
   return [...byDate.values()].sort((a,b)=>a.epoch-b.epoch);
 }
-export function buildMetrics(month:JsonRecord|null,derived:PriceReturns,secYield:number|null,divYield:number|null):JsonRecord {
+/** Display dates ("Aug 31 2026"), ISO and US dates -> YYYY-MM-DD, or null. */
+export function displayDateToIso(value:unknown):string|null {
+  const s=String(value??'').trim();
+  const m=/^([A-Za-z]{3}) (\d{1,2}) (\d{4})$/.exec(s);
+  const idx=m?MONTHS.indexOf(m[1][0].toUpperCase()+m[1].slice(1).toLowerCase()):-1;
+  if (m && idx>=0) {
+    const iso=`${m[3]}-${String(idx+1).padStart(2,'0')}-${m[2].padStart(2,'0')}`;
+    return Number.isFinite(Date.parse(iso))?iso:null;
+  }
+  return isoDate(s);
+}
+export const OFFICIAL_RETURNS_BASIS='official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date';
+export const YAHOO_RETURNS_BASIS='Yahoo adjusted market-price returns, not official NAV';
+export function buildMetrics(month:JsonRecord|null,derived:PriceReturns,secYield:number|null,divYield:number|null,hasOfficialReturns=false):JsonRecord {
   const ytd=month?.ytd??derived.ytd, tr1y=month?.yr1??derived.yr1;
   const cagr3y=month?.yr3??derived.cagr3y,cagr5y=month?.yr5??derived.cagr5y,cagr10y=month?.yr10??derived.cagr10y;
   return {ytd,tr1y,cagr3y,cagr5y,cagr10y,tr3y:annualizedToTotal(cagr3y,3),tr5y:annualizedToTotal(cagr5y,5),tr10y:annualizedToTotal(cagr10y,10),
-    siAnn:month?.sinceInception??derived.siAnn,secYield,secYieldText:percent(secYield),dividendYield:divYield,dividendYieldText:percent(divYield)};
+    siAnn:month?.sinceInception??derived.siAnn,secYield,secYieldText:percent(secYield),dividendYield:divYield,dividendYieldText:percent(divYield),
+    returnsBasis:hasOfficialReturns?OFFICIAL_RETURNS_BASIS:YAHOO_RETURNS_BASIS,
+    // Date of the provider performance table (or the last Yahoo close when derived), not the NAV date.
+    performanceAsOf:displayDateToIso(month?.asOfDate)??(derived.asOfDate||null)};
 }
 async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:JsonRecord):Promise<JsonRecord|null> {
   const ticker=fund.ticker, dir=new URL(`funds/${ticker}/`,API_ROOT);
@@ -1553,7 +1569,7 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
   // A range-limited Yahoo download is not a since-inception return.
   if (!chart?.firstTradeDate || !days.length || Date.parse(days[0].date)/1000-chart.firstTradeDate>7*86400) derived.siAnn=null;
   const hasOfficialReturns=freshOfficialReturns || Boolean(month && !old.returns?.derivedFrom?.startsWith('Yahoo adjusted'));
-  const metrics=buildMetrics(month,derived,secYield,divYield);
+  const metrics=buildMetrics(month,derived,secYield,divYield,hasOfficialReturns);
   if(month) month={...month,ytd:month.ytd??derived.ytd,mo1:month.mo1??derived.mo1,qtd:month.qtd??derived.qtd};
   if (!month && usable.length) {
     month={asOfDate:formatEdgarDate(derived.asOfDate!),mo1:derived.mo1,qtd:derived.qtd,ytd:derived.ytd,yr1:derived.yr1,yr3:derived.cagr3y,yr5:derived.cagr5y,yr10:derived.cagr10y,sinceInception:derived.siAnn};
@@ -1571,7 +1587,7 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
   const oldHistoryHeaders=await readPreviousSheetHeaders(ticker,'history');
   const historyManifest=await writePages(dir,ticker,'history',chart?.days.length?['Date','Close','Adj Close','Volume']:oldHistoryHeaders.length?oldHistoryHeaders:['Date','Close','Adj Close','Volume'],history,config.historyPageSize);
   const historySource=chart?.days.length?'Yahoo Finance daily market-price closes / adjusted closes (not official NAV)':old.history?.source??'unavailable';
-  const returnsBasis=hasOfficialReturns?'official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date':'Yahoo adjusted market-price returns, not official NAV';
+  const returnsBasis=metrics.returnsBasis;
   const meta={
     ticker,name:fund.name,category,categoryPath:key?.exposure?`${category} / ${key.exposure}`:old.categoryPath??category,
     source:{fundPage:fund.fundPage,catalog:CATALOG_PAGE,keyInformation:`${GATEWAY}/fundDetailsKeyInformation`,holdingsDownload:`${GATEWAY}/breakdown/dailyHoldingsSheet`,
@@ -1586,7 +1602,7 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
     aum:{display:aum===null?'—':formatAumDisplay(aum),value:aum,asOfDate:key?.aumDate?formatEdgarDate(key.aumDate):old.aum?.asOfDate??'—',source:key?.aum!=null?'aberdeeninvestments.com fundDetailsKeyInformation':old.aum?.source??'unavailable'},
     yields:{dividendYield:metrics.dividendYield,dividendYieldText:metrics.dividendYieldText,dividendYieldKind:'indicated (latest distribution x payments per year / market price)',
       secYield:metrics.secYield,secYieldText:metrics.secYieldText,secYieldKind:key?.secYield!=null?`30-day SEC yield subsidized, as of ${key.secYieldDate??'unknown'}`:old.yields?.secYieldKind??'not published',unsubsidizedSecYield:key?.unsubsidizedSecYield??old.yields?.unsubsidizedSecYield??null},
-    returns:{monthEnd:month,quarterEnd:quarter,derivedFrom:returnsBasis},
+    returns:{monthEnd:month,quarterEnd:quarter,derivedFrom:returnsBasis,performanceAsOf:metrics.performanceAsOf},
     distributions:{frequency:frequency.frequency,paymentsPerYear:frequency.paymentsPerYear,headers:['Ex-Date','Amount'],rows:distributionRows(dividends)},
     holdings:{...holdingsManifest,asOfDate:holdings.asOfDate,asOf:holdings.asOfDate?formatEdgarDate(holdings.asOfDate):'—',source:holdings.source,status:holdings.status},
     history:{...historyManifest,asOf:days.length?formatEdgarDate(days.at(-1)!.date):old.history?.asOf??'—',source:historySource},
