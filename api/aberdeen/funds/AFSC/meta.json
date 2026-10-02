@@ -93,7 +93,8 @@
    "sinceInception": 9.02,
    "mo1": 10.6
   },
-  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date"
+  "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
+  "performanceAsOf": "2026-08-31"
  },
  "distributions": {
   "frequency": "Annually",
