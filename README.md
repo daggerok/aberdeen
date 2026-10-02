@@ -57,7 +57,7 @@ Unavailable values stay null and are never shown as zero; only a published zero 
 **Known limitations**
 
 - **Physical trusts:** GLTR, PALL, PPLT, SGOL and SIVR do not expose a securities-holdings tab in the verified API. They remain in the catalog with facts/performance/history, but their securities portfolio is marked `not-applicable`; no synthetic bullion rows or invented tickers are generated. Physical bar lists are not converted into securities positions.
-- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and fixture-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If all holdings sources fail, published holdings are kept.
+- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and unit-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If all holdings sources fail, published holdings are kept.
 - **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
 - **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
 - **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing and bounded retries apply. Tests are offline; a passing test suite does not imply every live provider is reachable.
@@ -69,7 +69,7 @@ Precedence: `scripts/update-data.config.json` defaults < Actions `advanced` JSON
 
 Actions exposes 24 individual inputs plus `advanced`, respecting GitHub's 25-input limit. `SEC_UA`, `VERBOSE`, `STORE_RAW_DOWNLOADS` and `SKIP_ABERDEEN` are available through `advanced` and the config file. Unknown keys, invalid ranges, non-scalar values and newline injection are rejected before any request. No credentials belong in the config file.
 
-`SEC_UA` can be supplied by the protected repository Actions variable `SEC_UA`; when nonblank it wins over every other layer and is never printed or exposed as an input. The config default is a non-personal repository descriptor.
+`SEC_UA` can be supplied by the protected repository Actions variable `SEC_UA`; when nonblank it wins over every other layer and is never printed or exposed as an input. The config default is the owner's feed User-Agent.
 
 Blank individual inputs mean **inherit**, not clear. To clear a file's ticker restriction in Actions, use `{"TICKERS":""}` in `advanced`.
 
@@ -85,10 +85,10 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | `TICKERS` | empty (all) | Ticker allowlist separated by spaces, commas or semicolons; empty means all. |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per holdings JSON page. |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per market-price history JSON page. |
-| `MAX_RETRIES` | `2` | Retries after the first request; 0 disables retries. |
+| `MAX_RETRIES` | `2` | Retries after the first request; at least 1. |
 | `HISTORY_RANGE` | `max` | Yahoo daily history range: max or Ny (e.g. 5y); preserves prior history. |
 | `STORE_RAW_DOWNLOADS` | `false` | Save source JSON under api/aberdeen/raw. |
-| `SEC_UA` | `daggerok Aberdeen ETF feed (https://github.com/daggerok/aberdeen)` | SEC User-Agent; supply a real identifying contact via the protected `SEC_UA` variable or env. |
+| `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | SEC User-Agent (redacted in config logs); the protected `SEC_UA` variable or env overrides it. |
 | `SKIP_YAHOO` | `false` | Skip Yahoo history and dividends; retain published data. |
 | `SKIP_ABERDEEN` | `false` | Use published catalog/details; only fallback providers are called. |
 | `EDGAR_FALLBACK` | `true` | Enable SEC N-PORT holdings fallback; never use an unrelated series. |
@@ -126,7 +126,7 @@ Manual Actions `advanced` example (leave individual inputs blank to inherit):
 {"CONCURRENCY":2,"TICKERS":"AGEM BCD SGOL","VERBOSE":true,"STORE_RAW_DOWNLOADS":false}
 ```
 
-Use your real identifying contact in `SEC_UA` (environment or the protected Actions variable) when running SEC automation. A User-Agent change does not guarantee that an execution environment's HTTP 403 will disappear.
+Override `SEC_UA` (environment or the protected Actions variable) to use a different identifying contact for SEC requests. A User-Agent change does not guarantee that an execution environment's HTTP 403 will disappear.
 
 ## TypeScript and verification
 
@@ -141,7 +141,7 @@ bun build --target=bun scripts/update-data.ts --outfile=/dev/null
 git diff --check
 ```
 
-`bun test` also covers the config file, `--help`, README controls and workflow checks (`scripts/config-docs.test.ts`). Optionally check the UI bundle with `bun build app.tsx --outfile=/dev/null`. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
+`bun test` (`scripts/update-data.test.ts`) also covers the config file, `--help`, README controls and workflow checks. Optionally check the UI bundle with `bun build app.tsx --outfile=/dev/null`. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
 
 The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**.
 
@@ -168,7 +168,7 @@ The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa72
 | **ProShares** | [proshares.com](https://www.proshares.com/our-etfs/find-proshares-etfs) \| [ProShares](https://daggerok.github.io/ProShares/) |
 | **Schwab** | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) \| [Schwab](https://daggerok.github.io/Schwab/) |
 | **SPDR** | [ssga.com](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) \| [SPDR](https://daggerok.github.io/SPDR/) |
-| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) (deployment pending) |
+| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) |
 | **Tema ETFs** | [temaetfs.com](https://temaetfs.com/funds) \| [Tema](https://daggerok.github.io/Tema/) |
 | **Themes ETFs** | [themesetfs.com/etfs](https://themesetfs.com/etfs) \| [Themes](https://daggerok.github.io/Themes/) |
 | **VanEck** | [vaneck.com](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) \| [VanEck](https://daggerok.github.io/VanEck/) |
