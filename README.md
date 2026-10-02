@@ -67,7 +67,7 @@ Unavailable values stay null and are never shown as zero; only a published zero 
 
 Precedence: `scripts/update-data.config.json` defaults < Actions `advanced` JSON < nonblank individual inputs < protected Actions variable or environment. The same `resolveControls` runs locally and in Actions. Locally, environment variables override the file and `ABERDEEN_<NAME>` overrides the unprefixed name.
 
-Actions exposes 24 individual inputs plus `advanced`, respecting GitHub's 25-input limit. `SEC_UA`, `VERBOSE`, `STORE_RAW_DOWNLOADS` and `SKIP_ABERDEEN` are available through `advanced` and the config file. Unknown keys, invalid ranges, non-scalar values and newline injection are rejected before any request. No credentials belong in the config file.
+Actions exposes 24 individual inputs plus `advanced`, respecting GitHub's 25-input limit. `SEC_UA`, `VERBOSE`, `USE_SYSTEM_CA`, `STORE_RAW_DOWNLOADS` and `SKIP_ABERDEEN` are available through `advanced` and the config file. Unknown keys, invalid ranges, non-scalar values and newline injection are rejected before any request. No credentials belong in the config file.
 
 `SEC_UA` can be supplied by the protected repository Actions variable `SEC_UA`; when nonblank it wins over every other layer and is never printed or exposed as an input. The config default is the owner's feed User-Agent.
 
@@ -93,6 +93,7 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | `SKIP_ABERDEEN` | `false` | Use published catalog/details; only fallback providers are called. |
 | `EDGAR_FALLBACK` | `true` | Enable SEC N-PORT holdings fallback; never use an unrelated series. |
 | `VERBOSE` | `false` | Print per-request failures and fallback diagnostics. |
+| `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment. |
 | `PERFORMANCE_YTD` | `:` | Annualized YTD return percent min:max. |
 | `PERFORMANCE_1Y` | `:` | Annualized 1Y return percent min:max. |
 | `PERFORMANCE_3Y` | `:` | Annualized 3Y return percent min:max. |

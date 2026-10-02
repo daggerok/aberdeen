@@ -9,6 +9,7 @@ import {
   parseAumRange, numberOrNull, normalizeNumberText, isoDate, decodeDividendFrequency, samePublishedContent, collectPages,
   parseNport, parseFundTickerMap, nportMatches, parseChart, priceReturns, annualizedToTotal, mergeHistory,
   batchSelection, fundFilterReasons, fetchWithRetry, runWorkers, setRequestSleep,
+  isCertError, installSystemCa,
 } from './update-data';
 
 const root = (path: string) => new URL(`../${path}`, import.meta.url);
@@ -268,7 +269,7 @@ describe('resolveControls layering', () => {
     expect(() => JSON.parse('{oops')).toThrow();
   });
   test('per-control validation is strict (no silent fallback)', () => {
-    const bad = [{ CONCURRENCY: 0 }, { MAX_RETRIES: 0 }, { MAX_RETRIES: -1 }, { MAX_FETCHES: 1.5 }, { REQUEST_SLEEP: '-1' }, { HISTORY_RANGE: 'oops' }, { VERBOSE: 'maybe' }, { AUM: '1:2:3' }, { TER: 'a:b' }, { HOLDINGS_PAGE_SIZE: 0 }];
+    const bad = [{ CONCURRENCY: 0 }, { MAX_RETRIES: 0 }, { MAX_RETRIES: -1 }, { MAX_FETCHES: 1.5 }, { REQUEST_SLEEP: '-1' }, { HISTORY_RANGE: 'oops' }, { VERBOSE: 'maybe' }, { USE_SYSTEM_CA: 'maybe' }, { AUM: '1:2:3' }, { TER: 'a:b' }, { HOLDINGS_PAGE_SIZE: 0 }];
     for (const b of bad) expect(() => resolveControls(b)).toThrow();
     expect(() => resolveControls({}, {}, {}, { MAX_RETRIES: '0' })).toThrow();
     expect(resolveControls({ MAX_RETRIES: 1 }).MAX_RETRIES).toBe('1');
@@ -439,5 +440,47 @@ describe('real concurrency', () => {
     const one = await peakInFlight(1, 0.1, 6);
     const three = await peakInFlight(3, 0.1, 6);
     expect(three.ms).toBeLessThan(one.ms * 0.7);
+  });
+});
+
+describe('USE_SYSTEM_CA', () => {
+  test('resolver accepts auto/true/false case-insensitively, rejects others; default is auto', () => {
+    expect(resolveControls(file).USE_SYSTEM_CA).toBe('auto');
+    for (const v of ['auto', 'TRUE', 'False']) expect(resolveControls(file, {}, {}, { USE_SYSTEM_CA: v }).USE_SYSTEM_CA).toBe(v.toLowerCase());
+    expect(() => resolveControls(file, {}, {}, { USE_SYSTEM_CA: 'maybe' })).toThrow(/USE_SYSTEM_CA/);
+  });
+  test('isCertError recognizes certificate failures, including nested causes', () => {
+    expect(isCertError({ code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' })).toBe(true);
+    expect(isCertError(new Error('unable to get local issuer certificate'))).toBe(true);
+    expect(isCertError(new Error('fetch failed', { cause: new Error('unable to get local issuer certificate') }))).toBe(true);
+    expect(isCertError({ code: 'ECONNRESET' })).toBe(false);
+    expect(isCertError(new Error('HTTP 403 Forbidden'))).toBe(false);
+  });
+  test('installSystemCa wraps fetch only when needed', async () => {
+    const original = globalThis.fetch;
+    const never = (() => { throw new Error('reexec'); }) as () => never;
+    try {
+      installSystemCa('false', never, false);
+      expect(globalThis.fetch).toBe(original);
+      installSystemCa('auto', never, true);
+      expect(globalThis.fetch).toBe(original);
+      let calls = 0;
+      expect(() => installSystemCa('true', (() => { calls++; throw new Error('now'); }) as () => never, false)).toThrow('now');
+      expect(calls).toBe(1);
+      expect(globalThis.fetch).toBe(original);
+
+      let reexecs = 0;
+      const reexec = (() => { reexecs++; throw new Error('restart'); }) as () => never;
+      let behavior: () => Promise<Response> = async () => new Response('ok');
+      globalThis.fetch = (async () => behavior()) as unknown as typeof fetch;
+      installSystemCa('auto', reexec, false);
+      expect(await (await fetch('http://x.test')).text()).toBe('ok');
+      behavior = async () => { throw new Error('connect ECONNRESET'); };
+      await expect(fetch('http://x.test')).rejects.toThrow('ECONNRESET');
+      expect(reexecs).toBe(0);
+      behavior = async () => { throw Object.assign(new Error('fetch failed'), { cause: { code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' } }); };
+      await expect(fetch('http://x.test')).rejects.toThrow('restart');
+      expect(reexecs).toBe(1);
+    } finally { globalThis.fetch = original; }
   });
 });
