@@ -26,12 +26,12 @@ on:
         default: ""
         type: string
       ter:
-        description: "Gross expense ratio percent min:max; blank inherits scripts/update-data.config.json"
+        description: "Net expense ratio percent min:max; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       dividend_yield:
-        description: "Indicated dividend yield percent min:max; blank inherits scripts/update-data.config.json"
+        description: "Trailing 12-month dividend yield percent min:max; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
