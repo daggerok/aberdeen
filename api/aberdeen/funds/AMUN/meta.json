@@ -22,8 +22,8 @@
   "assetClass": "Fixed Income",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-ultra-short-municipal-income-active-etf-us0030222741",
-  "nav": 25.9586,
-  "navDate": "2026-09-25"
+  "nav": 25.9094,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -37,35 +37,35 @@
   "exchange": "NasdaqGM"
  },
  "expenseRatio": {
-  "display": "0.74%",
-  "value": 0.74,
+  "display": "0.25%",
+  "value": 0.25,
   "gross": 0.74,
   "net": 0.25
  },
  "nav": {
-  "display": "$25.96",
-  "value": 25.9586,
-  "asOfDate": "Sep 25 2026"
+  "display": "$25.91",
+  "value": 25.9094,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$26.00",
-  "value": 26.005,
-  "asOfDate": "Sep 25 2026"
+  "display": "$25.91",
+  "value": 25.915,
+  "asOfDate": "Oct 02 2026"
  },
  "premiumDiscount": {
-  "display": "0.18%",
-  "value": 0.18
+  "display": "0.02%",
+  "value": 0.02
  },
  "aum": {
-  "display": "$54.93 M",
-  "value": 54928766.45,
-  "asOfDate": "Sep 25 2026",
+  "display": "$54.82 M",
+  "value": 54824840.82,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 2.86,
-  "dividendYieldText": "2.86%",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYield": null,
+  "dividendYieldText": "—",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -81,7 +81,7 @@
    "yr10": 1.6,
    "sinceInception": 4.32,
    "mo1": 0.28,
-   "qtd": 0.62
+   "qtd": 0.58
   },
   "quarterEnd": {
    "asOfDate": "Jun 30 2026",
@@ -147,6 +147,10 @@
    [
     "09/01/2026",
     "0.062"
+   ],
+   [
+    "10/01/2026",
+    "0.067"
    ]
   ]
  },
@@ -156,8 +160,8 @@
   ],
   "pageSize": 250,
   "totalRows": 68,
-  "asOfDate": "2026-09-25",
-  "asOf": "Sep 25 2026",
+  "asOfDate": "2026-10-02",
+  "asOf": "Oct 02 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -166,8 +170,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 234,
-  "asOf": "Sep 25 2026",
+  "totalRows": 239,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-strategy-k-1-free-etf-us0032611040",
-  "nav": 26.3059,
-  "navDate": "2026-09-25"
+  "nav": 25.8119,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,29 +43,29 @@
   "net": 0.26
  },
  "nav": {
-  "display": "$26.31",
-  "value": 26.3059,
-  "asOfDate": "Sep 25 2026"
+  "display": "$25.81",
+  "value": 25.8119,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$26.32",
-  "value": 26.32,
-  "asOfDate": "Sep 25 2026"
+  "display": "$25.88",
+  "value": 25.88,
+  "asOfDate": "Oct 02 2026"
  },
  "premiumDiscount": {
-  "display": "0.05%",
-  "value": 0.05
+  "display": "0.26%",
+  "value": 0.26
  },
  "aum": {
-  "display": "$3,460.54 M",
-  "value": 3460541662.93,
-  "asOfDate": "Sep 25 2026",
+  "display": "$3,460.08 M",
+  "value": 3460082524.8,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 12.23,
-  "dividendYieldText": "12.23%",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYield": 12.44,
+  "dividendYieldText": "12.44%",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -147,9 +147,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 34,
-  "asOfDate": "2026-09-25",
-  "asOf": "Sep 25 2026",
+  "totalRows": 33,
+  "asOfDate": "2026-10-02",
+  "asOf": "Oct 02 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -160,8 +160,8 @@
    "history/003.json"
   ],
   "pageSize": 1000,
-  "totalRows": 2385,
-  "asOf": "Sep 25 2026",
+  "totalRows": 2390,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

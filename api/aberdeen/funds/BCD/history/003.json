@@ -2,7 +2,7 @@
  "ticker": "BCD",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 2385,
+ "totalRows": 2390,
  "headers": [
   "Date",
   "Close",
@@ -2319,6 +2319,36 @@
    "Close": "38.959999",
    "Adj Close": "38.96",
    "Volume": "24600"
+  },
+  {
+   "Date": "Sep 28 2026",
+   "Close": "38.580002",
+   "Adj Close": "38.58",
+   "Volume": "111600"
+  },
+  {
+   "Date": "Sep 29 2026",
+   "Close": "38.419998",
+   "Adj Close": "38.42",
+   "Volume": "35300"
+  },
+  {
+   "Date": "Sep 30 2026",
+   "Close": "38.470001",
+   "Adj Close": "38.47",
+   "Volume": "31800"
+  },
+  {
+   "Date": "Oct 01 2026",
+   "Close": "38.490002",
+   "Adj Close": "38.49",
+   "Volume": "323100"
+  },
+  {
+   "Date": "Oct 02 2026",
+   "Close": "38.470001",
+   "Adj Close": "38.47",
+   "Volume": "40400"
   }
  ]
 }

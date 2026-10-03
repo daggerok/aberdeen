@@ -2,7 +2,7 @@
  "ticker": "PPLT",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4204,
+ "totalRows": 4209,
  "headers": [
   "Date",
   "Close",
@@ -1233,6 +1233,36 @@
    "Close": "16.09",
    "Adj Close": "16.09",
    "Volume": "1623500"
+  },
+  {
+   "Date": "Sep 28 2026",
+   "Close": "15.57",
+   "Adj Close": "15.57",
+   "Volume": "2622700"
+  },
+  {
+   "Date": "Sep 29 2026",
+   "Close": "15.47",
+   "Adj Close": "15.47",
+   "Volume": "2358400"
+  },
+  {
+   "Date": "Sep 30 2026",
+   "Close": "15.41",
+   "Adj Close": "15.41",
+   "Volume": "2305800"
+  },
+  {
+   "Date": "Oct 01 2026",
+   "Close": "15.51",
+   "Adj Close": "15.51",
+   "Volume": "1662200"
+  },
+  {
+   "Date": "Oct 02 2026",
+   "Close": "15.43",
+   "Adj Close": "15.43",
+   "Volume": "2461400"
   }
  ]
 }

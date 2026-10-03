@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-palladium-shares-etf-us0032621023",
-  "nav": 22.72962,
-  "navDate": "2026-09-25"
+  "nav": 21.63834,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,29 +43,29 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$22.73",
-  "value": 22.72962,
-  "asOfDate": "Sep 25 2026"
+  "display": "$21.64",
+  "value": 21.63834,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$23.00",
-  "value": 23,
-  "asOfDate": "Sep 24 2026"
+  "display": "$21.47",
+  "value": 21.47,
+  "asOfDate": "Oct 01 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$655.47 M",
-  "value": 655465303.58,
-  "asOfDate": "Sep 25 2026",
+  "display": "$624.00 M",
+  "value": 623995619.27,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
   "dividendYield": null,
   "dividendYieldText": "—",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4204,
-  "asOf": "Sep 25 2026",
+  "totalRows": 4209,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

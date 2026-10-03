@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-platinum-shares-etf-us0032601066",
-  "nav": 15.99528,
-  "navDate": "2026-09-25"
+  "nav": 15.76739,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,29 +43,29 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$16.00",
-  "value": 15.99528,
-  "asOfDate": "Sep 25 2026"
+  "display": "$15.77",
+  "value": 15.76739,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$15.90",
-  "value": 15.9,
-  "asOfDate": "Sep 24 2026"
+  "display": "$15.51",
+  "value": 15.51,
+  "asOfDate": "Oct 01 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$2,144.17 M",
-  "value": 2144167496.27,
-  "asOfDate": "Sep 25 2026",
+  "display": "$2,091.54 M",
+  "value": 2091543811.72,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
   "dividendYield": null,
   "dividendYieldText": "—",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4204,
-  "asOf": "Sep 25 2026",
+  "totalRows": 4209,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

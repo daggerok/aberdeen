@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-silver-shares-etf-us0032641088",
-  "nav": 61.7451,
-  "navDate": "2026-09-25"
+  "nav": 57.96193,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,29 +43,29 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$61.75",
-  "value": 61.7451,
-  "asOfDate": "Sep 25 2026"
+  "display": "$57.96",
+  "value": 57.96193,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$60.56",
-  "value": 60.56,
-  "asOfDate": "Sep 24 2026"
+  "display": "$57.86",
+  "value": 57.86,
+  "asOfDate": "Oct 01 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$4,559.88 M",
-  "value": 4559875308.95,
-  "asOfDate": "Sep 25 2026",
+  "display": "$4,280.49 M",
+  "value": 4280488401.23,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
   "dividendYield": null,
   "dividendYieldText": "—",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4320,
-  "asOf": "Sep 25 2026",
+  "totalRows": 4325,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

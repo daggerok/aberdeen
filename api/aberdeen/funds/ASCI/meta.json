@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-international-small-cap-active-etf-us0030222667",
-  "nav": 36.6859,
-  "navDate": "2026-09-25"
+  "nav": 36.5224,
+  "navDate": "2026-10-02"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -37,35 +37,35 @@
   "exchange": "NasdaqGM"
  },
  "expenseRatio": {
-  "display": "1.05%",
-  "value": 1.05,
+  "display": "0.70%",
+  "value": 0.7,
   "gross": 1.05,
   "net": 0.7
  },
  "nav": {
-  "display": "$36.69",
-  "value": 36.6859,
-  "asOfDate": "Sep 25 2026"
+  "display": "$36.52",
+  "value": 36.5224,
+  "asOfDate": "Oct 02 2026"
  },
  "marketPrice": {
-  "display": "$36.82",
-  "value": 36.823,
-  "asOfDate": "Sep 25 2026"
+  "display": "$36.75",
+  "value": 36.749,
+  "asOfDate": "Oct 02 2026"
  },
  "premiumDiscount": {
-  "display": "0.37%",
-  "value": 0.37
+  "display": "0.62%",
+  "value": 0.62
  },
  "aum": {
-  "display": "$77.34 M",
-  "value": 77337331.31,
-  "asOfDate": "Sep 25 2026",
+  "display": "$76.99 M",
+  "value": 76992686.35,
+  "asOfDate": "Oct 02 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 0.75,
-  "dividendYieldText": "0.75%",
-  "dividendYieldKind": "indicated (latest distribution x payments per year / market price)",
+  "dividendYield": null,
+  "dividendYieldText": "—",
+  "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
   "secYieldKind": "not published",
@@ -115,9 +115,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 55,
-  "asOfDate": "2026-09-25",
-  "asOf": "Sep 25 2026",
+  "totalRows": 57,
+  "asOfDate": "2026-10-02",
+  "asOf": "Oct 02 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -126,8 +126,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 235,
-  "asOf": "Sep 25 2026",
+  "totalRows": 240,
+  "asOf": "Oct 02 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
