@@ -37,7 +37,7 @@ The **Update abrdn ETF data** GitHub Actions workflow exposes the same settings 
 | NAV total returns | POST `/api/gateway/funds/performance/annualized` and `/performance/cumulative`, `quarterly=false` for month-end, `quarterly=true` for quarter-end. Use the NAV category, not benchmark or market-price returns. Reporting dates come from the response, even if stale. |
 | Market-price history and dividends | Yahoo Finance public chart API `https://query1.finance.yahoo.com/v8/finance/chart/{TICKER}` with daily bars and dividend events. Adjusted close is rounded to 2 decimals. These are **not official NAV history rows** (market-price estimates). |
 | Holdings fallback | SEC fund-ticker/series map, series Atom feed, registrant submissions/full-text discovery, and N-PORT-P XML. Shared parsers follow JPMorgan; each filing must match the requested series (or exact normalized fund name). abrdn Funds filings associate AGEM/AFSC/ASCI/AMUN with CIK 0001413594 ([1](https://www.sec.gov/Archives/edgar/data/1413594/000110465924112193/tm2423635d8_485bpos.htm), [1](https://www.sec.gov/Archives/edgar/data/1413594/000110465926082281/tm2619092d1_ncsrs.htm)); other mappings are discovered from SEC, not guessed. |
-| Last resort | Existing committed `meta.json`, holdings and history pages. An unavailable endpoint must not erase published data. |
+| Last resort | Existing committed `meta.json`, holdings and history pages. When any source of a fund fails, that fund is kept exactly as published (see below); a skipped provider (`SKIP_ABERDEEN`, `SKIP_YAHOO`) reads its part from the published files. |
 
 ### Metrics and caveats
 
@@ -48,26 +48,34 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `ytd` / `tr1y` — official returns when published; gaps derived from Yahoo adjusted closes at the same reporting date.
 - `cagr3y` / `cagr5y` / `cagr10y` — official annualized NAV returns first.
 - `tr3y` / `tr5y` / `tr10y` — `(1 + CAGR)^n - 1`; a real zero stays zero.
-- `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; range-limited history is not called since-inception.
-- `dividendYield` — indicated latest distribution × annual payment frequency ÷ market price (an estimate from the market price, not an official figure).
-- `secYield` — official subsidized 30-day SEC yield when available; otherwise previously published value or null.
+- `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; `null` for a fund under one year old at the as-of date, and range-limited history is not called since-inception.
+- `dividendYield` — trailing 12 months: distributions with an ex-date in the 12 months up to the price date ÷ market price (computed from the Yahoo dividend events, not an official figure). `null` when the fund has under 12 months of history or paid nothing in the window; a single lumpy distribution is never annualized.
+- `secYield` — official subsidized 30-day SEC yield when the fund publishes one, otherwise `null`; a published value is never carried over once the source answers without one.
 - `returnsBasis` - mandatory non-empty label of how the returns were computed: official abrdn NAV performance (gaps derived from Yahoo adjusted closes at the same reporting date), or Yahoo adjusted market-price returns that are not official NAV; never empty or `-`
 - `performanceAsOf` - mandatory ISO date (`YYYY-MM-DD`) the returns are as of: the date of the abrdn performance table (month-end), or the last Yahoo close date when derived; it is not the NAV date, and `null` only when truly unknown
 
 Unavailable values stay null and are never shown as zero; only a published zero is zero.
 
+**Expense ratio:** `terValue` (and the `TER` filter) is the **net** expense ratio after waivers, or the single figure when only one is published; `terGrossValue` is the gross (total) expense ratio. The text fields `ter` and `terGross` sit next to them, and `meta.json` carries `expenseRatio.value`, `gross` and `net`.
+
+**Fund-level consistency:** a fund is either fully updated or fully kept as published. It is computed in memory from the catalog, detail page, key information, performance, holdings (official or SEC) and Yahoo history; if any of these sources fails (HTTP error, timeout, malformed answer) the fund's files and index row stay byte-for-byte as published and the run prints `kept`. The workflow commits after a partial run, which is safe because no fund is ever half-updated. A new fund whose source fails is not published until a later run. An honest empty answer from a source that responded is a `null`, not a reason to keep an old value, and returns travel with their own `performanceAsOf` and `returnsBasis` (an old Yahoo-derived block never stands in for the official table). Premium/discount is computed only when the NAV and price dates match, otherwise `null`. A SEC N-PORT filing replaces published holdings only when its report date is newer.
+
+**Exit code:** non-zero when any fund fails, or when every examined fund was kept because a source failed. A run stops taking new funds after 25 minutes (the workflow limit is 30) and still writes the index; the remaining funds keep their published data and the cursor does not move.
+
+**New funds:** tickers in the catalog that the previous index did not list are printed as `NEW FUNDS: A, B` and appended to the Actions step summary.
+
 **Known limitations**
 
 - **Physical trusts:** GLTR, PALL, PPLT, SGOL and SIVR do not expose a securities-holdings tab in the verified API. They remain in the catalog with facts/performance/history, but their securities portfolio is marked `not-applicable`; no synthetic bullion rows or invented tickers are generated. Physical bar lists are not converted into securities positions.
-- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and unit-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If all holdings sources fail, published holdings are kept.
+- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and unit-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If every holdings source fails, the fund is kept as published (see fund-level consistency).
 - **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
 - **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
-- **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing and bounded retries apply. Tests are offline; a passing test suite does not imply every live provider is reachable.
+- **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing applies, every request has a 45 s timeout covering headers and body, and it is retried per `MAX_RETRIES`. Tests are offline; a passing test suite does not imply every live provider is reachable.
 - **Client dependencies:** like the sibling UI, the browser loads Tailwind/Babel from CDNs and needs network access for them. No server backend or runtime package installation is required for the app.
 
 ### Update controls
 
-Precedence: `scripts/update-data.config.json` defaults < Actions `advanced` JSON < nonblank individual inputs < protected Actions variable or environment. The same `resolveControls` runs locally and in Actions. Locally, environment variables override the file and `ABERDEEN_<NAME>` overrides the unprefixed name.
+Precedence: `scripts/update-data.config.json` defaults < Actions `advanced` JSON < nonblank individual inputs < protected Actions variable or environment. The same `resolveControls` runs locally and in Actions. Locally, environment variables override the file and `ABERDEEN_<NAME>` overrides the unprefixed name. The legacy aliases `ABERDEEN_LIMIT` (`MAX_FETCHES`) and `HISTORICAL_PAGE_SIZE` / `ABERDEEN_HISTORICAL_PAGE_SIZE` (`HISTORY_PAGE_SIZE`) are resolved by the same resolver, so they work in the CLI and in Actions.
 
 Actions exposes 24 individual inputs plus `advanced`, respecting GitHub's 25-input limit. `SEC_UA`, `VERBOSE`, `USE_SYSTEM_CA`, `STORE_RAW_DOWNLOADS` and `SKIP_ABERDEEN` are available through `advanced` and the config file. Unknown keys, invalid ranges, non-scalar values and newline injection are rejected before any request. No credentials belong in the config file.
 
@@ -81,14 +89,14 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | `REQUEST_SLEEP` | `1` | Seconds between request starts including retries, paced per worker lane (no shared gate). |
 | `CONCURRENCY` | `2` | Parallel fund workers, each with its own request lane; throughput scales about N times. |
 | `AUM` | `:` | Net assets min:max in USD; K/M/B/T or nano/micro/small/mid/large preset. |
-| `TER` | `:` | Gross expense ratio percent min:max. |
-| `DIVIDEND_YIELD` | `:` | Indicated dividend yield percent min:max. |
+| `TER` | `:` | Net expense ratio percent min:max (the single published figure when there is no separate net). |
+| `DIVIDEND_YIELD` | `:` | Trailing 12-month dividend yield percent min:max; funds without one (null) are excluded. |
 | `SEC_YIELD` | `:` | 30-day SEC yield percent min:max. |
-| `TICKERS` | empty (all) | Ticker allowlist separated by spaces, commas or semicolons; empty means all. |
+| `TICKERS` | empty (all) | Ticker allowlist separated by spaces, commas or semicolons; empty means all. A ticker that is not in the catalog is an error. |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per holdings JSON page. |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per market-price history JSON page. |
 | `MAX_RETRIES` | `2` | Retries after the first request; at least 1. |
-| `HISTORY_RANGE` | `max` | Yahoo daily history range: max or Ny (e.g. 5y); preserves prior history. |
+| `HISTORY_RANGE` | `max` | Yahoo daily history range: max or Ny (e.g. 5y). Ny sends an explicit `period1` N years back, so the request really shrinks; prior history is merged, not dropped. |
 | `STORE_RAW_DOWNLOADS` | `false` | Save source JSON under api/aberdeen/raw. |
 | `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | SEC User-Agent (redacted in config logs); the protected `SEC_UA` variable or env overrides it. |
 | `SKIP_YAHOO` | `false` | Skip Yahoo history and dividends; retain published data. |
@@ -107,7 +115,7 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | `TOTAL_RETURN_5Y` | `:` | Cumulative 5Y return percent min:max. |
 | `TOTAL_RETURN_10Y` | `:` | Cumulative 10Y return percent min:max. |
 
-`TICKERS` combines with all other filters. Excluded and failed funds keep their previous published files and index entries. A bounded batch counts selected funds, follows deterministic ticker order, and does not advance its cursor if the batch has failures. A successful full pass removes the cursor.
+`TICKERS` combines with all other filters. Excluded and failed funds keep their previous published files and index entries, so a filtered run never shrinks the feed. A bounded batch (`MAX_FETCHES=N`) counts only funds that pass the filters: it keeps taking funds in cursor order, wrapping around, until N of them were updated, and does not advance its cursor if the batch has failures. A successful full pass removes the cursor. A `TICKERS` run never reads, moves or deletes the cursor.
 
 ### Examples
 
@@ -144,7 +152,7 @@ bun build --target=bun scripts/update-data.ts --outfile=/dev/null
 git diff --check
 ```
 
-`bun test` (`scripts/update-data.test.ts`) also covers the config file, `--help`, README controls and workflow checks. Optionally check the UI bundle with `bun build app.tsx --outfile=/dev/null`. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
+`bun test` (`scripts/update-data.test.ts`) also covers the config file, `--help`, README controls and workflow checks. These do **not** perform semantic TypeScript checking. Do not add `tsc`, a TypeScript dependency or a `tsconfig.json`.
 
 The UI reference is **daggerok/JPMorgan @ c1ef7858f61689f3d20636d6c83711d41faa722e**.
 
