@@ -65,6 +65,13 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `tr3y` / `tr5y` / `tr10y` — `(1 + CAGR)^n - 1`; a real zero stays zero.
 - `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; `null` for a fund under one year old at the as-of date, and range-limited history is not called since-inception.
 - `dividendYield` — trailing 12 months: distributions with an ex-date in the 12 months up to the price date ÷ market price (computed from the Yahoo dividend events, not an official figure). `null` when the fund has under 12 months of history or paid nothing in the window; a single lumpy distribution is never annualized.
+- `dividendYieldBasis` — short code for the definition behind `dividendYield`, `null` exactly when the yield is `null`. A kept or not-refreshed row published before the code existed gets it from its own yield, so every row carries the key:
+
+  | Code | Meaning for abrdn |
+  | --- | --- |
+  | `computed-trailing-12m` | the updater sums the distributions of the last 12 months (Yahoo dividend events) over the market price; the only source here, abrdn publishes no distribution yield in its payloads |
+  | `null` | no yield (fund under 12 months of history or no distributions) |
+  | `official-trailing-12m`, `official-distribution-rate`, `official-other`, `indicated` | standard codes that abrdn never produces |
 - `secYield` — official subsidized 30-day SEC yield when the fund publishes one, otherwise `null`; a published value is never carried over once the source answers without one.
 - `returnsBasis` - mandatory non-empty label of how the returns were computed: official abrdn NAV performance (gaps derived from Yahoo adjusted closes at the same reporting date), or Yahoo adjusted market-price returns that are not official NAV; never empty or `-`
 - `performanceAsOf` - mandatory ISO date (`YYYY-MM-DD`) the returns are as of: the date of the abrdn performance table (month-end), or the last Yahoo close date when derived; it is not the NAV date, and `null` only when truly unknown

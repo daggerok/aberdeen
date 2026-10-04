@@ -1504,11 +1504,27 @@ export function displayDateToIso(value:unknown):string|null {
 }
 export const OFFICIAL_RETURNS_BASIS='official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date';
 export const YAHOO_RETURNS_BASIS='Yahoo adjusted market-price returns, not official NAV';
+// dividendYieldBasis: code for the definition behind dividendYield (null exactly when the yield is null).
+// abrdn publishes no yield in its payloads: the only source is the updater's trailing-12-month sum of Yahoo distributions / market price.
+export type DividendYieldSource='computed-trailing-12m';
+export const YIELD_BASIS_BY_SOURCE:Record<DividendYieldSource,'computed-trailing-12m'>={'computed-trailing-12m':'computed-trailing-12m'};
+export const yieldBasisCode=(dividendYield:number|null|undefined,source:DividendYieldSource='computed-trailing-12m'):string|null=>
+  dividendYield===null||dividendYield===undefined?null:YIELD_BASIS_BY_SOURCE[source];
+/** Rows published before the code existed (kept, skipped or not selected in this run) get it from their own yield: every earlier yield was the computed trailing one. */
+export function withYieldBasis(row:JsonRecord):JsonRecord {
+  const m=row.metrics as JsonRecord|undefined;
+  if(!m||typeof m!=='object')return row;
+  const code=yieldBasisCode(numberOrNull(m.dividendYield));
+  const metrics:JsonRecord={};
+  for(const [k,v] of Object.entries(m)){if(k==='dividendYieldBasis')continue;metrics[k]=v;if(k==='dividendYieldText')metrics.dividendYieldBasis=code;}
+  if(!('dividendYieldBasis' in metrics))metrics.dividendYieldBasis=code;
+  return {...row,metrics};
+}
 export function buildMetrics(month:JsonRecord|null,derived:PriceReturns,secYield:number|null,divYield:number|null,hasOfficialReturns=false):JsonRecord {
   const ytd=month?.ytd??derived.ytd, tr1y=month?.yr1??derived.yr1;
   const cagr3y=month?.yr3??derived.cagr3y,cagr5y=month?.yr5??derived.cagr5y,cagr10y=month?.yr10??derived.cagr10y;
   return {ytd,tr1y,cagr3y,cagr5y,cagr10y,tr3y:annualizedToTotal(cagr3y,3),tr5y:annualizedToTotal(cagr5y,5),tr10y:annualizedToTotal(cagr10y,10),
-    siAnn:month?.sinceInception??derived.siAnn,secYield,secYieldText:percent(secYield),dividendYield:divYield,dividendYieldText:percent(divYield),
+    siAnn:month?.sinceInception??derived.siAnn,secYield,secYieldText:percent(secYield),dividendYield:divYield,dividendYieldText:percent(divYield),dividendYieldBasis:yieldBasisCode(divYield),
     returnsBasis:hasOfficialReturns?OFFICIAL_RETURNS_BASIS:YAHOO_RETURNS_BASIS,
     // Date of the provider performance table (or the last Yahoo close when derived), not the NAV date.
     performanceAsOf:displayDateToIso(month?.asOfDate)??(derived.asOfDate||null)};
@@ -1845,7 +1861,7 @@ export async function main(env:Record<string,string|undefined>=process.env):Prom
   }
   if (truncated) console.log(`[ deadline ] stopped taking new funds after ${Math.round(runDeadlineMs/60_000)} min; ${order.length-examined} of ${order.length} not examined`);
   if (!result.size) throw new Error('No publishable funds; not replacing the index');
-  const funds=[...result.values()].sort((a,b)=>a.ticker.localeCompare(b.ticker));
+  const funds=[...result.values()].map(withYieldBasis).sort((a,b)=>a.ticker.localeCompare(b.ticker));
   const counts={funds:funds.length,holdings:funds.reduce((s,f)=>s+f.holdings,0),history:funds.reduce((s,f)=>s+f.history,0)};
   const stamp=isoSeconds();
   await writeIfChanged(INDEX_FILE,{generatedAt:stamp,catalogReadAt:stamp,source:{provider:'abrdn ETFs',site:ABERDEEN_SITE,catalog:CATALOG_PAGE},counts,funds});
