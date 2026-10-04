@@ -7,7 +7,7 @@ import {
   CONTROL_NAMES, CONTROL_ALIASES, resolveControls, runtimeControls, readConfig, parseRange, parseAumRange, fundFilterReasons, selectionOrder,
   parseCatalog, catalogPayload, parseDetail, parseKeyInformation, parseHoldings, parsePerformance, parseChart, mergeHistory, collectPages,
   parseNport, parseFundTickerMap, nportMatches, isoDate, displayDateToIso, numberOrNull, normalizeNumberText, decodeDividendFrequency,
-  buildMetrics, priceReturns, annualizedToTotal, trailingYield, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, samePublishedContent,
+  buildMetrics, yieldBasisCode, withYieldBasis, priceReturns, annualizedToTotal, trailingYield, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, samePublishedContent,
   fetchWithRetry, fetchTextWithRetry, runWorkers, setRequestSleep, setFetchTimeoutMs, chartUrl, isCertError, installSystemCa,
 } from './update-data';
 
@@ -424,6 +424,20 @@ describe('metrics', () => {
     expect(u.returnsBasis).not.toBe('-');
     expect(Object.keys(u)).toEqual(Object.keys(m));
   });
+  test('dividendYieldBasis: computed-trailing-12m with a yield, null with null, same key set on fresh and rebuilt rows', () => {
+    const none2 = priceReturns([]);
+    const withYield = buildMetrics(null, none2, null, 4, false), noYield = buildMetrics(null, none2, null, null, false), zero = buildMetrics(null, none2, null, 0, false);
+    expect([withYield.dividendYieldBasis, noYield.dividendYieldBasis, zero.dividendYieldBasis]).toEqual(['computed-trailing-12m', null, 'computed-trailing-12m']);
+    expect(yieldBasisCode(undefined)).toBeNull();
+    const { dividendYieldBasis, ...legacy } = withYield;
+    const kept = withYieldBasis({ ticker: 'X', metrics: legacy }), keptNull = withYieldBasis({ ticker: 'Y', metrics: { ...legacy, dividendYield: null } });
+    expect((kept.metrics as any).dividendYieldBasis).toBe('computed-trailing-12m');
+    expect((keptNull.metrics as any).dividendYieldBasis).toBeNull();
+    expect(Object.keys(kept.metrics as object)).toEqual(Object.keys(withYield));
+    expect(Object.keys(keptNull.metrics as object)).toEqual(Object.keys(noYield));
+    // a stale code never survives next to a different yield
+    expect((withYieldBasis({ metrics: { ...withYield, dividendYield: null } }).metrics as any).dividendYieldBasis).toBeNull();
+  });
   test('young funds: no 3y CAGR, no since-inception annualisation under a year, no trailing yield without 12 months; zero CAGR is 0 not null', () => {
     const asOf = new Date('2026-09-25');
     expect(priceReturns([day('2026-01-01', 10), day('2026-09-25', 11)], asOf).cagr3y).toBeNull();
@@ -447,7 +461,8 @@ ok(sgol.metrics.dividendYield === null, 'SGOL has no distributions');
 ok((await meta('BCD')).yields.dividendYieldKind.includes('trailing 12 months'), 'kind');
 const keys = JSON.stringify(Object.keys(r.metrics));
 ok(keys === JSON.stringify(Object.keys(bcd.metrics)) && keys === JSON.stringify(Object.keys(sgol.metrics)), 'metrics key set differs');
-ok(keys.endsWith('"returnsBasis","performanceAsOf"]'), 'basis keys last');`);
+ok(keys.endsWith('"returnsBasis","performanceAsOf"]'), 'basis keys last');
+ok(r.metrics.dividendYieldBasis === 'computed-trailing-12m' && bcd.metrics.dividendYieldBasis === 'computed-trailing-12m' && sgol.metrics.dividendYieldBasis === null, 'basis ' + JSON.stringify([r.metrics.dividendYieldBasis, sgol.metrics.dividendYieldBasis]));`);
   });
   test('a young fund (under 12 months of history) has null dividend yield', async () => {
     await passes(`S.chartFrom = '2026-03-02';
