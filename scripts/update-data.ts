@@ -1614,9 +1614,10 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
   if (!holdings) {
     const rows=await readPreviousSheet(ticker,'holdings'), headers=await readPreviousSheetHeaders(ticker,'holdings');
     if (old.holdings?.totalRows && rows.length!==old.holdings.totalRows) throw new Error(`${ticker}: previous holdings incomplete; refusing overwrite`);
-    holdings={...old.holdings,rows,headers:headers.length?headers:HOLDINGS_HEADERS,asOfDate:old.holdings?.asOfDate??null,
+    const previousHoldings:JsonRecord={...old.holdings,rows,headers:headers.length?headers:HOLDINGS_HEADERS,asOfDate:old.holdings?.asOfDate??null,
       source:old.holdings?.source??(physical?'not published as a securities portfolio (physical precious metals trust)':'unavailable from official/SEC sources'),
       status:old.holdings?.status??(rows.length?'available':physical?'not-applicable':'unavailable')};
+    holdings=previousHoldings;
   }
   const oldHistory=await readPreviousSheet(ticker,'history');
   if (old.history?.totalRows && oldHistory.length!==old.history.totalRows) throw new Error(`${ticker}: previous history incomplete; refusing overwrite`);
