@@ -6,9 +6,12 @@ One of the app's features lets you select abrdn ETFs in the Watchlist and aggreg
 
 ```bash
 bunx degit daggerok/aberdeen#main ./12345 && cd $_
-bunx serve . -p 1234
-open http://0:1234
+bun install
+bun run serve
+open http://localhost:1234
 ```
+
+`bun run serve` starts the Parcel dev server and copies `api/` to `dist/api`. `bun run build` writes the production site to `./dist`; `bun run build-github-pages` builds it for the `/aberdeen/` path of GitHub Pages.
 
 The application URL is <https://daggerok.github.io/aberdeen/>.
 
@@ -97,7 +100,7 @@ Unavailable values stay null and are never shown as zero; only a published zero 
 - **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
 - **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
 - **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing applies, every request has a 45 s timeout covering headers and body, and it is retried per `MAX_RETRIES`. Tests are offline; a passing test suite does not imply every live provider is reachable.
-- **Client dependencies:** like the sibling UI, the browser loads Tailwind/Babel from CDNs and needs network access for them. No server backend or runtime package installation is required for the app.
+- **Client dependencies:** like the sibling UI, the browser app is a static Parcel build (Tailwind v4 compiled at build time), so it needs no CDN except the Google Fonts stylesheet. No server backend is required for the app.
 
 ### Update controls
 
@@ -167,7 +170,7 @@ Override `SEC_UA` (environment or the protected Actions variable) to use a diffe
 
 ## TypeScript and verification
 
-The browser app is intentionally build-free: `index.html` carries the markup, styles and bootstrap, and `app.tsx` is TypeScript compiled in the browser with Babel standalone — no build step, no bundler, no `tsconfig.json` needed. Bun runs TypeScript out of the box.
+The browser app is built by Parcel: `src/index.html` carries the markup and bootstrap, `src/main.tsx` is the TypeScript source, `src/index.css` holds Tailwind v4 and the component styles, and `dist/` is the build output deployed by `.github/workflows/github-pages.yml` (Pages source: GitHub Actions). No `tsconfig.json` is needed. Bun runs TypeScript out of the box.
 
 Verification before every publish:
 
