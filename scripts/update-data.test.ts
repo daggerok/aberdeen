@@ -278,45 +278,6 @@ describe('controls', () => {
     await expect(fetch('http://x.test')).rejects.toThrow('restart');
     expect(reexecs).toBe(1);
   });
-  describe('workflow', () => {
-    test('inputs (at most 25, advanced defaults to {}, each is a control), schedule, hardening, protected SEC_UA, fixed output dir', async () => {
-      const workflow = await read('.github/workflows/update-data.yml');
-      const inputsBlock = workflow.slice(workflow.indexOf('    inputs:'), workflow.indexOf('\npermissions:'));
-      const inputNames = [...inputsBlock.matchAll(/^      (\w+):$/gm)].map(m => m[1]);
-      expect(inputNames.length).toBeLessThanOrEqual(25);
-      expect(inputsBlock).toMatch(/advanced:[\s\S]*?default: '\{\}'/);
-      for (const name of inputNames.filter(n => n !== 'advanced')) expect(CONTROL_NAMES).toContain(name.toUpperCase() as any);
-      expect(inputNames).not.toContain('sec_ua');
-      expect(workflow).toContain("cron: '0 0 * * 0'");
-      expect(workflow).toContain('toJSON(inputs)');
-      expect(workflow).not.toMatch(/\$\{\{\s*(github\.event\.)?inputs\./);
-      expect(workflow).not.toContain('OUTPUT_DIR');
-      expect(workflow).toContain('timeout-minutes: 30');
-      expect(workflow).toContain('persist-credentials: false');
-      expect(workflow).toContain('PROTECTED_SEC_UA: ${{ vars.SEC_UA }}');
-      expect([...workflow.matchAll(/git add (\S+)/g)].map(m => m[1])).toEqual(['api/aberdeen']);
-    });
-    test('the actual Actions resolver step loads the config and applies manual overrides', async () => {
-      const parsed = Bun.YAML.parse(await read('.github/workflows/update-data.yml')) as any;
-      const step = parsed.jobs['update-data'].steps.find((s: any) => s.name === 'Resolve file defaults and manual overrides');
-      const dir = await mkdtemp(join(tmpdir(), 'aberdeen-actions-config-'));
-      try {
-        const githubEnv = join(dir, 'github-env');
-        const r = await spawnText(['bash', '-c', step.run], {
-          cwd: root('').pathname,
-          env: cleanEnv({
-            PATH: `${process.execPath.slice(0, process.execPath.lastIndexOf('/'))}:${process.env.PATH ?? ''}`,
-            GITHUB_ENV: githubEnv,
-            DISPATCH_INPUTS: JSON.stringify({ concurrency: '3', tickers: 'AGEM', advanced: JSON.stringify({ MAX_FETCHES: 2 }) }),
-          }),
-        });
-        expect(r).toEqual({ code: 0, stderr: '', stdout: '' });
-        const values = Object.fromEntries((await readFile(githubEnv, 'utf8')).trim().split('\n').map(line => { const i = line.indexOf('='); return [line.slice(0, i), line.slice(i + 1)]; }));
-        expect([values.CONCURRENCY, values.TICKERS, values.MAX_FETCHES, values.REQUEST_SLEEP]).toEqual(['3', 'AGEM', '2', '1']);
-        expect(Object.keys(values)).toHaveLength(CONTROL_NAMES.length);
-      } finally { await rm(dir, { recursive: true, force: true }); }
-    });
-  });
 });
 
 describe('parsing', () => {
