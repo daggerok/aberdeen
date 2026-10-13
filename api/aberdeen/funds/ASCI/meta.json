@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-international-small-cap-active-etf-us0030222667",
-  "nav": 36.5224,
-  "navDate": "2026-10-02"
+  "nav": 37.211,
+  "navDate": "2026-10-12"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.7
  },
  "nav": {
-  "display": "$36.52",
-  "value": 36.5224,
-  "asOfDate": "Oct 02 2026"
+  "display": "$37.21",
+  "value": 37.211,
+  "asOfDate": "Oct 12 2026"
  },
  "marketPrice": {
-  "display": "$36.75",
-  "value": 36.749,
-  "asOfDate": "Oct 02 2026"
+  "display": "$37.16",
+  "value": 37.158,
+  "asOfDate": "Oct 12 2026"
  },
  "premiumDiscount": {
-  "display": "0.62%",
-  "value": 0.62
+  "display": "-0.14%",
+  "value": -0.14
  },
  "aum": {
-  "display": "$76.99 M",
-  "value": 76992686.35,
-  "asOfDate": "Oct 02 2026",
+  "display": "$78.44 M",
+  "value": 78444279.39,
+  "asOfDate": "Oct 12 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -115,9 +115,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 57,
-  "asOfDate": "2026-10-02",
-  "asOf": "Oct 02 2026",
+  "totalRows": 56,
+  "asOfDate": "2026-10-12",
+  "asOf": "Oct 12 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -126,8 +126,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 240,
-  "asOf": "Oct 02 2026",
+  "totalRows": 246,
+  "asOf": "Oct 12 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

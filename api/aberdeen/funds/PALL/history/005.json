@@ -2,7 +2,7 @@
  "ticker": "PALL",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4209,
+ "totalRows": 4215,
  "headers": [
   "Date",
   "Close",
@@ -1263,6 +1263,42 @@
    "Close": "21.25",
    "Adj Close": "21.25",
    "Volume": "1084900"
+  },
+  {
+   "Date": "Oct 05 2026",
+   "Close": "21.280001",
+   "Adj Close": "21.28",
+   "Volume": "513800"
+  },
+  {
+   "Date": "Oct 06 2026",
+   "Close": "21.25",
+   "Adj Close": "21.25",
+   "Volume": "581300"
+  },
+  {
+   "Date": "Oct 07 2026",
+   "Close": "20.299999",
+   "Adj Close": "20.3",
+   "Volume": "1078300"
+  },
+  {
+   "Date": "Oct 08 2026",
+   "Close": "20.49",
+   "Adj Close": "20.49",
+   "Volume": "1257000"
+  },
+  {
+   "Date": "Oct 09 2026",
+   "Close": "20.77",
+   "Adj Close": "20.77",
+   "Volume": "1144600"
+  },
+  {
+   "Date": "Oct 12 2026",
+   "Close": "20.610001",
+   "Adj Close": "20.61",
+   "Volume": "1577500"
   }
  ]
 }

@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-longer-dated-strategy-k-1-free-etf-us0032612030",
-  "nav": 38.4121,
-  "navDate": "2026-10-02"
+  "nav": 39.3879,
+  "navDate": "2026-10-12"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$38.41",
-  "value": 38.4121,
-  "asOfDate": "Oct 02 2026"
+  "display": "$39.39",
+  "value": 39.3879,
+  "asOfDate": "Oct 12 2026"
  },
  "marketPrice": {
-  "display": "$38.47",
-  "value": 38.47,
-  "asOfDate": "Oct 02 2026"
+  "display": "$39.40",
+  "value": 39.4,
+  "asOfDate": "Oct 12 2026"
  },
  "premiumDiscount": {
-  "display": "0.15%",
-  "value": 0.15
+  "display": "0.03%",
+  "value": 0.03
  },
  "aum": {
-  "display": "$439.82 M",
-  "value": 439819055.87,
-  "asOfDate": "Oct 02 2026",
+  "display": "$449.02 M",
+  "value": 449021591.48,
+  "asOfDate": "Oct 12 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 13.85,
-  "dividendYieldText": "13.85%",
+  "dividendYield": 13.53,
+  "dividendYieldText": "13.53%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
@@ -73,28 +73,28 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Aug 31 2026",
-   "ytd": 24.68,
-   "yr1": 33.99,
-   "yr3": 13.32,
-   "yr5": 12.16,
+   "asOfDate": "Sep 30 2026",
+   "ytd": 24.26,
+   "yr1": 31.01,
+   "yr3": 13.74,
+   "yr5": 11.08,
    "yr10": null,
-   "sinceInception": 9.4,
-   "mo1": 7.14,
-   "qtd": 13.03
+   "sinceInception": 9.28,
+   "mo1": -0.29,
+   "qtd": 12.65
   },
   "quarterEnd": {
-   "asOfDate": "Mar 31 2026",
+   "asOfDate": "Sep 30 2026",
    "ytd": null,
-   "yr1": 22.72,
-   "yr3": 10.98,
-   "yr5": 13.99,
+   "yr1": 31.01,
+   "yr3": 13.74,
+   "yr5": 11.08,
    "yr10": null,
-   "sinceInception": 8.95,
-   "mo1": 4.82
+   "sinceInception": 9.28,
+   "mo1": -0.29
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-08-31"
+  "performanceAsOf": "2026-09-30"
  },
  "distributions": {
   "frequency": "Annually",
@@ -147,9 +147,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 33,
-  "asOfDate": "2026-10-02",
-  "asOf": "Oct 02 2026",
+  "totalRows": 36,
+  "asOfDate": "2026-10-12",
+  "asOf": "Oct 12 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -160,8 +160,8 @@
    "history/003.json"
   ],
   "pageSize": 1000,
-  "totalRows": 2390,
-  "asOf": "Oct 02 2026",
+  "totalRows": 2396,
+  "asOf": "Oct 12 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
