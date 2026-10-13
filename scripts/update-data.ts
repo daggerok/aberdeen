@@ -1313,7 +1313,9 @@ async function loadCatalog(config:UpdaterConfig):Promise<CatalogFund[]> {
 }
 export function parseDetail(html:string):JsonRecord {
   const m=/<script[^>]*\bid="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/i.exec(html);
-  const detail=m ? JSON.parse(m[1])?.props?.pageProps?.pageData?.fundDetailsData : null;
+  // The site moved pageData under pageProps.page (seen 2026-10-12); the old location stays as a fallback.
+  const pageProps=m ? JSON.parse(m[1])?.props?.pageProps : null;
+  const detail=(pageProps?.page?.pageData ?? pageProps?.pageData)?.fundDetailsData ?? null;
   if (!detail?.id || !detail.isPageAvailable) throw new Error('Missing fundDetailsData');
   return detail;
 }

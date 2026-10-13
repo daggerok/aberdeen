@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-palladium-shares-etf-us0032621023",
-  "nav": 21.63834,
-  "navDate": "2026-10-02"
+  "nav": 20.80757,
+  "navDate": "2026-10-12"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$21.64",
-  "value": 21.63834,
-  "asOfDate": "Oct 02 2026"
+  "display": "$20.81",
+  "value": 20.80757,
+  "asOfDate": "Oct 12 2026"
  },
  "marketPrice": {
-  "display": "$21.47",
-  "value": 21.47,
-  "asOfDate": "Oct 01 2026"
+  "display": "$20.77",
+  "value": 20.77,
+  "asOfDate": "Oct 09 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$624.00 M",
-  "value": 623995619.27,
-  "asOfDate": "Oct 02 2026",
+  "display": "$607.32 M",
+  "value": 607320900.97,
+  "asOfDate": "Oct 12 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -73,28 +73,28 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Aug 31 2026",
-   "ytd": -14.79,
-   "yr1": 31.19,
-   "yr3": 5,
-   "yr5": -10.88,
-   "yr10": 7.27,
-   "sinceInception": 6.96,
-   "mo1": 13.06,
-   "qtd": 12.48
+   "asOfDate": "Sep 30 2026",
+   "ytd": -25,
+   "yr1": -1.65,
+   "yr3": -2.35,
+   "yr5": -8.99,
+   "yr10": 4.77,
+   "sinceInception": 5.86,
+   "mo1": -15.41,
+   "qtd": -1
   },
   "quarterEnd": {
-   "asOfDate": "Mar 31 2026",
+   "asOfDate": "Sep 30 2026",
    "ytd": null,
-   "yr1": 45.97,
-   "yr3": -1.54,
-   "yr5": -11.75,
-   "yr10": 9.13,
-   "sinceInception": 7.18,
-   "mo1": -19.28
+   "yr1": -1.65,
+   "yr3": -2.35,
+   "yr5": -8.99,
+   "yr10": 4.77,
+   "sinceInception": 5.86,
+   "mo1": -15.41
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-08-31"
+  "performanceAsOf": "2026-09-30"
  },
  "distributions": {
   "frequency": "—",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4209,
-  "asOf": "Oct 02 2026",
+  "totalRows": 4215,
+  "asOf": "Oct 12 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
