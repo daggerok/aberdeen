@@ -852,7 +852,8 @@ export function pickEftsCik(payload: JsonRecord, fundName: string): string | nul
   return null;
 }
 
-export type ChartDay = { date: string; close: number; adjClose: number; volume: number };
+// adjCloseRaw: Yahoo's unrounded value, only used to tell float noise from a real change (never persisted).
+export type ChartDay = { date: string; close: number; adjClose: number; volume: number; adjCloseRaw?: number };
 
 export type ParsedChart = {
   exchangeName: string;
@@ -890,6 +891,7 @@ export function parseChart(payload: JsonRecord): ParsedChart {
       // meaningful precision for a price and absorbs that jitter.
       adjClose: round(adjClose, 2),
       volume: typeof volumes[i] === 'number' ? (volumes[i] as number) : 0,
+      adjCloseRaw: adjClose,
     });
   }
   const events = ((result.events || {}) as JsonRecord).dividends as Record<string, JsonRecord> | undefined;
@@ -1466,6 +1468,10 @@ async function optional<T>(label:string, action:()=>Promise<T>):Promise<T|null> 
 }
 const percent=(v:number|null|undefined)=>v==null?'—':`${v.toFixed(2)}%`;
 const money=(v:number|null|undefined)=>v==null?'—':`$${v.toFixed(2)}`;
+// Yahoo's adjusted close is float32 and its last digits move with the request's period2, so a value
+// sitting on a cent boundary (31.544998 vs 31.545001) flips between runs. Within that noise the
+// published cent is kept: a rerun with the same source data changes nothing.
+export const ADJ_CLOSE_NOISE=1e-4;
 export function mergeHistory(previous:JsonRecord[], fresh:ChartDay[]):JsonRecord[] {
   const byDate=new Map<string,JsonRecord>();
   // Dates are text ("Jun 30 2026"): parse them as calendar dates, never through the local-time Date parser.
@@ -1473,7 +1479,11 @@ export function mergeHistory(previous:JsonRecord[], fresh:ChartDay[]):JsonRecord
     const iso=displayDateToIso(row.Date);
     if (iso) byDate.set(iso,row);
   }
-  for (const day of fresh) byDate.set(day.date,historyRows([day])[0]);
+  for (const day of fresh) {
+    const row=historyRows([day])[0], prior=byDate.get(day.date), priorAdj=prior?numberOrNull(prior['Adj Close']):null, raw=day.adjCloseRaw??day.adjClose;
+    if (prior&&priorAdj!==null&&row['Adj Close']!==prior['Adj Close']&&Math.abs(raw-priorAdj)<=0.005+ADJ_CLOSE_NOISE) row['Adj Close']=prior['Adj Close'];
+    byDate.set(day.date,row);
+  }
   return [...byDate].sort(([a],[b])=>a.localeCompare(b)).map(([,row])=>row);
 }
 function chartDaysFromRows(rows:JsonRecord[]):ChartDay[] {
