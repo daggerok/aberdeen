@@ -290,6 +290,8 @@ describe('parsing', () => {
   test('fund page: detail comes from NEXT_DATA and its shape is validated', () => {
     const html = `<script id="__NEXT_DATA__">${JSON.stringify({ props: { pageProps: { pageData: { fundDetailsData: detail } } } })}</script>`;
     expect(parseDetail(html).id).toBe(agem.id);
+    const current = `<script id="__NEXT_DATA__">${JSON.stringify({ props: { pageProps: { page: { pageData: { fundDetailsData: detail } } } } })}</script>`;
+    expect(parseDetail(current).id).toBe(agem.id);
     expect(() => parseDetail('<html/>')).toThrow();
   });
   test('key information: net TER, AUM and SEC yield', () => {
