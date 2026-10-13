@@ -480,6 +480,27 @@ ok((await idx()).generatedAt !== a.generatedAt, 'stamp must move with content');
     expect(samePublishedContent('{"source":{"generatedAt":"old","x":1},"catalogReadAt":"old"}', { catalogReadAt: 'new', source: { x: 1, generatedAt: 'new' } })).toBe(true);
     expect(samePublishedContent('{"x":1}', { x: 2 })).toBe(false);
   });
+  test('two runs on the same source data write zero changes even when Yahoo adjusted closes jitter across a cent boundary', async () => {
+    // Yahoo float32 noise seen live: SPDV 2024-11-12 came back as 31.544998 and 31.545001 a minute apart.
+    // The mocked closes step by half a cent, so every other day sits exactly on a cent boundary.
+    await passes(`const base = globalThis.fetch;
+let shift = 0.000001;
+globalThis.fetch = async (input, init) => {
+  const response = await base(input, init);
+  if (!String(input).includes('query1.finance.yahoo.com')) return response;
+  const payload = await response.json(), result = payload.chart.result[0];
+  result.indicators.adjclose = [{ adjclose: result.indicators.quote[0].close.map(c => c + shift) }];
+  return Response.json(payload);
+};
+ok(await run() === 0, 'run 1');
+const first = await snap();
+shift = -0.000002;
+ok(await run() === 0, 'run 2');
+ok(first === await snap(), 'float noise across a cent boundary rewrote published history');
+shift = -0.02;
+ok(await run() === 0, 'run 3');
+ok(first !== await snap(), 'a real adjusted-close change was not written');`);
+  });
   test('a TICKERS run keeps every row and file and never moves the cursor; an unknown ticker exits 1 and writes nothing', async () => {
     await passes(`ok(await run() === 0, 'run 1');
 ok(await run({ MAX_FETCHES: '2' }) === 0, 'batch');
