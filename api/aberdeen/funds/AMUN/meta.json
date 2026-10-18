@@ -22,8 +22,8 @@
   "assetClass": "Fixed Income",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-ultra-short-municipal-income-active-etf-us0030222741",
-  "nav": 25.9405,
-  "navDate": "2026-10-12"
+  "nav": 25.9749,
+  "navDate": "2026-10-16"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.25
  },
  "nav": {
-  "display": "$25.94",
-  "value": 25.9405,
-  "asOfDate": "Oct 12 2026"
+  "display": "$25.97",
+  "value": 25.9749,
+  "asOfDate": "Oct 16 2026"
  },
  "marketPrice": {
-  "display": "$25.93",
-  "value": 25.925,
-  "asOfDate": "Oct 12 2026"
+  "display": "$26.00",
+  "value": 26.005,
+  "asOfDate": "Oct 16 2026"
  },
  "premiumDiscount": {
-  "display": "-0.06%",
-  "value": -0.06
+  "display": "0.12%",
+  "value": 0.12
  },
  "aum": {
-  "display": "$58.13 M",
-  "value": 58133238.2,
-  "asOfDate": "Oct 12 2026",
+  "display": "$58.21 M",
+  "value": 58210279.55,
+  "asOfDate": "Oct 16 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -159,9 +159,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 69,
-  "asOfDate": "2026-10-12",
-  "asOf": "Oct 12 2026",
+  "totalRows": 70,
+  "asOfDate": "2026-10-16",
+  "asOf": "Oct 16 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -170,8 +170,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 245,
-  "asOf": "Oct 12 2026",
+  "totalRows": 249,
+  "asOf": "Oct 16 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
