@@ -2,7 +2,7 @@
  "ticker": "PPLT",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4219,
+ "totalRows": 4220,
  "headers": [
   "Date",
   "Close",
@@ -1323,6 +1323,12 @@
    "Close": "14.75",
    "Adj Close": "14.75",
    "Volume": "1441100"
+  },
+  {
+   "Date": "Oct 19 2026",
+   "Close": "14.82",
+   "Adj Close": "14.82",
+   "Volume": "1292400"
   }
  ]
 }

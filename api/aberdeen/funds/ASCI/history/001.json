@@ -2,7 +2,7 @@
  "ticker": "ASCI",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 250,
+ "totalRows": 251,
  "headers": [
   "Date",
   "Close",
@@ -1509,6 +1509,12 @@
    "Close": "36.546001",
    "Adj Close": "36.55",
    "Volume": "900"
+  },
+  {
+   "Date": "Oct 19 2026",
+   "Close": "36.669998",
+   "Adj Close": "36.67",
+   "Volume": "5500"
   }
  ]
 }

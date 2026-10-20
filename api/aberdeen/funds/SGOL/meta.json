@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
-  "nav": 39.87047,
-  "navDate": "2026-10-16"
+  "nav": 39.47589,
+  "navDate": "2026-10-19"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.17
  },
  "nav": {
-  "display": "$39.87",
-  "value": 39.87047,
-  "asOfDate": "Oct 16 2026"
+  "display": "$39.48",
+  "value": 39.47589,
+  "asOfDate": "Oct 19 2026"
  },
  "marketPrice": {
-  "display": "$39.74",
-  "value": 39.74,
-  "asOfDate": "Oct 15 2026"
+  "display": "$39.68",
+  "value": 39.68,
+  "asOfDate": "Oct 16 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$7,188.65 M",
-  "value": 7188645116.74,
-  "asOfDate": "Oct 16 2026",
+  "display": "$7,117.50 M",
+  "value": 7117503399.61,
+  "asOfDate": "Oct 19 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4303,
-  "asOf": "Oct 16 2026",
+  "totalRows": 4304,
+  "asOf": "Oct 19 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

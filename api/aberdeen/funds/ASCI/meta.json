@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-international-small-cap-active-etf-us0030222667",
-  "nav": 36.8711,
-  "navDate": "2026-10-16"
+  "nav": 36.737,
+  "navDate": "2026-10-19"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.7
  },
  "nav": {
-  "display": "$36.87",
-  "value": 36.8711,
-  "asOfDate": "Oct 16 2026"
+  "display": "$36.74",
+  "value": 36.737,
+  "asOfDate": "Oct 19 2026"
  },
  "marketPrice": {
-  "display": "$36.55",
-  "value": 36.546,
-  "asOfDate": "Oct 16 2026"
+  "display": "$36.67",
+  "value": 36.67,
+  "asOfDate": "Oct 19 2026"
  },
  "premiumDiscount": {
-  "display": "-0.88%",
-  "value": -0.88
+  "display": "-0.18%",
+  "value": -0.18
  },
  "aum": {
-  "display": "$71.28 M",
-  "value": 71275416.54,
-  "asOfDate": "Oct 16 2026",
+  "display": "$71.02 M",
+  "value": 71016031.76,
+  "asOfDate": "Oct 19 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -73,28 +73,28 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Aug 31 2026",
-   "ytd": 6.84,
-   "yr1": 6.97,
-   "yr3": 12.8,
-   "yr5": -0.1,
-   "yr10": 7.83,
-   "sinceInception": 7.36,
-   "mo1": 3.22,
-   "qtd": 0.79
+   "asOfDate": "Sep 30 2026",
+   "ytd": 5.57,
+   "yr1": 5.84,
+   "yr3": 14.59,
+   "yr5": 0.07,
+   "yr10": 7.44,
+   "sinceInception": 7.3,
+   "mo1": -1.26,
+   "qtd": -0.41
   },
   "quarterEnd": {
-   "asOfDate": "Jun 30 2026",
+   "asOfDate": "Sep 30 2026",
    "ytd": null,
-   "yr1": 4.85,
-   "yr3": 11.8,
-   "yr5": 1.42,
-   "yr10": 8.1,
-   "sinceInception": 7.35,
-   "mo1": -3.32
+   "yr1": 5.84,
+   "yr3": 14.59,
+   "yr5": 0.07,
+   "yr10": 7.44,
+   "sinceInception": 7.3,
+   "mo1": -1.26
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-08-31"
+  "performanceAsOf": "2026-09-30"
  },
  "distributions": {
   "frequency": "Annually",
@@ -115,9 +115,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 56,
-  "asOfDate": "2026-10-16",
-  "asOf": "Oct 16 2026",
+  "totalRows": 55,
+  "asOfDate": "2026-10-19",
+  "asOf": "Oct 19 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -126,8 +126,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 250,
-  "asOf": "Oct 16 2026",
+  "totalRows": 251,
+  "asOf": "Oct 19 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
