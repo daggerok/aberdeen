@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-international-small-cap-active-etf-us0030222667",
-  "nav": 36.737,
-  "navDate": "2026-10-19"
+  "nav": 36.6333,
+  "navDate": "2026-10-20"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.7
  },
  "nav": {
-  "display": "$36.74",
-  "value": 36.737,
-  "asOfDate": "Oct 19 2026"
+  "display": "$36.63",
+  "value": 36.6333,
+  "asOfDate": "Oct 20 2026"
  },
  "marketPrice": {
-  "display": "$36.67",
-  "value": 36.67,
-  "asOfDate": "Oct 19 2026"
+  "display": "$36.79",
+  "value": 36.789,
+  "asOfDate": "Oct 20 2026"
  },
  "premiumDiscount": {
-  "display": "-0.18%",
-  "value": -0.18
+  "display": "0.43%",
+  "value": 0.43
  },
  "aum": {
-  "display": "$71.02 M",
-  "value": 71016031.76,
-  "asOfDate": "Oct 19 2026",
+  "display": "$70.82 M",
+  "value": 70815638.36,
+  "asOfDate": "Oct 20 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": null,
-  "dividendYieldText": "—",
+  "dividendYield": 0.75,
+  "dividendYieldText": "0.75%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
@@ -115,9 +115,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 55,
-  "asOfDate": "2026-10-19",
-  "asOf": "Oct 19 2026",
+  "totalRows": 54,
+  "asOfDate": "2026-10-20",
+  "asOf": "Oct 20 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -126,8 +126,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 251,
-  "asOf": "Oct 19 2026",
+  "totalRows": 252,
+  "asOf": "Oct 20 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

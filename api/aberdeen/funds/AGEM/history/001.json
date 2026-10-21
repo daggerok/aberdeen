@@ -2,7 +2,7 @@
  "ticker": "AGEM",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 419,
+ "totalRows": 420,
  "headers": [
   "Date",
   "Close",
@@ -2523,6 +2523,12 @@
    "Close": "45.912998",
    "Adj Close": "45.91",
    "Volume": "11000"
+  },
+  {
+   "Date": "Oct 20 2026",
+   "Close": "46.026001",
+   "Adj Close": "46.03",
+   "Volume": "15800"
   }
  ]
 }

@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-palladium-shares-etf-us0032621023",
-  "nav": 20.46257,
-  "navDate": "2026-10-19"
+  "nav": 19.96417,
+  "navDate": "2026-10-20"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$20.46",
-  "value": 20.46257,
-  "asOfDate": "Oct 19 2026"
+  "display": "$19.96",
+  "value": 19.96417,
+  "asOfDate": "Oct 20 2026"
  },
  "marketPrice": {
-  "display": "$20.17",
-  "value": 20.17,
-  "asOfDate": "Oct 16 2026"
+  "display": "$20.24",
+  "value": 20.24,
+  "asOfDate": "Oct 19 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$592.14 M",
-  "value": 592135686.52,
-  "asOfDate": "Oct 19 2026",
+  "display": "$571.72 M",
+  "value": 571723929.07,
+  "asOfDate": "Oct 20 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4220,
-  "asOf": "Oct 19 2026",
+  "totalRows": 4221,
+  "asOf": "Oct 20 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

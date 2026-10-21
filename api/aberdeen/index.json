@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-20T04:56:23Z",
- "catalogReadAt": "2026-10-20T04:56:23Z",
+ "generatedAt": "2026-10-21T07:07:28Z",
+ "catalogReadAt": "2026-10-21T07:07:28Z",
  "source": {
   "provider": "abrdn ETFs",
   "site": "https://www.aberdeeninvestments.com",
@@ -8,8 +8,8 @@
  },
  "counts": {
   "funds": 11,
-  "holdings": 323,
-  "history": 27243
+  "holdings": 320,
+  "history": 27254
  },
  "funds": [
   {
@@ -24,17 +24,17 @@
    "terValue": 0.65,
    "terGross": "1.09%",
    "terGrossValue": 1.09,
-   "nav": "$36.24",
-   "navValue": 36.2415,
-   "aum": "$9.55 M",
-   "aumValue": 9548584.18,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$36.78",
+   "navValue": 36.7784,
+   "aum": "$9.69 M",
+   "aumValue": 9690054.13,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Dec 31 1997",
    "exchange": "NasdaqGM",
-   "closePrice": "$36.24",
-   "closePriceValue": 36.24,
-   "premiumDiscount": "0.00%",
-   "premiumDiscountValue": 0,
+   "closePrice": "$36.79",
+   "closePriceValue": 36.788,
+   "premiumDiscount": "0.03%",
+   "premiumDiscountValue": 0.03,
    "distributions": {
     "frequency": "Annually",
     "exDate": "12/19/2025",
@@ -84,7 +84,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 42,
-   "history": 420
+   "history": 421
   },
   {
    "ticker": "AGEM",
@@ -98,17 +98,17 @@
    "terValue": 0.7,
    "terGross": "1.18%",
    "terGrossValue": 1.18,
-   "nav": "$46.02",
-   "navValue": 46.0191,
-   "aum": "$347.90 M",
-   "aumValue": 347898634.02,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$45.77",
+   "navValue": 45.7731,
+   "aum": "$346.04 M",
+   "aumValue": 346038940.26,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Oct 04 1993",
    "exchange": "NasdaqGM",
-   "closePrice": "$45.91",
-   "closePriceValue": 45.913,
-   "premiumDiscount": "-0.23%",
-   "premiumDiscountValue": -0.23,
+   "closePrice": "$46.03",
+   "closePriceValue": 46.026,
+   "premiumDiscount": "0.55%",
+   "premiumDiscountValue": 0.55,
    "distributions": {
     "frequency": "Quarterly",
     "exDate": "09/22/2026",
@@ -151,14 +151,14 @@
     "siAnn": 6.28,
     "secYield": 1.48,
     "secYieldText": "1.48%",
-    "dividendYield": 2.55,
-    "dividendYieldText": "2.55%",
+    "dividendYield": 2.54,
+    "dividendYieldText": "2.54%",
     "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 92,
-   "history": 419
+   "history": 420
   },
   {
    "ticker": "AMUN",
@@ -172,17 +172,17 @@
    "terValue": 0.25,
    "terGross": "0.74%",
    "terGrossValue": 0.74,
-   "nav": "$25.98",
-   "navValue": 25.982,
-   "aum": "$58.23 M",
-   "aumValue": 58226230.3,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$25.99",
+   "navValue": 25.9868,
+   "aum": "$58.24 M",
+   "aumValue": 58236921.18,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Mar 17 1986",
    "exchange": "NasdaqGM",
    "closePrice": "$26.00",
    "closePriceValue": 26.005,
-   "premiumDiscount": "0.09%",
-   "premiumDiscountValue": 0.09,
+   "premiumDiscount": "0.07%",
+   "premiumDiscountValue": 0.07,
    "distributions": {
     "frequency": "Monthly",
     "exDate": "10/01/2026",
@@ -232,7 +232,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 70,
-   "history": 250
+   "history": 251
   },
   {
    "ticker": "ASCI",
@@ -246,17 +246,17 @@
    "terValue": 0.7,
    "terGross": "1.05%",
    "terGrossValue": 1.05,
-   "nav": "$36.74",
-   "navValue": 36.737,
-   "aum": "$71.02 M",
-   "aumValue": 71016031.76,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$36.63",
+   "navValue": 36.6333,
+   "aum": "$70.82 M",
+   "aumValue": 70815638.36,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Sep 30 1996",
    "exchange": "NasdaqGM",
-   "closePrice": "$36.67",
-   "closePriceValue": 36.67,
-   "premiumDiscount": "-0.18%",
-   "premiumDiscountValue": -0.18,
+   "closePrice": "$36.79",
+   "closePriceValue": 36.789,
+   "premiumDiscount": "0.43%",
+   "premiumDiscountValue": 0.43,
    "distributions": {
     "frequency": "Annually",
     "exDate": "12/19/2025",
@@ -299,14 +299,14 @@
     "siAnn": 7.3,
     "secYield": null,
     "secYieldText": "—",
-    "dividendYield": null,
-    "dividendYieldText": "—",
-    "dividendYieldBasis": null,
+    "dividendYield": 0.75,
+    "dividendYieldText": "0.75%",
+    "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
-   "holdings": 55,
-   "history": 251
+   "holdings": 54,
+   "history": 252
   },
   {
    "ticker": "BCD",
@@ -320,17 +320,17 @@
    "terValue": 0.3,
    "terGross": "0.30%",
    "terGrossValue": 0.3,
-   "nav": "$39.17",
-   "navValue": 39.1725,
-   "aum": "$446.57 M",
-   "aumValue": 446566921.29,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$38.98",
+   "navValue": 38.9829,
+   "aum": "$444.40 M",
+   "aumValue": 444404851.8,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Mar 30 2017",
    "exchange": "NYSEArca",
-   "closePrice": "$39.24",
-   "closePriceValue": 39.24,
-   "premiumDiscount": "0.17%",
-   "premiumDiscountValue": 0.17,
+   "closePrice": "$39.07",
+   "closePriceValue": 39.07,
+   "premiumDiscount": "0.22%",
+   "premiumDiscountValue": 0.22,
    "distributions": {
     "frequency": "Annually",
     "exDate": "12/30/2025",
@@ -373,14 +373,14 @@
     "siAnn": 9.28,
     "secYield": null,
     "secYieldText": "—",
-    "dividendYield": 13.58,
-    "dividendYieldText": "13.58%",
+    "dividendYield": 13.64,
+    "dividendYieldText": "13.64%",
     "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
-   "holdings": 32,
-   "history": 2401
+   "holdings": 31,
+   "history": 2402
   },
   {
    "ticker": "BCI",
@@ -394,17 +394,17 @@
    "terValue": 0.26,
    "terGross": "0.26%",
    "terGrossValue": 0.26,
-   "nav": "$26.32",
-   "navValue": 26.3185,
-   "aum": "$3,508.25 M",
-   "aumValue": 3508251501.08,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$26.19",
+   "navValue": 26.1928,
+   "aum": "$3,483.65 M",
+   "aumValue": 3483647281.54,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Mar 30 2017",
    "exchange": "NYSEArca",
-   "closePrice": "$26.34",
-   "closePriceValue": 26.34,
-   "premiumDiscount": "0.08%",
-   "premiumDiscountValue": 0.08,
+   "closePrice": "$26.26",
+   "closePriceValue": 26.26,
+   "premiumDiscount": "0.26%",
+   "premiumDiscountValue": 0.26,
    "distributions": {
     "frequency": "Annually",
     "exDate": "12/30/2025",
@@ -447,14 +447,14 @@
     "siAnn": 7.68,
     "secYield": null,
     "secYieldText": "—",
-    "dividendYield": 12.22,
-    "dividendYieldText": "12.22%",
+    "dividendYield": 12.26,
+    "dividendYieldText": "12.26%",
     "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
-   "holdings": 32,
-   "history": 2401
+   "holdings": 31,
+   "history": 2402
   },
   {
    "ticker": "GLTR",
@@ -468,15 +468,15 @@
    "terValue": 0.6,
    "terGross": "0.60%",
    "terGrossValue": 0.6,
-   "nav": "$182.74",
-   "navValue": 182.74332,
-   "aum": "$2,530.99 M",
-   "aumValue": 2530994920.79,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$181.38",
+   "navValue": 181.37989,
+   "aum": "$2,512.11 M",
+   "aumValue": 2512111411.31,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Oct 21 2010",
    "exchange": "NYSEArca",
-   "closePrice": "$182.54",
-   "closePriceValue": 182.54,
+   "closePrice": "$181.91",
+   "closePriceValue": 181.91,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -528,7 +528,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 0,
-   "history": 4021
+   "history": 4022
   },
   {
    "ticker": "PALL",
@@ -542,15 +542,15 @@
    "terValue": 0.6,
    "terGross": "0.60%",
    "terGrossValue": 0.6,
-   "nav": "$20.46",
-   "navValue": 20.46257,
-   "aum": "$592.14 M",
-   "aumValue": 592135686.52,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$19.96",
+   "navValue": 19.96417,
+   "aum": "$571.72 M",
+   "aumValue": 571723929.07,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Jan 08 2010",
    "exchange": "NYSEArca",
-   "closePrice": "$20.17",
-   "closePriceValue": 20.17,
+   "closePrice": "$20.24",
+   "closePriceValue": 20.24,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -602,7 +602,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 0,
-   "history": 4220
+   "history": 4221
   },
   {
    "ticker": "PPLT",
@@ -616,15 +616,15 @@
    "terValue": 0.6,
    "terGross": "0.60%",
    "terGrossValue": 0.6,
-   "nav": "$14.87",
-   "navValue": 14.86716,
-   "aum": "$1,952.06 M",
-   "aumValue": 1952058063.19,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$14.78",
+   "navValue": 14.77743,
+   "aum": "$1,935.10 M",
+   "aumValue": 1935103885.57,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Jan 08 2010",
    "exchange": "NYSEArca",
-   "closePrice": "$14.75",
-   "closePriceValue": 14.75,
+   "closePrice": "$14.82",
+   "closePriceValue": 14.82,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -676,7 +676,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 0,
-   "history": 4220
+   "history": 4221
   },
   {
    "ticker": "SGOL",
@@ -690,15 +690,15 @@
    "terValue": 0.17,
    "terGross": "0.17%",
    "terGrossValue": 0.17,
-   "nav": "$39.48",
-   "navValue": 39.47589,
-   "aum": "$7,117.50 M",
-   "aumValue": 7117503399.61,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$39.25",
+   "navValue": 39.25396,
+   "aum": "$7,077.49 M",
+   "aumValue": 7077488289.8,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Sep 09 2009",
    "exchange": "NYSEArca",
-   "closePrice": "$39.68",
-   "closePriceValue": 39.68,
+   "closePrice": "$39.42",
+   "closePriceValue": 39.42,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -750,7 +750,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 0,
-   "history": 4304
+   "history": 4305
   },
   {
    "ticker": "SIVR",
@@ -764,15 +764,15 @@
    "terValue": 0.3,
    "terGross": "0.30%",
    "terGrossValue": 0.3,
-   "nav": "$54.73",
-   "navValue": 54.7302,
-   "aum": "$3,932.37 M",
-   "aumValue": 3932365227.47,
-   "asOfDate": "Oct 19 2026",
+   "nav": "$54.22",
+   "navValue": 54.21702,
+   "aum": "$3,895.49 M",
+   "aumValue": 3895492821.03,
+   "asOfDate": "Oct 20 2026",
    "inceptionDate": "Jul 24 2009",
    "exchange": "NYSEArca",
-   "closePrice": "$54.17",
-   "closePriceValue": 54.17,
+   "closePrice": "$54.21",
+   "closePriceValue": 54.21,
    "premiumDiscount": "—",
    "premiumDiscountValue": null,
    "distributions": {
@@ -824,7 +824,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 0,
-   "history": 4336
+   "history": 4337
   }
  ]
 }

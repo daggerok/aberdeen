@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-longer-dated-strategy-k-1-free-etf-us0032612030",
-  "nav": 39.1725,
-  "navDate": "2026-10-19"
+  "nav": 38.9829,
+  "navDate": "2026-10-20"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$39.17",
-  "value": 39.1725,
-  "asOfDate": "Oct 19 2026"
+  "display": "$38.98",
+  "value": 38.9829,
+  "asOfDate": "Oct 20 2026"
  },
  "marketPrice": {
-  "display": "$39.24",
-  "value": 39.24,
-  "asOfDate": "Oct 19 2026"
+  "display": "$39.07",
+  "value": 39.07,
+  "asOfDate": "Oct 20 2026"
  },
  "premiumDiscount": {
-  "display": "0.17%",
-  "value": 0.17
+  "display": "0.22%",
+  "value": 0.22
  },
  "aum": {
-  "display": "$446.57 M",
-  "value": 446566921.29,
-  "asOfDate": "Oct 19 2026",
+  "display": "$444.40 M",
+  "value": 444404851.8,
+  "asOfDate": "Oct 20 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 13.58,
-  "dividendYieldText": "13.58%",
+  "dividendYield": 13.64,
+  "dividendYieldText": "13.64%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
@@ -147,9 +147,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 32,
-  "asOfDate": "2026-10-19",
-  "asOf": "Oct 19 2026",
+  "totalRows": 31,
+  "asOfDate": "2026-10-20",
+  "asOf": "Oct 20 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -160,8 +160,8 @@
    "history/003.json"
   ],
   "pageSize": 1000,
-  "totalRows": 2401,
-  "asOf": "Oct 19 2026",
+  "totalRows": 2402,
+  "asOf": "Oct 20 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

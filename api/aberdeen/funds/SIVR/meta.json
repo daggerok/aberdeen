@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-silver-shares-etf-us0032641088",
-  "nav": 54.7302,
-  "navDate": "2026-10-19"
+  "nav": 54.21702,
+  "navDate": "2026-10-20"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$54.73",
-  "value": 54.7302,
-  "asOfDate": "Oct 19 2026"
+  "display": "$54.22",
+  "value": 54.21702,
+  "asOfDate": "Oct 20 2026"
  },
  "marketPrice": {
-  "display": "$54.17",
-  "value": 54.17,
-  "asOfDate": "Oct 16 2026"
+  "display": "$54.21",
+  "value": 54.21,
+  "asOfDate": "Oct 19 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$3,932.37 M",
-  "value": 3932365227.47,
-  "asOfDate": "Oct 19 2026",
+  "display": "$3,895.49 M",
+  "value": 3895492821.03,
+  "asOfDate": "Oct 20 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4336,
-  "asOf": "Oct 19 2026",
+  "totalRows": 4337,
+  "asOf": "Oct 20 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
