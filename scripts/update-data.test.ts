@@ -8,7 +8,7 @@ import {
   parseCatalog, catalogPayload, parseDetail, parseKeyInformation, parseHoldings, parsePerformance, parseChart, mergeHistory, collectPages,
   parseNport, parseFundTickerMap, nportMatches, isoDate, displayDateToIso, numberOrNull, normalizeNumberText, decodeDividendFrequency,
   buildMetrics, yieldBasisCode, withYieldBasis, priceReturns, annualizedToTotal, trailingYield, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, samePublishedContent,
-  fetchWithRetry, fetchTextWithRetry, runWorkers, setRequestSleep, setFetchTimeoutMs, chartUrl, isCertError, installSystemCa,
+  fetchWithRetry, fetchTextWithRetry, runWorkers, setRequestSleep, setFetchTimeoutMs, chartUrl, isCertError, installSystemCa, holdingsGuard,
 } from './update-data';
 
 const root = (path: string) => new URL(`../${path}`, import.meta.url);
@@ -306,6 +306,20 @@ describe('parsing', () => {
     const weight = (v: string) => parseHoldings({ totalResults: 1, results: [{ rowLabel: 'Cash', columns: [{ columnLabel: 'Weight', columnRowValue: v }] }] }).rows[0].Weight;
     expect([weight('0'), weight('-0.35'), weight('N/A')]).toEqual(['0', '-0.35', '']);
   });
+  test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
+    const headers = ['Name', 'Ticker', 'Weight'];
+    const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
+    expect(holdingsGuard(headers, rows, 2)).toBeNull();
+    expect(holdingsGuard(headers, [['A', 'A', '60'], ['B', 'B', '40']], null)).toBeNull();
+    expect(holdingsGuard([], [], 0)).toBeNull(); // nothing published before: an empty sheet is honest
+    expect(holdingsGuard(headers, [], 505)).toContain('no holdings rows');
+    expect(holdingsGuard(['Name', 'Ticker', 'Wt'], rows, 2)).toContain('no weight column');
+    expect(holdingsGuard(headers, rows.map((row) => ({ ...row, Weight: '6\u200B0' })), 2)).toContain('numeric weight');
+    const allocation = [{ Name: 'Cash&Collateral', Ticker: '-', Weight: '100' }, { Name: 'Equities', Ticker: '-', Weight: '476' }];
+    expect(holdingsGuard(headers, allocation, 2)).toContain('outside 50..150');
+    expect(holdingsGuard(headers, allocation, 2, ['sum'])).toBeNull();
+    expect(holdingsGuard(headers, rows, 5)).toContain('less than half');
+  });
   test('returns: official NAV rows only, calendar year is not trailing 1y, missing periods are null', () => {
     const annual = perf([['timePeriodYears3', '27.89'], ['timePeriodYears5', '8.89']]);
     expect(parsePerformance(annual).values.yr3).toBe(27.89);
@@ -538,6 +552,24 @@ S.navAdd = 1; S.fail = (u) => u.includes('/chart/AGEM');
 const out = await run();
 ok(out === 0, 'exit ' + out);
 ok(before === await snap('/AGEM/'), 'AGEM files changed although Yahoo failed');
+ok(beforeRow === JSON.stringify(await row('AGEM')), 'AGEM row changed');
+ok((await meta('BCD')).nav.value === 39.9448, 'BCD still updated');`);
+  });
+  test('a renamed weight column fails the holdings guard: the fund stays exactly as published, the others update, exit 1', async () => {
+    await passes(`ok(await run() === 0, 'run 1');
+const before = await snap('/AGEM/');
+const beforeRow = JSON.stringify(await row('AGEM'));
+const served = globalThis.fetch;
+// the gateway relabels the Weight column for AGEM: every parsed weight is blank
+globalThis.fetch = async (input, init) => {
+  const res = await served(input, init);
+  if (!String(input).includes('breakdown/dailyHoldings') || JSON.parse(init.body).fund !== 'id-agem') return res;
+  return new Response((await res.text()).replaceAll('"Weight"', '"Weight %"'), { headers: { 'Content-Type': 'application/json' } });
+};
+S.navAdd = 1;
+const out = await run();
+ok(out === 1, 'exit ' + out);
+ok(before === await snap('/AGEM/'), 'AGEM files changed although its holdings failed the guard');
 ok(beforeRow === JSON.stringify(await row('AGEM')), 'AGEM row changed');
 ok((await meta('BCD')).nav.value === 39.9448, 'BCD still updated');`);
   });
