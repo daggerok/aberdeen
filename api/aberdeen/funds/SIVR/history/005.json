@@ -2,7 +2,7 @@
  "ticker": "SIVR",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4337,
+ "totalRows": 4340,
  "headers": [
   "Date",
   "Close",
@@ -2031,6 +2031,24 @@
    "Close": "54.830002",
    "Adj Close": "54.83",
    "Volume": "1930100"
+  },
+  {
+   "Date": "Oct 21 2026",
+   "Close": "54.959999",
+   "Adj Close": "54.96",
+   "Volume": "1870900"
+  },
+  {
+   "Date": "Oct 22 2026",
+   "Close": "51.889999",
+   "Adj Close": "51.89",
+   "Volume": "2237100"
+  },
+  {
+   "Date": "Oct 23 2026",
+   "Close": "51.220001",
+   "Adj Close": "51.22",
+   "Volume": "1999500"
   }
  ]
 }

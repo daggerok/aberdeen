@@ -2,7 +2,7 @@
  "ticker": "AGEM",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 420,
+ "totalRows": 423,
  "headers": [
   "Date",
   "Close",
@@ -2529,6 +2529,24 @@
    "Close": "46.026001",
    "Adj Close": "46.03",
    "Volume": "15800"
+  },
+  {
+   "Date": "Oct 21 2026",
+   "Close": "46.109001",
+   "Adj Close": "46.11",
+   "Volume": "12000"
+  },
+  {
+   "Date": "Oct 22 2026",
+   "Close": "44.799999",
+   "Adj Close": "44.8",
+   "Volume": "11400"
+  },
+  {
+   "Date": "Oct 23 2026",
+   "Close": "45.285999",
+   "Adj Close": "45.29",
+   "Volume": "7600"
   }
  ]
 }

@@ -2,7 +2,7 @@
  "ticker": "SGOL",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 4305,
+ "totalRows": 4308,
  "headers": [
   "Date",
   "Close",

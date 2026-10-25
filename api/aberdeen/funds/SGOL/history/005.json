@@ -2,7 +2,7 @@
  "ticker": "SGOL",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4305,
+ "totalRows": 4308,
  "headers": [
   "Date",
   "Close",
@@ -1838,7 +1838,25 @@
    "Date": "Oct 20 2026",
    "Close": "39.200001",
    "Adj Close": "39.2",
-   "Volume": "2692400"
+   "Volume": "2712700"
+  },
+  {
+   "Date": "Oct 21 2026",
+   "Close": "39.34",
+   "Adj Close": "39.34",
+   "Volume": "2896400"
+  },
+  {
+   "Date": "Oct 22 2026",
+   "Close": "38.330002",
+   "Adj Close": "38.33",
+   "Volume": "3705200"
+  },
+  {
+   "Date": "Oct 23 2026",
+   "Close": "38.07",
+   "Adj Close": "38.07",
+   "Volume": "3614800"
   }
  ]
 }

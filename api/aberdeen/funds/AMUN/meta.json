@@ -22,8 +22,8 @@
   "assetClass": "Fixed Income",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-ultra-short-municipal-income-active-etf-us0030222741",
-  "nav": 25.9868,
-  "navDate": "2026-10-20"
+  "nav": 26.0146,
+  "navDate": "2026-10-23"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.25
  },
  "nav": {
-  "display": "$25.99",
-  "value": 25.9868,
-  "asOfDate": "Oct 20 2026"
+  "display": "$26.01",
+  "value": 26.0146,
+  "asOfDate": "Oct 23 2026"
  },
  "marketPrice": {
-  "display": "$26.00",
-  "value": 26.005,
-  "asOfDate": "Oct 20 2026"
+  "display": "$26.02",
+  "value": 26.02,
+  "asOfDate": "Oct 23 2026"
  },
  "premiumDiscount": {
-  "display": "0.07%",
-  "value": 0.07
+  "display": "0.02%",
+  "value": 0.02
  },
  "aum": {
-  "display": "$58.24 M",
-  "value": 58236921.18,
-  "asOfDate": "Oct 20 2026",
+  "display": "$58.95 M",
+  "value": 58949565.31,
+  "asOfDate": "Oct 23 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": null,
-  "dividendYieldText": "—",
+  "dividendYield": 2.87,
+  "dividendYieldText": "2.87%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
@@ -159,9 +159,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 70,
-  "asOfDate": "2026-10-20",
-  "asOf": "Oct 20 2026",
+  "totalRows": 72,
+  "asOfDate": "2026-10-23",
+  "asOf": "Oct 23 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -170,8 +170,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 251,
-  "asOf": "Oct 20 2026",
+  "totalRows": 254,
+  "asOf": "Oct 23 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

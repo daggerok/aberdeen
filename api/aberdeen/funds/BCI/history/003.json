@@ -2,7 +2,7 @@
  "ticker": "BCI",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 2402,
+ "totalRows": 2405,
  "headers": [
   "Date",
   "Close",
@@ -2421,6 +2421,24 @@
    "Close": "26.26",
    "Adj Close": "26.26",
    "Volume": "2442100"
+  },
+  {
+   "Date": "Oct 21 2026",
+   "Close": "26.120001",
+   "Adj Close": "26.12",
+   "Volume": "919200"
+  },
+  {
+   "Date": "Oct 22 2026",
+   "Close": "26.01",
+   "Adj Close": "26.01",
+   "Volume": "1583600"
+  },
+  {
+   "Date": "Oct 23 2026",
+   "Close": "26.32",
+   "Adj Close": "26.32",
+   "Volume": "566600"
   }
  ]
 }
