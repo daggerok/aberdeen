@@ -58,7 +58,7 @@ The **Update abrdn ETF data** GitHub Actions workflow exposes the same settings 
 | Full securities holdings | POST `/api/gateway/funds/breakdown/dailyHoldings` with the holding type enabled in the fund's own detail configuration, all pages through `totalResults`. The official `/breakdown/dailyHoldingsSheet` XLSX download was independently verified; the updater uses its structured JSON counterpart. Top-ten lists are never substituted for full holdings. |
 | NAV total returns | POST `/api/gateway/funds/performance/annualized` and `/performance/cumulative`, `quarterly=false` for month-end, `quarterly=true` for quarter-end. Use the NAV category, not benchmark or market-price returns. Reporting dates come from the response, even if stale. |
 | Market-price history and dividends | Yahoo Finance public chart API `https://query1.finance.yahoo.com/v8/finance/chart/{TICKER}` with daily bars and dividend events. Adjusted close is rounded to 2 decimals. These are **not official NAV history rows** (market-price estimates). |
-| Holdings fallback | SEC fund-ticker/series map, series Atom feed, registrant submissions/full-text discovery, and N-PORT-P XML. Shared parsers follow JPMorgan; each filing must match the requested series (or exact normalized fund name). abrdn Funds filings associate AGEM/AFSC/ASCI/AMUN with CIK 0001413594 ([1](https://www.sec.gov/Archives/edgar/data/1413594/000110465924112193/tm2423635d8_485bpos.htm), [1](https://www.sec.gov/Archives/edgar/data/1413594/000110465926082281/tm2619092d1_ncsrs.htm)); other mappings are discovered from SEC, not guessed. |
+| Holdings fallback | SEC EDGAR Form N-PORT-P, only when the official holdings are unavailable and `EDGAR_FALLBACK` is on, read by the shared N-PORT reader: SEC's fund ticker table gives the registrant and series, the series Atom feed and the registrant submissions list the filings, newest report period first, from the registrant's own EDGAR folder. A filing is used only when it names the fund's own series (or, for a fund missing from SEC's fund ticker table, the fund's name) and its report period is strictly newer than the published holdings. Identifiers are the position's own (a derivative never takes its reference security's CUSIP or ticker), a ticker is set only for a U.S. equity traded in USD and never on two different securities, and a missing weight or value stays empty. The sheet has the same columns as the official one. abrdn Funds filings associate AGEM/AFSC/ASCI/AMUN with CIK 0001413594 ([1](https://www.sec.gov/Archives/edgar/data/1413594/000110465924112193/tm2423635d8_485bpos.htm), [1](https://www.sec.gov/Archives/edgar/data/1413594/000110465926082281/tm2619092d1_ncsrs.htm)); other mappings are discovered from SEC, not guessed. |
 | Last resort | Existing committed `meta.json`, holdings and history pages. When any source of a fund fails, that fund is kept exactly as published (see below); a skipped provider (`SKIP_ABERDEEN`, `SKIP_YAHOO`) reads its part from the published files. |
 
 ### Metrics and caveats
@@ -70,7 +70,9 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `ytd` / `tr1y` — official returns when published; gaps derived from Yahoo adjusted closes at the same reporting date.
 - `cagr3y` / `cagr5y` / `cagr10y` — official annualized NAV returns first.
 - `tr3y` / `tr5y` / `tr10y` — `(1 + CAGR)^n - 1`; a real zero stays zero.
-- `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; `null` for a fund under one year old at the as-of date, and range-limited history is not called since-inception.
+- `siAnn` — official annualized since-inception return, or adequately covered Yahoo history; range-limited history is not called since-inception.
+- A fund younger than one year (calendar anniversary of its inception, inclusive) publishes no 1-year or since-inception return, and no 3, 5 or 10-year one before those anniversaries, official or derived, in `metrics` and in the month-end and quarter-end tables
+- Dates (gateway, display and U.S. dates) are read as plain calendar text, never through the local time zone, so local runs match CI
 - `dividendYield` — trailing 12 months: distributions with an ex-date in the 12 months up to the price date ÷ market price (computed from the Yahoo dividend events, not an official figure). `null` when the fund has under 12 months of history or paid nothing in the window; a single lumpy distribution is never annualized.
 - `dividendYieldBasis` — short code for the definition behind `dividendYield`, `null` exactly when the yield is `null`. A kept or not-refreshed row published before the code existed gets it from its own yield, so every row carries the key:
 
@@ -83,7 +85,7 @@ Each fund carries the same derived `metrics` object as the sibling sites:
 - `returnsBasis` - mandatory non-empty label of how the returns were computed: official abrdn NAV performance (gaps derived from Yahoo adjusted closes at the same reporting date), or Yahoo adjusted market-price returns that are not official NAV; never empty or `-`
 - `performanceAsOf` - mandatory ISO date (`YYYY-MM-DD`) the returns are as of: the date of the abrdn performance table (month-end), or the last Yahoo close date when derived; it is not the NAV date, and `null` only when truly unknown
 
-Unavailable values stay null and are never shown as zero; only a published zero is zero.
+Unavailable values stay null and are never shown as zero; only a published zero is zero (an unavailable holdings weight or value is an empty cell, also in an N-PORT sheet).
 
 **Expense ratio:** `terValue` (and the `TER` filter) is the **net** expense ratio after waivers, or the single figure when only one is published; `terGrossValue` is the gross (total) expense ratio. The text fields `ter` and `terGross` sit next to them, and `meta.json` carries `expenseRatio.value`, `gross` and `net`.
 
@@ -91,12 +93,12 @@ Unavailable values stay null and are never shown as zero; only a published zero 
 
 **Exit code:** non-zero when any fund fails, or when every examined fund was kept because a source failed. A run stops taking new funds after 25 minutes (the workflow limit is 30) and still writes the index; the remaining funds keep their published data and the cursor does not move.
 
-**New funds:** tickers in the catalog that the previous index did not list are printed as `NEW FUNDS: A, B` and appended to the Actions step summary.
+**New funds:** `NEW FUNDS: A, B` is printed (and added to the Actions step summary) when a fund is published for the first time, also when its first read failed and a later run succeeds; `NEW FUNDS (not published yet): C` names new catalog funds whose first read failed. A catalog-only row that the live catalog no longer lists is dropped.
 
 **Known limitations**
 
 - **Physical trusts:** GLTR, PALL, PPLT, SGOL and SIVR do not expose a securities-holdings tab in the verified API. They remain in the catalog with facts/performance/history, but their securities portfolio is marked `not-applicable`; no synthetic bullion rows or invented tickers are generated. Physical bar lists are not converted into securities positions.
-- **SEC live access:** this environment returned HTTP 403 for SEC lookup/submissions endpoints. The fallback is implemented and unit-tested, including wrong-series rejection, but live SEC retrieval has not been validated here. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If every holdings source fails, the fund is kept as published (see fund-level consistency).
+- **SEC live access:** SEC answers only with a contact User-Agent (`SEC_UA`). The N-PORT fallback was checked live on 2026-10-26: AGEM and AFSC (not in SEC's fund ticker table) were read from the abrdn Funds filings by fund name, BCD through its series id, and an older report never replaced fresher published holdings. Official holdings supply all six securities ETFs in the initial snapshot; no third-party holdings scraper was needed. If every holdings source fails, the fund is kept as published (see fund-level consistency).
 - **History/distributions:** a usable official daily NAV-history/dividend-series endpoint was not found during this implementation. Yahoo market-price history and distributions fill that role. Official cumulative growth charts and calendar-year returns are not misrepresented as daily NAV or trailing one-year returns.
 - **Dates and inception:** a converted ETF can publish its predecessor fund's inception and historical NAV returns. These official dates are preserved rather than replaced by its first Yahoo trading day. NAV and market-price dates can differ; premium/discount is not computed across unmatched dates.
 - **Network/CI:** provider schemas, throttling and CDN availability can change. Conservative request pacing applies, every request has a 45 s timeout covering headers and body, and it is retried per `MAX_RETRIES`. Tests are offline; a passing test suite does not imply every live provider is reachable.
@@ -121,11 +123,11 @@ Blank individual inputs mean **inherit**, not clear. To clear a file's ticker re
 | `TER` | `:` | Net expense ratio percent min:max (the single published figure when there is no separate net). |
 | `DIVIDEND_YIELD` | `:` | Trailing 12-month dividend yield percent min:max; funds without one (null) are excluded. |
 | `SEC_YIELD` | `:` | 30-day SEC yield percent min:max. |
-| `TICKERS` | empty (all) | Ticker allowlist separated by spaces, commas or semicolons; empty means all. A ticker that is not in the catalog is an error. |
+| `TICKERS` | empty (all) | Ticker allowlist separated by spaces, commas or semicolons; empty means all. A ticker that is neither in the live catalog nor a published fund is an error before any fund request (nothing is written). |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per holdings JSON page. |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per market-price history JSON page. |
 | `MAX_RETRIES` | `2` | Retries after the first request; at least 1. |
-| `HISTORY_RANGE` | `max` | Yahoo daily history range: max or Ny (e.g. 5y). Ny sends an explicit `period1` N years back, so the request really shrinks; prior history is merged, not dropped. |
+| `HISTORY_RANGE` | `max` | Yahoo daily history range: max or Ny (e.g. 5y). Ny sends an explicit `period1` N years back, so the request really shrinks; a window keeps the older published history (rescaled by the overlapping days), and a window that does not join it keeps the fund as published. |
 | `STORE_RAW_DOWNLOADS` | `false` | Save source JSON under api/aberdeen/raw. |
 | `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | SEC User-Agent (redacted in config logs); the protected `SEC_UA` variable or env overrides it. |
 | `SKIP_YAHOO` | `false` | Skip Yahoo history and dividends; retain published data. |
