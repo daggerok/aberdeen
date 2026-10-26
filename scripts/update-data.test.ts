@@ -9,6 +9,7 @@ import {
   parseNport, parseFundTickerMap, nportMatches, isoDate, displayDateToIso, numberOrNull, normalizeNumberText, decodeDividendFrequency,
   buildMetrics, yieldBasisCode, withYieldBasis, priceReturns, annualizedToTotal, trailingYield, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, samePublishedContent,
   fetchWithRetry, fetchTextWithRetry, runWorkers, setRequestSleep, setFetchTimeoutMs, chartUrl, isCertError, installSystemCa, holdingsGuard,
+  CLOSED_FUNDS, closedFund,
 } from './update-data';
 
 const root = (path: string) => new URL(`../${path}`, import.meta.url);
@@ -220,6 +221,9 @@ describe('controls', () => {
     expect(() => resolveControls({}, {}, {}, { ABERDEEN_LIMIT: 'x' })).toThrow();
     expect(readConfig({ TICKERS: 'BCD', ABERDEEN_TICKERS: 'AGEM SGOL' }).tickers).toEqual(['AGEM', 'SGOL']);
   });
+});
+
+describe('controls 2', () => {
   test('ranges, AUM presets, filters (incl. SEC_YIELD) and the rotating bounded queue', () => {
     expect(parseRange(':', 'TER')).toBeUndefined();
     expect(parseRange(':0.3%', 'TER')).toEqual({ min: undefined, max: 0.3 });
@@ -306,6 +310,9 @@ describe('parsing', () => {
     const weight = (v: string) => parseHoldings({ totalResults: 1, results: [{ rowLabel: 'Cash', columns: [{ columnLabel: 'Weight', columnRowValue: v }] }] }).rows[0].Weight;
     expect([weight('0'), weight('-0.35'), weight('N/A')]).toEqual(['0', '-0.35', '']);
   });
+});
+
+describe('parsing 2', () => {
   test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
     const headers = ['Name', 'Ticker', 'Weight'];
     const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
@@ -344,6 +351,9 @@ describe('parsing', () => {
     const rows = mergeHistory([{ Date: 'Jun 30 2026', Close: '1', 'Adj Close': '1', Volume: '1' }], [{ date: '2026-06-30', close: 2, adjClose: 2, volume: 2 }, { date: '2026-07-01', close: 3, adjClose: 3, volume: 3 }]);
     expect(rows.map(x => [x.Date, x.Close])).toEqual([['Jun 30 2026', '2'], ['Jul 01 2026', '3']]);
   });
+});
+
+describe('parsing 3', () => {
   test('pagination: every page until the exact declared total, an empty or changing total fails', async () => {
     const skips: number[] = [];
     expect(await collectPages(async (skip, take) => { skips.push(skip); return { rows: [0, 1, 2, 3, 4].slice(skip, skip + take), total: 5 }; }, 2)).toEqual([0, 1, 2, 3, 4]);
@@ -441,6 +451,9 @@ ok(keys === JSON.stringify(Object.keys(bcd.metrics)) && keys === JSON.stringify(
 ok(keys.endsWith('"returnsBasis","performanceAsOf"]'), 'basis keys last');
 ok(r.metrics.dividendYieldBasis === 'computed-trailing-12m' && bcd.metrics.dividendYieldBasis === 'computed-trailing-12m' && sgol.metrics.dividendYieldBasis === null, 'basis ' + JSON.stringify([r.metrics.dividendYieldBasis, sgol.metrics.dividendYieldBasis]));`);
   });
+});
+
+describe('metrics 2', () => {
   test('a young fund (under 12 months of history) has null dividend yield', async () => {
     await passes(`S.chartFrom = '2026-03-02';
 ok(await run() === 0, 'run');
@@ -555,8 +568,11 @@ ok(before === await snap('/AGEM/'), 'AGEM files changed although Yahoo failed');
 ok(beforeRow === JSON.stringify(await row('AGEM')), 'AGEM row changed');
 ok((await meta('BCD')).nav.value === 39.9448, 'BCD still updated');`);
   });
-  test('a renamed weight column fails the holdings guard: the fund stays exactly as published, the others update, exit 1', async () => {
-    await passes(`ok(await run() === 0, 'run 1');
+});
+
+describe('pipeline 2', () => {
+  test('a renamed weight column fails the holdings guard: the fund stays exactly as published, is reported failed, the others update, exit 1', async () => {
+    const r = await passes(`ok(await run() === 0, 'run 1');
 const before = await snap('/AGEM/');
 const beforeRow = JSON.stringify(await row('AGEM'));
 const served = globalThis.fetch;
@@ -572,6 +588,46 @@ ok(out === 1, 'exit ' + out);
 ok(before === await snap('/AGEM/'), 'AGEM files changed although its holdings failed the guard');
 ok(beforeRow === JSON.stringify(await row('AGEM')), 'AGEM row changed');
 ok((await meta('BCD')).nav.value === 39.9448, 'BCD still updated');`);
+    // one policy in every brand: a guard rejection is "failed" on its line and in the tally, never "kept"
+    expect(r.stdout).toMatch(/ AGEM +failed .*reason=holdings guard: /);
+    expect(r.stdout).toContain('2 funds processed, 0 skipped, 0 kept as published, 1 failures');
+  });
+  test('a closed fund is never fetched or reported failed: its files stay as published, its index row says closed, a rerun writes nothing', async () => {
+    const entry = { ticker: 'AGEM', closed: '2026-10-01', source: 'https://www.sec.gov/Archives/edgar/data/1/notice.htm' };
+    expect(() => closedFund([{ ...entry, closed: 'soon' }], 'AGEM')).toThrow('CLOSED_FUNDS');
+    expect(closedFund([entry], 'agem')).toEqual(entry);
+    expect(() => closedFund(CLOSED_FUNDS, '')).not.toThrow();
+    const r = await passes(`ok(await run() === 0, 'run 1');
+const first = await snap(), firstRow = await row('AGEM');
+const served = globalThis.fetch, calls = [];
+// the guard would reject AGEM's holdings (relabelled Weight column) if the closed fund were ever fetched
+globalThis.fetch = async (input, init) => {
+  calls.push(String(input) + ' ' + (init && init.body ? init.body : ''));
+  const res = await served(input, init);
+  if (!String(input).includes('breakdown/dailyHoldings') || JSON.parse(init.body).fund !== 'id-agem') return res;
+  return new Response((await res.text()).replaceAll('"Weight"', '"Weight %"'), { headers: { 'Content-Type': 'application/json' } });
+};
+const entry = ${JSON.stringify(entry)};
+M.CLOSED_FUNDS.push(entry);
+try {
+  ok(await run({ TICKERS: 'AGEM' }) === 0, 'a TICKERS run of the closed fund must be accepted, exit 0');
+  ok(!calls.some(c => /agem|00384x3017/i.test(c)), 'closed fund fetched: ' + calls.filter(c => /agem|00384x3017/i.test(c)).join(' | '));
+  const closed = await snap();
+  ok(JSON.stringify(JSON.parse(first).filter(([f]) => !f.endsWith('index.json'))) === JSON.stringify(JSON.parse(closed).filter(([f]) => !f.endsWith('index.json'))), 'fund files changed');
+  const rows = (await idx()).funds;
+  ok(rows.map(f => f.ticker).join() === 'AGEM,BCD,SGOL', 'rows ' + rows.map(f => f.ticker));
+  ok(JSON.stringify(rows.find(f => f.ticker === 'AGEM')) === JSON.stringify({ ...firstRow, status: 'closed', closedDate: entry.closed, closedSource: entry.source }), 'closed row ' + JSON.stringify(rows.find(f => f.ticker === 'AGEM')));
+  ok(rows.filter(f => f.status === 'closed').length === 1, 'one closed row');
+  ok(await run() === 0, 'full rerun');
+  ok(closed === await snap(), 'a rerun wrote something');
+  S.catalog = ['BCD', 'SGOL'];
+  ok(await run() === 0 && await run({ TICKERS: 'AGEM' }) === 0, 'the live catalog dropped the closed fund');
+  ok(closed === await snap(), 'the closed row did not survive the catalog dropping it');
+} finally {
+  M.CLOSED_FUNDS.splice(M.CLOSED_FUNDS.indexOf(entry), 1);
+}`);
+    expect(r.stdout).toContain('[ closed   ] AGEM: closed by the issuer, published data kept');
+    expect(r.stdout).not.toMatch(/ AGEM +failed/);
   });
   test('every fund kept because its source failed gives exit 1 and no change; an outage never rewrites files', async () => {
     await passes(`ok(await run() === 0, 'run 1');
@@ -583,13 +639,35 @@ S.fail = () => true;
 ok(await run() === 1, 'total outage must exit 1');
 ok(before === await snap(), 'outage changed published files');`);
   });
-  test('a never-published fund that fails gets no row and no meta (not published half-way)', async () => {
-    await passes(`S.catalog = ['AGEM', 'BCD']; ok(await run() === 0, 'run 1');
+  test('a never-published fund that fails (a source or the holdings guard) is reported failed and gets a catalog-only row (dataFile null, full metrics key set) and no files', async () => {
+    const r = await passes(`S.catalog = ['BCD']; ok(await run() === 0, 'run 1');
 S.catalog = ['AGEM', 'BCD', 'SGOL']; S.fail = (u) => u.includes('/chart/SGOL');
+const served = globalThis.fetch;
+// AGEM is new and its gateway relabels the Weight column: the guard rejects its first holdings
+globalThis.fetch = async (input, init) => {
+  const res = await served(input, init);
+  if (!String(input).includes('breakdown/dailyHoldings') || JSON.parse(init.body).fund !== 'id-agem') return res;
+  return new Response((await res.text()).replaceAll('"Weight"', '"Weight %"'), { headers: { 'Content-Type': 'application/json' } });
+};
 const code = await run();
 ok(code === 1, 'exit ' + code);
-ok((await idx()).funds.length === 2, 'rows');
-ok(!(await Bun.file('api/aberdeen/funds/SGOL/meta.json').exists()), 'no meta for the failed new fund');`);
+const rows = (await idx()).funds, keys = Object.keys(rows.find(f => f.ticker === 'BCD').metrics).sort().join();
+ok(rows.map(f => f.ticker).join() === 'AGEM,BCD,SGOL', 'rows ' + rows.map(f => f.ticker));
+for (const t of ['AGEM', 'SGOL']) {
+  const f = rows.find(x => x.ticker === t);
+  ok(f.dataFile === null && f.holdings === 0 && f.history === 0 && f.name.startsWith('abrdn '), t + ' catalog-only row ' + JSON.stringify(f));
+  ok(Object.keys(f.metrics).sort().join() === keys && f.metrics.returnsBasis && f.metrics.tr1y === null && f.metrics.dividendYield === null, t + ' metrics ' + JSON.stringify(f.metrics));
+  ok(await snap('/' + t + '/') === '[]', t + ' files written although it failed');
+}
+const before = await snap();
+ok(await run() === 1, 'rerun exit');
+ok(before === await snap(), 'a rerun with the same failures wrote something');
+// without the official catalog a catalog-only row has no identity: it stays listed, never published from Yahoo alone
+await run({ SKIP_ABERDEEN: '1' });
+ok(await snap('/AGEM/') + await snap('/SGOL/') === '[][]' && (await idx()).funds.filter(f => f.dataFile === null).length === 2, 'a catalog-only fund was published without its official source');`);
+    expect(r.stdout).toMatch(/ AGEM +failed .*reason=holdings guard: /);
+    expect(r.stdout).toMatch(/ SGOL +failed .*reason=/);
+    expect(r.stdout).toContain('0 kept as published, 2 failures');
   });
   test('skipped sources fall back to published data (SKIP_YAHOO, SKIP_ABERDEEN)', async () => {
     await passes(`ok(await run() === 0, 'run 1');
@@ -603,6 +681,9 @@ ok(await run({ SKIP_ABERDEEN: '1', SKIP_YAHOO: '1' }) === 0, 'skip aberdeen');
 const c = await row('AGEM');
 ok(c.terValue === 0.7 && c.metrics.secYield === 1.48 && c.aumValue === a.aumValue && c.metrics.performanceAsOf === '2026-08-31', 'skip aberdeen kept ' + JSON.stringify([c.terValue, c.metrics.secYield, c.aumValue, c.metrics.performanceAsOf]));`);
   });
+});
+
+describe('pipeline 3', () => {
   test('new funds are announced once (stdout and step summary), never on first publication', async () => {
     const r = await passes(`const fs = await import('node:fs');
 S.catalog = ['AGEM', 'BCD'];
