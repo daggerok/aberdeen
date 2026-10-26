@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-25T03:29:40Z",
- "catalogReadAt": "2026-10-25T03:29:40Z",
+ "generatedAt": "2026-10-26T23:41:13Z",
+ "catalogReadAt": "2026-10-26T23:41:13Z",
  "source": {
   "provider": "abrdn ETFs",
   "site": "https://www.aberdeeninvestments.com",
@@ -9,7 +9,7 @@
  "counts": {
   "funds": 11,
   "holdings": 330,
-  "history": 27287
+  "history": 27288
  },
  "funds": [
   {
@@ -84,7 +84,7 @@
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 42,
-   "history": 424
+   "history": 425
   },
   {
    "ticker": "AGEM",
