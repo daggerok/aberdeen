@@ -6,10 +6,10 @@ import { join } from 'node:path';
 import {
   CONTROL_NAMES, CONTROL_ALIASES, resolveControls, runtimeControls, readConfig, parseRange, parseAumRange, fundFilterReasons, selectionOrder,
   parseCatalog, catalogPayload, parseDetail, parseKeyInformation, parseHoldings, parsePerformance, parseChart, mergeHistory, collectPages,
-  parseNport, parseFundTickerMap, nportMatches, isoDate, displayDateToIso, numberOrNull, normalizeNumberText, decodeDividendFrequency,
+  parseNportFiling, parseSecFundTickers, parseSecCompanyNames, nportTickers, nportHoldingsSheet, nportIsFresh, HOLDINGS_HEADERS, isoDate, displayDateToIso, numberOrNull, normalizeNumberText, decodeDividendFrequency,
   buildMetrics, yieldBasisCode, withYieldBasis, priceReturns, annualizedToTotal, trailingYield, OFFICIAL_RETURNS_BASIS, YAHOO_RETURNS_BASIS, samePublishedContent,
   fetchWithRetry, fetchTextWithRetry, runWorkers, setRequestSleep, setFetchTimeoutMs, chartUrl, isCertError, installSystemCa, holdingsGuard,
-  CLOSED_FUNDS, closedFund,
+  holdingsWeightCount, CLOSED_FUNDS, closedFund,
 } from './update-data';
 
 const root = (path: string) => new URL(`../${path}`, import.meta.url);
@@ -82,7 +82,6 @@ const perf = (periods: [string, string][]) => ({
   },
 });
 const day = (date: string, v: number) => ({ date, close: v, adjClose: v, volume: 0 });
-const nportXml = '<edgarSubmission><genInfo><regName>abrdn Funds</regName><regCik>1413594</regCik><seriesName>abrdn Emerging Markets Dividend Active ETF</seriesName><seriesId>S000001</seriesId><repPdDate>2026-06-30</repPdDate></genInfo><fundInfo><netAssets>1000</netAssets></fundInfo><invstOrSec><name>Example</name><cusip>123456789</cusip><pctVal>5</pctVal><valUSD>50</valUSD><balance>2</balance><assetCat>EC</assetCat></invstOrSec></edgarSubmission>';
 
 // ---------------------------------------------------------------------------
 // Scenario runner: the real main() in a child process against a mocked multi-fund
@@ -95,7 +94,7 @@ const DEFS = {
   SGOL: { id: 'id-sgol', sc: 'sc-sgol', isin: 'US00027Y1001', name: 'abrdn Physical Gold Shares ETF', nav: 40.1, net: '0.17', gross: '0.17', freq: '', physical: true },
 };
 const S = {
-  fail: () => false, catalog: ['AGEM', 'BCD', 'SGOL'], perfTab: true, perfDate: '2026-08-31', perfDateQ: '2026-06-30', ytd: '10',
+  fail: () => false, catalog: ['AGEM', 'BCD', 'SGOL'], perfTab: true, perfDate: '2026-08-31', perfDateQ: '2026-06-30', ytd: '10', launch: '2022-03-01', period: '', adjFactor: 1, closeAdd: 0,
   navDate: '2026-09-25', priceDate: '2026-09-25', price: 50, navAdd: 0, secYield: '1.48', chartFrom: '2024-01-02', chartTo: '2026-09-25',
   divs: {
     AGEM: [['2025-12-15', 0.5], ['2026-03-16', 0.5], ['2026-06-15', 0.5], ['2026-09-14', 0.5]],
@@ -106,11 +105,11 @@ const S = {
 const ep = (day) => Date.parse(day + 'T14:30:00Z') / 1000;
 function chart(t) {
   const from = ep(S.chartFrom), to = ep(S.chartTo), ts = [], close = [];
-  for (let x = from, i = 0; x <= to; x += 86400, i++) { ts.push(x); close.push(Math.round((40 + i * 0.005) * 10000) / 10000); }
+  for (let x = from; x <= to; x += 86400) { ts.push(x); close.push(Math.round((40 + S.closeAdd + Math.round((x - ep('2024-01-02')) / 86400) * 0.005) * 10000) / 10000); }
   const dividends = {};
   for (const [day, amount] of S.divs[t]) dividends['d' + day] = { date: ep(day), amount };
   return { chart: { result: [{ meta: { fullExchangeName: 'NYSE Arca', longName: DEFS[t].name, regularMarketPrice: S.price, regularMarketTime: to, firstTradeDate: from },
-    timestamp: ts, indicators: { quote: [{ close, volume: close.map(() => 1000) }], adjclose: [{ adjclose: close }] }, events: { dividends } }] } };
+    timestamp: ts, indicators: { quote: [{ close, volume: close.map(() => 1000) }], adjclose: [{ adjclose: close.map(c => c * S.adjFactor) }] }, events: { dividends } }] } };
 }
 const perf = (date, periods) => ({ content: { lastRelevantDate: date + 'T00:00:00Z', performanceSet: [{ performanceCategoryType: 'NAV', values: periods.map(([label, value]) => ({ performanceTimePeriodLabel: label, performanceTimePeriod: label, value })) }] }, statusCode: 200 });
 const holdRow = (name, weight) => ({ rowLabel: name, columns: [{ columnLabel: 'Weight', invariantColumnLabel: 'Weight', columnRowValue: weight }, { columnLabel: 'TICKER', invariantColumnLabel: 'TICKER', columnRowValue: name.slice(0, 3).toUpperCase() }] });
@@ -136,7 +135,7 @@ globalThis.fetch = async (input, init) => {
   const hit = byBody(body);
   if (!hit) return new Response('', { status: 404 });
   const [t, d] = hit;
-  if (endpoint === 'fundDetailsKeyInformation') return Response.json({ statusCode: 200, content: { shareClass: { totalExpenseRatio: d.gross + '%', netExpenseRatio: d.net, ticker: t, shareClassDividendFrequency: d.freq, ...(S.secYield == null ? {} : { thirtyDaySecYieldSubsidizedWithDate: { value: S.secYield, date: '2026-07-31T00:00:00Z' } }) }, fund: { fundSizeWithDate: { value: '375893057.43', date: S.navDate + 'T00:00:00Z' }, legalStructure: d.physical ? '1933 Act' : '1940 Act', assetClass: 'Active Equities', fundLaunchDate: '2022-03-01T00:00:00Z' } } });
+  if (endpoint === 'fundDetailsKeyInformation') return Response.json({ statusCode: 200, content: { shareClass: { totalExpenseRatio: d.gross + '%', netExpenseRatio: d.net, ticker: t, shareClassDividendFrequency: d.freq, ...(S.secYield == null ? {} : { thirtyDaySecYieldSubsidizedWithDate: { value: S.secYield, date: '2026-07-31T00:00:00Z' } }) }, fund: { fundSizeWithDate: { value: '375893057.43', date: S.navDate + 'T00:00:00Z' }, legalStructure: d.physical ? '1933 Act' : '1940 Act', assetClass: 'Active Equities', fundLaunchDate: S.launch + 'T00:00:00Z' } } });
   if (endpoint === 'fundDetailsCodes') return Response.json({ statusCode: 200, content: { isin: d.isin, cusip: '123456789' } });
   const date = body.quarterly ? S.perfDateQ : S.perfDate;
   if (endpoint === 'performance/annualized') return Response.json(perf(date, [['timePeriodYears3', '27.89'], ['timePeriodYears5', '8.89']]));
@@ -362,38 +361,37 @@ describe('parsing 3', () => {
     await expect(collectPages(async skip => ({ rows: [skip], total: skip ? 4 : 3 }), 1)).rejects.toThrow('Total changed');
     expect(await collectPages(async () => ({ rows: [], total: 0 }))).toEqual([]);
   });
-  test('N-PORT: field-order independent ticker map, holdings extraction, other series under the same trust is rejected', () => {
-    expect(parseFundTickerMap({ fields: ['symbol', 'classId', 'cik', 'seriesId'], data: [['AGEM', 'C1', 1413594, 'S000001']] }).get('AGEM')).toEqual({ cik: '0001413594', seriesId: 'S000001', classId: 'C1' });
-    const p = parseNport(nportXml);
-    expect([p.holdings[0].Identifier, p.netAssets]).toEqual(['123456789', 1000]);
-    expect(nportMatches(agem, p, { cik: '0001413594', seriesId: 'S000002', classId: 'C1' })).toBe(false);
-    expect(nportMatches(agem, p)).toBe(true);
-    expect(nportMatches({ ...agem, name: 'Another Fund' }, p)).toBe(false);
+  test('SEC EDGAR fallback (shared nport-reader): ticker map, N-PORT sheet with the published headers, empty missing numbers, no derivative identifiers, tickers only for U.S. equities', () => {
+    const map = parseSecFundTickers({ fields: ['symbol', 'classId', 'cik', 'seriesId'], data: [['BCD', 'C000176936', 1597934, 'S000056193']] });
+    expect(map.get('BCD')).toEqual({ cik: '0001597934', seriesId: 'S000056193', classId: 'C000176936' });
+    const xml = `<edgarSubmission><genInfo><seriesName>abrdn Focused U.S. Small Cap Active ETF</seriesName><seriesId>S000088604</seriesId><repPdDate>2026-07-31</repPdDate></genInfo><fundInfo><netAssets>112770927.11</netAssets></fundInfo>
+<invstOrSecs><invstOrSec><name>MERCK &amp; CO INC</name><cusip>58933Y105</cusip><identifiers><isin value="US58933Y1055"/></identifiers><balance>37710.00000000</balance><curCd>USD</curCd><valUSD>5541249.24</valUSD><pctVal>4.91</pctVal><assetCat>EC</assetCat><invCountry>US</invCountry></invstOrSec>
+<invstOrSec><name>UNITED STATES TREASURY NOTE</name><cusip>91282CJL6</cusip><identifiers><ticker value="T"/></identifiers><balance>1000000</balance><curCd>USD</curCd><valUSD>990000</valUSD><assetCat>DBT</assetCat><debtSec><maturityDt>2028-01-31</maturityDt><annualizedRt>3.5</annualizedRt></debtSec></invstOrSec>
+<invstOrSec><name>DJIA MINI E-CBOT</name><cusip>000000000</cusip><identifiers><other otherDesc="Bloomberg Identifier" value="BBG01VKPGXL9"/></identifiers><curCd>USD</curCd><valUSD>4913.74</valUSD><pctVal>0.005</pctVal><assetCat>DE</assetCat><derivativeInfo><futrDeriv derivCat="FUT"><descRefInstrmnt><otherRefInst><identifiers><cusip value="78462F103"/><ticker value="SPY"/></identifiers></otherRefInst></descRefInstrmnt></futrDeriv></derivativeInfo></invstOrSec>
+<invstOrSec><name>Samsung Electronics Co Ltd</name><cusip>000000000</cusip><identifiers><isin value="KR7005931001"/><other otherDesc="SEDOL" value="6771720"/></identifiers><balance>303172</balance><currencyConditional curCd="KRW" exchangeRt="1425.7"/><valUSD>40615734.03</valUSD><pctVal>11.38</pctVal><assetCat>EP</assetCat><invCountry>KR</invCountry></invstOrSec></invstOrSecs></edgarSubmission>`;
+    const filing = parseNportFiling(xml);
+    expect([filing.seriesId, filing.repPdDate, filing.netAssets, filing.positions.length]).toEqual(['S000088604', '2026-07-31', 112_770_927.11, 4]);
+    const rows = nportHoldingsSheet(filing, nportTickers(filing.positions, parseSecCompanyNames({ 0: { ticker: 'MRK', title: 'Merck & Co., Inc.' }, 1: { ticker: 'T', title: 'AT&T INC.' }, 2: { ticker: 'SSNLF', title: 'Samsung Electronics Co Ltd' } })));
+    for (const row of rows) expect(Object.keys(row)).toEqual(HOLDINGS_HEADERS);
+    expect(rows[0]).toEqual({ Name: 'MERCK & CO INC', Ticker: 'MRK', Identifier: '58933Y105', Weight: '4.91', 'Market Value': '5541249.24', 'Shares Held': '37710', 'Asset Category': 'EC', ISIN: 'US58933Y1055', CUSIP: '58933Y105', SEDOL: '', Country: 'US', Price: '' });
+    // the Treasury note keeps no ticker (a bond is no "T" for AT&T) and an empty weight, never 0; the future keeps its own id, not SPY's;
+    // the Korean preferred share keeps no ticker (KRW, a KR ISIN) and its SEDOL
+    expect(rows.slice(1).map((row) => [row.Ticker, row.Identifier, row.Weight, row.CUSIP, row.SEDOL])).toEqual([['-', '91282CJL6', '', '91282CJL6', ''], ['-', 'BBG01VKPGXL9', '0.005', '', ''], ['-', 'KR7005931001', '11.38', '', '6771720']]);
   });
-  test('N-PORT fallback: only a filing newer than the published holdings replaces them; a transport failure is an error', async () => {
-    const harness = (published: string, extra = '') => `const fund = { ticker: 'AGEM', name: 'abrdn Emerging Markets Dividend Active ETF', id: 'x', shareclassId: 'y', isin: 'z', assetClass: 'a', correlationFundRangeId: '', fundPage: '', nav: null, navDate: null };
-const atom = '<feed><entry><filing-type>NPORT-P</filing-type><accession-number>0001413594-26-000001</accession-number><filing-href>https://www.sec.gov/Archives/edgar/data/1413594/000141359426000001/x-index.htm</filing-href><filing-date>2026-08-01</filing-date><period>2026-06-30</period></entry></feed>';
-globalThis.fetch = async (input) => {
-  const u = String(input);
-  ${extra}
-  if (u.includes('company_tickers_mf')) return Response.json({ fields: ['cik', 'seriesId', 'classId', 'symbol'], data: [[1413594, 'S000001', 'C1', 'AGEM']] });
-  if (u.includes('company_tickers.json')) return Response.json({});
-  if (u.includes('browse-edgar')) return new Response(atom);
-  if (u.includes('primary_doc.xml')) return new Response(${JSON.stringify(nportXml)});
-  return new Response('', { status: 404 });
-};
-M.setRequestSleep(0);
-const config = M.readConfig({ REQUEST_SLEEP: '0', MAX_RETRIES: '1' });`;
-    const out = (published: string) => passes(`${harness(published)}
-const out = await M.resolveNportFiling(fund, config, ${published});
-console.log('RESULT ' + (out ? out.asOfDate + ':' + out.rows.length : 'null'));`);
-    expect((await out("'2026-03-31'")).stdout).toContain('RESULT 2026-06-30:1');
-    expect((await out("'2026-06-30'")).stdout).toContain('RESULT null');
-    expect((await out("'2026-09-25'")).stdout).toContain('RESULT null');
-    const failed = await passes(`${harness('null', "if (u.includes('primary_doc.xml') || u.includes('browse-edgar')) return new Response('denied', { status: 404 });")}
-let threw = false; try { await M.resolveNportFiling(fund, config, null); } catch { threw = true; }
-console.log('RESULT ' + threw);`);
-    expect(failed.stdout).toContain('RESULT true');
+  test('N-PORT freshness: a report replaces published holdings only when strictly newer; nothing published accepts any report', () => {
+    expect(nportIsFresh('2026-06-30', '2026-10-23', 94)).toBe(false); // AGEM: published from the 10-23 official holdings
+    expect(nportIsFresh('2026-10-23', '2026-10-23', 94)).toBe(false);
+    expect(nportIsFresh('2026-07-31', '2026-03-31', 100)).toBe(true);
+    expect(nportIsFresh('', '2026-03-31', 100)).toBe(false);
+    expect(nportIsFresh('2026-06-30', null, 0)).toBe(true);
+    expect(nportIsFresh('2026-06-30', null, 100)).toBe(false); // published rows without a date cannot be compared: keep them
+  });
+  test('dates: gateway, display and U.S. dates are the same calendar day in every time zone', () => {
+    for (const tz of ['Asia/Tokyo', 'America/Los_Angeles', 'UTC']) {
+      process.env.TZ = tz;
+      expect(['Oct 24 2026', 'Oct 24, 2026', 'October 24 2026', '2026-10-24T00:00:00Z', '2026-10-24T23:30:00-05:00', '10/24/2026', '10/24/2026 12:00:00 AM'].map((raw) => displayDateToIso(raw))).toEqual(Array(7).fill('2026-10-24'));
+      expect([isoDate('2026-02-30'), displayDateToIso('Foo 31 2026'), isoDate('\u2014')]).toEqual([null, null, null]);
+    }
   });
 });
 
@@ -454,6 +452,18 @@ ok(r.metrics.dividendYieldBasis === 'computed-trailing-12m' && bcd.metrics.divid
 });
 
 describe('metrics 2', () => {
+  test('a fund younger than its horizon publishes no 1y, 3y or since-inception return, official or derived (calendar anniversary, inclusive)', async () => {
+    const r = await passes(`const pick = async () => { const r = await row('AGEM'), m = await meta('AGEM'); return JSON.stringify([r.metrics.ytd, r.metrics.tr1y, r.metrics.cagr3y, r.metrics.tr3y, r.metrics.siAnn, r.metrics.performanceAsOf, m.returns.monthEnd.yr1, m.returns.monthEnd.yr3, m.returns.quarterEnd.yr1]); };
+S.launch = '2026-01-15';
+ok(await run() === 0, 'run 1');
+console.log('YOUNG ' + await pick());
+S.launch = '2025-08-31';
+ok(await run() === 0, 'run 2');
+console.log('ONE YEAR ' + await pick());`);
+    expect(r.stdout).toContain('YOUNG [10,null,null,null,null,"2026-08-31",null,null,null]');
+    // one year old on the table date 2026-08-31: 1y and since inception stay, 3y does not; the quarter table (2026-06-30) is still too young
+    expect(r.stdout).toMatch(/ONE YEAR \[10,43\.17,null,null,[-0-9.]+,"2026-08-31",43\.17,null,null\]/);
+  });
   test('a young fund (under 12 months of history) has null dividend yield', async () => {
     await passes(`S.chartFrom = '2026-03-02';
 ok(await run() === 0, 'run');
@@ -666,8 +676,9 @@ ok(before === await snap(), 'a rerun with the same failures wrote something');
 await run({ SKIP_ABERDEEN: '1' });
 ok(await snap('/AGEM/') + await snap('/SGOL/') === '[][]' && (await idx()).funds.filter(f => f.dataFile === null).length === 2, 'a catalog-only fund was published without its official source');
 // no source can answer (SKIP_ABERDEEN, SKIP_YAHOO, no N-PORT): the new fund is not even in the published catalog, nothing is written for it
+// (without the live catalog its published row makes the ticker known, Q27, but a catalog-only row has no identity to update from)
 const quiet = await snap();
-ok(await run({ SKIP_ABERDEEN: '1', SKIP_YAHOO: '1', TICKERS: 'AGEM' }) === 1 && quiet === await snap(), 'a new fund nobody answered for was published');
+ok(await run({ SKIP_ABERDEEN: '1', SKIP_YAHOO: '1', TICKERS: 'AGEM' }) === 0 && quiet === await snap(), 'a new fund nobody answered for was published');
 // the first good refresh reads nothing from the catalog-only rows: the same meta and row as a fund published from scratch
 S.fail = () => false; globalThis.fetch = served;
 ok(await run() === 0, 'good refresh');
@@ -698,16 +709,111 @@ ok(c.terValue === 0.7 && c.metrics.secYield === 1.48 && c.aumValue === a.aumValu
 });
 
 describe('pipeline 3', () => {
-  test('new funds are announced once (stdout and step summary), never on first publication', async () => {
+  test('NEW FUNDS announces a fund on its first successful publish, a failed new fund as not published yet (Q28)', async () => {
     const r = await passes(`const fs = await import('node:fs');
-S.catalog = ['AGEM', 'BCD'];
-ok(await run({ GITHUB_STEP_SUMMARY: 'summary.md' }) === 0, 'run 1');
-ok(!fs.readFileSync('summary.md', 'utf8').includes('NEW FUNDS'), 'no new funds on first publication');
-S.catalog = ['AGEM', 'BCD', 'SGOL'];
-ok(await run({ GITHUB_STEP_SUMMARY: 'summary.md' }) === 0, 'run 2');
-ok(fs.readFileSync('summary.md', 'utf8').includes('NEW FUNDS: SGOL'), 'summary');`);
-    expect(r.stdout.match(/NEW FUNDS: SGOL/g)?.length).toBe(1);
+S.catalog = ['BCD'];
+ok(await run({ GITHUB_STEP_SUMMARY: 'summary1.md' }) === 0, 'run 1');
+ok(!fs.readFileSync('summary1.md', 'utf8').includes('NEW FUNDS'), 'no new funds on first publication');
+S.catalog = ['AGEM', 'BCD', 'SGOL']; S.fail = (u) => u.includes('/chart/SGOL');
+ok(await run({ GITHUB_STEP_SUMMARY: 'summary2.md' }) === 1, 'run 2 (SGOL failed)');
+ok(fs.readFileSync('summary2.md', 'utf8').includes('\\nNEW FUNDS: AGEM\\nNEW FUNDS (not published yet): SGOL\\n'), 'summary 2 ' + fs.readFileSync('summary2.md', 'utf8'));
+ok(await run({ GITHUB_STEP_SUMMARY: 'summary3.md' }) === 1, 'run 3');
+ok(!fs.readFileSync('summary3.md', 'utf8').includes('NEW FUNDS'), 'announced twice');
+S.fail = () => false;
+ok(await run({ GITHUB_STEP_SUMMARY: 'summary4.md' }) === 0, 'run 4');
+ok(fs.readFileSync('summary4.md', 'utf8').includes('\\nNEW FUNDS: SGOL\\n'), 'summary 4');`);
+    expect(r.stdout.match(/^NEW FUNDS.*$/gm)).toEqual(['NEW FUNDS: AGEM', 'NEW FUNDS (not published yet): SGOL', 'NEW FUNDS: SGOL']);
   });
+  test('TICKERS outside the live catalog stops the run before any fund request; a stale catalog-only row is dropped (Q27)', async () => {
+    const r = await passes(`const fs = await import('node:fs');
+ok(await run() === 0, 'run 1');
+const index = await idx();
+index.funds.push({ ...index.funds.find(f => f.ticker === 'BCD'), ticker: 'NOPE', dataFile: null, holdings: 0, history: 0 });
+fs.writeFileSync('api/aberdeen/index.json', JSON.stringify(index, null, 1) + '\\n');
+const before = await snap(), served = globalThis.fetch, calls = [];
+globalThis.fetch = async (input, init) => { calls.push(String(input)); return served(input, init); };
+ok(await run({ TICKERS: 'NOPE' }) === 1, 'unknown ticker must exit 1');
+ok(before === await snap(), 'files changed');
+ok(calls.length > 0 && calls.every(u => /\\/gateway\\/funds\\/(overview|prices)$/.test(u)), 'a fund request before the TICKERS check: ' + calls.join(' '));
+ok(await run() === 0, 'full run');
+ok((await idx()).funds.map(f => f.ticker).join() === 'AGEM,BCD,SGOL', 'stale row kept ' + (await idx()).funds.map(f => f.ticker));`);
+    expect(r.stdout).toContain('[ main threw ] TICKERS: NOPE not in the abrdn catalog or published feed; nothing was fetched or written');
+  });
+  test('a HISTORY_RANGE window keeps the older history, writes nothing for the same data, re-bases older rows with Yahoo, keeps a fund it cannot join (Q25)', async () => {
+    await passes(`ok(await run() === 0, 'run 1');
+const first = await snap(), rows = (await meta('AGEM')).history.totalRows;
+const oldest = async () => (await readJ('api/aberdeen/funds/AGEM/history/001.json')).rows[0];
+ok(JSON.stringify(await oldest()) === JSON.stringify({ Date: 'Jan 02 2024', Close: '40', 'Adj Close': '40', Volume: '1000' }), 'oldest ' + JSON.stringify(await oldest()));
+S.chartFrom = '2025-09-25';
+ok(await run({ HISTORY_RANGE: '1y' }) === 0, 'window run');
+ok(first === await snap(), 'a window run with the same data wrote something');
+S.adjFactor = 0.98;
+ok(await run({ HISTORY_RANGE: '1y' }) === 0, 're-based window run');
+ok((await meta('AGEM')).history.totalRows === rows, 'history shrank');
+ok((await oldest())['Adj Close'] === '39.2' && (await oldest()).Close === '40', 'older rows not re-based ' + JSON.stringify(await oldest()));
+const rebased = await snap();
+S.closeAdd = 1;
+ok(await run({ HISTORY_RANGE: '1y' }) === 1, 'a window whose closes do not match is a failed chart: every fund kept');
+ok(rebased === await snap(), 'a window that does not join changed files');`);
+  });
+  test('a relaxed guard still keeps numeric published weights from an all-blank sheet (Q24)', async () => {
+    await passes(`ok(await run() === 0, 'run 1');
+const before = await snap('/AGEM/'), served = globalThis.fetch;
+// the gateway serves AGEM's holdings without one weight; numeric and sum are relaxed for AGEM
+globalThis.fetch = async (input, init) => {
+  const res = await served(input, init);
+  if (!String(input).includes('breakdown/dailyHoldings') || JSON.parse(init.body).fund !== 'id-agem') return res;
+  return new Response((await res.text()).replace(/"columnRowValue":"(60|40)"/g, '"columnRowValue":"N/A"'), { headers: { 'Content-Type': 'application/json' } });
+};
+M.HOLDINGS_GUARD_RELAX.AGEM = ['numeric', 'sum'];
+S.navAdd = 1;
+ok(await run({ TICKERS: 'AGEM' }) === 1, 'exit');
+ok(before === await snap('/AGEM/'), 'an all-blank weight sheet replaced the published one');`);
+    expect(holdingsWeightCount(['Name', 'Weight'], [['A', '-'], ['B', '2']])).toBe(1);
+    expect(holdingsWeightCount(['Name', 'Weight'], [{ Name: 'A', Weight: '' }])).toBe(0);
+  });
+  test('N-PORT fallback: the newest filing of the fund itself (series id, or the fund name in a registrant of many series), only when strictly newer, with the published headers', async () => {
+    const r = await passes(`const served = globalThis.fetch;
+const pos = (name, cusip, isin, cur, value, weight, cat) => '<invstOrSec><name>' + name + '</name><cusip>' + cusip + '</cusip><identifiers>' + (isin ? '<isin value="' + isin + '"/>' : '') + '</identifiers><balance>10</balance><curCd>' + cur + '</curCd>' + (value ? '<valUSD>' + value + '</valUSD>' : '') + '<pctVal>' + weight + '</pctVal><assetCat>' + cat + '</assetCat><invCountry>' + (isin || 'US').slice(0, 2) + '</invCountry></invstOrSec>';
+const doc = (series, name) => '<edgarSubmission><genInfo><seriesName>' + name + '</seriesName><seriesId>' + series + '</seriesId><repPdDate>' + S.period + '</repPdDate></genInfo><fundInfo><netAssets>1000</netAssets></fundInfo><invstOrSecs>'
+  + pos('MERCK &amp; CO INC', '58933Y105', 'US58933Y1055', 'USD', '600', '59.5', 'EC') + pos('Samsung Electronics Co Ltd', '000000000', 'KR7005931001', 'KRW', '400', '40', 'EP') + pos('CASH', '000000000', '', 'USD', '', '0.5', 'STIV') + '</invstOrSecs></edgarSubmission>';
+const docs = { '000159793426000002': () => doc('S000056193', 'abrdn Bloomberg All Commodity Longer Dated Strategy K-1 Free ETF'), '000141359426000001': () => doc('S000026307', 'abrdn Emerging Markets Fund'), '000141359426000002': () => doc('S000088603', 'abrdn Emerging Markets Dividend Active ETF') };
+const recent = (cik, accessions) => Response.json({ cik, filings: { recent: { form: accessions.map(() => 'NPORT-P'), accessionNumber: accessions, filingDate: accessions.map(() => '2026-10-20'), reportDate: accessions.map(() => S.period) } } });
+const sec = [];
+globalThis.fetch = async (input, init) => {
+  const u = String(input);
+  if (!/sec\\.gov/.test(u)) return served(input, init);
+  sec.push(u);
+  if (u.endsWith('company_tickers_mf.json')) return Response.json({ fields: ['cik', 'seriesId', 'classId', 'symbol'], data: [[1597934, 'S000056193', 'C000176936', 'BCD']] });
+  if (u.endsWith('company_tickers.json')) return Response.json({ 0: { ticker: 'MRK', title: 'Merck & Co., Inc.' } });
+  if (u.includes('CIK0001597934.json')) return recent('1597934', ['0001597934-26-000002']);
+  if (u.includes('CIK0001413594.json')) return recent('1413594', ['0001413594-26-000001', '0001413594-26-000002']);
+  if (u.includes('browse-edgar')) return new Response('<feed><entry><content><accession-number>0001597934-26-000002</accession-number><filing-date>2026-10-20</filing-date><filing-type>NPORT-P</filing-type><filing-href>https://www.sec.gov/Archives/edgar/data/1597934/000159793426000002/0001597934-26-000002-index.htm</filing-href></content></entry></feed>');
+  const m = /\\/(\\d{18})\\/primary_doc\\.xml$/.exec(u);
+  if (m && docs[m[1]]) return new Response(docs[m[1]]());
+  return new Response('denied', { status: 404 });
+};
+ok(await run() === 0, 'run 1 (official holdings)');
+const published = await snap('/holdings/');
+// the official holdings fail from now on: N-PORT is the fallback
+S.fail = (u) => u.includes('breakdown/dailyHoldings'); S.period = '2026-06-30';
+ok(await run({ EDGAR_FALLBACK: '1' }) === 0, 'run 2');
+ok(published === await snap('/holdings/'), 'an N-PORT report older than the published holdings replaced them');
+S.period = '2026-09-30';
+ok(await run({ EDGAR_FALLBACK: '1' }) === 0, 'run 3');
+for (const t of ['AGEM', 'BCD']) {
+  const page = await readJ('api/aberdeen/funds/' + t + '/holdings/001.json'), m = await meta(t);
+  ok(JSON.stringify(page.headers) === JSON.stringify(M.HOLDINGS_HEADERS) && page.rows.every(r => JSON.stringify(Object.keys(r)) === JSON.stringify(M.HOLDINGS_HEADERS)), t + ' headers ' + JSON.stringify(page.headers));
+  ok(JSON.stringify(page.rows.map(r => [r.Name, r.Ticker, r.Identifier, r.Weight, r['Market Value'], r.CUSIP])) === JSON.stringify([['MERCK & CO INC', 'MRK', '58933Y105', '59.5', '600', '58933Y105'], ['Samsung Electronics Co Ltd', '-', 'KR7005931001', '40', '400', ''], ['CASH', '-', '-', '0.5', '', '']]), t + ' rows ' + JSON.stringify(page.rows));
+  ok(m.holdings.asOfDate === '2026-09-30' && m.holdings.source.startsWith('SEC EDGAR Form N-PORT-P'), t + ' meta ' + JSON.stringify(m.holdings));
+}
+ok((await meta('AGEM')).holdings.source.includes('0001413594-26-000002') && sec.some(u => u.includes('000141359426000001')), 'AGEM: the other series of its registrant was not skipped by name');
+ok(!sec.some(u => decodeURIComponent(u).includes('Physical')), 'a physical trust asked SEC: ' + sec.filter(u => decodeURIComponent(u).includes('Physical')));`, {});
+    expect(r.stdout).not.toContain('main threw');
+  });
+});
+
+describe('pipeline 4', () => {
   test('the soft deadline stops new funds, keeps published data and still writes the index', async () => {
     const r = await passes(`ok(await run() === 0, 'run 1');
 const before = await snap();
