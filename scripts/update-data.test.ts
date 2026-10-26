@@ -639,7 +639,7 @@ S.fail = () => true;
 ok(await run() === 1, 'total outage must exit 1');
 ok(before === await snap(), 'outage changed published files');`);
   });
-  test('a never-published fund that fails (a source or the holdings guard) is reported failed and gets a catalog-only row (dataFile null, full metrics key set) and no files', async () => {
+  test('a never-published fund that fails (a source, the holdings guard, no source answered) is failed with a catalog-only row (dataFile null, full metrics key set) and no files; its first good refresh reads nothing from that row', async () => {
     const r = await passes(`S.catalog = ['BCD']; ok(await run() === 0, 'run 1');
 S.catalog = ['AGEM', 'BCD', 'SGOL']; S.fail = (u) => u.includes('/chart/SGOL');
 const served = globalThis.fetch;
@@ -664,10 +664,24 @@ ok(await run() === 1, 'rerun exit');
 ok(before === await snap(), 'a rerun with the same failures wrote something');
 // without the official catalog a catalog-only row has no identity: it stays listed, never published from Yahoo alone
 await run({ SKIP_ABERDEEN: '1' });
-ok(await snap('/AGEM/') + await snap('/SGOL/') === '[][]' && (await idx()).funds.filter(f => f.dataFile === null).length === 2, 'a catalog-only fund was published without its official source');`);
+ok(await snap('/AGEM/') + await snap('/SGOL/') === '[][]' && (await idx()).funds.filter(f => f.dataFile === null).length === 2, 'a catalog-only fund was published without its official source');
+// no source can answer (SKIP_ABERDEEN, SKIP_YAHOO, no N-PORT): the new fund is not even in the published catalog, nothing is written for it
+const quiet = await snap();
+ok(await run({ SKIP_ABERDEEN: '1', SKIP_YAHOO: '1', TICKERS: 'AGEM' }) === 1 && quiet === await snap(), 'a new fund nobody answered for was published');
+// the first good refresh reads nothing from the catalog-only rows: the same meta and row as a fund published from scratch
+S.fail = () => false; globalThis.fetch = served;
+ok(await run() === 0, 'good refresh');
+// published content without the index stamps: every meta.json plus the index rows
+const content = async () => JSON.stringify(JSON.parse(await snap()).map(([f, t]) => [f, f.endsWith('index.json') ? JSON.parse(t).funds : JSON.parse(t)]));
+const refreshed = await content(), rowsAfter = (await idx()).funds;
+ok(rowsAfter.every(f => f.dataFile === './funds/' + f.ticker + '/meta.json' && f.asOfDate !== '—' && f.holdings + f.history > 0), 'refreshed rows ' + JSON.stringify(rowsAfter));
+(await import('node:fs')).rmSync('api', { recursive: true });
+ok(await run() === 0, 'publication from scratch');
+ok(refreshed === await content(), 'a catalog-only row leaked into the first good refresh');`);
     expect(r.stdout).toMatch(/ AGEM +failed .*reason=holdings guard: /);
     expect(r.stdout).toMatch(/ SGOL +failed .*reason=/);
-    expect(r.stdout).toContain('0 kept as published, 2 failures');
+    // the rerun too: a catalog-only row is no published state, so its fund is failed again, never kept
+    expect(r.stdout.match(/0 kept as published, 2 failures/g)?.length).toBe(2);
   });
   test('skipped sources fall back to published data (SKIP_YAHOO, SKIP_ABERDEEN)', async () => {
     await passes(`ok(await run() === 0, 'run 1');
