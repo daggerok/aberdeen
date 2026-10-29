@@ -506,6 +506,8 @@ describe('pipeline', () => {
     await passes(`ok(await run() === 0, 'run 1');
 const a = await idx();
 ok(a.funds.length === 3 && a.funds.every(f => f.dataFile === './funds/' + f.ticker + '/meta.json'), 'rows with dataFile');
+// every row carries the 52-week keys from its history pages (range-52w block)
+ok(a.funds.every(f => ['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis'].every(k => k in f.metrics)), 'every row has the seven 52-week keys');
 ok(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/.test(a.generatedAt) && a.catalogReadAt === a.generatedAt, 'stamp ' + a.generatedAt);
 const text = await snap();
 await Bun.sleep(1100);
