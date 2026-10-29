@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-emerging-markets-dividend-active-etf-us00384x3017",
-  "nav": 45.3627,
-  "navDate": "2026-10-23"
+  "nav": 46.2287,
+  "navDate": "2026-10-28"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.7
  },
  "nav": {
-  "display": "$45.36",
-  "value": 45.3627,
-  "asOfDate": "Oct 23 2026"
+  "display": "$46.23",
+  "value": 46.2287,
+  "asOfDate": "Oct 28 2026"
  },
  "marketPrice": {
-  "display": "$45.29",
-  "value": 45.286,
-  "asOfDate": "Oct 23 2026"
+  "display": "$46.52",
+  "value": 46.519,
+  "asOfDate": "Oct 28 2026"
  },
  "premiumDiscount": {
-  "display": "-0.17%",
-  "value": -0.17
+  "display": "0.63%",
+  "value": 0.63
  },
  "aum": {
-  "display": "$342.94 M",
-  "value": 342936171.25,
-  "asOfDate": "Oct 23 2026",
+  "display": "$349.48 M",
+  "value": 349482657.84,
+  "asOfDate": "Oct 28 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 2.58,
-  "dividendYieldText": "2.58%",
+  "dividendYield": 2.51,
+  "dividendYieldText": "2.51%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": 1.48,
   "secYieldText": "1.48%",
@@ -140,8 +140,8 @@
   ],
   "pageSize": 250,
   "totalRows": 94,
-  "asOfDate": "2026-10-23",
-  "asOf": "Oct 23 2026",
+  "asOfDate": "2026-10-29",
+  "asOf": "Oct 29 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -150,8 +150,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 423,
-  "asOf": "Oct 23 2026",
+  "totalRows": 427,
+  "asOf": "Oct 29 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

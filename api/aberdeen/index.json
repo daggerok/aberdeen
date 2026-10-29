@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-26T23:41:13Z",
- "catalogReadAt": "2026-10-26T23:41:13Z",
+ "generatedAt": "2026-10-29T21:15:03Z",
+ "catalogReadAt": "2026-10-29T21:15:03Z",
  "source": {
   "provider": "abrdn ETFs",
   "site": "https://www.aberdeeninvestments.com",
@@ -8,8 +8,8 @@
  },
  "counts": {
   "funds": 11,
-  "holdings": 330,
-  "history": 27288
+  "holdings": 331,
+  "history": 27295
  },
  "funds": [
   {
@@ -24,17 +24,17 @@
    "terValue": 0.65,
    "terGross": "1.09%",
    "terGrossValue": 1.09,
-   "nav": "$36.10",
-   "navValue": 36.1044,
-   "aum": "$9.51 M",
-   "aumValue": 9512467.48,
-   "asOfDate": "Oct 23 2026",
+   "nav": "$36.98",
+   "navValue": 36.9829,
+   "aum": "$10.67 M",
+   "aumValue": 10668495.01,
+   "asOfDate": "Oct 28 2026",
    "inceptionDate": "Dec 31 1997",
    "exchange": "NasdaqGM",
-   "closePrice": "$36.10",
-   "closePriceValue": 36.104,
-   "premiumDiscount": "0.00%",
-   "premiumDiscountValue": 0,
+   "closePrice": "$36.96",
+   "closePriceValue": 36.961,
+   "premiumDiscount": "-0.06%",
+   "premiumDiscountValue": -0.06,
    "distributions": {
     "frequency": "Annually",
     "exDate": "12/19/2025",
@@ -77,14 +77,14 @@
     "siAnn": 8.66,
     "secYield": -0.05,
     "secYieldText": "-0.05%",
-    "dividendYield": 0.07,
-    "dividendYieldText": "0.07%",
+    "dividendYield": 0.06,
+    "dividendYieldText": "0.06%",
     "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
-   "holdings": 42,
-   "history": 425
+   "holdings": 43,
+   "history": 428
   },
   {
    "ticker": "AGEM",
@@ -98,17 +98,17 @@
    "terValue": 0.7,
    "terGross": "1.18%",
    "terGrossValue": 1.18,
-   "nav": "$45.36",
-   "navValue": 45.3627,
-   "aum": "$342.94 M",
-   "aumValue": 342936171.25,
-   "asOfDate": "Oct 23 2026",
+   "nav": "$46.23",
+   "navValue": 46.2287,
+   "aum": "$349.48 M",
+   "aumValue": 349482657.84,
+   "asOfDate": "Oct 28 2026",
    "inceptionDate": "Oct 04 1993",
    "exchange": "NasdaqGM",
-   "closePrice": "$45.29",
-   "closePriceValue": 45.286,
-   "premiumDiscount": "-0.17%",
-   "premiumDiscountValue": -0.17,
+   "closePrice": "$46.52",
+   "closePriceValue": 46.519,
+   "premiumDiscount": "0.63%",
+   "premiumDiscountValue": 0.63,
    "distributions": {
     "frequency": "Quarterly",
     "exDate": "09/22/2026",
@@ -151,14 +151,14 @@
     "siAnn": 6.28,
     "secYield": 1.48,
     "secYieldText": "1.48%",
-    "dividendYield": 2.58,
-    "dividendYieldText": "2.58%",
+    "dividendYield": 2.51,
+    "dividendYieldText": "2.51%",
     "dividendYieldBasis": "computed-trailing-12m",
     "returnsBasis": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
     "performanceAsOf": "2026-09-30"
    },
    "holdings": 94,
-   "history": 423
+   "history": 427
   },
   {
    "ticker": "AMUN",
