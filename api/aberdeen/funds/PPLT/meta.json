@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-platinum-shares-etf-us0032601066",
-  "nav": 14.08794,
-  "navDate": "2026-10-23"
+  "nav": 13.9869,
+  "navDate": "2026-10-28"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$14.09",
-  "value": 14.08794,
-  "asOfDate": "Oct 23 2026"
+  "display": "$13.99",
+  "value": 13.9869,
+  "asOfDate": "Oct 28 2026"
  },
  "marketPrice": {
-  "display": "$14.20",
-  "value": 14.2,
-  "asOfDate": "Oct 22 2026"
+  "display": "$13.99",
+  "value": 13.99,
+  "asOfDate": "Oct 28 2026"
  },
  "premiumDiscount": {
-  "display": "—",
-  "value": null
+  "display": "0.02%",
+  "value": 0.02
  },
  "aum": {
-  "display": "$1,844.82 M",
-  "value": 1844815101.4,
-  "asOfDate": "Oct 23 2026",
+  "display": "$1,820.40 M",
+  "value": 1820395398.43,
+  "asOfDate": "Oct 28 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4224,
-  "asOf": "Oct 23 2026",
+  "totalRows": 4228,
+  "asOf": "Oct 29 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

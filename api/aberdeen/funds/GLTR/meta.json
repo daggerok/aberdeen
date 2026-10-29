@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-precious-metals-basket-shares-etf-us0032631006",
-  "nav": 174.59877,
-  "navDate": "2026-10-23"
+  "nav": 174.99493,
+  "navDate": "2026-10-28"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$174.60",
-  "value": 174.59877,
-  "asOfDate": "Oct 23 2026"
+  "display": "$174.99",
+  "value": 174.99493,
+  "asOfDate": "Oct 28 2026"
  },
  "marketPrice": {
-  "display": "$175.73",
-  "value": 175.73,
-  "asOfDate": "Oct 22 2026"
+  "display": "$176.43",
+  "value": 176.43,
+  "asOfDate": "Oct 28 2026"
  },
  "premiumDiscount": {
-  "display": "—",
-  "value": null
+  "display": "0.82%",
+  "value": 0.82
  },
  "aum": {
-  "display": "$2,418.19 M",
-  "value": 2418192969,
-  "asOfDate": "Oct 23 2026",
+  "display": "$2,423.68 M",
+  "value": 2423679746.3,
+  "asOfDate": "Oct 28 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4025,
-  "asOf": "Oct 23 2026",
+  "totalRows": 4029,
+  "asOf": "Oct 29 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }
