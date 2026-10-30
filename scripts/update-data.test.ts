@@ -756,7 +756,14 @@ ok((await oldest())['Adj Close'] === '39.2' && (await oldest()).Close === '40', 
 const rebased = await snap();
 S.closeAdd = 1;
 ok(await run({ HISTORY_RANGE: '1y' }) === 1, 'a window whose closes do not match is a failed chart: every fund kept');
-ok(rebased === await snap(), 'a window that does not join changed files');`);
+ok(rebased === await snap(), 'a window that does not join changed files');
+// a truncated default-range (max) answer never shrinks the history either: one that joins keeps every row, one that does not join keeps the fund
+S.closeAdd = 0;
+ok(await run() === 0, 'truncated max run');
+ok(rebased === await snap() && (await meta('AGEM')).history.totalRows === rows, 'a truncated max answer shrank the history');
+S.closeAdd = 1;
+ok(await run() === 1, 'a truncated max answer that does not join is a failed chart');
+ok(rebased === await snap(), 'a truncated max answer that does not join changed files');`);
   });
   test('a relaxed guard still keeps numeric published weights from an all-blank sheet (Q24)', async () => {
     await passes(`ok(await run() === 0, 'run 1');

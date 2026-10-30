@@ -1403,10 +1403,10 @@ async function processFund(fund:CatalogFund,config:UpdaterConfig,previousIndex:J
     const raw=await fetchJson(chartUrl(ticker,config),`[ chart    ] ${ticker}`,yahooHeaders(),config);
     await storeRaw(ticker,'yahoo',raw,config);
     const fetched=parseChart(raw);
-    if (!/^\d+y$/i.test(config.historyRange)) return fetched;
-    // A HISTORY_RANGE window never shrinks the published history: older rows are put on the fresh Adj Close basis (shared windowed-chart block)
+    // A fresh chart never shrinks the published history: a HISTORY_RANGE window, and also a truncated `max` answer (2026-10-29: Yahoo
+    // returned 2 bars for Franklin DVAL and USFI). A full `max` answer starts at inception: nothing older, unchanged. Older rows are put on the fresh Adj Close basis (shared windowed-chart block)
     const merged=mergeWindowedChart(fetched,await readPreviousSheet(ticker,'history'),Array.isArray(old.distributions?.rows)?old.distributions.rows:[]);
-    if (!merged) throw new Error(`chart window does not join the published history (${config.historyRange})`);
+    if (!merged) throw new Error(`chart does not join the published history (${config.historyRange}, ${fetched.days.length} days)`);
     return merged;
   });
   const hasPublished=Object.keys(old).length>0&&Boolean(previousIndex.ticker);
