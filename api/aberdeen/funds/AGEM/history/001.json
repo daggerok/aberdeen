@@ -2,7 +2,7 @@
  "ticker": "AGEM",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 427,
+ "totalRows": 433,
  "headers": [
   "Date",
   "Close",
@@ -2568,9 +2568,45 @@
   },
   {
    "Date": "Oct 29 2026",
-   "Close": "45.768902",
+   "Close": "45.769001",
    "Adj Close": "45.77",
-   "Volume": "6228"
+   "Volume": "6100"
+  },
+  {
+   "Date": "Oct 30 2026",
+   "Close": "44.422001",
+   "Adj Close": "44.42",
+   "Volume": "7600"
+  },
+  {
+   "Date": "Nov 02 2026",
+   "Close": "44.636002",
+   "Adj Close": "44.64",
+   "Volume": "42600"
+  },
+  {
+   "Date": "Nov 03 2026",
+   "Close": "44.785",
+   "Adj Close": "44.78",
+   "Volume": "8000"
+  },
+  {
+   "Date": "Nov 04 2026",
+   "Close": "44.978001",
+   "Adj Close": "44.98",
+   "Volume": "10700"
+  },
+  {
+   "Date": "Nov 05 2026",
+   "Close": "42.466999",
+   "Adj Close": "42.47",
+   "Volume": "7900"
+  },
+  {
+   "Date": "Nov 06 2026",
+   "Close": "43.326",
+   "Adj Close": "43.33",
+   "Volume": "6200"
   }
  ]
 }
