@@ -508,6 +508,9 @@ const a = await idx();
 ok(a.funds.length === 3 && a.funds.every(f => f.dataFile === './funds/' + f.ticker + '/meta.json'), 'rows with dataFile');
 // every row carries the 52-week keys from its history pages (range-52w block)
 ok(a.funds.every(f => ['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis'].every(k => k in f.metrics)), 'every row has the seven 52-week keys');
+// the swing keys from the Close column of the same pages (shared swing block), in front of returnsBasis and performanceAsOf
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-11, -2).join() === 'pctFrom52wHigh,athPrice,athDate,athBasis,pctFromAth,volatility1y,sigmaFromMean60d,high60d,low60d'), 'every row has the nine swing keys in order');
+ok(a.funds.every(f => typeof f.metrics.athPrice === 'number' && /^daily closes since \\d{4}-\\d{2}-\\d{2}$/.test(f.metrics.athBasis)), 'swing ATH and its basis');
 ok(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/.test(a.generatedAt) && a.catalogReadAt === a.generatedAt, 'stamp ' + a.generatedAt);
 const text = await snap();
 await Bun.sleep(1100);
