@@ -82,6 +82,13 @@ Each fund carries the same derived `metrics` object as the sibling sites:
   | `null` | no yield (fund under 12 months of history or no distributions) |
   | `official-trailing-12m`, `official-distribution-rate`, `official-other`, `indicated` | standard codes that abrdn never produces |
 - `secYield` — official subsidized 30-day SEC yield when the fund publishes one, otherwise `null`; a published value is never carried over once the source answers without one.
+- Swing metrics (shared `swing` block, the formulas of the Stocks feed) from the split-adjusted, not dividend-adjusted daily `Close` column of the published history, with the last close as the price; `null` (never `0`) when the history is too short:
+  - `pctFrom52wHigh` - last close against the highest close of the last 52 weeks, in percent
+  - `athPrice`, `athDate`, `athBasis` - highest close of the whole history, its date and the history it covers (`daily closes since <first date>`)
+  - `pctFromAth` - last close against `athPrice`, in percent
+  - `volatility1y` - annualized volatility of the last 252 daily log returns, in percent (needs 253 closes)
+  - `sigmaFromMean60d` - distance of the last close from the mean of the last 60 closes, in sample standard deviations
+  - `high60d`, `low60d` - highest and lowest of the last 60 closes
 - `returnsBasis` - mandatory non-empty label of how the returns were computed: official abrdn NAV performance (gaps derived from Yahoo adjusted closes at the same reporting date), or Yahoo adjusted market-price returns that are not official NAV; never empty or `-`
 - `performanceAsOf` - mandatory ISO date (`YYYY-MM-DD`) the returns are as of: the date of the abrdn performance table (month-end), or the last Yahoo close date when derived; it is not the NAV date, and `null` only when truly unknown
 
