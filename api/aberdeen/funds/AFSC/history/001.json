@@ -2,7 +2,7 @@
  "ticker": "AFSC",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 434,
+ "totalRows": 439,
  "headers": [
   "Date",
   "Close",
@@ -2613,6 +2613,36 @@
    "Close": "35.48",
    "Adj Close": "35.48",
    "Volume": "100"
+  },
+  {
+   "Date": "Nov 09 2026",
+   "Close": "36.438999",
+   "Adj Close": "36.44",
+   "Volume": "100"
+  },
+  {
+   "Date": "Nov 10 2026",
+   "Close": "36.389",
+   "Adj Close": "36.39",
+   "Volume": "600"
+  },
+  {
+   "Date": "Nov 11 2026",
+   "Close": "36.669998",
+   "Adj Close": "36.67",
+   "Volume": "200"
+  },
+  {
+   "Date": "Nov 12 2026",
+   "Close": "36.432999",
+   "Adj Close": "36.43",
+   "Volume": "100"
+  },
+  {
+   "Date": "Nov 13 2026",
+   "Close": "36.373001",
+   "Adj Close": "36.37",
+   "Volume": "4000"
   }
  ]
 }

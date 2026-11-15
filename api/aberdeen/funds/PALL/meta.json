@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-palladium-shares-etf-us0032621023",
-  "nav": 18.39612,
-  "navDate": "2026-11-06"
+  "nav": 18.319,
+  "navDate": "2026-11-13"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$18.40",
-  "value": 18.39612,
-  "asOfDate": "Nov 06 2026"
+  "display": "$18.32",
+  "value": 18.319,
+  "asOfDate": "Nov 13 2026"
  },
  "marketPrice": {
-  "display": "$18.85",
-  "value": 18.85,
-  "asOfDate": "Nov 05 2026"
+  "display": "$18.02",
+  "value": 18.02,
+  "asOfDate": "Nov 12 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$529.58 M",
-  "value": 529578314.85,
-  "asOfDate": "Nov 06 2026",
+  "display": "$523.47 M",
+  "value": 523465450.18,
+  "asOfDate": "Nov 13 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -73,15 +73,15 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Sep 30 2026",
-   "ytd": -25,
-   "yr1": -1.65,
-   "yr3": -2.35,
-   "yr5": -8.99,
-   "yr10": 4.77,
-   "sinceInception": 5.86,
-   "mo1": -15.41,
-   "qtd": -1
+   "asOfDate": "Oct 31 2026",
+   "ytd": -38.86,
+   "yr1": -33.86,
+   "yr3": -5.54,
+   "yr5": -13.66,
+   "yr10": 4.14,
+   "sinceInception": 4.41,
+   "mo1": -20.27,
+   "qtd": -17.19
   },
   "quarterEnd": {
    "asOfDate": "Sep 30 2026",
@@ -94,7 +94,7 @@
    "mo1": -15.41
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-09-30"
+  "performanceAsOf": "2026-10-31"
  },
  "distributions": {
   "frequency": "—",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4234,
-  "asOf": "Nov 06 2026",
+  "totalRows": 4239,
+  "asOf": "Nov 13 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

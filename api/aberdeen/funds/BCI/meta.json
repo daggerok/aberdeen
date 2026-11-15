@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-strategy-k-1-free-etf-us0032611040",
-  "nav": 24.6778,
-  "navDate": "2026-11-06"
+  "nav": 24.4534,
+  "navDate": "2026-11-13"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.26
  },
  "nav": {
-  "display": "$24.68",
-  "value": 24.6778,
-  "asOfDate": "Nov 06 2026"
+  "display": "$24.45",
+  "value": 24.4534,
+  "asOfDate": "Nov 13 2026"
  },
  "marketPrice": {
-  "display": "$24.64",
-  "value": 24.64,
-  "asOfDate": "Nov 06 2026"
+  "display": "$24.50",
+  "value": 24.5,
+  "asOfDate": "Nov 13 2026"
  },
  "premiumDiscount": {
-  "display": "-0.15%",
-  "value": -0.15
+  "display": "0.19%",
+  "value": 0.19
  },
  "aum": {
-  "display": "$3,308.06 M",
-  "value": 3308063097.3,
-  "asOfDate": "Nov 06 2026",
+  "display": "$3,282.87 M",
+  "value": 3282874212.19,
+  "asOfDate": "Nov 13 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 13.07,
-  "dividendYieldText": "13.07%",
+  "dividendYield": 13.14,
+  "dividendYieldText": "13.14%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",
@@ -73,15 +73,15 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Sep 30 2026",
-   "ytd": 32.46,
-   "yr1": 39.78,
-   "yr3": 15.15,
-   "yr5": 10.63,
+   "asOfDate": "Oct 31 2026",
+   "ytd": 31.8,
+   "yr1": 35.74,
+   "yr3": 15.04,
+   "yr5": 10.05,
    "yr10": null,
-   "sinceInception": 7.68,
-   "mo1": 0.57,
-   "qtd": 16.27
+   "sinceInception": 7.6,
+   "mo1": -0.09,
+   "qtd": -0.89
   },
   "quarterEnd": {
    "asOfDate": "Sep 30 2026",
@@ -94,7 +94,7 @@
    "mo1": 0.57
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-09-30"
+  "performanceAsOf": "2026-10-31"
  },
  "distributions": {
   "frequency": "Annually",
@@ -147,9 +147,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 32,
-  "asOfDate": "2026-11-06",
-  "asOf": "Nov 06 2026",
+  "totalRows": 31,
+  "asOfDate": "2026-11-13",
+  "asOf": "Nov 13 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -160,8 +160,8 @@
    "history/003.json"
   ],
   "pageSize": 1000,
-  "totalRows": 2415,
-  "asOf": "Nov 06 2026",
+  "totalRows": 2420,
+  "asOf": "Nov 13 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

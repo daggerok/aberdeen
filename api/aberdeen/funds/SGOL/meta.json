@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
-  "nav": 38.53806,
-  "navDate": "2026-11-06"
+  "nav": 37.0261,
+  "navDate": "2026-11-13"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.17
  },
  "nav": {
-  "display": "$38.54",
-  "value": 38.53806,
-  "asOfDate": "Nov 06 2026"
+  "display": "$37.03",
+  "value": 37.0261,
+  "asOfDate": "Nov 13 2026"
  },
  "marketPrice": {
-  "display": "$39.00",
-  "value": 39,
-  "asOfDate": "Nov 05 2026"
+  "display": "$36.87",
+  "value": 36.87,
+  "asOfDate": "Nov 12 2026"
  },
  "premiumDiscount": {
   "display": "—",
   "value": null
  },
  "aum": {
-  "display": "$6,909.87 M",
-  "value": 6909873970.16,
-  "asOfDate": "Nov 06 2026",
+  "display": "$6,653.59 M",
+  "value": 6653591030.49,
+  "asOfDate": "Nov 13 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -73,15 +73,15 @@
  },
  "returns": {
   "monthEnd": {
-   "asOfDate": "Sep 30 2026",
-   "ytd": -3.7,
-   "yr1": 8.99,
-   "yr3": 30.48,
-   "yr5": 18.9,
-   "yr10": 11.94,
-   "sinceInception": 8.41,
-   "mo1": -8.48,
-   "qtd": 2.89
+   "asOfDate": "Oct 31 2026",
+   "ytd": -10.05,
+   "yr1": -2.62,
+   "yr3": 24.93,
+   "yr5": 17.01,
+   "yr10": 11.65,
+   "sinceInception": 7.96,
+   "mo1": -6.31,
+   "qtd": -7.02
   },
   "quarterEnd": {
    "asOfDate": "Sep 30 2026",
@@ -94,7 +94,7 @@
    "mo1": -8.48
   },
   "derivedFrom": "official abrdn NAV performance where published; missing metrics derived from Yahoo adjusted closes at the same reporting date",
-  "performanceAsOf": "2026-09-30"
+  "performanceAsOf": "2026-10-31"
  },
  "distributions": {
   "frequency": "—",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4318,
-  "asOf": "Nov 06 2026",
+  "totalRows": 4323,
+  "asOf": "Nov 13 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

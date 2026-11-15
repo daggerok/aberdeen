@@ -2,7 +2,7 @@
  "ticker": "GLTR",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4035,
+ "totalRows": 4040,
  "headers": [
   "Date",
   "Close",
@@ -219,6 +219,36 @@
    "Close": "173.860001",
    "Adj Close": "173.86",
    "Volume": "46000"
+  },
+  {
+   "Date": "Nov 09 2026",
+   "Close": "177.380005",
+   "Adj Close": "177.38",
+   "Volume": "78300"
+  },
+  {
+   "Date": "Nov 10 2026",
+   "Close": "172.279999",
+   "Adj Close": "172.28",
+   "Volume": "63000"
+  },
+  {
+   "Date": "Nov 11 2026",
+   "Close": "171.479996",
+   "Adj Close": "171.48",
+   "Volume": "82700"
+  },
+  {
+   "Date": "Nov 12 2026",
+   "Close": "166.309998",
+   "Adj Close": "166.31",
+   "Volume": "96700"
+  },
+  {
+   "Date": "Nov 13 2026",
+   "Close": "165.259995",
+   "Adj Close": "165.26",
+   "Volume": "42900"
   }
  ]
 }
