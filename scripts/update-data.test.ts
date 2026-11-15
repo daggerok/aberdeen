@@ -94,7 +94,7 @@ const DEFS = {
   SGOL: { id: 'id-sgol', sc: 'sc-sgol', isin: 'US00027Y1001', name: 'abrdn Physical Gold Shares ETF', nav: 40.1, net: '0.17', gross: '0.17', freq: '', physical: true },
 };
 const S = {
-  fail: () => false, catalog: ['AGEM', 'BCD', 'SGOL'], perfTab: true, perfDate: '2026-08-31', perfDateQ: '2026-06-30', ytd: '10', launch: '2022-03-01', period: '', adjFactor: 1, closeAdd: 0,
+  chartUrls: [], fail: () => false, catalog: ['AGEM', 'BCD', 'SGOL'], perfTab: true, perfDate: '2026-08-31', perfDateQ: '2026-06-30', ytd: '10', launch: '2022-03-01', period: '', adjFactor: 1, closeAdd: 0,
   navDate: '2026-09-25', priceDate: '2026-09-25', price: 50, navAdd: 0, secYield: '1.48', chartFrom: '2024-01-02', chartTo: '2026-09-25',
   divs: {
     AGEM: [['2025-12-15', 0.5], ['2026-03-16', 0.5], ['2026-06-15', 0.5], ['2026-09-14', 0.5]],
@@ -108,7 +108,7 @@ function chart(t) {
   for (let x = from; x <= to; x += 86400) { ts.push(x); close.push(Math.round((40 + S.closeAdd + Math.round((x - ep('2024-01-02')) / 86400) * 0.005) * 10000) / 10000); }
   const dividends = {};
   for (const [day, amount] of S.divs[t]) dividends['d' + day] = { date: ep(day), amount };
-  return { chart: { result: [{ meta: { fullExchangeName: 'NYSE Arca', longName: DEFS[t].name, regularMarketPrice: S.price, regularMarketTime: to, firstTradeDate: from },
+  return { chart: { result: [{ meta: { fullExchangeName: 'NYSE Arca', longName: DEFS[t].name, regularMarketPrice: S.price, regularMarketTime: to, firstTradeDate: ep('2024-01-02'), dataGranularity: '1d' },
     timestamp: ts, indicators: { quote: [{ close, volume: close.map(() => 1000) }], adjclose: [{ adjclose: close.map(c => c * S.adjFactor) }] }, events: { dividends } }] } };
 }
 const perf = (date, periods) => ({ content: { lastRelevantDate: date + 'T00:00:00Z', performanceSet: [{ performanceCategoryType: 'NAV', values: periods.map(([label, value]) => ({ performanceTimePeriodLabel: label, performanceTimePeriod: label, value })) }] }, statusCode: 200 });
@@ -117,6 +117,7 @@ const byBody = (body) => Object.entries(DEFS).find(([, d]) => d.id === body.fund
 globalThis.fetch = async (input, init) => {
   const u = String(input), body = init && init.body ? JSON.parse(init.body) : {};
   if (S.fail(u, body)) return new Response('nope', { status: 404 });
+  if (u.includes('query1.finance.yahoo.com')) S.chartUrls.push(u);
   if (u.includes('query1.finance.yahoo.com')) return Response.json(chart(u.split('/chart/')[1].split('?')[0]));
   if (u.includes('/view-all-funds/')) {
     const e = Object.entries(DEFS).find(([, d]) => u.endsWith('-' + d.isin.toLowerCase()));
@@ -509,7 +510,15 @@ ok(a.funds.length === 3 && a.funds.every(f => f.dataFile === './funds/' + f.tick
 // every row carries the 52-week keys from its history pages (range-52w block)
 ok(a.funds.every(f => ['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis'].every(k => k in f.metrics)), 'every row has the seven 52-week keys');
 // the swing keys from the Close column of the same pages (shared swing block), in front of returnsBasis and performanceAsOf
-ok(a.funds.every(f => Object.keys(f.metrics).slice(-11, -2).join() === 'pctFrom52wHigh,athPrice,athDate,athBasis,pctFromAth,volatility1y,sigmaFromMean60d,high60d,low60d'), 'every row has the nine swing keys in order');
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-17, -8).join() === 'pctFrom52wHigh,athPrice,athDate,athBasis,pctFromAth,volatility1y,sigmaFromMean60d,high60d,low60d'), 'every row has the nine swing keys in order');
+// the six dividend keys of the dividends block follow the swing keys, read from one own daily chart request per updated fund (no pre/post)
+const DIVIDEND_KEYS = ['dividendRate', 'dividendGrowth', 'dividendGrowth3y', 'dividendGrowth5y', 'dividendStreak', 'dividendCut10y'];
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-8, -2).join() === DIVIDEND_KEYS.join()), 'every row has the six dividend keys in order');
+for (const t of ['AGEM', 'BCD', 'SGOL']) ok(S.chartUrls.filter(u => new RegExp('chart/' + t + '\\\\?period1=0&.*includePrePost=false').test(u)).length === 1, 'one dividend chart request for ' + t);
+const divs = (t) => DIVIDEND_KEYS.map(k => a.funds.find(f => f.ticker === t).metrics[k]);
+// AGEM paid 4 x 0.5 inside the chart's last 12 months: the rate is 2, no growth figure (no complete year before 2025 with a payment), streak 0 and no cut are real values; SGOL pays nothing: all null, never 0
+ok(JSON.stringify(divs('AGEM')) === JSON.stringify([2, null, null, null, 0, false]), 'AGEM dividend keys ' + JSON.stringify(divs('AGEM')));
+ok(JSON.stringify(divs('SGOL')) === JSON.stringify([null, null, null, null, null, null]), 'SGOL dividend keys ' + JSON.stringify(divs('SGOL')));
 ok(a.funds.every(f => typeof f.metrics.athPrice === 'number' && /^daily closes since \\d{4}-\\d{2}-\\d{2}$/.test(f.metrics.athBasis)), 'swing ATH and its basis');
 ok(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/.test(a.generatedAt) && a.catalogReadAt === a.generatedAt, 'stamp ' + a.generatedAt);
 const text = await snap();
