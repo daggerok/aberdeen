@@ -2,7 +2,7 @@
  "ticker": "BCI",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 2420,
+ "totalRows": 2421,
  "headers": [
   "Date",
   "Close",
@@ -2529,6 +2529,12 @@
    "Close": "24.5",
    "Adj Close": "24.5",
    "Volume": "510300"
+  },
+  {
+   "Date": "Nov 16 2026",
+   "Close": "24.125",
+   "Adj Close": "24.13",
+   "Volume": "493387"
   }
  ]
 }

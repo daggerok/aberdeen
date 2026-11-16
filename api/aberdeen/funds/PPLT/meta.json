@@ -48,13 +48,13 @@
   "asOfDate": "Nov 13 2026"
  },
  "marketPrice": {
-  "display": "$13.71",
-  "value": 13.71,
-  "asOfDate": "Nov 12 2026"
+  "display": "$13.50",
+  "value": 13.5,
+  "asOfDate": "Nov 13 2026"
  },
  "premiumDiscount": {
-  "display": "—",
-  "value": null
+  "display": "-0.90%",
+  "value": -0.9
  },
  "aum": {
   "display": "$1,747.79 M",
@@ -123,8 +123,8 @@
    "history/005.json"
   ],
   "pageSize": 1000,
-  "totalRows": 4239,
-  "asOf": "Nov 13 2026",
+  "totalRows": 4240,
+  "asOf": "Nov 16 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

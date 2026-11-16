@@ -2,7 +2,7 @@
  "ticker": "GLTR",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4040,
+ "totalRows": 4041,
  "headers": [
   "Date",
   "Close",
@@ -249,6 +249,12 @@
    "Close": "165.259995",
    "Adj Close": "165.26",
    "Volume": "42900"
+  },
+  {
+   "Date": "Nov 16 2026",
+   "Close": "162.669998",
+   "Adj Close": "162.67",
+   "Volume": "30189"
   }
  ]
 }
