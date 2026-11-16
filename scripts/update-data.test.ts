@@ -107,8 +107,8 @@ function chart(t) {
   const from = ep(S.chartFrom), to = ep(S.chartTo), ts = [], close = [];
   for (let x = from; x <= to; x += 86400) { ts.push(x); close.push(Math.round((40 + S.closeAdd + Math.round((x - ep('2024-01-02')) / 86400) * 0.005) * 10000) / 10000); }
   const dividends = {};
-  for (const [day, amount] of S.divs[t]) dividends['d' + day] = { date: ep(day), amount };
-  return { chart: { result: [{ meta: { fullExchangeName: 'NYSE Arca', longName: DEFS[t].name, regularMarketPrice: S.price, regularMarketTime: to, firstTradeDate: ep('2024-01-02'), dataGranularity: '1d' },
+  for (const [day, amount] of S.divs[t] ?? []) dividends['d' + day] = { date: ep(day), amount };
+  return { chart: { result: [{ meta: { fullExchangeName: 'NYSE Arca', longName: (DEFS[t] ?? { name: t }).name, regularMarketPrice: S.price, regularMarketTime: to, firstTradeDate: ep('2024-01-02'), dataGranularity: '1d' },
     timestamp: ts, indicators: { quote: [{ close, volume: close.map(() => 1000) }], adjclose: [{ adjclose: close.map(c => c * S.adjFactor) }] }, events: { dividends } }] } };
 }
 const perf = (date, periods) => ({ content: { lastRelevantDate: date + 'T00:00:00Z', performanceSet: [{ performanceCategoryType: 'NAV', values: periods.map(([label, value]) => ({ performanceTimePeriodLabel: label, performanceTimePeriod: label, value })) }] }, statusCode: 200 });
@@ -510,15 +510,25 @@ ok(a.funds.length === 3 && a.funds.every(f => f.dataFile === './funds/' + f.tick
 // every row carries the 52-week keys from its history pages (range-52w block)
 ok(a.funds.every(f => ['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis'].every(k => k in f.metrics)), 'every row has the seven 52-week keys');
 // the swing keys from the Close column of the same pages (shared swing block), in front of returnsBasis and performanceAsOf
-ok(a.funds.every(f => Object.keys(f.metrics).slice(-17, -8).join() === 'pctFrom52wHigh,athPrice,athDate,athBasis,pctFromAth,volatility1y,sigmaFromMean60d,high60d,low60d'), 'every row has the nine swing keys in order');
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-51, -42).join() === 'pctFrom52wHigh,athPrice,athDate,athBasis,pctFromAth,volatility1y,sigmaFromMean60d,high60d,low60d'), 'every row has the nine swing keys in order');
 // the six dividend keys of the dividends block follow the swing keys, read from one own daily chart request per updated fund (no pre/post)
-const DIVIDEND_KEYS = ['dividendRate', 'dividendGrowth', 'dividendGrowth3y', 'dividendGrowth5y', 'dividendStreak', 'dividendCut10y'];
-ok(a.funds.every(f => Object.keys(f.metrics).slice(-8, -2).join() === DIVIDEND_KEYS.join()), 'every row has the six dividend keys in order');
+const DIVIDEND_KEYS = ['dividendRate', 'dividendGrowth', 'dividendGrowth3y', 'dividendGrowth5y', 'dividendStreak', 'dividendCut10y', 'paymentsPerYear', 'payFrequency'];
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-42, -34).join() === DIVIDEND_KEYS.join()), 'every row has the eight dividend keys in order');
+// the 32 keys of the benchmark block (SPY and QQQ) sit between the dividend keys and returnsBasis, performanceAsOf
+const BENCHMARK_KEYS = ['perf1y', 'perf3y', 'perf5y', 'perf10y', 'perfSi', 'maxDrawdown1y', 'maxDrawdown3y', 'maxDrawdown5y', 'maxDrawdown10y',
+  'vsSpy1y', 'vsSpy3y', 'vsSpy5y', 'vsSpy10y', 'beta1ySpy', 'corr1ySpy', 'upCapture3ySpy', 'downCapture3ySpy', 'relStrength3mSpy', 'stressReturnSpy', 'stressBasisSpy',
+  'vsQqq1y', 'vsQqq3y', 'vsQqq5y', 'vsQqq10y', 'beta1yQqq', 'corr1yQqq', 'upCapture3yQqq', 'downCapture3yQqq', 'relStrength3mQqq', 'stressReturnQqq', 'stressBasisQqq', 'benchmarkAsOf'];
+ok(a.funds.every(f => Object.keys(f.metrics).slice(-34, -2).join() === BENCHMARK_KEYS.join()), 'every row has the 32 benchmark keys in order');
+// the benchmark block adds exactly the SPY and the QQQ chart to the run, no request per fund
+ok(S.chartUrls.filter(u => /chart\\/[^?]+\\?period1=0&.*includePrePost=false/.test(u)).map(u => /chart\\/([^?]+)/.exec(u)[1]).sort().join() === 'AGEM,BCD,QQQ,SGOL,SPY', 'two more chart requests: SPY and QQQ');
+// the mocked chart gives the benchmarks the same bars as the fund (2.7 years): 1y horizon and since listing exist, 3y and longer are null, the fund equals both benchmarks
+const agem = a.funds.find(f => f.ticker === 'AGEM').metrics;
+ok(JSON.stringify([agem.perf1y, agem.perf3y, agem.perfSi, agem.vsSpy1y, agem.vsQqq1y, agem.vsSpy3y, agem.beta1ySpy, agem.corr1yQqq, agem.relStrength3mSpy, agem.benchmarkAsOf]) === JSON.stringify([4.23, null, 12.46, 0, 0, null, 1, 1, 0, '2026-09-25']), 'AGEM benchmark keys');
 for (const t of ['AGEM', 'BCD', 'SGOL']) ok(S.chartUrls.filter(u => new RegExp('chart/' + t + '\\\\?period1=0&.*includePrePost=false').test(u)).length === 1, 'one dividend chart request for ' + t);
 const divs = (t) => DIVIDEND_KEYS.map(k => a.funds.find(f => f.ticker === t).metrics[k]);
 // AGEM paid 4 x 0.5 inside the chart's last 12 months: the rate is 2, no growth figure (no complete year before 2025 with a payment), streak 0 and no cut are real values; SGOL pays nothing: all null, never 0
-ok(JSON.stringify(divs('AGEM')) === JSON.stringify([2, null, null, null, 0, false]), 'AGEM dividend keys ' + JSON.stringify(divs('AGEM')));
-ok(JSON.stringify(divs('SGOL')) === JSON.stringify([null, null, null, null, null, null]), 'SGOL dividend keys ' + JSON.stringify(divs('SGOL')));
+ok(JSON.stringify(divs('AGEM')) === JSON.stringify([2, null, null, null, 0, false, 4, 'quarterly']), 'AGEM dividend keys ' + JSON.stringify(divs('AGEM')));
+ok(JSON.stringify(divs('SGOL')) === JSON.stringify([null, null, null, null, null, null, null, null]), 'SGOL dividend keys ' + JSON.stringify(divs('SGOL')));
 ok(a.funds.every(f => typeof f.metrics.athPrice === 'number' && /^daily closes since \\d{4}-\\d{2}-\\d{2}$/.test(f.metrics.athBasis)), 'swing ATH and its basis');
 ok(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/.test(a.generatedAt) && a.catalogReadAt === a.generatedAt, 'stamp ' + a.generatedAt);
 const text = await snap();
