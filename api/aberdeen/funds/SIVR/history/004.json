@@ -2,7 +2,7 @@
  "ticker": "SIVR",
  "page": 4,
  "pageSize": 1000,
- "totalRows": 4356,
+ "totalRows": 4358,
  "headers": [
   "Date",
   "Close",
