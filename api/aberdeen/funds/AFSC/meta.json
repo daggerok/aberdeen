@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-focused-us-small-cap-active-etf-us00384x2027",
-  "nav": 36.0108,
-  "navDate": "2026-11-18"
+  "nav": 35.0202,
+  "navDate": "2026-11-19"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,23 +43,23 @@
   "net": 0.65
  },
  "nav": {
-  "display": "$36.01",
-  "value": 36.0108,
-  "asOfDate": "Nov 18 2026"
+  "display": "$35.02",
+  "value": 35.0202,
+  "asOfDate": "Nov 19 2026"
  },
  "marketPrice": {
-  "display": "$35.60",
-  "value": 35.596,
-  "asOfDate": "Nov 17 2026"
+  "display": "$35.03",
+  "value": 35.031,
+  "asOfDate": "Nov 19 2026"
  },
  "premiumDiscount": {
-  "display": "—",
-  "value": null
+  "display": "0.03%",
+  "value": 0.03
  },
  "aum": {
-  "display": "$16.69 M",
-  "value": 16689971.26,
-  "asOfDate": "Nov 18 2026",
+  "display": "$9.23 M",
+  "value": 9226816.37,
+  "asOfDate": "Nov 19 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
@@ -116,8 +116,8 @@
   ],
   "pageSize": 250,
   "totalRows": 44,
-  "asOfDate": "2026-11-18",
-  "asOf": "Nov 18 2026",
+  "asOfDate": "2026-11-20",
+  "asOf": "Nov 20 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -126,8 +126,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 442,
-  "asOf": "Nov 18 2026",
+  "totalRows": 444,
+  "asOf": "Nov 20 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

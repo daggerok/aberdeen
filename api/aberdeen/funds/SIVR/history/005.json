@@ -2,7 +2,7 @@
  "ticker": "SIVR",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4358,
+ "totalRows": 4360,
  "headers": [
   "Date",
   "Close",
@@ -2156,7 +2156,19 @@
    "Date": "Nov 18 2026",
    "Close": "42.779999",
    "Adj Close": "42.78",
-   "Volume": "2922300"
+   "Volume": "2962900"
+  },
+  {
+   "Date": "Nov 19 2026",
+   "Close": "41.669998",
+   "Adj Close": "41.67",
+   "Volume": "3412400"
+  },
+  {
+   "Date": "Nov 20 2026",
+   "Close": "38.919998",
+   "Adj Close": "38.92",
+   "Volume": "5661943"
   }
  ]
 }

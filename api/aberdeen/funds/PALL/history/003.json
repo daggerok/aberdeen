@@ -2,7 +2,7 @@
  "ticker": "PALL",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 4242,
+ "totalRows": 4244,
  "headers": [
   "Date",
   "Close",
