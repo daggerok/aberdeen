@@ -2,7 +2,7 @@
  "ticker": "GLTR",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 4045,
+ "totalRows": 4047,
  "headers": [
   "Date",
   "Close",

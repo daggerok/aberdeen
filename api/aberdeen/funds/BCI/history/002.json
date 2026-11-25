@@ -2,7 +2,7 @@
  "ticker": "BCI",
  "page": 2,
  "pageSize": 1000,
- "totalRows": 2425,
+ "totalRows": 2427,
  "headers": [
   "Date",
   "Close",

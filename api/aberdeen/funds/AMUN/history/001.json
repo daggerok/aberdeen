@@ -2,7 +2,7 @@
  "ticker": "AMUN",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 274,
+ "totalRows": 276,
  "headers": [
   "Date",
   "Close",
@@ -1652,7 +1652,19 @@
    "Date": "Nov 20 2026",
    "Close": "26.025",
    "Adj Close": "26.02",
-   "Volume": "5896"
+   "Volume": "5900"
+  },
+  {
+   "Date": "Nov 23 2026",
+   "Close": "26.030001",
+   "Adj Close": "26.03",
+   "Volume": "3000"
+  },
+  {
+   "Date": "Nov 24 2026",
+   "Close": "26.01",
+   "Adj Close": "26.01",
+   "Volume": "87500"
   }
  ]
 }

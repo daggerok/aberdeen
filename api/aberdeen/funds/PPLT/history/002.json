@@ -2,7 +2,7 @@
  "ticker": "PPLT",
  "page": 2,
  "pageSize": 1000,
- "totalRows": 4244,
+ "totalRows": 4246,
  "headers": [
   "Date",
   "Close",
