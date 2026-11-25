@@ -139,9 +139,9 @@
    "holdings/001.json"
   ],
   "pageSize": 250,
-  "totalRows": 96,
-  "asOfDate": "2026-11-24",
-  "asOf": "Nov 24 2026",
+  "totalRows": 95,
+  "asOfDate": "2026-11-25",
+  "asOf": "Nov 25 2026",
   "source": "aberdeeninvestments.com dailyHoldings (holdingType=2)",
   "status": "available"
  },
@@ -150,8 +150,8 @@
    "history/001.json"
   ],
   "pageSize": 1000,
-  "totalRows": 445,
-  "asOf": "Nov 24 2026",
+  "totalRows": 446,
+  "asOf": "Nov 25 2026",
   "source": "Yahoo Finance daily market-price closes / adjusted closes (not official NAV)"
  }
 }

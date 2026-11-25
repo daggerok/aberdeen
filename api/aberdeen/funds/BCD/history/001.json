@@ -2,7 +2,7 @@
  "ticker": "BCD",
  "page": 1,
  "pageSize": 1000,
- "totalRows": 2427,
+ "totalRows": 2428,
  "headers": [
   "Date",
   "Close",

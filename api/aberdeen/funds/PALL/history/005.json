@@ -2,7 +2,7 @@
  "ticker": "PALL",
  "page": 5,
  "pageSize": 1000,
- "totalRows": 4246,
+ "totalRows": 4247,
  "headers": [
   "Date",
   "Close",
@@ -1484,7 +1484,13 @@
    "Date": "Nov 24 2026",
    "Close": "15.46",
    "Adj Close": "15.46",
-   "Volume": "2082100"
+   "Volume": "2093700"
+  },
+  {
+   "Date": "Nov 25 2026",
+   "Close": "15.7",
+   "Adj Close": "15.7",
+   "Volume": "2221054"
   }
  ]
 }
