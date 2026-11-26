@@ -48,13 +48,13 @@
   "asOfDate": "Nov 25 2026"
  },
  "marketPrice": {
-  "display": "$146.65",
-  "value": 146.65,
-  "asOfDate": "Nov 24 2026"
+  "display": "$147.78",
+  "value": 147.78,
+  "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "—",
-  "value": null
+  "display": "3.47%",
+  "value": 3.47
  },
  "aum": {
   "display": "$2,070.44 M",
