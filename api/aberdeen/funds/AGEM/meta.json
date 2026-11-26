@@ -22,8 +22,8 @@
   "assetClass": "Active Equities",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-emerging-markets-dividend-active-etf-us00384x3017",
-  "nav": 42.4609,
-  "navDate": "2026-11-24"
+  "nav": 41.1779,
+  "navDate": "2026-11-25"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.7
  },
  "nav": {
-  "display": "$42.46",
-  "value": 42.4609,
-  "asOfDate": "Nov 24 2026"
+  "display": "$41.18",
+  "value": 41.1779,
+  "asOfDate": "Nov 25 2026"
  },
  "marketPrice": {
-  "display": "$41.79",
-  "value": 41.786,
-  "asOfDate": "Nov 24 2026"
+  "display": "$41.47",
+  "value": 41.47,
+  "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "-1.59%",
-  "value": -1.59
+  "display": "0.71%",
+  "value": 0.71
  },
  "aum": {
-  "display": "$321.00 M",
-  "value": 320999004.73,
-  "asOfDate": "Nov 24 2026",
+  "display": "$311.30 M",
+  "value": 311299850.99,
+  "asOfDate": "Nov 25 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 2.8,
-  "dividendYieldText": "2.80%",
+  "dividendYield": 2.82,
+  "dividendYieldText": "2.82%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": 3.71,
   "secYieldText": "3.71%",

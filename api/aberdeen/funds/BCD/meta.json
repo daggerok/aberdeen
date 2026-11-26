@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-bloomberg-all-commodity-longer-dated-strategy-k-1-free-etf-us0032612030",
-  "nav": 34.633,
-  "navDate": "2026-11-24"
+  "nav": 34.7462,
+  "navDate": "2026-11-25"
  },
  "legalStructure": "1940 Act",
  "identifiers": {
@@ -43,28 +43,28 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$34.63",
-  "value": 34.633,
-  "asOfDate": "Nov 24 2026"
+  "display": "$34.75",
+  "value": 34.7462,
+  "asOfDate": "Nov 25 2026"
  },
  "marketPrice": {
-  "display": "$34.57",
-  "value": 34.57,
-  "asOfDate": "Nov 24 2026"
+  "display": "$34.82",
+  "value": 34.82,
+  "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "-0.18%",
-  "value": -0.18
+  "display": "0.21%",
+  "value": 0.21
  },
  "aum": {
-  "display": "$389.62 M",
-  "value": 389621703.64,
-  "asOfDate": "Nov 24 2026",
+  "display": "$390.89 M",
+  "value": 390894514.63,
+  "asOfDate": "Nov 25 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
-  "dividendYield": 15.42,
-  "dividendYieldText": "15.42%",
+  "dividendYield": 15.3,
+  "dividendYieldText": "15.30%",
   "dividendYieldKind": "trailing 12 months (distributions with an ex-date in the last 12 months / market price; null with under 12 months of history)",
   "secYield": null,
   "secYieldText": "—",

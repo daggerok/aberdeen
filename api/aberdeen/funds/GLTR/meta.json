@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-precious-metals-basket-shares-etf-us0032631006",
-  "nav": 150.57772,
-  "navDate": "2026-11-24"
+  "nav": 142.82849,
+  "navDate": "2026-11-25"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,9 +43,9 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$150.58",
-  "value": 150.57772,
-  "asOfDate": "Nov 24 2026"
+  "display": "$142.83",
+  "value": 142.82849,
+  "asOfDate": "Nov 25 2026"
  },
  "marketPrice": {
   "display": "$146.65",
@@ -53,8 +53,8 @@
   "asOfDate": "Nov 24 2026"
  },
  "premiumDiscount": {
-  "display": "-2.61%",
-  "value": -2.61
+  "display": "—",
+  "value": null
  },
  "aum": {
   "display": "$2,070.44 M",

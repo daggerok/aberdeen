@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-platinum-shares-etf-us0032601066",
-  "nav": 11.72758,
-  "navDate": "2026-11-24"
+  "nav": 11.20884,
+  "navDate": "2026-11-25"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,9 +43,9 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$11.73",
-  "value": 11.72758,
-  "asOfDate": "Nov 24 2026"
+  "display": "$11.21",
+  "value": 11.20884,
+  "asOfDate": "Nov 25 2026"
  },
  "marketPrice": {
   "display": "$11.52",
@@ -53,8 +53,8 @@
   "asOfDate": "Nov 24 2026"
  },
  "premiumDiscount": {
-  "display": "-1.77%",
-  "value": -1.77
+  "display": "—",
+  "value": null
  },
  "aum": {
   "display": "$1,467.71 M",
