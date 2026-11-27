@@ -2,7 +2,7 @@
  "ticker": "BCD",
  "page": 3,
  "pageSize": 1000,
- "totalRows": 2428,
+ "totalRows": 2429,
  "headers": [
   "Date",
   "Close",
@@ -2577,6 +2577,12 @@
    "Close": "34.82",
    "Adj Close": "34.82",
    "Volume": "43500"
+  },
+  {
+   "Date": "Nov 27 2026",
+   "Close": "35.200001",
+   "Adj Close": "35.2",
+   "Volume": "19924"
   }
  ]
 }
