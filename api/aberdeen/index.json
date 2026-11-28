@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-28T08:54:50Z",
- "catalogReadAt": "2026-11-28T08:54:50Z",
+ "generatedAt": "2026-11-28T13:08:59Z",
+ "catalogReadAt": "2026-11-28T13:08:59Z",
  "source": {
   "provider": "abrdn ETFs",
   "site": "https://www.aberdeeninvestments.com",
@@ -1030,7 +1030,7 @@
     "beta1ySpy": 1.33,
     "corr1ySpy": 0.39,
     "upCapture3ySpy": 60.04,
-    "downCapture3ySpy": 280.57,
+    "downCapture3ySpy": 280.58,
     "relStrength3mSpy": -32.05,
     "stressReturnSpy": -23.81,
     "stressBasisSpy": "SPY -11% 2026-10-06 to 2026-11-20",
