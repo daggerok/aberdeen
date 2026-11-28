@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-palladium-shares-etf-us0032621023",
-  "nav": 15.24475,
-  "navDate": "2026-11-25"
+  "nav": 16.23252,
+  "navDate": "2026-11-27"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,9 +43,9 @@
   "net": 0.6
  },
  "nav": {
-  "display": "$15.24",
-  "value": 15.24475,
-  "asOfDate": "Nov 25 2026"
+  "display": "$16.23",
+  "value": 16.23252,
+  "asOfDate": "Nov 27 2026"
  },
  "marketPrice": {
   "display": "$15.70",
@@ -53,13 +53,13 @@
   "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "2.99%",
-  "value": 2.99
+  "display": "—",
+  "value": null
  },
  "aum": {
-  "display": "$451.62 M",
-  "value": 451622750.81,
-  "asOfDate": "Nov 24 2026",
+  "display": "$477.64 M",
+  "value": 477641942.75,
+  "asOfDate": "Nov 27 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {

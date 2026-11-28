@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-gold-shares-etf-us00326a1043",
-  "nav": 32.98463,
-  "navDate": "2026-11-25"
+  "nav": 34.58437,
+  "navDate": "2026-11-27"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,9 +43,9 @@
   "net": 0.17
  },
  "nav": {
-  "display": "$32.98",
-  "value": 32.98463,
-  "asOfDate": "Nov 25 2026"
+  "display": "$34.58",
+  "value": 34.58437,
+  "asOfDate": "Nov 27 2026"
  },
  "marketPrice": {
   "display": "$34.02",
@@ -53,13 +53,13 @@
   "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "3.14%",
-  "value": 3.14
+  "display": "—",
+  "value": null
  },
  "aum": {
-  "display": "$6,158.16 M",
-  "value": 6158160288.49,
-  "asOfDate": "Nov 24 2026",
+  "display": "$6,176.77 M",
+  "value": 6176768475.81,
+  "asOfDate": "Nov 27 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {

@@ -22,8 +22,8 @@
   "assetClass": "Alternatives",
   "correlationFundRangeId": "490e0dc7-c056-1ea5-6242-b256d7f40d94",
   "fundPage": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-silver-shares-etf-us0032641088",
-  "nav": 37.39961,
-  "navDate": "2026-11-25"
+  "nav": 41.80334,
+  "navDate": "2026-11-27"
  },
  "legalStructure": "1933 Act",
  "identifiers": {
@@ -43,9 +43,9 @@
   "net": 0.3
  },
  "nav": {
-  "display": "$37.40",
-  "value": 37.39961,
-  "asOfDate": "Nov 25 2026"
+  "display": "$41.80",
+  "value": 41.80334,
+  "asOfDate": "Nov 27 2026"
  },
  "marketPrice": {
   "display": "$39.05",
@@ -53,13 +53,13 @@
   "asOfDate": "Nov 25 2026"
  },
  "premiumDiscount": {
-  "display": "4.41%",
-  "value": 4.41
+  "display": "—",
+  "value": null
  },
  "aum": {
-  "display": "$2,946.96 M",
-  "value": 2946958661.45,
-  "asOfDate": "Nov 24 2026",
+  "display": "$3,097.63 M",
+  "value": 3097627559.13,
+  "asOfDate": "Nov 27 2026",
   "source": "aberdeeninvestments.com fundDetailsKeyInformation"
  },
  "yields": {
